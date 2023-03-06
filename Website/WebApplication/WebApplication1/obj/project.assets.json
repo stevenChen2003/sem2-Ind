@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\steve\\OneDrive\\Desktop\\Week_3_Submission_Steven_Chen\\Website\\WebApplication\\WebApplication1\\WebApplication1.csproj",
+      "projectUniqueName": "C:\\Users\\steve\\OneDrive\\Desktop\\Git folder\\Semester-2 Ind\\Website\\WebApplication\\WebApplication1\\WebApplication1.csproj",
       "projectName": "WebApplication1",
-      "projectPath": "C:\\Users\\steve\\OneDrive\\Desktop\\Week_3_Submission_Steven_Chen\\Website\\WebApplication\\WebApplication1\\WebApplication1.csproj",
+      "projectPath": "C:\\Users\\steve\\OneDrive\\Desktop\\Git folder\\Semester-2 Ind\\Website\\WebApplication\\WebApplication1\\WebApplication1.csproj",
       "packagesPath": "C:\\Users\\steve\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\steve\\OneDrive\\Desktop\\Week_3_Submission_Steven_Chen\\Website\\WebApplication\\WebApplication1\\obj\\",
+      "outputPath": "C:\\Users\\steve\\OneDrive\\Desktop\\Git folder\\Semester-2 Ind\\Website\\WebApplication\\WebApplication1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\steve\\AppData\\Roaming\\NuGet\\NuGet.Config",
