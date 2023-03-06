@@ -1,0 +1,56 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+    Layout = "_HomeLayout";
+}
+
+<div class="container-fluid">
+    <div id="home-carousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#home-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#home-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#home-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+
+        <div class="carousel-inner">
+            <div class="carousel-item active c-item" data-interval="1000">
+                <img class="d-block w-100 c-img" src="~/img/slider5.jpg" alt="First slide">
+                <div class="carousel-caption top-0 mt-5">
+                    <h1 class="mt-5 display-1 fw-bolder">Booked</h1>
+                    <p class="fs-3 text-uppercase text-capitalize">Enjoy a Nice vacation</p>
+                    <button class="btn btn-dark btn-outline-light">Book hotel</button>
+                    <button class="btn btn-dark btn-outline-light">Book flight</button>
+                </div>
+            </div>
+            <div class="carousel-item c-item" data-interval="1000">
+                <img class="d-block w-100 c-img" src="~/img/slider2.jpg" alt="Second slide">
+                <div class="carousel-caption top-0 mt-5">
+                    <h1 class="mt-5 display-1 fw-bolder">Booked</h1>
+                    <p class="fs-3 text-uppercase text-capitalize">Enjoy a Nice vacation</p>
+                    <button class="btn btn-dark btn-outline-light">Book hotel</button>
+                    <button class="btn btn-dark btn-outline-light">Book flight</button>
+                </div>
+            </div>
+            <div class="carousel-item c-item" data-interval="1000">
+                <img class="d-block w-100 c-img" src="~/img/slider3.jpg" alt="Third slide">
+                <div class="carousel-caption top-0 mt-5">
+                    <h1 class="mt-5 display-1 fw-bolder">Booked</h1>
+                    <p class="fs-3 text-uppercase text-capitalize">Enjoy a Nice vacation</p>
+                    <button class="btn btn-dark btn-outline-light">Book hotel</button>
+                    <button class="btn btn-dark btn-outline-light">Book flight</button>
+                </div>
+            </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#home-carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#home-carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+

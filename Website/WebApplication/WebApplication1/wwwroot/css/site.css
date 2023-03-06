@@ -1,0 +1,77 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    /*margin-bottom: 60px;*/
+}
+
+.navbar {
+    background-color: #1B2730;
+}
+
+.logo-nav {
+    width: 70px;
+}
+
+.nav-link {
+     color: white;
+}
+
+a.nav-link:hover {
+    background: gold;
+}
+
+.navbar-nav > li {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.c-item{
+    height: 750px;
+}
+
+.c-img {
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7);
+}
+
+.carousel-caption{
+    padding-top: 88px;
+}
+
+.footer-layout {
+    background-color: #1B2730;
+}
+
+
+/*Log in*/
+.login-box {
+    height: 100%;
+    width: 50%;
+    align-items: center;
+    border-radius: 13px;
+    margin-top: 70px;
+    background-color: #1B2730;
+}
+
+.login-form form {
+    font-size: 15px;
+    margin-top: 30px
+}
+
+.sign-up {
+    font-size: 12px;
+}
