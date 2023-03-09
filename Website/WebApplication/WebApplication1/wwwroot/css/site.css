@@ -38,8 +38,8 @@ a.nav-link:hover {
     padding-right: 10px;
 }
 
-.c-item{
-    height: 750px;
+.c-item {
+    height: 70vh;
 }
 
 .c-img {
@@ -49,7 +49,7 @@ a.nav-link:hover {
 }
 
 .carousel-caption{
-    padding-top: 88px;
+    padding-top: 15vh;
 }
 
 .footer-layout {
