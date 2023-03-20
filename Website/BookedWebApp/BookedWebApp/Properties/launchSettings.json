@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "WebApplication1": {
+    "BookedWebApp": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

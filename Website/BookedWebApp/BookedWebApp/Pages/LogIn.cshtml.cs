@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using WebApplication1.Modals;
+using BookedWebApp.Modals;
 
-namespace WebApplication1.Pages
+namespace BookedWebApp.Pages
 {
     public class LogInModel : PageModel
     {

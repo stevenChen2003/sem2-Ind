@@ -1,4 +1,4 @@
-﻿namespace WebApplication1.Modals
+﻿namespace BookedWebApp.Modals
 {
 	public class User
 	{
@@ -8,5 +8,8 @@
 		public string LastName { get; set; }
 		public string Gender { get; set; }
 		public string Contact { get; set; }
+
+		//Add constructor
+		public User() { }
 	}
 }
