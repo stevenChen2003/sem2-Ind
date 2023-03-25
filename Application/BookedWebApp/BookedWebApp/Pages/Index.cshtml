@@ -1,0 +1,102 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+    Layout = "_HomeLayout";
+}
+
+<div class="container-fluid">
+    <div id="home-carousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#home-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#home-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#home-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+
+        <div class="carousel-inner">
+            <div class="carousel-item active c-item" data-interval="1000">
+                <img class="d-block w-100 c-img" src="~/img/slider5.jpg" alt="First slide">
+                <div class="carousel-caption top-0 mt-5">
+                    <h1 class="mt-5 display-1 fw-bolder">Booked</h1>
+                    <p class="fs-3 text-uppercase text-capitalize">Enjoy a Nice vacation</p>
+                    <a class="btn btn-dark btn-outline-light" asp-page="/Hotel" role="button">Book hotel</a>
+                    <a class="btn btn-dark btn-outline-light" asp-page="/Hotel" role="button">Book flight</a>
+                </div>
+            </div>
+            <div class="carousel-item c-item" data-interval="1000">
+                <img class="d-block w-100 c-img" src="~/img/slider2.jpg" alt="Second slide">
+                <div class="carousel-caption top-0 mt-5">
+                    <h1 class="mt-5 display-1 fw-bolder">Booked</h1>
+                    <p class="fs-3 text-uppercase text-capitalize">Enjoy a Nice vacation</p>
+                    <a class="btn btn-dark btn-outline-light" asp-page="/Hotel" role="button">Book hotel</a>
+                    <a class="btn btn-dark btn-outline-light" asp-page="/Hotel" role="button">Book flight</a>
+                </div>
+            </div>
+            <div class="carousel-item c-item" data-interval="1000">
+                <img class="d-block w-100 c-img" src="~/img/slider3.jpg" alt="Third slide">
+                <div class="carousel-caption top-0 mt-5">
+                    <h1 class="mt-5 display-1 fw-bolder">Booked</h1>
+                    <p class="fs-3 text-uppercase text-capitalize">Enjoy a Nice vacation</p>
+                    <a class="btn btn-dark btn-outline-light" asp-page="/Hotel" role="button">Book hotel</a>
+                    <a class="btn btn-dark btn-outline-light" asp-page="/Hotel" role="button">Book flight</a> <!--Need to change to "Flight page ones made"-->
+                </div>
+            </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#home-carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#home-carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
+
+<!--Cards-->
+<section id="popular-location" class="pt-md-5 pb-5">
+    <h2 class="text-center my-5">Popular Locations</h2>
+
+    <div class="container">
+        <div class="row gy-3">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="~/img/LondonImg.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">London</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Book trip</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="~/img/BarcelonaImg.jpg" class="card-img-top" alt="image with location" />
+                    <div class="card-body">
+                        <h5 class="card-title">Barcelona</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Book trip</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="~/img/RomeImg.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Rome</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Book trip</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer-layout border-top footer text-muted">
+    <div class="container bg-dark text-center pt-3 pb-3">
+        &copy; 2023 - Booked
+    </div>
+</footer>

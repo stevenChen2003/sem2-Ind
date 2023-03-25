@@ -1,0 +1,73 @@
+﻿@page
+@model BookedWebApp.Pages.HotelModel
+@{
+	Layout = "_HomeLayout";
+}
+
+<div class="bgHotel d-none d-md-flex d-xl-flex flex-column">
+	<h1>Pick a date</h1>
+	<div class="container-fluid pb-3">
+		<div class="row justify-content-center">
+
+			<div class="col-lg-8 bg-dark p-4 rounded-1">
+				<div class="d-flex flex-column">
+					
+					<!--Radio-->
+					<div class="d-flex align-items-center text-white fw-bold">
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+							<label class="form-check-label" for="flexRadioDefault1">
+								Roundtrip
+							</label>
+						</div>
+
+						<div class="form-check mx-4">
+							<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+							<label class="form-check-label" for="flexRadioDefault2">
+								One way
+							</label>
+						</div>
+					</div>
+
+					<!--Search thing-->
+					<div class="d-flex align-items-center py-2">
+						<!--From location-->
+						<div>
+							<label for="exampleDataList" class="form-label">From</label>
+							<input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
+							<datalist id="datalistOptions">
+								<option value="San Francisco"></option>
+								<option value="New York"></option>
+								<option value="Seattle"></option>
+								<option value="Los Angeles"></option>
+								<option value="Chicago"></option>
+							</datalist>
+						</div>
+
+						<!--To location-->
+						<div>
+							<label for="exampleDataList" class="form-label">From</label>
+							<input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
+							<datalist id="datalistOptions">
+								<option value="San Francisco"></option>
+								<option value="New York"></option>
+								<option value="Seattle"></option>
+								<option value="Los Angeles"></option>
+								<option value="Chicago"></option>
+							</datalist>
+						</div>
+
+						<!--Date section-->
+
+
+
+					</div>
+
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+	
+</div>
