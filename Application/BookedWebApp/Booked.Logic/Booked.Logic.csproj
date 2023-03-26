@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Booked.Domain\Booked.Domain.csproj" />
+    <ProjectReference Include="..\Booked.Infrastructure\Booked.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
