@@ -5,13 +5,13 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookedWebApp", "BookedWebApp\BookedWebApp.csproj", "{C60E4B28-4D58-4295-BA35-EB9259BC8456}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booked.Domain", "Booked.Domain\Booked.Domain.csproj", "{5CC29526-EFFF-435C-B3E5-C40AED964E4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booked.Domain", "Booked.Domain\Booked.Domain.csproj", "{5CC29526-EFFF-435C-B3E5-C40AED964E4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booked.Infrastructure", "Booked.Infrastructure\Booked.Infrastructure.csproj", "{4FD9698D-FF71-4A0E-993B-872399C2CD6A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booked.Infrastructure", "Booked.Infrastructure\Booked.Infrastructure.csproj", "{4FD9698D-FF71-4A0E-993B-872399C2CD6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booked.Logic", "Booked.Logic\Booked.Logic.csproj", "{A304907A-FC08-48A6-BC38-E42AF028719A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booked.Logic", "Booked.Logic\Booked.Logic.csproj", "{A304907A-FC08-48A6-BC38-E42AF028719A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookedFormsApp", "BookedFormsApp\BookedFormsApp.csproj", "{A60F6CF6-55C5-4326-AEF8-3EA88E117632}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookedFormsApp", "BookedFormsApp\BookedFormsApp.csproj", "{A60F6CF6-55C5-4326-AEF8-3EA88E117632}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
