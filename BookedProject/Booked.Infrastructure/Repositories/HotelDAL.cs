@@ -18,7 +18,7 @@ namespace Booked.Infrastructure.Repositories
 
 			using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
 			{
-				string query = @"SELECT * FROM MOCK_Contact_DATA WHERE Name=@fname; ";
+				string query = @"SELECT * FROM Hotels WHERE Name=@fname; ";
 
 				SqlCommand cmd = new SqlCommand(query, conn);
 
@@ -35,10 +35,9 @@ namespace Booked.Infrastructure.Repositories
 				}
 				conn.Close();
 			}
-
-
 			return DetailsHotel;
 		}
+		
 
 		public IEnumerable<Hotel> GetAllHotel()
 		{
@@ -48,7 +47,7 @@ namespace Booked.Infrastructure.Repositories
 			{
 				using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
 				{
-					string query = @"SELECT * FROM Hotel; ";
+					string query = @"SELECT * FROM Hotels; ";
 
 					SqlCommand cmd = new SqlCommand(query, conn);
 
@@ -57,7 +56,13 @@ namespace Booked.Infrastructure.Repositories
 
 					while (dr.Read())
 					{
-						//DetailsHotel.Add(new Hotel() { })
+						DetailsHotel.Add(new Hotel(Convert.ToInt32(dr["HotelId"]),
+													dr["Name"].ToString(),
+													dr["Address"].ToString(),
+													dr["City"].ToString(),
+													dr["Country"].ToString(),
+                                                    Convert.ToInt32(dr["StarRating"]),
+													Convert.ToDecimal(dr["PricePerNight"])));
 					}
 					conn.Close();
 				}

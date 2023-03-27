@@ -1,0 +1,32 @@
+﻿@page
+@model BookedWebApp.Pages.HotelsModel
+@{
+	Layout = "_HomeLayout";
+}
+
+<div>
+	<h1>HI</h1>
+</div>
+
+<div>
+    <table>
+        <tr>
+
+            <th>Name</th>
+            <th>Price per night</th>
+            <th></th>
+            <th></th>
+
+        </tr>
+        @foreach (var hotel in Model.DetailsHotel)
+        {
+            <tr>
+
+                <td>@hotel.Name</td>
+                <td>@hotel.PricePerNight</td>
+                @*<td><a href="/Details?ID=@c.ID">More details...</a></td>*@
+                <td><a asp-page="./Details" asp-route-id="@hotel.HotelId">More details...</a></td>
+            </tr>
+        }
+    </table>
+</div>
