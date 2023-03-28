@@ -17,6 +17,11 @@ namespace Booked.Logic.Services
 			hotelDAL = new HotelDAL();
 		}
 
+		public Hotel GetHotel(int id)
+		{
+			return hotelDAL.GetHotelByID(id);
+		}
+
 		public IEnumerable<Hotel> GetAllHotel()
 		{
 			return hotelDAL.GetAllHotel();

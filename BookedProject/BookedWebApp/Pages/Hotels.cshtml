@@ -24,8 +24,7 @@
 
                 <td>@hotel.Name</td>
                 <td>@hotel.PricePerNight</td>
-                @*<td><a href="/Details?ID=@c.ID">More details...</a></td>*@
-                <td><a asp-page="./Details" asp-route-id="@hotel.HotelId">More details...</a></td>
+                <td><a asp-page="/HotelDetails" asp-route-id="@hotel.HotelId">More details...</a></td>
             </tr>
         }
     </table>

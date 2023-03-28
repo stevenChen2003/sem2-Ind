@@ -12,25 +12,30 @@ namespace Booked.Infrastructure.Repositories
 	{
 		private const string CONNECTION_STRING = @"Server=mssqlstud.fhict.local;Database=dbi507678_booked;User Id=dbi507678_booked;Password=booked789;";
 
-		public static Hotel GetHotel(string Name)
+		public Hotel GetHotelByID(int id)
 		{
 			Hotel DetailsHotel = new Hotel();
 
 			using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
 			{
-				string query = @"SELECT * FROM Hotels WHERE Name=@fname; ";
+				string query = @"SELECT * FROM Hotels WHERE HotelId= @HotelId; ";
 
 				SqlCommand cmd = new SqlCommand(query, conn);
 
 				conn.Open();
-				cmd.Parameters.AddWithValue("@fname", Name);
+				cmd.Parameters.AddWithValue("@HotelId", id);
 
 				SqlDataReader dr = cmd.ExecuteReader();
 
 				while (dr.Read())
 				{
-					
-
+					DetailsHotel.HotelId = Convert.ToInt32(dr["HotelId"]);
+					DetailsHotel.Name = dr["Name"].ToString();
+					DetailsHotel.Address = dr["Address"].ToString();
+					DetailsHotel.City = dr["City"].ToString();
+					DetailsHotel.Country = dr["Country"].ToString();
+					DetailsHotel.StarRating = Convert.ToInt32(dr["StarRating"]);
+					DetailsHotel.PricePerNight = Convert.ToDecimal(dr["PricePerNight"]);
 
 				}
 				conn.Close();
