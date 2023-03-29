@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booked.Logic", "Booked.Logi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookedFormsApp", "BookedFormsApp\BookedFormsApp.csproj", "{A60F6CF6-55C5-4326-AEF8-3EA88E117632}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBookedProject", "TestBookedProject\TestBookedProject.csproj", "{413F3E72-3C50-420F-A5C3-5D32215155E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{A60F6CF6-55C5-4326-AEF8-3EA88E117632}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A60F6CF6-55C5-4326-AEF8-3EA88E117632}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A60F6CF6-55C5-4326-AEF8-3EA88E117632}.Release|Any CPU.Build.0 = Release|Any CPU
+		{413F3E72-3C50-420F-A5C3-5D32215155E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{413F3E72-3C50-420F-A5C3-5D32215155E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{413F3E72-3C50-420F-A5C3-5D32215155E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{413F3E72-3C50-420F-A5C3-5D32215155E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

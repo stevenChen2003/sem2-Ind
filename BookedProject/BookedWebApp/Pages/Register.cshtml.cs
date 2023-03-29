@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using BookedWebApp.Modals;
+using Booked.Domain.Domain;
 
 namespace BookedWebApp.Pages
 {
@@ -11,6 +11,7 @@ namespace BookedWebApp.Pages
 
         public void OnGet()
         {
+
         }
 
         public void OnPost()
