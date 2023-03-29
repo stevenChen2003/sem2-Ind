@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Booked.Infrastructure.Repositories
 {
-	public class HotelDAL
+	public class HotelRepository
 	{
 		private const string CONNECTION_STRING = @"Server=mssqlstud.fhict.local;Database=dbi507678_booked;User Id=dbi507678_booked;Password=booked789;";
 
@@ -43,7 +43,6 @@ namespace Booked.Infrastructure.Repositories
 			return DetailsHotel;
 		}
 		
-
 		public IEnumerable<Hotel> GetAllHotel()
 		{
 			List<Hotel> DetailsHotel = new List<Hotel>();
@@ -79,6 +78,23 @@ namespace Booked.Infrastructure.Repositories
 			{
 				throw new Exception("Database not working");
 			}
+		}
+
+
+		//Need to make Add, Remove and Update methods
+		public void AddHotel(Hotel hotel)
+		{
+
+		}
+
+		public void RemoveHotelByID(int id)
+		{
+
+		}
+
+		public void UpdateHotelByID(int id)
+		{
+
 		}
 
 	}
