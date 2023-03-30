@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Booked.Domain.Domain.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,17 @@ namespace Booked.Domain.Domain
 {
 	public class Hotel
 	{
-		public Hotel() { }
+        public int HotelId { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public string City { get; set; }
+        public string Country { get; set; }
+        public int StarRating { get; set; }
+        public decimal PricePerNight { get; set; }
+		public Rooms Room { get; set; }
+		public List<Review> Reviews { get; set; }
+
+        public Hotel() { }
 
 		public Hotel(int id, string name, string address, string city, string country, int starRating, decimal pricePerNight)
 		{
@@ -21,13 +32,6 @@ namespace Booked.Domain.Domain
 			PricePerNight = pricePerNight;
 		}
 
-		public int HotelId { get; set; }
-		public string Name { get; set; }
-		public string Address { get; set; }
-		public string City { get; set; }
-		public string Country { get; set; }
-		public int StarRating { get; set; }
-		public decimal PricePerNight { get; set; }
 
 	}
 }
