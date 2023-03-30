@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Booked.Domain.Domain
 {
-    internal class HotelBooking
+    public class HotelBooking
     {
+        public HotelBooking() { }
     }
 }

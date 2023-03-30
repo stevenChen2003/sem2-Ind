@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace Booked.Domain.Domain
 {
-    internal class FlightBooking
+    public class FlightBooking : Booking
     {
+        public Flight Flight { get; set; }
+        public bool ExtraLuggage { get; set; }
+
+        public FlightBooking()
+        {
+
+        }
     }
 }
