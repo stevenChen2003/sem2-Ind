@@ -55,10 +55,8 @@ namespace Booked.Logic.Services
             return salt;
         }
 
-
-		//Need to finish this method
-		public bool VerifyPassword(string password, string email)
-		{
+        public bool CheckPassword(string password, string email)
+        {
             string hashedPassword = userRepo.GetHashedPassword(email);
 
             byte[] hashBytes = Convert.FromBase64String(hashedPassword);

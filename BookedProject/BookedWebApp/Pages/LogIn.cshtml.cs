@@ -28,21 +28,28 @@ namespace BookedWebApp.Pages
         //Need to finish the login
         public IActionResult OnPost()
         {
-            if (ModelState.IsValid && userManager.VerifyPassword(User.Password, User.Email))
+            if (ModelState.IsValid)
             {
-                List<Claim> claims = new List<Claim>
+                if (userManager.CheckPassword(User.Password, User.Email))
                 {
+                    List<Claim> claims = new List<Claim>
+                    {
                         new Claim(ClaimTypes.Name, User.Email)
-                };
-                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                HttpContext.SignInAsync(new ClaimsPrincipal(claimsIdentity));
-                return Redirect("~/Index");
+                    };
+                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    HttpContext.SignInAsync(new ClaimsPrincipal(claimsIdentity));
+
+                    ViewData["Message"] = "Log in succcesfull";
+                    return Redirect("~/Index");
+                }
+                else
+                {
+                    ViewData["Message"] = "Email or password is incorrect";
+                    return Page();
+                }
+
             }
-            else
-            {
-                ViewData["Message"] = "Email or Password is incorrect";
-                return Page();
-            }
+            return Page();
         }
     }
 }
