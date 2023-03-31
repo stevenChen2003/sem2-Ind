@@ -17,10 +17,6 @@ namespace BookedWebApp.Pages
         [BindProperty]
         public User User { get; set; }
 
-        public void OnGet()
-        {
-
-        }
 
         public IActionResult OnPost()
         {
