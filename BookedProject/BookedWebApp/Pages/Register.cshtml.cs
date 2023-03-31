@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Booked.Domain.Domain;
 using Booked.Logic.Services;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 
 namespace BookedWebApp.Pages
 {
@@ -24,8 +27,14 @@ namespace BookedWebApp.Pages
             {
                 if (userManager.AddUser(User))
                 {
-                    ViewData["Message"] = "Account Created";
+                    List<Claim> claims = new List<Claim>
+                    {
+                        new Claim(ClaimTypes.Name, User.Email)
+                    };
+                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    HttpContext.SignInAsync(new ClaimsPrincipal(claimsIdentity));
 
+                    ViewData["Message"] = "Account Created";
                     return Redirect("~/Index");
                 }
                 else
