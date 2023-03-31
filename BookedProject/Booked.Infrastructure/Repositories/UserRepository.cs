@@ -73,17 +73,18 @@ namespace Booked.Infrastructure.Repositories
         }
 
         //Need to make Add, Remove and Update methods
-        public void AddUser(User user)
+        public void AddUser(User user, string salt)
         {
             using (SqlConnection connection = new SqlConnection(CONNECTION_STRING))
             {
-                string query = "INSERT INTO Users (FirstName, LastName, Email, Password) " +
-                               "VALUES (@FirstName, @LastName, @Email, @Password)";
+                string query = "INSERT INTO Users (FirstName, LastName, Email, Salt, Password) " +
+                               "VALUES (@FirstName, @LastName, @Email, @Salt, @Password)";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@FirstName", user.FirstName);
                 command.Parameters.AddWithValue("@LastName", user.LastName);
                 command.Parameters.AddWithValue("@Email", user.Email);
+                command.Parameters.AddWithValue("@Salt", salt);
                 command.Parameters.AddWithValue("@Password", user.Password);
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -130,14 +131,14 @@ namespace Booked.Infrastructure.Repositories
             return DetailUser;
         }
 
-
-        public string GetHashedPassword(string email)
+        public string[] GetHashedPasswordAndSalt(string email)
         {
-            string password = "";
+            string hashedPassword = "";
+            string salt = "";
 
             using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
             {
-                string query = @"SELECT * FROM Users WHERE Email= @Email; ";
+                string query = @"SELECT Password, Salt FROM Users WHERE Email= @Email; ";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
 
@@ -148,13 +149,14 @@ namespace Booked.Infrastructure.Repositories
 
                 if (dr.Read())
                 {
-                    password = dr["Password"].ToString();
+                    hashedPassword = dr["Password"].ToString();
+                    salt = dr["Salt"].ToString();
                 }
 
-                else { password = null; }
+                else { hashedPassword = null; }
                 conn.Close();
             }
-            return password;
+            return new string[] { hashedPassword, salt };
         }
 
     }

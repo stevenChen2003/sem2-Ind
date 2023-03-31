@@ -26,13 +26,14 @@ namespace Booked.Logic.Services
 			}
 			else
 			{
-				user.Password = EncryptPassword(user.Password);
-                userRepo.AddUser(user);
+                string salt = EncryptPassword(user.Password)[0];
+                user.Password = EncryptPassword(user.Password)[1];
+                userRepo.AddUser(user, salt);
 				return true;
             }
 		}
 
-		public string EncryptPassword(string password)
+		public string[] EncryptPassword(string password)
 		{
 			byte[] salt = GenerateSalt(16);
             var hashedPassword = new Rfc2898DeriveBytes(password, salt, 10_000).GetBytes(20);
@@ -40,10 +41,11 @@ namespace Booked.Logic.Services
             byte[] hashBytes = new byte[36];
             Array.Copy(salt, 0, hashBytes, 0, 16);
             Array.Copy(hashedPassword, 0, hashBytes, 16, 20);
-            string hashedPasswordBase64 = Convert.ToBase64String(hashBytes);
+            string saltString = Convert.ToBase64String(salt);
+            string hashedPasswordString = Convert.ToBase64String(hashBytes);
 
-            return hashedPasswordBase64;
-		}
+            return new string[] { saltString, hashedPasswordString };
+        }
 
         public byte[] GenerateSalt(int saltLength)
         {
@@ -57,13 +59,14 @@ namespace Booked.Logic.Services
 
         public bool CheckPassword(string password, string email)
         {
-            string hashedPassword = userRepo.GetHashedPassword(email);
+            string[] hashedPasswordAndSalt = userRepo.GetHashedPasswordAndSalt(email);
+            string hashedPassword = hashedPasswordAndSalt[0];
+            string salt = hashedPasswordAndSalt[1];
 
             byte[] hashBytes = Convert.FromBase64String(hashedPassword);
-            byte[] salt = new byte[16];
-            Array.Copy(hashBytes, 0, salt, 0, 16);
+            byte[] saltBytes = Convert.FromBase64String(salt);
 
-            var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 10_000);
+            var pbkdf2 = new Rfc2898DeriveBytes(password, saltBytes, 10_000);
             byte[] hash = pbkdf2.GetBytes(20);
 
             for (int i = 0; i < 20; i++)

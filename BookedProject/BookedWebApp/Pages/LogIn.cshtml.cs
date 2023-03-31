@@ -38,16 +38,13 @@ namespace BookedWebApp.Pages
                     };
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     HttpContext.SignInAsync(new ClaimsPrincipal(claimsIdentity));
-
-                    ViewData["Message"] = "Log in succcesfull";
-                    return Redirect("~/Index");
+                    return Redirect("/Index");
                 }
                 else
                 {
-                    ViewData["Message"] = "Email or password is incorrect";
+                    ModelState.AddModelError("", "Invalid email or password");
                     return Page();
                 }
-
             }
             return Page();
         }
