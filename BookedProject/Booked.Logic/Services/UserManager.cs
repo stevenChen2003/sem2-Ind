@@ -68,7 +68,7 @@ namespace Booked.Logic.Services
             byte[] hashBytes = new byte[32];
             Array.Copy(hashSaltBytes, 16, hashBytes, 0, 32);
 
-            // Hash the password using Argon2 with the same parameters as the EncryptPasswordArgon2 method
+            // Hash the password using Argon2
             var argon2 = new Argon2id(Encoding.UTF8.GetBytes(password));
             argon2.Salt = salt;
             argon2.Iterations = 4;

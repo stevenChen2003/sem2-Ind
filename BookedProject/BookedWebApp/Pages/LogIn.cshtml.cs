@@ -47,7 +47,7 @@ namespace BookedWebApp.Pages
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Invalid email or password");
+                    ViewData["Message"] = "Incorrect password or email.";
                     return Page();
                 }
             }

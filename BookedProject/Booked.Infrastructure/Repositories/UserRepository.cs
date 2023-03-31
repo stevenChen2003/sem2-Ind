@@ -134,7 +134,6 @@ namespace Booked.Infrastructure.Repositories
         public string GetHashedPasswordAndSalt(string email)
         {
             string hashedPassword = "";
-            //string salt = "";
 
             using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
             {
