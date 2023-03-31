@@ -1,5 +1,6 @@
 ﻿using Booked.Domain.Domain;
 using Booked.Infrastructure.Repositories;
+using Konscious.Security.Cryptography;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,57 +27,57 @@ namespace Booked.Logic.Services
 			}
 			else
 			{
-                string salt = EncryptPassword(user.Password)[0];
-                user.Password = EncryptPassword(user.Password)[1];
-                userRepo.AddUser(user, salt);
+                user.Password = EncryptPassword(user.Password);
+                userRepo.AddUser(user);
 				return true;
             }
 		}
 
-		public string[] EncryptPassword(string password)
-		{
-			byte[] salt = GenerateSalt(16);
-            var hashedPassword = new Rfc2898DeriveBytes(password, salt, 10_000).GetBytes(20);
-
-            byte[] hashBytes = new byte[36];
-            Array.Copy(salt, 0, hashBytes, 0, 16);
-            Array.Copy(hashedPassword, 0, hashBytes, 16, 20);
-            string saltString = Convert.ToBase64String(salt);
-            string hashedPasswordString = Convert.ToBase64String(hashBytes);
-
-            return new string[] { saltString, hashedPasswordString };
-        }
-
-        public byte[] GenerateSalt(int saltLength)
+        public string EncryptPassword(string password)
         {
-            byte[] salt = new byte[saltLength];
+            // Generate a random salt value
+            byte[] salt = new byte[16];
             using (var rng = RandomNumberGenerator.Create())
             {
                 rng.GetBytes(salt);
             }
-            return salt;
+
+            // Hash the password using Argon2
+            var argon2 = new Argon2id(Encoding.UTF8.GetBytes(password));
+            argon2.Salt = salt;
+            argon2.Iterations = 4;
+            argon2.MemorySize = 1024 * 1024;
+            argon2.DegreeOfParallelism = 4;
+            var hashBytes = argon2.GetBytes(32);
+
+            // Combine the salt and hash into a single string
+            byte[] hashSaltBytes = new byte[16 + 32];
+            Array.Copy(salt, 0, hashSaltBytes, 0, 16);
+            Array.Copy(hashBytes, 0, hashSaltBytes, 16, 32);
+            string hashSaltString = Convert.ToBase64String(hashSaltBytes);
+
+            return hashSaltString;
         }
 
         public bool CheckPassword(string password, string email)
         {
-            string[] hashedPasswordAndSalt = userRepo.GetHashedPasswordAndSalt(email);
-            string hashedPassword = hashedPasswordAndSalt[0];
-            string salt = hashedPasswordAndSalt[1];
+            string hashSaltString = userRepo.GetHashedPasswordAndSalt(email);
+            byte[] hashSaltBytes = Convert.FromBase64String(hashSaltString);
+            byte[] salt = new byte[16];
+            Array.Copy(hashSaltBytes, 0, salt, 0, 16);
+            byte[] hashBytes = new byte[32];
+            Array.Copy(hashSaltBytes, 16, hashBytes, 0, 32);
 
-            byte[] hashBytes = Convert.FromBase64String(hashedPassword);
-            byte[] saltBytes = Convert.FromBase64String(salt);
+            // Hash the password using Argon2 with the same parameters as the EncryptPasswordArgon2 method
+            var argon2 = new Argon2id(Encoding.UTF8.GetBytes(password));
+            argon2.Salt = salt;
+            argon2.Iterations = 4;
+            argon2.MemorySize = 1024 * 1024;
+            argon2.DegreeOfParallelism = 4;
+            var hashBytesTest = argon2.GetBytes(32);
 
-            var pbkdf2 = new Rfc2898DeriveBytes(password, saltBytes, 10_000);
-            byte[] hash = pbkdf2.GetBytes(20);
-
-            for (int i = 0; i < 20; i++)
-            {
-                if (hashBytes[i + 16] != hash[i])
-                {
-                    return false;
-                }
-            }
-            return true;
+            // Compare the resulting hash with the stored hash
+            return hashBytes.SequenceEqual(hashBytesTest);
         }
 
     }

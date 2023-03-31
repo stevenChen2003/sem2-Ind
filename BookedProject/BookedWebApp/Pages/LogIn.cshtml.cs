@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
 using Booked.Logic.Services;
+using System.ComponentModel.DataAnnotations;
 
 namespace BookedWebApp.Pages
 {
@@ -17,9 +18,13 @@ namespace BookedWebApp.Pages
             userManager = new UserManager();
         }
 
+        [BindProperty]
+        [Required, DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
 
         [BindProperty]
-        public User User { get; set; }
+        [Required, DataType(DataType.Password)]
+        public string Password { get; set; }
 
         public void OnGet()
         {
@@ -30,11 +35,11 @@ namespace BookedWebApp.Pages
         {
             if (ModelState.IsValid)
             {
-                if (userManager.CheckPassword(User.Password, User.Email))
+                if (userManager.CheckPassword(Password, Email))
                 {
                     List<Claim> claims = new List<Claim>
                     {
-                        new Claim(ClaimTypes.Name, User.Email)
+                        new Claim(ClaimTypes.Name, Email)
                     };
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     HttpContext.SignInAsync(new ClaimsPrincipal(claimsIdentity));
