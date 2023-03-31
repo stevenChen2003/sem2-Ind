@@ -8,24 +8,26 @@
 
 <div class="container">
     <h2>Register Form</h2>
-
+    <div>
+        @ViewData["Message"]
+    </div>
     <form method="post">
         <div class="mb-3">
             <label asp-for="User.FirstName" class="form-label">First Name: </label>
             <span class="text-danger" asp-validation-for="User.FirstName"></span>
-            <input asp-for="User.FirstName" class="form-control">
+            <input asp-for="User.FirstName" class="form-control" value="">
         </div>
 
         <div class="mb-3">
             <label asp-for="User.LastName" class="form-label">Last Name: </label>
             <span class="text-danger" asp-validation-for="User.LastName"></span>
-            <input asp-for="User.LastName" class="form-control">
+            <input asp-for="User.LastName" class="form-control" value="">
         </div>
 
         <div class="mb-3">
             <label asp-for="User.Email" class="form-label">Email: </label>
             <span class="text-danger" asp-validation-for="User.Email"></span>
-            <input type="email" asp-for="User.Email" class="form-control">
+            <input type="email" asp-for="User.Email" class="form-control" value="">
         </div>
 
         <div class="mb-3">

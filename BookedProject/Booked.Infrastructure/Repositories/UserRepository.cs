@@ -100,5 +100,35 @@ namespace Booked.Infrastructure.Repositories
 
         }
 
+        public User FindUserByEmail(string email)
+        {
+            User DetailUser = new User();
+
+            using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+            {
+                string query = @"SELECT * FROM Users WHERE Email= @Email; ";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                conn.Open();
+                cmd.Parameters.AddWithValue("@Email", email);
+
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    DetailUser.UserId = Convert.ToInt32(dr["UserId"]);
+                    DetailUser.FirstName = dr["FirstName"].ToString();
+                    DetailUser.LastName = dr["LastName"].ToString();
+                    DetailUser.Email = dr["Email"].ToString();
+                    DetailUser.Password = dr["Password"].ToString();
+                }
+
+                else { DetailUser = null; }
+                conn.Close();
+            }
+            return DetailUser;
+        }
+
     }
 }

@@ -17,9 +17,23 @@ namespace Booked.Logic.Services
 			userRepo= new UserRepository();
 		}
 
-		public void AddUser(User user)
+		public bool AddUser(User user)
 		{
-			userRepo.AddUser(user);
+			if (userRepo.FindUserByEmail(user.Email) != null)
+			{
+				return false;
+			}
+			else
+			{
+                userRepo.AddUser(user);
+				return true;
+            }
+		}
+
+		//Need to make the hash method
+		public string HashPassword(string password)
+		{
+			return "";
 		}
 
 

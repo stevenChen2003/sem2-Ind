@@ -22,13 +22,20 @@ namespace BookedWebApp.Pages
         {
             if (ModelState.IsValid)
             {
-                userManager.AddUser(User);
-                return Redirect("~/Index");
+                if (userManager.AddUser(User))
+                {
+                    ViewData["Message"] = "Account Created";
+
+                    return Redirect("~/Index");
+                }
+                else
+                {
+                    ViewData["Message"] = "Email already exists.";
+                    return Page();
+                }
+
             }
-            else
-            {
-                return RedirectToAction("Index");
-            }
+            return Page();
         }
     }
 }
