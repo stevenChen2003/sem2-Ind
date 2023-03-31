@@ -10,21 +10,21 @@ namespace Booked.Logic.Services
 {
 	public class HotelManager
 	{
-		private HotelRepository hotelrepo;
+		private HotelRepository hotelRepo;
 
 		public HotelManager()
 		{
-			hotelrepo = new HotelRepository();
+			hotelRepo = new HotelRepository();
 		}
 
 		public Hotel GetHotel(int id)
 		{
-			return hotelrepo.GetHotelByID(id);
+			return hotelRepo.GetHotelByID(id);
 		}
 
 		public IEnumerable<Hotel> GetAllHotel()
 		{
-			return hotelrepo.GetAllHotel();
+			return hotelRepo.GetAllHotel();
 		}
 	}
 }

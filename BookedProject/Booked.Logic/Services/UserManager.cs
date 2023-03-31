@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Booked.Domain.Domain;
+using Booked.Infrastructure.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +10,18 @@ namespace Booked.Logic.Services
 {
 	public class UserManager
 	{
+		private UserRepository userRepo;
 
-	}
+		public UserManager()
+		{
+			userRepo= new UserRepository();
+		}
+
+		public void AddUser(User user)
+		{
+			userRepo.AddUser(user);
+		}
+
+
+    }
 }

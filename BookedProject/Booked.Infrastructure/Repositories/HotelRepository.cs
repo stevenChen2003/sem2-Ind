@@ -45,7 +45,7 @@ namespace Booked.Infrastructure.Repositories
 		
 		public IEnumerable<Hotel> GetAllHotel()
 		{
-			List<Hotel> DetailsHotel = new List<Hotel>();
+			List<Hotel> AllHotel = new List<Hotel>();
 
 			try
 			{
@@ -60,7 +60,7 @@ namespace Booked.Infrastructure.Repositories
 
 					while (dr.Read())
 					{
-						DetailsHotel.Add(new Hotel(Convert.ToInt32(dr["HotelId"]),
+						AllHotel.Add(new Hotel(Convert.ToInt32(dr["HotelId"]),
 													dr["Name"].ToString(),
 													dr["Address"].ToString(),
 													dr["City"].ToString(),
@@ -71,7 +71,7 @@ namespace Booked.Infrastructure.Repositories
 					conn.Close();
 				}
 				
-				return DetailsHotel;
+				return AllHotel;
 
 			}
 			catch
