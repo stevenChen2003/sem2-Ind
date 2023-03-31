@@ -130,5 +130,32 @@ namespace Booked.Infrastructure.Repositories
             return DetailUser;
         }
 
+
+        public string GetHashedPassword(string email)
+        {
+            string password = "";
+
+            using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+            {
+                string query = @"SELECT * FROM Users WHERE Email= @Email; ";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                conn.Open();
+                cmd.Parameters.AddWithValue("@Email", email);
+
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    password = dr["Password"].ToString();
+                }
+
+                else { password = null; }
+                conn.Close();
+            }
+            return password;
+        }
+
     }
 }
