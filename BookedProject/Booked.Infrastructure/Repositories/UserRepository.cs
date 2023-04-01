@@ -131,7 +131,7 @@ namespace Booked.Infrastructure.Repositories
             return DetailUser;
         }
 
-        public string GetHashedPasswordAndSalt(string email)
+        public string GetHashedAndSaltPassword(string email)
         {
             string hashedPassword = "";
 

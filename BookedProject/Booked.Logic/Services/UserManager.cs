@@ -19,6 +19,12 @@ namespace Booked.Logic.Services
 			userRepo= new UserRepository();
 		}
 
+        public User GetUser(string email)
+        {
+            User foundUser = userRepo.FindUserByEmail(email);
+            return foundUser;
+        }
+
 		public bool AddUser(User user)
 		{
 			if (userRepo.FindUserByEmail(user.Email) != null)
@@ -61,7 +67,7 @@ namespace Booked.Logic.Services
 
         public bool CheckPassword(string password, string email)
         {
-            string hashSaltString = userRepo.GetHashedPasswordAndSalt(email);
+            string hashSaltString = userRepo.GetHashedAndSaltPassword(email);
             byte[] hashSaltBytes = Convert.FromBase64String(hashSaltString);
             byte[] salt = new byte[16];
             Array.Copy(hashSaltBytes, 0, salt, 0, 16);
