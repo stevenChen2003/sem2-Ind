@@ -33,8 +33,6 @@ namespace BookedWebApp.Pages
                     };
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     HttpContext.SignInAsync(new ClaimsPrincipal(claimsIdentity));
-
-                    ViewData["Message"] = "Account Created";
                     return Redirect("~/Index");
                 }
                 else
