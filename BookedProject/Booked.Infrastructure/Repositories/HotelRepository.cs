@@ -74,9 +74,9 @@ namespace Booked.Infrastructure.Repositories
 				return AllHotel;
 
 			}
-			catch
-			{
-				throw new Exception("Error");
+			catch (Exception)
+            {
+				throw new Exception("Hotels not found");
 			}
 		}
 
@@ -108,7 +108,22 @@ namespace Booked.Infrastructure.Repositories
 
         public void RemoveHotelByID(int id)
         {
+			try
+			{
+				using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+				{
+					string query = "DELETE FROM Hotels WHERE HotelId= @HotelId; ";
+                    SqlCommand cmd = new SqlCommand(query, conn);
 
+                    conn.Open();
+                    cmd.Parameters.AddWithValue("@HotelId", id);
+					cmd.ExecuteNonQuery();
+                }
+			}
+			catch (SqlException)
+			{
+				throw new Exception("Cannot remove hotel");
+            }
         }
 
     }

@@ -30,7 +30,6 @@ namespace BookedWebApp.Pages
         {
         }
 
-        //Need to finish the login
         public IActionResult OnPost()
         {
             if (ModelState.IsValid)
