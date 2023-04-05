@@ -12,22 +12,22 @@ namespace Booked.Infrastructure.Repositories
 	{
         private const string CONNECTION_STRING = @"Server=mssqlstud.fhict.local;Database=dbi507678_booked;User Id=dbi507678_booked;Password=booked789;";
 
-        public User GetUserByID(int id)
+        public User FindUserByEmail(string email)
         {
             User DetailUser = new User();
 
             using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
             {
-                string query = @"SELECT * FROM Users WHERE UserId= @UserId; ";
+                string query = @"SELECT * FROM Users WHERE Email= @Email; ";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
 
                 conn.Open();
-                cmd.Parameters.AddWithValue("@UserId", id);
+                cmd.Parameters.AddWithValue("@Email", email);
 
                 SqlDataReader dr = cmd.ExecuteReader();
 
-                while (dr.Read())
+                if (dr.Read())
                 {
                     DetailUser.UserId = Convert.ToInt32(dr["UserId"]);
                     DetailUser.FirstName = dr["FirstName"].ToString();
@@ -35,6 +35,8 @@ namespace Booked.Infrastructure.Repositories
                     DetailUser.Email = dr["Email"].ToString();
                     DetailUser.Password = dr["Password"].ToString();
                 }
+
+                else { DetailUser = null; }
                 conn.Close();
             }
             return DetailUser;
@@ -66,7 +68,7 @@ namespace Booked.Infrastructure.Repositories
 
                 return AllUsers;
             }
-            catch
+            catch (Exception)
             {
                 throw new Exception("Error");
             }
@@ -96,39 +98,24 @@ namespace Booked.Infrastructure.Repositories
 
         }
 
-        public void RemoveUserByID(int id)
+        public void RemoveUserByEmail(string email)
         {
-
-        }
-
-        public User FindUserByEmail(string email)
-        {
-            User DetailUser = new User();
-
-            using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+            try
             {
-                string query = @"SELECT * FROM Users WHERE Email= @Email; ";
-
-                SqlCommand cmd = new SqlCommand(query, conn);
-
-                conn.Open();
-                cmd.Parameters.AddWithValue("@Email", email);
-
-                SqlDataReader dr = cmd.ExecuteReader();
-
-                if (dr.Read())
+                using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
                 {
-                    DetailUser.UserId = Convert.ToInt32(dr["UserId"]);
-                    DetailUser.FirstName = dr["FirstName"].ToString();
-                    DetailUser.LastName = dr["LastName"].ToString();
-                    DetailUser.Email = dr["Email"].ToString();
-                    DetailUser.Password = dr["Password"].ToString();
-                }
+                    string query = "DELETE FROM Users WHERE Email= @Email; ";
+                    SqlCommand cmd = new SqlCommand(query, conn);
 
-                else { DetailUser = null; }
-                conn.Close();
+                    conn.Open();
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    cmd.ExecuteNonQuery();
+                }
             }
-            return DetailUser;
+            catch (SqlException)
+            {
+                throw new Exception("Cannot remove User");
+            }
         }
 
         public string GetHashedAndSaltPassword(string email)

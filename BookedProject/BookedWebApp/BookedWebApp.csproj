@@ -18,4 +18,8 @@
     <ProjectReference Include="..\Booked.Logic\Booked.Logic.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\img\Hotels\" />
+  </ItemGroup>
+
 </Project>
