@@ -35,7 +35,7 @@ namespace Booked.Domain.Domain
 
 
         //Need fixing
-        public Hotel(int id, string name, string address, string city, string country, int starRating, decimal pricePerNight)
+        public Hotel(int id, string name, string address, string city, string country, int starRating, decimal pricePerNight, byte[] image)
 		{
 			HotelId = id;
 			Name = name;
@@ -44,6 +44,7 @@ namespace Booked.Domain.Domain
 			Country = country;
 			StarRating = starRating;
 			PricePerNight = pricePerNight;
+            Image = image;
 		}
 
 

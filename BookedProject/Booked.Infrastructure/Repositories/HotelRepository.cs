@@ -36,8 +36,10 @@ namespace Booked.Infrastructure.Repositories
 					DetailsHotel.Country = dr["Country"].ToString();
 					DetailsHotel.StarRating = Convert.ToInt32(dr["StarRating"]);
 					DetailsHotel.PricePerNight = Convert.ToDecimal(dr["PricePerNight"]);
+					byte[] imagedate = (byte[])dr["Image"];
+					DetailsHotel.Image = imagedate;
 
-				}
+                }
 				conn.Close();
 			}
 			return DetailsHotel;
@@ -60,13 +62,15 @@ namespace Booked.Infrastructure.Repositories
 
 					while (dr.Read())
 					{
+						byte[] imagedate = (byte[])dr["Image"];
 						AllHotel.Add(new Hotel(Convert.ToInt32(dr["HotelId"]),
 													dr["Name"].ToString(),
 													dr["Address"].ToString(),
 													dr["City"].ToString(),
 													dr["Country"].ToString(),
                                                     Convert.ToInt32(dr["StarRating"]),
-													Convert.ToDecimal(dr["PricePerNight"])));
+													Convert.ToDecimal(dr["PricePerNight"]),
+                                                    imagedate));
 					}
 					conn.Close();
 				}

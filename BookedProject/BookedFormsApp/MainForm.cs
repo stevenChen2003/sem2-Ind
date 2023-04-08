@@ -30,15 +30,6 @@ namespace BookedFormsApp
 
         private void buttonSaveHotel_Click(object sender, EventArgs e)
         {
-            try
-            {
-
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
             if (picBoxHotel.Image != null)
             {
                 byte[] imageData;
@@ -62,8 +53,7 @@ namespace BookedFormsApp
             {
                 MessageBox.Show("Please select an image first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-
         }
+
     }
 }
