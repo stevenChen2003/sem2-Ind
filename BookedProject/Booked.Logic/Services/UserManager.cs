@@ -33,13 +33,26 @@ namespace Booked.Logic.Services
 			}
 			else
 			{
-                user.Password = EncryptPassword(user.Password);
+                user.Password = HashPassword(user.Password);
                 userRepo.AddUser(user);
 				return true;
             }
 		}
 
-        public string EncryptPassword(string password)
+        public void UpdateUser(string email)
+        {
+
+        }
+
+        public void DeleteUser(string email)
+        {
+
+        }
+
+
+
+        //Make a seperate class for these
+        public string HashPassword(string password)
         {
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
             return hashedPassword;

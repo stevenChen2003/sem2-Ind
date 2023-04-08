@@ -84,20 +84,28 @@ namespace Booked.Infrastructure.Repositories
 		//Need to make Add, Remove and Update methods
 		public void AddHotel(Hotel hotel)
 		{
-			using (SqlConnection connection = new SqlConnection(CONNECTION_STRING))
-            {
-                string query = "INSERT INTO Hotels (Name, Address, City, Country, StarRating, PricePerNight) " +
-                               "VALUES (@Name, @Address, @City, @Country, @StarRating, @PricePerNight)";
+			try
+			{
+                using (SqlConnection connection = new SqlConnection(CONNECTION_STRING))
+                {
+                    string query = "INSERT INTO Hotels (Name, Address, City, Country, StarRating, PricePerNight, Image) " +
+                                   "VALUES (@Name, @Address, @City, @Country, @StarRating, @PricePerNight, @Image )";
 
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@Name", hotel.Name);
-                command.Parameters.AddWithValue("@Address", hotel.Address);
-                command.Parameters.AddWithValue("@City", hotel.City);
-                command.Parameters.AddWithValue("@Country", hotel.Country);
-                command.Parameters.AddWithValue("@StarRating", hotel.StarRating);
-                command.Parameters.AddWithValue("@PricePerNight", hotel.PricePerNight);
-                connection.Open();
-                command.ExecuteNonQuery();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@Name", hotel.Name);
+                    command.Parameters.AddWithValue("@Address", hotel.Address);
+                    command.Parameters.AddWithValue("@City", hotel.City);
+                    command.Parameters.AddWithValue("@Country", hotel.Country);
+                    command.Parameters.AddWithValue("@StarRating", hotel.StarRating);
+                    command.Parameters.AddWithValue("@PricePerNight", hotel.PricePerNight);
+                    command.Parameters.AddWithValue("@Image", hotel.Image);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException)
+            {
+                throw new Exception("Cannot add hotel");
             }
         }
 
