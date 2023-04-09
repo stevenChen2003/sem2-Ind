@@ -30,6 +30,7 @@
 		{
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPageHotel = new System.Windows.Forms.TabPage();
+			this.label1 = new System.Windows.Forms.Label();
 			this.numPrice = new System.Windows.Forms.NumericUpDown();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.picBoxHotel = new System.Windows.Forms.PictureBox();
@@ -50,7 +51,6 @@
 			this.tabPageFlight = new System.Windows.Forms.TabPage();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.lbTitleAdd = new System.Windows.Forms.Label();
-			this.label1 = new System.Windows.Forms.Label();
 			this.tabControl1.SuspendLayout();
 			this.tabPageHotel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numPrice)).BeginInit();
@@ -97,17 +97,21 @@
 			this.tabPageHotel.Text = "Hotels";
 			this.tabPageHotel.UseVisualStyleBackColor = true;
 			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(69, 32);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(42, 15);
+			this.label1.TabIndex = 21;
+			this.label1.Text = "Name:";
+			// 
 			// numPrice
 			// 
 			this.numPrice.DecimalPlaces = 2;
 			this.numPrice.Location = new System.Drawing.Point(162, 248);
 			this.numPrice.Maximum = new decimal(new int[] {
             9999999,
-            0,
-            0,
-            0});
-			this.numPrice.Minimum = new decimal(new int[] {
-            1,
             0,
             0,
             0});
@@ -300,15 +304,6 @@
 			this.lbTitleAdd.Size = new System.Drawing.Size(107, 30);
 			this.lbTitleAdd.TabIndex = 0;
 			this.lbTitleAdd.Text = "Add Form";
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(69, 32);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(42, 15);
-			this.label1.TabIndex = 21;
-			this.label1.Text = "Name:";
 			// 
 			// MainForm
 			// 

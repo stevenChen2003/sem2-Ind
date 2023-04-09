@@ -1,5 +1,6 @@
 using Booked.Logic.Services;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace BookedFormsApp
 {
@@ -32,7 +33,18 @@ namespace BookedFormsApp
         {
             try
             {
-				if (picBoxHotel.Image != null)
+				string name = Convert.ToString(tBName.Text);
+				string address = Convert.ToString(tbAddress.Text);
+				string city = Convert.ToString(tBCity.Text);
+				string country = Convert.ToString(tBCountry.Text);
+				int starRating = Convert.ToInt32(numStarRating.Value);
+				decimal price = Convert.ToDecimal(numPrice.Value);
+
+				if (picBoxHotel.Image == null || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(address) || string.IsNullOrEmpty(city) || string.IsNullOrEmpty(country) || price == 0)
+				{
+					MessageBox.Show("Input is not valid or missing", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+				else
 				{
 					byte[] imageData;
 
@@ -41,18 +53,7 @@ namespace BookedFormsApp
 						picBoxHotel.Image.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
 						imageData = stream.ToArray();
 					}
-					string name = Convert.ToString(tBName.Text);
-					string address = Convert.ToString(tbAddress.Text);
-					string city = Convert.ToString(tBCity.Text);
-					string country = Convert.ToString(tBCountry.Text);
-					int starRating = Convert.ToInt32(numStarRating.Value);
-					decimal price = Convert.ToDecimal(numPrice.Value);
 					hotelManager.AddHotel(name, address, city, country, starRating, price, imageData);
-					MessageBox.Show("Hotel added", "Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
-				}
-				else
-				{
-					MessageBox.Show("Please select an image first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 
 			}
@@ -62,6 +63,6 @@ namespace BookedFormsApp
 			}
 
         }
-
     }
+
 }

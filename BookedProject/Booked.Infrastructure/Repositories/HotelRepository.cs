@@ -78,7 +78,7 @@ namespace Booked.Infrastructure.Repositories
 				return AllHotel;
 
 			}
-			catch (Exception)
+			catch (SqlException)
             {
 				throw new Exception("Hotels not found");
 			}
