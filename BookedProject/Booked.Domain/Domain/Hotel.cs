@@ -33,8 +33,6 @@ namespace Booked.Domain.Domain
             Image = image;
         }
 
-
-        //Need fixing
         public Hotel(int id, string name, string address, string city, string country, int starRating, decimal pricePerNight, byte[] image)
 		{
 			HotelId = id;

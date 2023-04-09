@@ -29,9 +29,15 @@ namespace Booked.Logic.Services
 
 		public void AddHotel(string name, string address, string city, string country, int starRating, decimal pricePerNight, byte[] image)
 		{
-
-            Hotel hotel = new Hotel(name, address, city, country, starRating, pricePerNight, image);
-            hotelRepo.AddHotel(hotel);
+			try
+			{
+				Hotel hotel = new Hotel(name, address, city, country, starRating, pricePerNight, image);
+				hotelRepo.AddHotel(hotel);
+			}
+			catch(Exception)
+			{
+				throw new Exception("Adding not succesfull");
+			}
         }
 
 	}

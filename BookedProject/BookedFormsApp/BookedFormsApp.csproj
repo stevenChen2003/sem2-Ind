@@ -16,7 +16,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Booked.Domain\Booked.Domain.csproj" />
     <ProjectReference Include="..\Booked.Logic\Booked.Logic.csproj" />
-    <ProjectReference Include="..\BookedWebApp\BookedWebApp.csproj" />
   </ItemGroup>
 
 </Project>
