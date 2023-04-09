@@ -33,6 +33,7 @@ namespace Booked.Logic.Services
 			{
 				Hotel hotel = new Hotel(name, address, city, country, starRating, pricePerNight, image);
 				hotelRepo.AddHotel(hotel);
+
 			}
 			catch(Exception)
 			{

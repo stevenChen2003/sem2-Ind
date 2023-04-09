@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Booked.Domain.Domain
 {
-    public class Booking
+    public abstract class Booking
     {
         public int BookingId { get; set; }
         public User User { get; set; }
@@ -15,6 +15,8 @@ namespace Booked.Domain.Domain
         public decimal Price { get; set; }
         public string Description { get; set; }
         public DateTime BookingDate { get; set; }
+
+        public Booking() { }
 
         public Booking(User user, DateTime startDate, DateTime endDate, decimal price, string description, DateTime bookingDate)
         {
@@ -25,5 +27,7 @@ namespace Booked.Domain.Domain
             Description = description;
             BookingDate = bookingDate;
         }
+
+
     }
 }
