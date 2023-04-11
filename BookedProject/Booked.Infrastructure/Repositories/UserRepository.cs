@@ -33,6 +33,8 @@ namespace Booked.Infrastructure.Repositories
                     DetailUser.FirstName = dr["FirstName"].ToString();
                     DetailUser.LastName = dr["LastName"].ToString();
                     DetailUser.Email = dr["Email"].ToString();
+                    DetailUser.DateOfBirth = Convert.ToDateTime(dr["Date_of_Birth"]);
+                    DetailUser.PhoneNumber = dr["PhoneNumber"].ToString();
                     DetailUser.Password = dr["Password"].ToString();
                 }
 
@@ -61,6 +63,8 @@ namespace Booked.Infrastructure.Repositories
                                                     dr["FirstName"].ToString(),
                                                     dr["LastName"].ToString(),
                                                     dr["Email"].ToString(),
+                                                    Convert.ToDateTime(dr["Date_of_Birth"]),
+                                                    dr["PhoneNumber"].ToString(),
                                                     dr["Password"].ToString()));
                     }
                     conn.Close();
@@ -79,14 +83,15 @@ namespace Booked.Infrastructure.Repositories
         {
             using (SqlConnection connection = new SqlConnection(CONNECTION_STRING))
             {
-                string query = "INSERT INTO Users (FirstName, LastName, Email, Password) " +
-                               "VALUES (@FirstName, @LastName, @Email, @Password)";
+                string query = "INSERT INTO Users (FirstName, LastName, Email, Date_of_Birth, PhoneNumber, Password) " +
+                               "VALUES (@FirstName, @LastName, @Email, @Date_of_Birth, @PhoneNumber, @Password)";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@FirstName", user.FirstName);
                 command.Parameters.AddWithValue("@LastName", user.LastName);
                 command.Parameters.AddWithValue("@Email", user.Email);
-                //.Parameters.AddWithValue("@Salt", salt);
+                command.Parameters.AddWithValue("@Date_of_Birth", user.DateOfBirth);
+                command.Parameters.AddWithValue("@PhoneNumber", user.PhoneNumber);
                 command.Parameters.AddWithValue("@Password", user.Password);
                 connection.Open();
                 command.ExecuteNonQuery();

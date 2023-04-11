@@ -19,17 +19,23 @@ namespace Booked.Domain.Domain
         [EmailAddress]
         public string Email { get; set; }
         [Required]
+        public DateTime DateOfBirth { get; set; }
+        [Required]
+        public string PhoneNumber { get; set; }
+        [Required]
         public string Password { get; set; }
         
 
         public User() { }
 
-        public User(int userId,string firstName, string lastName, string email, string password)
+        public User(int userId,string firstName, string lastName, string email, DateTime dateOfBirth, string phoneNumber,string password)
         {
             UserId = userId;
             FirstName = firstName;
             LastName = lastName;
             Email = email;
+            DateOfBirth = dateOfBirth;
+            PhoneNumber = phoneNumber;
             Password = password;
         }
 

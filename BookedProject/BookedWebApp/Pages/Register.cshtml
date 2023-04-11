@@ -30,6 +30,20 @@
             <input type="email" asp-for="User.Email" class="form-control" value="">
         </div>
 
+        <!--Need to change to calander-->
+        <div class="mb-3">
+            <label asp-for="User.DateOfBirth" class="form-label">Date of Birth: </label>
+            <span class="text-danger" asp-validation-for="User.DateOfBirth"></span>
+            <input type="date" asp-for="User.DateOfBirth" class="form-control" value="">
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="User.PhoneNumber" class="form-label">Phone Number: </label>
+            <span class="text-danger" asp-validation-for="User.PhoneNumber"></span>
+            <input type="tel" asp-for="User.PhoneNumber" class="form-control" value="">
+        </div>
+
+
         <div class="mb-3">
             <label asp-for="User.Password" class="form-label">Password: </label>
             <span class="text-danger" asp-validation-for="User.Password"></span>

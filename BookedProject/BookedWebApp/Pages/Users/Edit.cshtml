@@ -10,30 +10,20 @@
     </div>
     <form method="post">
         <div class="mb-3">
-            <label asp-for="User.FirstName" class="form-label">First Name: </label>
-            <span class="text-danger" asp-validation-for="User.FirstName"></span>
-            <input asp-for="User.FirstName" class="form-control" value="">
+            <label asp-for="user.FirstName" class="form-label">First Name: </label>
+            <span class="text-danger" asp-validation-for="user.FirstName"></span>
+            <input asp-for="user.FirstName" class="form-control" value=@Model.user.FirstName>
         </div>
 
         <div class="mb-3">
-            <label asp-for="User.LastName" class="form-label">Last Name: </label>
-            <span class="text-danger" asp-validation-for="User.LastName"></span>
-            <input asp-for="User.LastName" class="form-control" value="">
+            <label asp-for="user.LastName" class="form-label">Last Name: </label>
+            <span class="text-danger" asp-validation-for="user.LastName"></span>
+            <input asp-for="user.LastName" class="form-control" value="">
         </div>
 
-        <div class="mb-3">
-            <label asp-for="User.Email" class="form-label">Email: </label>
-            <span class="text-danger" asp-validation-for="User.Email"></span>
-            <input type="email" asp-for="User.Email" class="form-control" value="">
-        </div>
 
-        <div class="mb-3">
-            <label asp-for="User.Password" class="form-label">Password: </label>
-            <span class="text-danger" asp-validation-for="User.Password"></span>
-            <input type="password" asp-for="User.Password" class="form-control">
-        </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Change</button>
 
     </form>
 </div>
