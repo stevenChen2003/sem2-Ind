@@ -100,7 +100,25 @@ namespace Booked.Infrastructure.Repositories
 
         public void UpdateUser(User user)
         {
-
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+                {
+                    string query = "UPDATE Users SET FirstName = @FirstName, LastName = @LastName, Date_of_Birth = @Date_of_Birth, PhoneNumber = @PhoneNumber WHERE Email= @Email; ";
+                    SqlCommand command = new SqlCommand(query, conn);
+                    command.Parameters.AddWithValue("@FirstName", user.FirstName);
+                    command.Parameters.AddWithValue("@LastName", user.LastName);
+                    command.Parameters.AddWithValue("@Email", user.Email);
+                    command.Parameters.AddWithValue("@Date_of_Birth", user.DateOfBirth);
+                    command.Parameters.AddWithValue("@PhoneNumber", user.PhoneNumber);
+                    conn.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("Cannot be updated");
+            }
         }
 
         public void RemoveUserByEmail(string email)

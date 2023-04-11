@@ -39,9 +39,17 @@ namespace Booked.Logic.Services
             }
 		}
 
-        public void UpdateUser(string email)
+        public bool UpdateUser(User user)
         {
-
+            try
+            {
+                userRepo.UpdateUser(user);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public void DeleteUser(string email)
