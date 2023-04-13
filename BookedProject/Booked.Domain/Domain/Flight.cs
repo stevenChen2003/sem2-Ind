@@ -18,6 +18,5 @@ namespace Booked.Domain.Domain
 
 
 		public Flight() { }
-
 	}
 }

@@ -8,25 +8,27 @@ namespace Booked.Domain.Domain
 {
     public abstract class Booking
     {
-        public int BookingId { get; set; }
-        public User User { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public decimal Price { get; set; }
-        public string Description { get; set; }
-        public DateTime BookingDate { get; set; }
+        protected int BookingId { get; set; }
+        protected User User { get; set; }
+        protected DateTime StartDate { get; set; }
+        protected DateTime EndDate { get; set; }
+        protected decimal Price { get; set; }
+        protected string Description { get; set; }
+        protected DateTime BookingDate { get; set; }
 
         public Booking() { }
 
-        public Booking(User user, DateTime startDate, DateTime endDate, decimal price, string description, DateTime bookingDate)
+        public Booking(User user, DateTime startDate, DateTime endDate, string description, DateTime bookingDate)
         {
             User = user;
             StartDate = startDate;
             EndDate = endDate;
-            Price = price;
+            Price = 0;
             Description = description;
             BookingDate = bookingDate;
         }
+
+        public virtual decimal GetPrice() { return Price; }
 
 
     }

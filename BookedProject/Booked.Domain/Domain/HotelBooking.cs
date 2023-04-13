@@ -8,11 +8,29 @@ namespace Booked.Domain.Domain
 {
     public class HotelBooking : Booking
     {
+        public Hotel Hotel { get; set; }
+        public List<decimal> ExtraService { get; set; }
+
         public HotelBooking() { }
 
-		public HotelBooking(User user, DateTime startDate, DateTime endDate, decimal price, string description, DateTime bookingDate) : base(user, startDate, endDate, price, description, bookingDate)
+		public HotelBooking(User user, DateTime startDate, DateTime endDate, string description, DateTime bookingDate) : base(user, startDate, endDate, description, bookingDate)
         {
 
         }
-	}
+
+        public override decimal GetPrice()
+        {
+            int amount = (EndDate.Date - StartDate.Date).Days;
+            Price= amount * Hotel.PricePerNight;
+
+            //Extra item maybe for services?
+            /*
+            foreach (var item in ExtraService)
+            {
+                Price += item;
+            }
+            */
+            return Price;
+        }
+    }
 }
