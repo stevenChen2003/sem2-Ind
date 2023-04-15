@@ -16,13 +16,14 @@ namespace Booked.Domain.Domain
         public string Country { get; set; }
         public int StarRating { get; set; }
         public decimal PricePerNight { get; set; }
-		public byte[] Image { get; set; }
-		public Rooms Room { get; set; }
+        public Rooms Room { get; set; }
         public int MaximumBooking { get; set; }
+        public byte[] Image { get; set; }
         public List<Review> Reviews { get; set; }
 
         public Hotel() { }
 
+        //Need to include room and maximumbooking
         public Hotel(string name, string address, string city, string country, int starRating, decimal pricePerNight, byte[] image)
         {
             Name = name;

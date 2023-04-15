@@ -18,7 +18,7 @@ namespace Booked.Domain.Domain
 		public int NumberOfSeats { get; set; }
 		public decimal ExtraBaggagePrice { get; set; }
 
-
+		//Need to start working on this 
 		public Flight() { }
 	}
 }
