@@ -18,8 +18,8 @@ namespace Booked.Domain.Domain
         public decimal PricePerNight { get; set; }
 		public byte[] Image { get; set; }
 		public Rooms Room { get; set; }
-		public List<Review> Reviews { get; set; }
         public int MaximumBooking { get; set; }
+        public List<Review> Reviews { get; set; }
 
         public Hotel() { }
 
