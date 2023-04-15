@@ -15,6 +15,8 @@ namespace Booked.Domain.Domain
 		public string ArrivalAirport { get; set; }
 		public decimal Price { get; set; }
 		public Seats Seat { get; set; }
+		public int NumberOfSeats { get; set; }
+		public decimal ExtraBaggagePrice { get; set; }
 
 
 		public Flight() { }

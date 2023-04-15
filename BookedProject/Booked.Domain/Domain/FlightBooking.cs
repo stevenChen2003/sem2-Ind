@@ -13,19 +13,19 @@ namespace Booked.Domain.Domain
 		public DateTime ArrivalTime { get; set; }
         public bool ExtraLuggage { get; set; }
 
-
-		public FlightBooking()
+		public FlightBooking(User user, DateTime startDate, DateTime endDate, string description, DateTime bookingDate, Flight flight, bool extra) : base(user, startDate, endDate, description, bookingDate)
 		{
-		}
-
-		public FlightBooking(User user, DateTime startDate, DateTime endDate, string description, DateTime bookingDate, Flight flight) : base(user, startDate, endDate, description, bookingDate)
-		{
-
+            Flight= flight;
+            ExtraLuggage = extra;
         }
 
         public override decimal GetPrice()
         {
-            return Price +  Flight.Price;
+            if (ExtraLuggage)
+            {
+                return Price = Flight.Price + Flight.ExtraBaggagePrice;
+            }
+            return Price = Flight.Price;
         }
 
     }

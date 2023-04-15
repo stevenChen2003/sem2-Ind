@@ -19,7 +19,7 @@ namespace Booked.Domain.Domain
 		public byte[] Image { get; set; }
 		public Rooms Room { get; set; }
 		public List<Review> Reviews { get; set; }
-        //Add size property in the future? to check if the room is available
+        public int MaximumBooking { get; set; }
 
         public Hotel() { }
 
