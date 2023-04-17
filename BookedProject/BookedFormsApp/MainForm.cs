@@ -58,7 +58,8 @@ namespace BookedFormsApp
 						imageData = stream.ToArray();
 					}
 					hotelManager.AddHotel(name, address, city, country, starRating, price, rooms, size, imageData);
-				}
+                    MessageBox.Show("Hotel is added", "Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
 
 			}
             catch (Exception)
