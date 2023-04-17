@@ -102,8 +102,8 @@ namespace Booked.Infrastructure.Repositories
 			{
                 using (SqlConnection connection = new SqlConnection(CONNECTION_STRING))
                 {
-                    string query = "INSERT INTO Hotels (Name, Address, City, Country, StarRating, PricePerNight, Image) " +
-                                   "VALUES (@Name, @Address, @City, @Country, @StarRating, @PricePerNight, @Image )";
+                    string query = "INSERT INTO Hotels (Name, Address, City, Country, StarRating, PricePerNight, RoomType, MaximumBooking, Image) " +
+                                   "VALUES (@Name, @Address, @City, @Country, @StarRating, @PricePerNight, @RoomType, @MaximumBooking, @Image )";
 
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@Name", hotel.Name);
@@ -112,6 +112,8 @@ namespace Booked.Infrastructure.Repositories
                     command.Parameters.AddWithValue("@Country", hotel.Country);
                     command.Parameters.AddWithValue("@StarRating", hotel.StarRating);
                     command.Parameters.AddWithValue("@PricePerNight", hotel.PricePerNight);
+                    command.Parameters.AddWithValue("@RoomType", hotel.Room.ToString());
+                    command.Parameters.AddWithValue("@MaximumBooking", hotel.MaximumBooking);
                     command.Parameters.AddWithValue("@Image", hotel.Image);
                     connection.Open();
                     command.ExecuteNonQuery();

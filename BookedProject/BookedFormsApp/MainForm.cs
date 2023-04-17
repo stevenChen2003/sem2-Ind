@@ -42,7 +42,7 @@ namespace BookedFormsApp
 				int starRating = Convert.ToInt32(numStarRating.Value);
 				decimal price = Convert.ToDecimal(numPrice.Value);
 				Rooms rooms = (Rooms)comboBoxRoom.SelectedIndex;
-				int size = Convert.ToInt32(numHotelSize);
+				int size = Convert.ToInt32(numHotelSize.Value);
 
 				if (picBoxHotel.Image == null || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(address) || string.IsNullOrEmpty(city) || string.IsNullOrEmpty(country) || price == 0)
 				{
@@ -57,7 +57,7 @@ namespace BookedFormsApp
 						picBoxHotel.Image.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
 						imageData = stream.ToArray();
 					}
-					hotelManager.AddHotel(name, address, city, country, starRating, price,  rooms, size, imageData);
+					hotelManager.AddHotel(name, address, city, country, starRating, price, rooms, size, imageData);
 				}
 
 			}
