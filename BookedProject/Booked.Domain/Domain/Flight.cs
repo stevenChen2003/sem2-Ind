@@ -10,7 +10,7 @@ namespace Booked.Domain.Domain
 	public class Flight
 	{
 		public int FlightId { get; set; }
-		public string Airline { get; set; }
+		public string AirlineName { get; set; }
 		public string DepatureAirport { get; set; }	
 		public string ArrivalAirport { get; set; }
 		public decimal Price { get; set; }
@@ -20,5 +20,30 @@ namespace Booked.Domain.Domain
 
 		//Need to start working on this 
 		public Flight() { }
-	}
+
+		//Constructor with ID
+		public Flight(int flightId, string airline, string departureAirport, string arrivalAirport, decimal price, Seats seat, int numberOfSeats, decimal extraBaggagePrice)
+		{
+			FlightId = flightId;
+			AirlineName = airline;
+			DepatureAirport = departureAirport;
+			ArrivalAirport = arrivalAirport;
+			Price = price;
+			Seat = seat;
+			NumberOfSeats = numberOfSeats;
+			ExtraBaggagePrice = extraBaggagePrice;
+		}
+
+		//Constructor without ID
+        public Flight(string airline, string departureAirport, string arrivalAirport, decimal price, Seats seat, int numberOfSeats, decimal extraBaggagePrice)
+        {
+            AirlineName = airline;
+            DepatureAirport = departureAirport;
+            ArrivalAirport = arrivalAirport;
+            Price = price;
+            Seat = seat;
+            NumberOfSeats = numberOfSeats;
+            ExtraBaggagePrice = extraBaggagePrice;
+        }
+    }
 }
