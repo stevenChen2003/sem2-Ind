@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Booked.Domain.Domain.Enum;
+using System.Drawing;
 
 namespace Booked.Infrastructure.Repositories
 {
@@ -12,6 +14,7 @@ namespace Booked.Infrastructure.Repositories
 	{
 		private const string CONNECTION_STRING = @"Server=mssqlstud.fhict.local;Database=dbi507678_booked;User Id=dbi507678_booked;Password=booked789;";
 
+		//fix
 		public Hotel GetHotelByID(int id)
 		{
 			Hotel DetailsHotel = new Hotel();
@@ -36,6 +39,7 @@ namespace Booked.Infrastructure.Repositories
 					DetailsHotel.Country = dr["Country"].ToString();
 					DetailsHotel.StarRating = Convert.ToInt32(dr["StarRating"]);
 					DetailsHotel.PricePerNight = Convert.ToDecimal(dr["PricePerNight"]);
+
 					byte[] imagedate = (byte[])dr["Image"];
 					DetailsHotel.Image = imagedate;
 
@@ -45,6 +49,8 @@ namespace Booked.Infrastructure.Repositories
 			return DetailsHotel;
 		}
 		
+
+		//Need fixing
 		public IEnumerable<Hotel> GetAllHotel()
 		{
 			List<Hotel> AllHotel = new List<Hotel>();
@@ -63,13 +69,17 @@ namespace Booked.Infrastructure.Repositories
 					while (dr.Read())
 					{
 						byte[] imagedate = (byte[])dr["Image"];
-						AllHotel.Add(new Hotel(Convert.ToInt32(dr["HotelId"]),
+						Rooms roomType = (Rooms)Enum.Parse(typeof(Rooms), dr["RoomType"].ToString());
+
+                        AllHotel.Add(new Hotel(Convert.ToInt32(dr["HotelId"]),
 													dr["Name"].ToString(),
 													dr["Address"].ToString(),
 													dr["City"].ToString(),
 													dr["Country"].ToString(),
                                                     Convert.ToInt32(dr["StarRating"]),
 													Convert.ToDecimal(dr["PricePerNight"]),
+													roomType,
+                                                    Convert.ToInt32(dr["MaximumBooking"]),
                                                     imagedate));
 					}
 					conn.Close();

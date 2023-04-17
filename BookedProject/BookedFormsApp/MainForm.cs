@@ -1,3 +1,4 @@
+using Booked.Domain.Domain.Enum;
 using Booked.Logic.Services;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -12,6 +13,7 @@ namespace BookedFormsApp
 		{
 			InitializeComponent();
             hotelManager = new HotelManager();
+			comboBoxRoom.SelectedIndex= 0;
 		}
 
         private void buttonBrowse_Click(object sender, EventArgs e)
@@ -39,6 +41,8 @@ namespace BookedFormsApp
 				string country = Convert.ToString(tBCountry.Text);
 				int starRating = Convert.ToInt32(numStarRating.Value);
 				decimal price = Convert.ToDecimal(numPrice.Value);
+				Rooms rooms = (Rooms)comboBoxRoom.SelectedIndex;
+				int size = Convert.ToInt32(numHotelSize);
 
 				if (picBoxHotel.Image == null || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(address) || string.IsNullOrEmpty(city) || string.IsNullOrEmpty(country) || price == 0)
 				{
@@ -53,7 +57,7 @@ namespace BookedFormsApp
 						picBoxHotel.Image.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
 						imageData = stream.ToArray();
 					}
-					hotelManager.AddHotel(name, address, city, country, starRating, price, imageData);
+					hotelManager.AddHotel(name, address, city, country, starRating, price,  rooms, size, imageData);
 				}
 
 			}

@@ -24,7 +24,7 @@ namespace Booked.Domain.Domain
         public Hotel() { }
 
         //With ID
-        public Hotel(int id, string name, string address, string city, string country, int starRating, decimal pricePerNight, byte[] image)
+        public Hotel(int id, string name, string address, string city, string country, int starRating, decimal pricePerNight, Rooms room, int maximumBooking, byte[] image)
         {
             HotelId = id;
             Name = name;
@@ -33,12 +33,14 @@ namespace Booked.Domain.Domain
             Country = country;
             StarRating = starRating;
             PricePerNight = pricePerNight;
+            Room = room;
+            MaximumBooking = maximumBooking;
             Image = image;
         }
 
         //Need to include room and maximumbooking
         //Without ID
-        public Hotel(string name, string address, string city, string country, int starRating, decimal pricePerNight, byte[] image)
+        public Hotel(string name, string address, string city, string country, int starRating, decimal pricePerNight, Rooms room, int maximumBooking, byte[] image)
         {
             Name = name;
             Address = address;
@@ -46,6 +48,8 @@ namespace Booked.Domain.Domain
             Country = country;
             StarRating = starRating;
             PricePerNight = pricePerNight;
+            Room = room;
+            MaximumBooking = maximumBooking;
             Image = image;
         }
 

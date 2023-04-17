@@ -1,4 +1,5 @@
 ﻿using Booked.Domain.Domain;
+using Booked.Domain.Domain.Enum;
 using Booked.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
@@ -27,11 +28,11 @@ namespace Booked.Logic.Services
 			return hotelRepo.GetAllHotel();
 		}
 
-		public void AddHotel(string name, string address, string city, string country, int starRating, decimal pricePerNight, byte[] image)
+		public void AddHotel(string name, string address, string city, string country, int starRating, decimal pricePerNight, Rooms roomType, int maximumBooking, byte[] image)
 		{
 			try
 			{
-				Hotel hotel = new Hotel(name, address, city, country, starRating, pricePerNight, image);
+				Hotel hotel = new Hotel(name, address, city, country, starRating, pricePerNight, roomType, maximumBooking, image);
 				hotelRepo.AddHotel(hotel);
 
 			}
