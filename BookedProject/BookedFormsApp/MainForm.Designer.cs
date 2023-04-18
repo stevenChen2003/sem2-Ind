@@ -1,6 +1,6 @@
 ﻿namespace BookedFormsApp
 {
-	partial class MainForm
+	partial class HotelForm
 	{
 		/// <summary>
 		///  Required designer variable.
@@ -344,7 +344,7 @@
             this.tabPageFlight.Text = "Flights";
             this.tabPageFlight.UseVisualStyleBackColor = true;
             // 
-            // MainForm
+            // HotelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -353,7 +353,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "MainForm";
+            this.Name = "HotelForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.tabControl1.ResumeLayout(false);
             this.tabPageHotel.ResumeLayout(false);

@@ -5,11 +5,11 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace BookedFormsApp
 {
-	public partial class MainForm : Form
+	public partial class HotelForm : Form
 	{
         private HotelManager hotelManager;
 
-		public MainForm()
+		public HotelForm()
 		{
 			InitializeComponent();
             hotelManager = new HotelManager();
