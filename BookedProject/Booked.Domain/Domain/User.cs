@@ -24,7 +24,6 @@ namespace Booked.Domain.Domain
         public string PhoneNumber { get; set; }
         [Required]
         public string Password { get; set; }
-        public List<Review> Reviews { get; set; }
         public List<Booking> Bookings { get; set; }
 
         public User() { }
