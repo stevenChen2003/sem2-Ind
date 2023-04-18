@@ -59,6 +59,7 @@ namespace BookedFormsApp
 					}
 					hotelManager.AddHotel(name, address, city, country, starRating, price, rooms, size, imageData);
                     MessageBox.Show("Hotel is added", "Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					ClearBoxes();
                 }
 
 			}
@@ -68,6 +69,22 @@ namespace BookedFormsApp
 			}
 
         }
+
+		public void ClearBoxes()
+		{
+			tBName.Clear();
+			tbAddress.Clear();
+			tBCity.Clear();
+			tBCountry.Clear();
+			numStarRating.Value = numStarRating.Minimum;
+			numPrice.Value = numPrice.Minimum;
+			comboBoxRoom.SelectedIndex = 0;
+			numHotelSize.Value = numHotelSize.Minimum;
+			tBURL.Clear();
+			picBoxHotel.Image = null;
+		}
+
+
     }
 
 }

@@ -113,7 +113,6 @@
             // 
             // pnContent
             // 
-            this.pnContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnContent.Location = new System.Drawing.Point(141, 21);
             this.pnContent.Name = "pnContent";
             this.pnContent.Size = new System.Drawing.Size(1080, 605);

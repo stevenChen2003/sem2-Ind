@@ -14,7 +14,6 @@ namespace Booked.Infrastructure.Repositories
 	{
 		private const string CONNECTION_STRING = @"Server=mssqlstud.fhict.local;Database=dbi507678_booked;User Id=dbi507678_booked;Password=booked789;";
 
-		//fix
 		public Hotel GetHotelByID(int id)
 		{
 			Hotel DetailsHotel = new Hotel();

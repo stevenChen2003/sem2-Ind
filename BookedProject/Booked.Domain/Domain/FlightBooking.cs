@@ -10,8 +10,6 @@ namespace Booked.Domain.Domain
     {
         //Dont know if departureTime and ArrivalTime is needed
         public Flight Flight { get; set; }
-		public DateTime DepartureTime { get; set; }
-		public DateTime ArrivalTime { get; set; }
         public bool ExtraLuggage { get; set; }
 
 		public FlightBooking(User user, DateTime startDate, DateTime endDate, string description, DateTime bookingDate, Flight flight, bool extra) : base(user, startDate, endDate, description, bookingDate)

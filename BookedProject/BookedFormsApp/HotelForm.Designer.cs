@@ -97,7 +97,7 @@
             this.tabPageHotel.Controls.Add(this.label2);
             this.tabPageHotel.Location = new System.Drawing.Point(4, 24);
             this.tabPageHotel.Name = "tabPageHotel";
-            this.tabPageHotel.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageHotel.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageHotel.Size = new System.Drawing.Size(977, 478);
             this.tabPageHotel.TabIndex = 0;
             this.tabPageHotel.Text = "Hotels";
@@ -177,11 +177,6 @@
             this.numPrice.Name = "numPrice";
             this.numPrice.Size = new System.Drawing.Size(121, 23);
             this.numPrice.TabIndex = 20;
-            this.numPrice.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             // 
             // panel2
             // 
@@ -338,7 +333,7 @@
             // 
             this.tabPageFlight.Location = new System.Drawing.Point(4, 24);
             this.tabPageFlight.Name = "tabPageFlight";
-            this.tabPageFlight.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageFlight.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageFlight.Size = new System.Drawing.Size(977, 478);
             this.tabPageFlight.TabIndex = 1;
             this.tabPageFlight.Text = "Flights";
