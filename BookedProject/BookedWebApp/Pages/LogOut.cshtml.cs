@@ -8,14 +8,11 @@ namespace BookedWebApp.Pages
     [Authorize]
     public class LogOutModel : PageModel
     {
-        public void OnGet()
-        {
-        }
-
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnGetAsync()
         {
             HttpContext.SignOutAsync();
             return RedirectToPage("Login");
         }
+
     }
 }
