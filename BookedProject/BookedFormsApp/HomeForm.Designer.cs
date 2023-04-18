@@ -29,9 +29,12 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.btUser = new System.Windows.Forms.Button();
+            this.btFlight = new System.Windows.Forms.Button();
+            this.btHotel = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.pnContent = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -39,12 +42,65 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(39)))), ((int)(((byte)(48)))));
+            this.panel1.Controls.Add(this.btUser);
+            this.panel1.Controls.Add(this.btFlight);
+            this.panel1.Controls.Add(this.btHotel);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(141, 626);
             this.panel1.TabIndex = 0;
+            // 
+            // btUser
+            // 
+            this.btUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btUser.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(197)))), ((int)(((byte)(28)))));
+            this.btUser.Location = new System.Drawing.Point(3, 197);
+            this.btUser.Name = "btUser";
+            this.btUser.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btUser.Size = new System.Drawing.Size(138, 39);
+            this.btUser.TabIndex = 2;
+            this.btUser.Text = "User";
+            this.btUser.UseVisualStyleBackColor = true;
+            // 
+            // btFlight
+            // 
+            this.btFlight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btFlight.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btFlight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(197)))), ((int)(((byte)(28)))));
+            this.btFlight.Location = new System.Drawing.Point(3, 152);
+            this.btFlight.Name = "btFlight";
+            this.btFlight.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btFlight.Size = new System.Drawing.Size(138, 39);
+            this.btFlight.TabIndex = 1;
+            this.btFlight.Text = "Flight";
+            this.btFlight.UseVisualStyleBackColor = true;
+            // 
+            // btHotel
+            // 
+            this.btHotel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btHotel.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btHotel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(197)))), ((int)(((byte)(28)))));
+            this.btHotel.Location = new System.Drawing.Point(3, 107);
+            this.btHotel.Name = "btHotel";
+            this.btHotel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btHotel.Size = new System.Drawing.Size(138, 39);
+            this.btHotel.TabIndex = 0;
+            this.btHotel.Text = "Hotel";
+            this.btHotel.UseVisualStyleBackColor = true;
+            this.btHotel.Click += new System.EventHandler(this.btHotel_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::BookedFormsApp.Properties.Resources.JustLogo3;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(115, 87);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // panel2
             // 
@@ -55,30 +111,20 @@
             this.panel2.Size = new System.Drawing.Size(1080, 21);
             this.panel2.TabIndex = 1;
             // 
-            // panel3
+            // pnContent
             // 
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(141, 21);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1080, 605);
-            this.panel3.TabIndex = 2;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::BookedFormsApp.Properties.Resources.JustLogo3;
-            this.pictureBox1.Location = new System.Drawing.Point(23, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 72);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.pnContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnContent.Location = new System.Drawing.Point(141, 21);
+            this.pnContent.Name = "pnContent";
+            this.pnContent.Size = new System.Drawing.Size(1080, 605);
+            this.pnContent.TabIndex = 2;
             // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1221, 626);
-            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.pnContent);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -94,7 +140,10 @@
 
         private Panel panel1;
         private Panel panel2;
-        private Panel panel3;
+        private Panel pnContent;
         private PictureBox pictureBox1;
+        private Button btUser;
+        private Button btFlight;
+        private Button btHotel;
     }
 }

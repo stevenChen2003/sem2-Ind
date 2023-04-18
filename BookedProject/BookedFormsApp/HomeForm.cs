@@ -16,5 +16,14 @@ namespace BookedFormsApp
         {
             InitializeComponent();
         }
+
+        private void btHotel_Click(object sender, EventArgs e)
+        {
+            MainForm s= new MainForm();
+            s.TopLevel= false;
+            pnContent.Controls.Add(s);
+            s.BringToFront();
+            s.Show();
+        }
     }
 }
