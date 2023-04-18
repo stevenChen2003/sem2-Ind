@@ -39,8 +39,11 @@ namespace Booked.Infrastructure.Repositories
 					DetailsHotel.Country = dr["Country"].ToString();
 					DetailsHotel.StarRating = Convert.ToInt32(dr["StarRating"]);
 					DetailsHotel.PricePerNight = Convert.ToDecimal(dr["PricePerNight"]);
+                    Rooms roomType = (Rooms)Enum.Parse(typeof(Rooms), dr["RoomType"].ToString());
+					DetailsHotel.Room = roomType;
+					DetailsHotel.MaximumBooking = Convert.ToInt32(dr["MaximumBooking"]);
 
-					byte[] imagedate = (byte[])dr["Image"];
+                    byte[] imagedate = (byte[])dr["Image"];
 					DetailsHotel.Image = imagedate;
 
                 }
