@@ -8,16 +8,13 @@ namespace Booked.Domain.Domain
 {
     public abstract class Booking
     {
-        //Maybe exclude start date end date
-        protected int BookingId { get; set; }
-        protected User User { get; set; }
-        protected DateTime StartDate { get; set; }
-        protected DateTime EndDate { get; set; }
-        protected decimal Price { get; set; }
-        protected string Description { get; set; }
-        protected DateTime BookingDate { get; set; }
-
-        public Booking() { }
+        public int BookingId { get; set; }
+        public User User { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public decimal Price { get; set; }
+        public string Description { get; set; }
+        public DateTime BookingDate { get; set; }
 
         //Without ID
         public Booking(User user, DateTime startDate, DateTime endDate, string description, DateTime bookingDate)

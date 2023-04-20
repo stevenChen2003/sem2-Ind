@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Booked.Domain.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,8 @@ namespace Booked.Logic.Services
 {
     public class FlightManager
     {
+        public FlightManager() { }
+
+        public Flight GetFlight() { return null; }
     }
 }

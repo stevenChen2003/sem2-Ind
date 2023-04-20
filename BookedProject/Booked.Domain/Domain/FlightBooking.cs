@@ -8,7 +8,6 @@ namespace Booked.Domain.Domain
 {
     public class FlightBooking : Booking
     {
-        //Dont know if departureTime and ArrivalTime is needed
         public Flight Flight { get; set; }
         public bool ExtraLuggage { get; set; }
 

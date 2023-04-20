@@ -25,8 +25,6 @@ namespace Booked.Domain.Domain
             AmountOfDays = (EndDate.Date - StartDate.Date).Days;
         }
 
-
-
         public override decimal GetPrice()
         {
             Price = AmountOfDays * Hotel.PricePerNight;

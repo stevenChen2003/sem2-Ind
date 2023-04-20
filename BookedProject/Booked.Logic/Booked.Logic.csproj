@@ -16,8 +16,4 @@
     <ProjectReference Include="..\Booked.Infrastructure\Booked.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
-
 </Project>

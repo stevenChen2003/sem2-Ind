@@ -13,6 +13,9 @@ namespace Booked.Logic.Services
 	{
 		private HotelRepository hotelRepo;
 
+		/// <summary>
+		/// Change to DI later
+		/// </summary>
 		public HotelManager()
 		{
 			hotelRepo = new HotelRepository();
