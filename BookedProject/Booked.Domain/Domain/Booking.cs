@@ -13,29 +13,26 @@ namespace Booked.Domain.Domain
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public decimal Price { get; set; }
-        public string Description { get; set; }
         public DateTime BookingDate { get; set; }
 
         //Without ID
-        public Booking(User user, DateTime startDate, DateTime endDate, string description, DateTime bookingDate)
+        public Booking(User user, DateTime startDate, DateTime endDate, DateTime bookingDate)
         {
             User = user;
             StartDate = startDate;
             EndDate = endDate;
             Price = 0;
-            Description = description;
             BookingDate = bookingDate;
         }
 
         //With ID when getting from database
-        public Booking(int id,User user, DateTime startDate, DateTime endDate, string description, DateTime bookingDate)
+        public Booking(int id,User user, DateTime startDate, DateTime endDate, DateTime bookingDate)
         {
             BookingId = id;
             User = user;
             StartDate = startDate;
             EndDate = endDate;
             Price = 0;
-            Description = description;
             BookingDate = bookingDate;
         }
 

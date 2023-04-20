@@ -11,13 +11,13 @@ namespace Booked.Domain.Domain
         public Flight Flight { get; set; }
         public bool ExtraLuggage { get; set; }
 
-		public FlightBooking(User user, DateTime startDate, DateTime endDate, string description, DateTime bookingDate, Flight flight, bool extra) : base(user, startDate, endDate, description, bookingDate)
+		public FlightBooking(User user, DateTime startDate, DateTime endDate, DateTime bookingDate, Flight flight, bool extra) : base(user, startDate, endDate, bookingDate)
 		{
             Flight = flight;
             ExtraLuggage = extra;
         }
 
-        public FlightBooking(int id,User user, DateTime startDate, DateTime endDate, string description, DateTime bookingDate, Flight flight, bool extra) : base(id, user, startDate, endDate, description, bookingDate)
+        public FlightBooking(int id,User user, DateTime startDate, DateTime endDate, DateTime bookingDate, Flight flight, bool extra) : base(id, user, startDate, endDate, bookingDate)
         {
             Flight = flight;
             ExtraLuggage = extra;
