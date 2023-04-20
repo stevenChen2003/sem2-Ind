@@ -19,8 +19,21 @@ namespace Booked.Domain.Domain
 
         public Booking() { }
 
+        //Without ID
         public Booking(User user, DateTime startDate, DateTime endDate, string description, DateTime bookingDate)
         {
+            User = user;
+            StartDate = startDate;
+            EndDate = endDate;
+            Price = 0;
+            Description = description;
+            BookingDate = bookingDate;
+        }
+
+        //With ID when getting from database
+        public Booking(int id,User user, DateTime startDate, DateTime endDate, string description, DateTime bookingDate)
+        {
+            BookingId = id;
             User = user;
             StartDate = startDate;
             EndDate = endDate;

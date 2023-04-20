@@ -18,6 +18,12 @@ namespace Booked.Domain.Domain
             ExtraLuggage = extra;
         }
 
+        public FlightBooking(int id,User user, DateTime startDate, DateTime endDate, string description, DateTime bookingDate, Flight flight, bool extra) : base(id, user, startDate, endDate, description, bookingDate)
+        {
+            Flight = flight;
+            ExtraLuggage = extra;
+        }
+
         public override decimal GetPrice()
         {
             if (ExtraLuggage)
