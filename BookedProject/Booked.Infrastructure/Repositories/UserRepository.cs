@@ -129,7 +129,6 @@ namespace Booked.Infrastructure.Repositories
                 {
                     string query = "DELETE FROM Users WHERE Email= @Email; ";
                     SqlCommand cmd = new SqlCommand(query, conn);
-
                     conn.Open();
                     cmd.Parameters.AddWithValue("@Email", email);
                     cmd.ExecuteNonQuery();

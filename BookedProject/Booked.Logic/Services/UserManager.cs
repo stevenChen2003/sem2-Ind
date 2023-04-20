@@ -52,14 +52,19 @@ namespace Booked.Logic.Services
             }
         }
 
-        public void DeleteUser(string email)
+        public bool DeleteUser(string email)
         {
-
+            try
+            {
+                userRepo.RemoveUserByEmail(email);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-
-
-        //Make a seperate class for these
         public string HashPassword(string password)
         {
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
