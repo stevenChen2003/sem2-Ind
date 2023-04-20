@@ -25,7 +25,7 @@ namespace Booked.Domain.Domain
             BookingDate = bookingDate;
         }
 
-        //With ID when getting from database
+        //With ID
         public Booking(int id,User user, DateTime startDate, DateTime endDate, DateTime bookingDate)
         {
             BookingId = id;
