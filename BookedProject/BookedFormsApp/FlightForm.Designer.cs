@@ -30,68 +30,69 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageListHotels = new System.Windows.Forms.TabPage();
-            this.dataGridHotels = new System.Windows.Forms.DataGridView();
+            this.dataGridFlights = new System.Windows.Forms.DataGridView();
             this.tabPageHotel = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tabPageListHotels.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridHotels)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridFlights)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPageListHotels);
             this.tabControl1.Controls.Add(this.tabPageHotel);
-            this.tabControl1.Location = new System.Drawing.Point(58, 32);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1067, 572);
+            this.tabControl1.Size = new System.Drawing.Size(1020, 508);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPageListHotels
             // 
-            this.tabPageListHotels.Controls.Add(this.dataGridHotels);
-            this.tabPageListHotels.Location = new System.Drawing.Point(4, 29);
-            this.tabPageListHotels.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPageListHotels.Controls.Add(this.dataGridFlights);
+            this.tabPageListHotels.Location = new System.Drawing.Point(4, 24);
             this.tabPageListHotels.Name = "tabPageListHotels";
-            this.tabPageListHotels.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabPageListHotels.Size = new System.Drawing.Size(1059, 539);
+            this.tabPageListHotels.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageListHotels.Size = new System.Drawing.Size(1012, 480);
             this.tabPageListHotels.TabIndex = 1;
-            this.tabPageListHotels.Text = "List of hotels";
+            this.tabPageListHotels.Text = "All flights";
             this.tabPageListHotels.UseVisualStyleBackColor = true;
             // 
-            // dataGridHotels
+            // dataGridFlights
             // 
-            this.dataGridHotels.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridHotels.Location = new System.Drawing.Point(26, 20);
-            this.dataGridHotels.Name = "dataGridHotels";
-            this.dataGridHotels.RowHeadersWidth = 51;
-            this.dataGridHotels.RowTemplate.Height = 29;
-            this.dataGridHotels.Size = new System.Drawing.Size(1072, 568);
-            this.dataGridHotels.TabIndex = 0;
+            this.dataGridFlights.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridFlights.Location = new System.Drawing.Point(23, 15);
+            this.dataGridFlights.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dataGridFlights.Name = "dataGridFlights";
+            this.dataGridFlights.RowHeadersWidth = 51;
+            this.dataGridFlights.RowTemplate.Height = 29;
+            this.dataGridFlights.Size = new System.Drawing.Size(938, 426);
+            this.dataGridFlights.TabIndex = 0;
             // 
             // tabPageHotel
             // 
-            this.tabPageHotel.Location = new System.Drawing.Point(4, 29);
-            this.tabPageHotel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabPageHotel.Location = new System.Drawing.Point(4, 24);
             this.tabPageHotel.Name = "tabPageHotel";
-            this.tabPageHotel.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabPageHotel.Size = new System.Drawing.Size(1059, 539);
+            this.tabPageHotel.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageHotel.Size = new System.Drawing.Size(1012, 480);
             this.tabPageHotel.TabIndex = 0;
             this.tabPageHotel.Text = "Hotels";
             this.tabPageHotel.UseVisualStyleBackColor = true;
             // 
             // FlightForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1228, 645);
+            this.ClientSize = new System.Drawing.Size(1080, 568);
+            this.ControlBox = false;
             this.Controls.Add(this.tabControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FlightForm";
-            this.Text = "FlightForm";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.tabControl1.ResumeLayout(false);
             this.tabPageListHotels.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridHotels)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridFlights)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -100,7 +101,7 @@
 
         private TabControl tabControl1;
         private TabPage tabPageListHotels;
-        private DataGridView dataGridHotels;
+        private DataGridView dataGridFlights;
         private TabPage tabPageHotel;
     }
 }

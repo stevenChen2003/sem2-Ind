@@ -25,5 +25,15 @@ namespace BookedFormsApp
             s.BringToFront();
             s.Show();
         }
+
+        private void btFlight_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btUser_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
