@@ -54,6 +54,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btUpdateHotel = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageListHotels.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridHotels)).BeginInit();
@@ -72,7 +75,7 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(985, 539);
+            this.tabControl1.Size = new System.Drawing.Size(983, 490);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPageListHotels
@@ -80,8 +83,8 @@
             this.tabPageListHotels.Controls.Add(this.dataGridHotels);
             this.tabPageListHotels.Location = new System.Drawing.Point(4, 24);
             this.tabPageListHotels.Name = "tabPageListHotels";
-            this.tabPageListHotels.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPageListHotels.Size = new System.Drawing.Size(977, 511);
+            this.tabPageListHotels.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageListHotels.Size = new System.Drawing.Size(975, 462);
             this.tabPageListHotels.TabIndex = 1;
             this.tabPageListHotels.Text = "List of hotels";
             this.tabPageListHotels.UseVisualStyleBackColor = true;
@@ -126,8 +129,8 @@
             this.tabPageHotel.Controls.Add(this.label2);
             this.tabPageHotel.Location = new System.Drawing.Point(4, 24);
             this.tabPageHotel.Name = "tabPageHotel";
-            this.tabPageHotel.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPageHotel.Size = new System.Drawing.Size(977, 511);
+            this.tabPageHotel.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageHotel.Size = new System.Drawing.Size(975, 462);
             this.tabPageHotel.TabIndex = 0;
             this.tabPageHotel.Text = "Hotels";
             this.tabPageHotel.UseVisualStyleBackColor = true;
@@ -358,6 +361,33 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Address:";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(16, 529);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(205, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(279, 529);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(205, 23);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // btUpdateHotel
+            // 
+            this.btUpdateHotel.Location = new System.Drawing.Point(537, 529);
+            this.btUpdateHotel.Name = "btUpdateHotel";
+            this.btUpdateHotel.Size = new System.Drawing.Size(205, 23);
+            this.btUpdateHotel.TabIndex = 3;
+            this.btUpdateHotel.Text = "Update";
+            this.btUpdateHotel.UseVisualStyleBackColor = true;
+            // 
             // HotelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -365,6 +395,9 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1059, 590);
             this.ControlBox = false;
+            this.Controls.Add(this.btUpdateHotel);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "HotelForm";
@@ -411,5 +444,8 @@
         private NumericUpDown numHotelSize;
         private ComboBox comboBoxRoom;
         private DataGridView dataGridHotels;
+        private Button button1;
+        private Button button2;
+        private Button btUpdateHotel;
     }
 }

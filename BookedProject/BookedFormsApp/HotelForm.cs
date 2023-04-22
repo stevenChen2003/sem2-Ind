@@ -101,14 +101,13 @@ namespace BookedFormsApp
 			dataTable.Columns.Add("City", typeof(string));
 			dataTable.Columns.Add("Country", typeof(string));
 			dataTable.Columns.Add("Star rating", typeof(string));
-			//dataTable.Columns.Add("Price per night", typeof(decimal));
-			//dataTable.Columns.Add("RoomType", typeof(Rooms));
-			//dataTable.Columns.Add("Maximumbooking", typeof(int));
+			dataTable.Columns.Add("Price per night", typeof(decimal));
+			dataTable.Columns.Add("RoomType", typeof(Rooms));
+			dataTable.Columns.Add("Maximumbooking", typeof(int));
 			foreach (Hotel hotel in hotelManager.GetAllHotel())
 			{
-				//dataTable.Rows.Add(hotel.HotelId, hotel.Name, hotel.Address, hotel.City, hotel.Country, hotel.StarRating, hotel.PricePerNight, hotel.Room, hotel.MaximumBooking);
-                dataTable.Rows.Add(hotel.HotelId, hotel.Name, hotel.Address, hotel.City, hotel.Country, hotel.StarRating);
-            }
+				dataTable.Rows.Add(hotel.HotelId, hotel.Name, hotel.Address, hotel.City, hotel.Country, hotel.StarRating, hotel.PricePerNight, hotel.Room, hotel.MaximumBooking);
+			}
 			dataGridHotels.DataSource = dataTable;
 		}
     }
