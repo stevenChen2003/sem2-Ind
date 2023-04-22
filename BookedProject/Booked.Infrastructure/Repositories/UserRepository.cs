@@ -78,7 +78,6 @@ namespace Booked.Infrastructure.Repositories
             }
         }
 
-        //Need to make Add, Remove and Update methods
         public void AddUser(User user)
         {
             using (SqlConnection connection = new SqlConnection(CONNECTION_STRING))

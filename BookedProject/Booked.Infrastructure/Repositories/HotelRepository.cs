@@ -129,8 +129,32 @@ namespace Booked.Infrastructure.Repositories
 
 		public void UpdateHotel(Hotel hotel)
 		{
-
-		}
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+                {
+                    string query = "UPDATE Hotels SET"+
+									"";
+                    SqlCommand command = new SqlCommand(query, conn);
+                    command.Parameters.AddWithValue("@ID", hotel.HotelId);
+                    command.Parameters.AddWithValue("@Name", hotel.Name);
+                    command.Parameters.AddWithValue("@Address", hotel.Address);
+                    command.Parameters.AddWithValue("@City", hotel.City);
+                    command.Parameters.AddWithValue("@Country", hotel.Country);
+                    command.Parameters.AddWithValue("@StarRating", hotel.StarRating);
+                    command.Parameters.AddWithValue("@PricePerNight", hotel.PricePerNight);
+                    command.Parameters.AddWithValue("@RoomType", hotel.Room.ToString());
+                    command.Parameters.AddWithValue("@MaximumBooking", hotel.MaximumBooking);
+                    command.Parameters.AddWithValue("@Image", hotel.Image);
+                    conn.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("Cannot be updated");
+            }
+        }
 
         public void RemoveHotelByID(int id)
         {
