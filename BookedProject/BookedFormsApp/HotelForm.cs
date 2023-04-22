@@ -8,10 +8,12 @@ namespace BookedFormsApp
 	public partial class HotelForm : Form
 	{
         private HotelManager hotelManager;
+		private HomeForm homeForm;
 
-		public HotelForm()
+		public HotelForm(HomeForm homeForm)
 		{
 			InitializeComponent();
+			this.homeForm = homeForm;
             hotelManager = new HotelManager();
 			comboBoxRoom.SelectedIndex= 0;
 		}

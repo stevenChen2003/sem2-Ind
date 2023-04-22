@@ -19,7 +19,7 @@ namespace BookedFormsApp
 
         private void btHotel_Click(object sender, EventArgs e)
         {
-            HotelForm s= new HotelForm();
+            HotelForm s= new HotelForm(this);
             s.TopLevel= false;
             pnContent.Controls.Add(s);
             s.BringToFront();
