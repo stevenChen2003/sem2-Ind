@@ -18,6 +18,7 @@ namespace BookedFormsApp
 			LoadGrid();
 		}
 
+
 		public void LoadGrid()
 		{
 			dataGridHotels.DataSource = null;
@@ -42,12 +43,23 @@ namespace BookedFormsApp
 			dataGridHotels.DataSource = dataTable;
 		}
 
-        private void btAddhotel_Click(object sender, EventArgs e)
+        private void btAddHotel_Click(object sender, EventArgs e)
         {
-			AddHotelForm addHotelForm = new AddHotelForm();
-			addHotelForm.ShowDialog();
-			LoadGrid();
+            AddHotelForm addHotelForm = new AddHotelForm();
+            addHotelForm.ShowDialog();
+            LoadGrid();
         }
+
+        private void btRemoveHotel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btUpdateHotel_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 
 }

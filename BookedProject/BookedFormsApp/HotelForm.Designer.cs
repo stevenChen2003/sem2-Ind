@@ -30,7 +30,7 @@
 		{
             this.dataGridHotels = new System.Windows.Forms.DataGridView();
             this.btAddhotel = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btRemovehotel = new System.Windows.Forms.Button();
             this.btUpdateHotel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridHotels)).BeginInit();
             this.SuspendLayout();
@@ -40,7 +40,7 @@
             this.dataGridHotels.AllowUserToAddRows = false;
             this.dataGridHotels.AllowUserToDeleteRows = false;
             this.dataGridHotels.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridHotels.Location = new System.Drawing.Point(16, 35);
+            this.dataGridHotels.Location = new System.Drawing.Point(16, 11);
             this.dataGridHotels.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridHotels.Name = "dataGridHotels";
             this.dataGridHotels.ReadOnly = true;
@@ -52,42 +52,44 @@
             // 
             // btAddhotel
             // 
-            this.btAddhotel.Location = new System.Drawing.Point(16, 501);
+            this.btAddhotel.Location = new System.Drawing.Point(16, 474);
             this.btAddhotel.Name = "btAddhotel";
             this.btAddhotel.Size = new System.Drawing.Size(205, 23);
             this.btAddhotel.TabIndex = 1;
             this.btAddhotel.Text = "Add";
             this.btAddhotel.UseVisualStyleBackColor = true;
-            this.btAddhotel.Click += new System.EventHandler(this.btAddhotel_Click);
+            this.btAddhotel.Click += new System.EventHandler(this.btAddHotel_Click);
             // 
-            // button2
+            // btRemovehotel
             // 
-            this.button2.Location = new System.Drawing.Point(280, 501);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(205, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Remove";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btRemovehotel.Location = new System.Drawing.Point(287, 474);
+            this.btRemovehotel.Name = "btRemovehotel";
+            this.btRemovehotel.Size = new System.Drawing.Size(205, 23);
+            this.btRemovehotel.TabIndex = 2;
+            this.btRemovehotel.Text = "Remove";
+            this.btRemovehotel.UseVisualStyleBackColor = true;
+            this.btRemovehotel.Click += new System.EventHandler(this.btRemoveHotel_Click);
             // 
             // btUpdateHotel
             // 
-            this.btUpdateHotel.Location = new System.Drawing.Point(539, 501);
+            this.btUpdateHotel.Location = new System.Drawing.Point(550, 474);
             this.btUpdateHotel.Name = "btUpdateHotel";
             this.btUpdateHotel.Size = new System.Drawing.Size(205, 23);
             this.btUpdateHotel.TabIndex = 3;
             this.btUpdateHotel.Text = "Update";
             this.btUpdateHotel.UseVisualStyleBackColor = true;
+            this.btUpdateHotel.Click += new System.EventHandler(this.btUpdateHotel_Click);
             // 
             // HotelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1020, 589);
+            this.ClientSize = new System.Drawing.Size(1020, 541);
             this.ControlBox = false;
             this.Controls.Add(this.dataGridHotels);
             this.Controls.Add(this.btUpdateHotel);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btRemovehotel);
             this.Controls.Add(this.btAddhotel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "HotelForm";
@@ -100,7 +102,7 @@
         #endregion
         private DataGridView dataGridHotels;
         private Button btAddhotel;
-        private Button button2;
+        private Button btRemovehotel;
         private Button btUpdateHotel;
     }
 }
