@@ -127,6 +127,7 @@ namespace Booked.Infrastructure.Repositories
             }
         }
 
+		//Future steven please finish this method thx
 		public void UpdateHotel(Hotel hotel)
 		{
             try
@@ -134,6 +135,7 @@ namespace Booked.Infrastructure.Repositories
                 using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
                 {
                     string query = "UPDATE Hotels SET"+
+                                    "Name = @Name, "+
 									"";
                     SqlCommand command = new SqlCommand(query, conn);
                     command.Parameters.AddWithValue("@ID", hotel.HotelId);
