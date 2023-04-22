@@ -80,7 +80,7 @@
             this.tabPageListHotels.Controls.Add(this.dataGridHotels);
             this.tabPageListHotels.Location = new System.Drawing.Point(4, 24);
             this.tabPageListHotels.Name = "tabPageListHotels";
-            this.tabPageListHotels.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageListHotels.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tabPageListHotels.Size = new System.Drawing.Size(977, 511);
             this.tabPageListHotels.TabIndex = 1;
             this.tabPageListHotels.Text = "List of hotels";
@@ -88,12 +88,16 @@
             // 
             // dataGridHotels
             // 
+            this.dataGridHotels.AllowUserToAddRows = false;
+            this.dataGridHotels.AllowUserToDeleteRows = false;
             this.dataGridHotels.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridHotels.Location = new System.Drawing.Point(23, 15);
             this.dataGridHotels.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridHotels.Name = "dataGridHotels";
+            this.dataGridHotels.ReadOnly = true;
             this.dataGridHotels.RowHeadersWidth = 51;
             this.dataGridHotels.RowTemplate.Height = 29;
+            this.dataGridHotels.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridHotels.Size = new System.Drawing.Size(938, 426);
             this.dataGridHotels.TabIndex = 0;
             // 
@@ -122,7 +126,7 @@
             this.tabPageHotel.Controls.Add(this.label2);
             this.tabPageHotel.Location = new System.Drawing.Point(4, 24);
             this.tabPageHotel.Name = "tabPageHotel";
-            this.tabPageHotel.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageHotel.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tabPageHotel.Size = new System.Drawing.Size(977, 511);
             this.tabPageHotel.TabIndex = 0;
             this.tabPageHotel.Text = "Hotels";
