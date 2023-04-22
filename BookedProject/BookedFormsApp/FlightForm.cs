@@ -16,5 +16,16 @@ namespace BookedFormsApp
         {
             InitializeComponent();
         }
+
+        private void btAddFlight_Click(object sender, EventArgs e)
+        {
+            AddFlightForm addFlight = new AddFlightForm();
+            addFlight.ShowDialog();
+        }
+
+        private void btRemoveFlight_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

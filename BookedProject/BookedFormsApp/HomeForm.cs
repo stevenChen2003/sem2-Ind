@@ -19,16 +19,20 @@ namespace BookedFormsApp
 
         private void btHotel_Click(object sender, EventArgs e)
         {
-            HotelForm s= new HotelForm(this);
-            s.TopLevel= false;
-            pnContent.Controls.Add(s);
-            s.BringToFront();
-            s.Show();
+            HotelForm h= new HotelForm();
+            h.TopLevel= false;
+            pnContent.Controls.Add(h);
+            h.BringToFront();
+            h.Show();
         }
 
         private void btFlight_Click(object sender, EventArgs e)
         {
-
+            FlightForm f = new FlightForm();
+            f.TopLevel= false;
+            pnContent.Controls.Add(f);
+            f.BringToFront();
+            f.Show();
         }
 
         private void btUser_Click(object sender, EventArgs e)
