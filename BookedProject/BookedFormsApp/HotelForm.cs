@@ -110,6 +110,13 @@ namespace BookedFormsApp
 			}
 			dataGridHotels.DataSource = dataTable;
 		}
+
+        private void btAddhotel_Click(object sender, EventArgs e)
+        {
+			AddHotelForm addHotelForm = new AddHotelForm();
+			addHotelForm.ShowDialog();
+			LoadGrid();
+        }
     }
 
 }

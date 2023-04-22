@@ -54,7 +54,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btAddhotel = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.btUpdateHotel = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
@@ -361,14 +361,15 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Address:";
             // 
-            // button1
+            // btAddhotel
             // 
-            this.button1.Location = new System.Drawing.Point(16, 529);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(205, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btAddhotel.Location = new System.Drawing.Point(16, 529);
+            this.btAddhotel.Name = "btAddhotel";
+            this.btAddhotel.Size = new System.Drawing.Size(205, 23);
+            this.btAddhotel.TabIndex = 1;
+            this.btAddhotel.Text = "Add";
+            this.btAddhotel.UseVisualStyleBackColor = true;
+            this.btAddhotel.Click += new System.EventHandler(this.btAddhotel_Click);
             // 
             // button2
             // 
@@ -376,7 +377,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(205, 23);
             this.button2.TabIndex = 2;
-            this.button2.Text = "button2";
+            this.button2.Text = "Remove";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // btUpdateHotel
@@ -397,7 +398,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.btUpdateHotel);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btAddhotel);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "HotelForm";
@@ -444,7 +445,7 @@
         private NumericUpDown numHotelSize;
         private ComboBox comboBoxRoom;
         private DataGridView dataGridHotels;
-        private Button button1;
+        private Button btAddhotel;
         private Button button2;
         private Button btUpdateHotel;
     }
