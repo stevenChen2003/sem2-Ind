@@ -96,8 +96,6 @@ namespace Booked.Infrastructure.Repositories
 			}
 		}
 
-
-		//Need to make Add, Remove and Update methods
 		public void AddHotel(Hotel hotel)
 		{
 			try
@@ -127,7 +125,6 @@ namespace Booked.Infrastructure.Repositories
             }
         }
 
-		//Future steven please finish this method thx
 		public void UpdateHotel(Hotel hotel)
 		{
             try
