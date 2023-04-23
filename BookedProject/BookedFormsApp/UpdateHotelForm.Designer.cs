@@ -48,6 +48,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btEnableBox = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numHotelSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrice)).BeginInit();
             this.panel2.SuspendLayout();
@@ -211,9 +212,9 @@
             // 
             // btUpdateHotel
             // 
-            this.btUpdateHotel.Location = new System.Drawing.Point(198, 414);
+            this.btUpdateHotel.Location = new System.Drawing.Point(426, 416);
             this.btUpdateHotel.Name = "btUpdateHotel";
-            this.btUpdateHotel.Size = new System.Drawing.Size(416, 23);
+            this.btUpdateHotel.Size = new System.Drawing.Size(161, 23);
             this.btUpdateHotel.TabIndex = 52;
             this.btUpdateHotel.Text = "Update";
             this.btUpdateHotel.UseVisualStyleBackColor = true;
@@ -264,11 +265,22 @@
             this.label2.TabIndex = 47;
             this.label2.Text = "Address:";
             // 
+            // btEnableBox
+            // 
+            this.btEnableBox.Location = new System.Drawing.Point(154, 416);
+            this.btEnableBox.Name = "btEnableBox";
+            this.btEnableBox.Size = new System.Drawing.Size(161, 23);
+            this.btEnableBox.TabIndex = 68;
+            this.btEnableBox.Text = "Make changes";
+            this.btEnableBox.UseVisualStyleBackColor = true;
+            this.btEnableBox.Click += new System.EventHandler(this.btEnableBox_Click);
+            // 
             // UpdateHotelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(924, 472);
+            this.Controls.Add(this.btEnableBox);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.numHotelSize);
@@ -322,5 +334,6 @@
         private Label label4;
         private Label label3;
         private Label label2;
+        private Button btEnableBox;
     }
 }
