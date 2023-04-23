@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Booked.Infrastructure.Repositories;
+using Booked.Logic.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,12 @@ namespace BookedFormsApp
 {
     public partial class FlightForm : Form
     {
+        private HotelManager hotelManager;
+
         public FlightForm()
         {
             InitializeComponent();
+            hotelManager = new HotelManager(new HotelRepository());
         }
 
         private void btAddFlight_Click(object sender, EventArgs e)

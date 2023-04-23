@@ -39,6 +39,8 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.groupBoxPrice = new System.Windows.Forms.GroupBox();
+            this.numFlightSize = new System.Windows.Forms.NumericUpDown();
+            this.comboBoxSeats = new System.Windows.Forms.ComboBox();
             this.numExtraPrice = new System.Windows.Forms.NumericUpDown();
             this.numPrice = new System.Windows.Forms.NumericUpDown();
             this.groupBoxInfo = new System.Windows.Forms.GroupBox();
@@ -46,14 +48,12 @@
             this.label9 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.comboBoxSeats = new System.Windows.Forms.ComboBox();
-            this.numFlightSize = new System.Windows.Forms.NumericUpDown();
             this.btSaveFlight = new System.Windows.Forms.Button();
             this.groupBoxPrice.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numFlightSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numExtraPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrice)).BeginInit();
             this.groupBoxInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numFlightSize)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -77,7 +77,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 148);
+            this.label3.Location = new System.Drawing.Point(6, 149);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(84, 15);
             this.label3.TabIndex = 2;
@@ -162,6 +162,41 @@
             this.groupBoxPrice.TabStop = false;
             this.groupBoxPrice.Text = "Other information:";
             // 
+            // numFlightSize
+            // 
+            this.numFlightSize.Location = new System.Drawing.Point(174, 137);
+            this.numFlightSize.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            this.numFlightSize.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numFlightSize.Name = "numFlightSize";
+            this.numFlightSize.Size = new System.Drawing.Size(121, 23);
+            this.numFlightSize.TabIndex = 45;
+            this.numFlightSize.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // comboBoxSeats
+            // 
+            this.comboBoxSeats.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxSeats.FormattingEnabled = true;
+            this.comboBoxSeats.Items.AddRange(new object[] {
+            "SINGLE",
+            "NORMAL",
+            "FAMILY"});
+            this.comboBoxSeats.Location = new System.Drawing.Point(174, 103);
+            this.comboBoxSeats.Name = "comboBoxSeats";
+            this.comboBoxSeats.Size = new System.Drawing.Size(121, 23);
+            this.comboBoxSeats.TabIndex = 44;
+            // 
             // numExtraPrice
             // 
             this.numExtraPrice.DecimalPlaces = 2;
@@ -243,41 +278,6 @@
             this.label8.TabIndex = 10;
             this.label8.Text = "Departure Country:";
             // 
-            // comboBoxSeats
-            // 
-            this.comboBoxSeats.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxSeats.FormattingEnabled = true;
-            this.comboBoxSeats.Items.AddRange(new object[] {
-            "SINGLE",
-            "NORMAL",
-            "FAMILY"});
-            this.comboBoxSeats.Location = new System.Drawing.Point(174, 103);
-            this.comboBoxSeats.Name = "comboBoxSeats";
-            this.comboBoxSeats.Size = new System.Drawing.Size(121, 23);
-            this.comboBoxSeats.TabIndex = 44;
-            // 
-            // numFlightSize
-            // 
-            this.numFlightSize.Location = new System.Drawing.Point(174, 137);
-            this.numFlightSize.Maximum = new decimal(new int[] {
-            300,
-            0,
-            0,
-            0});
-            this.numFlightSize.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numFlightSize.Name = "numFlightSize";
-            this.numFlightSize.Size = new System.Drawing.Size(121, 23);
-            this.numFlightSize.TabIndex = 45;
-            this.numFlightSize.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
             // btSaveFlight
             // 
             this.btSaveFlight.Location = new System.Drawing.Point(351, 353);
@@ -300,11 +300,11 @@
             this.Text = "AddFlightForm";
             this.groupBoxPrice.ResumeLayout(false);
             this.groupBoxPrice.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numFlightSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numExtraPrice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrice)).EndInit();
             this.groupBoxInfo.ResumeLayout(false);
             this.groupBoxInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numFlightSize)).EndInit();
             this.ResumeLayout(false);
 
         }
