@@ -22,33 +22,8 @@ namespace BookedFormsApp
             }
 			catch(Exception)
 			{
-				MessageBox.Show("Database is not connected");
+				MessageBox.Show("Database is not connected","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
-		}
-
-
-		public void LoadGrid()
-		{
-			dataGridHotels.DataSource = null;
-			dataGridHotels.Rows.Clear();
-			dataGridHotels.Refresh();
-			dataGridHotels.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-			DataTable dataTable= new DataTable();
-			dataTable.Columns.Add("Hotel ID", typeof(int));
-			dataTable.Columns.Add("Name", typeof(string));
-			dataTable.Columns.Add("Address", typeof(string));
-			dataTable.Columns.Add("City", typeof(string));
-			dataTable.Columns.Add("Country", typeof(string));
-			dataTable.Columns.Add("Star rating", typeof(string));
-			dataTable.Columns.Add("Price per night", typeof(decimal));
-			dataTable.Columns.Add("RoomType", typeof(Rooms));
-			dataTable.Columns.Add("Maximumbooking", typeof(int));
-			foreach (Hotel hotel in hotelManager.GetAllHotel())
-			{
-				dataTable.Rows.Add(hotel.HotelId, hotel.Name, hotel.Address, hotel.City, hotel.Country, hotel.StarRating, hotel.PricePerNight, hotel.Room, hotel.MaximumBooking);
-			}
-			dataGridHotels.DataSource = dataTable;
 		}
 
         private void btAddHotel_Click(object sender, EventArgs e)
@@ -65,10 +40,46 @@ namespace BookedFormsApp
 
         private void btUpdateHotel_Click(object sender, EventArgs e)
         {
-			UpdateHotelForm updateHotelForm = new UpdateHotelForm(hotelManager);
-			updateHotelForm.ShowDialog();
-			LoadGrid();
+            int id = 0;
+            var selectedRow = dataGridHotels.CurrentRow;
+            if (selectedRow != null)
+            {
+                id = (int)selectedRow.Cells["Hotel ID"].Value;
+                UpdateHotelForm updateHotelForm = new UpdateHotelForm(hotelManager);
+                updateHotelForm.ShowDialog();
+                LoadGrid();
+            }
+            else
+			{
+				MessageBox.Show("Please select a hotel", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
         }
+
+        public void LoadGrid()
+        {
+            dataGridHotels.DataSource = null;
+            dataGridHotels.Rows.Clear();
+            dataGridHotels.Refresh();
+            dataGridHotels.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("Hotel ID", typeof(int));
+            dataTable.Columns.Add("Name", typeof(string));
+            dataTable.Columns.Add("Address", typeof(string));
+            dataTable.Columns.Add("City", typeof(string));
+            dataTable.Columns.Add("Country", typeof(string));
+            dataTable.Columns.Add("Star rating", typeof(string));
+            dataTable.Columns.Add("Price per night", typeof(decimal));
+            dataTable.Columns.Add("RoomType", typeof(Rooms));
+            dataTable.Columns.Add("Maximumbooking", typeof(int));
+            foreach (Hotel hotel in hotelManager.GetAllHotel())
+            {
+                dataTable.Rows.Add(hotel.HotelId, hotel.Name, hotel.Address, hotel.City, hotel.Country, hotel.StarRating, hotel.PricePerNight, hotel.Room, hotel.MaximumBooking);
+            }
+            dataGridHotels.DataSource = dataTable;
+        }
+
+
 
     }
 
