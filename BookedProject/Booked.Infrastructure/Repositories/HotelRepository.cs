@@ -130,7 +130,7 @@ namespace Booked.Infrastructure.Repositories
             {
                 using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
                 {
-                    string query = "UPDATE Hotels SET"+
+                    string query = "UPDATE Hotels SET "+
                                     "Name = @Name, "+
                                     "Address = @Address," +
                                     "City = @City," +

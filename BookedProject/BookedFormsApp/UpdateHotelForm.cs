@@ -51,6 +51,7 @@ namespace BookedFormsApp
         {
             try
             {
+                int id = hotel.HotelId;
                 string name = Convert.ToString(tBName.Text);
                 string address = Convert.ToString(tbAddress.Text);
                 string city = Convert.ToString(tBCity.Text);
@@ -73,8 +74,11 @@ namespace BookedFormsApp
                         picBoxHotel.Image.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
                         imageData = stream.ToArray();
                     }
-                    hotelManager.AddHotel(name, address, city, country, starRating, price, rooms, size, imageData);
+                    Hotel h = new Hotel(id, name, address, city, country, starRating, price, rooms, size, imageData);
+                    hotelManager.UpdateHotel(h);
+
                     MessageBox.Show("Hotel is Updated", "Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DisableBox();
                 }
 
             }
