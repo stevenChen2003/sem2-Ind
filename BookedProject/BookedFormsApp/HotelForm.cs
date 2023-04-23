@@ -45,7 +45,8 @@ namespace BookedFormsApp
             if (selectedRow != null)
             {
                 id = (int)selectedRow.Cells["Hotel ID"].Value;
-                UpdateHotelForm updateHotelForm = new UpdateHotelForm(hotelManager);
+                Hotel hotel = hotelManager.GetHotel(id);
+                UpdateHotelForm updateHotelForm = new UpdateHotelForm(hotelManager, hotel);
                 updateHotelForm.ShowDialog();
                 LoadGrid();
             }

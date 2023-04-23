@@ -32,7 +32,6 @@ namespace BookedFormsApp
             {
                 // Get the filename of the selected image file.
                 string fileName = openFile.FileName;
-                tBURL.Text = fileName;
                 Image image = Image.FromFile(fileName);
                 picBoxHotel.Image = image;
             }
@@ -88,7 +87,6 @@ namespace BookedFormsApp
             numPrice.Value = numPrice.Minimum;
             comboBoxRoom.SelectedIndex = 0;
             numHotelSize.Value = numHotelSize.Minimum;
-            tBURL.Clear();
             picBoxHotel.Image = null;
         }
     }

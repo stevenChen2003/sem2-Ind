@@ -37,13 +37,11 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.picBoxHotel = new System.Windows.Forms.PictureBox();
             this.numStarRating = new System.Windows.Forms.NumericUpDown();
-            this.tBURL = new System.Windows.Forms.TextBox();
             this.tBCountry = new System.Windows.Forms.TextBox();
             this.tBCity = new System.Windows.Forms.TextBox();
             this.tbAddress = new System.Windows.Forms.TextBox();
             this.tBName = new System.Windows.Forms.TextBox();
             this.btBrowse = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
             this.btSaveHotel = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -136,7 +134,7 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.DimGray;
             this.panel2.Controls.Add(this.picBoxHotel);
-            this.panel2.Location = new System.Drawing.Point(546, 67);
+            this.panel2.Location = new System.Drawing.Point(546, 31);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(375, 200);
             this.panel2.TabIndex = 40;
@@ -173,14 +171,6 @@
             0,
             0});
             // 
-            // tBURL
-            // 
-            this.tBURL.Enabled = false;
-            this.tBURL.Location = new System.Drawing.Point(619, 31);
-            this.tBURL.Name = "tBURL";
-            this.tBURL.Size = new System.Drawing.Size(300, 23);
-            this.tBURL.TabIndex = 38;
-            // 
             // tBCountry
             // 
             this.tBCountry.Location = new System.Drawing.Point(151, 143);
@@ -211,22 +201,13 @@
             // 
             // btBrowse
             // 
-            this.btBrowse.Location = new System.Drawing.Point(546, 273);
+            this.btBrowse.Location = new System.Drawing.Point(546, 249);
             this.btBrowse.Name = "btBrowse";
             this.btBrowse.Size = new System.Drawing.Size(75, 23);
             this.btBrowse.TabIndex = 33;
             this.btBrowse.Text = "Browse";
             this.btBrowse.UseVisualStyleBackColor = true;
             this.btBrowse.Click += new System.EventHandler(this.btBrowse_Click);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(546, 35);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(67, 15);
-            this.label7.TabIndex = 32;
-            this.label7.Text = "Image URL:";
             // 
             // btSaveHotel
             // 
@@ -297,13 +278,11 @@
             this.Controls.Add(this.numPrice);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.numStarRating);
-            this.Controls.Add(this.tBURL);
             this.Controls.Add(this.tBCountry);
             this.Controls.Add(this.tBCity);
             this.Controls.Add(this.tbAddress);
             this.Controls.Add(this.tBName);
             this.Controls.Add(this.btBrowse);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.btSaveHotel);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -334,13 +313,11 @@
         private Panel panel2;
         private PictureBox picBoxHotel;
         private NumericUpDown numStarRating;
-        private TextBox tBURL;
         private TextBox tBCountry;
         private TextBox tBCity;
         private TextBox tbAddress;
         private TextBox tBName;
         private Button btBrowse;
-        private Label label7;
         private Button btSaveHotel;
         private Label label6;
         private Label label5;
