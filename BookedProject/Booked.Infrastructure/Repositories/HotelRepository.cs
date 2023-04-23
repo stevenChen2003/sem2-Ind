@@ -136,9 +136,17 @@ namespace Booked.Infrastructure.Repositories
                 {
                     string query = "UPDATE Hotels SET"+
                                     "Name = @Name, "+
-									"";
+                                    "Address = @Address," +
+                                    "City = @City," +
+                                    "Country = @Country," +
+                                    "StarRating = @StarRating," +
+                                    "PricePerNight = @PricePerNight," +
+                                    "RoomType = @RoomType," +
+                                    "MaximumBooking = @MaximumBooking," +
+                                    "Image = @Image " +
+                                    "WHERE HotelId = @HotelId";
                     SqlCommand command = new SqlCommand(query, conn);
-                    command.Parameters.AddWithValue("@ID", hotel.HotelId);
+                    command.Parameters.AddWithValue("@HotelId", hotel.HotelId);
                     command.Parameters.AddWithValue("@Name", hotel.Name);
                     command.Parameters.AddWithValue("@Address", hotel.Address);
                     command.Parameters.AddWithValue("@City", hotel.City);
