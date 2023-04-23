@@ -1,5 +1,6 @@
 using Booked.Domain.Domain;
 using Booked.Domain.Domain.Enum;
+using Booked.Infrastructure.Repositories;
 using Booked.Logic.Services;
 using System.Data;
 using System.Windows.Forms;
@@ -14,8 +15,15 @@ namespace BookedFormsApp
 		public HotelForm()
 		{
 			InitializeComponent();
-            hotelManager = new HotelManager();
-			LoadGrid();
+            hotelManager = new HotelManager(new HotelRepository());
+			try
+			{
+                LoadGrid();
+            }
+			catch(Exception)
+			{
+				MessageBox.Show("Database is not connected");
+			}
 		}
 
 

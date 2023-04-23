@@ -1,5 +1,6 @@
 ﻿using Booked.Domain.Domain;
 using Booked.Domain.Domain.Enum;
+using Booked.Infrastructure.Interfaces;
 using Booked.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
@@ -11,14 +12,11 @@ namespace Booked.Logic.Services
 {
 	public class HotelManager
 	{
-		private HotelRepository hotelRepo;
+		private IHotelRepo hotelRepo;
 
-		/// <summary>
-		/// Change to DI later
-		/// </summary>
-		public HotelManager()
+		public HotelManager(IHotelRepo repo)
 		{
-			hotelRepo = new HotelRepository();
+			hotelRepo = repo;
 		}
 
 		public Hotel GetHotel(int id)

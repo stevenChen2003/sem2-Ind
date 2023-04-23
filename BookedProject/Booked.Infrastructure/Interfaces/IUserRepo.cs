@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Booked.Logic.Interfaces
+namespace Booked.Infrastructure.Interfaces
 {
     public interface IUserRepo
     {

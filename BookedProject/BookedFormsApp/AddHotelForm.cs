@@ -1,4 +1,5 @@
 ﻿using Booked.Domain.Domain.Enum;
+using Booked.Infrastructure.Repositories;
 using Booked.Logic.Services;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace BookedFormsApp
         public AddHotelForm()
         {
             InitializeComponent();
-            hotelManager = new HotelManager();
+            hotelManager = new HotelManager(new HotelRepository());
             comboBoxRoom.SelectedIndex = 0;
         }
 
