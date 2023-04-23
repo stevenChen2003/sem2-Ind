@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Booked.Domain.Domain;
+using Booked.Logic.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,19 @@ namespace BookedFormsApp
 {
     public partial class UpdateHotelForm : Form
     {
-        public UpdateHotelForm()
+        private HotelManager hotelManager;
+        private Hotel hotel;
+
+        public UpdateHotelForm(HotelManager manager)
         {
             InitializeComponent();
+            hotelManager = manager;
+            
+        }
+
+
+        public void LoadInfo()
+        {
         }
     }
 }

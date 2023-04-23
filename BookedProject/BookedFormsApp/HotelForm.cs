@@ -60,12 +60,14 @@ namespace BookedFormsApp
 
         private void btRemoveHotel_Click(object sender, EventArgs e)
         {
-
+			LoadGrid();
         }
 
         private void btUpdateHotel_Click(object sender, EventArgs e)
         {
-
+			UpdateHotelForm updateHotelForm = new UpdateHotelForm(hotelManager);
+			updateHotelForm.ShowDialog();
+			LoadGrid();
         }
 
     }
