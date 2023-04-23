@@ -35,7 +35,18 @@ namespace BookedFormsApp
 
         private void btRemoveHotel_Click(object sender, EventArgs e)
         {
-			LoadGrid();
+            int id = 0;
+            var selectedRow = dataGridHotels.CurrentRow;
+            if (selectedRow != null)
+            {
+                id = (int)selectedRow.Cells["Hotel ID"].Value;
+                hotelManager.RemoveHotel(id);
+                LoadGrid();
+            }
+            else
+            {
+                MessageBox.Show("Please select a hotel", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btUpdateHotel_Click(object sender, EventArgs e)
