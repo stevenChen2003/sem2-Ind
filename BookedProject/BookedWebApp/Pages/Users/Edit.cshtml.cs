@@ -1,4 +1,5 @@
 using Booked.Domain.Domain;
+using Booked.Infrastructure.Repositories;
 using Booked.Logic.Services;
 using BookedWebApp.DTO;
 using Microsoft.AspNetCore.Authorization;
@@ -14,7 +15,7 @@ namespace BookedWebApp.Pages.Users
 
         public EditModel()
         {
-            userManager = new UserManager();
+            userManager = new UserManager(new UserRepository());
         }
 
         [BindProperty]
