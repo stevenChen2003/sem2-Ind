@@ -7,10 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Booked.Domain.Domain.Enum;
 using System.Drawing;
+using Booked.Logic.Interfaces;
 
 namespace Booked.Infrastructure.Repositories
 {
-	public class HotelRepository
+	public class HotelRepository : IHotelRepo
 	{
 		private const string CONNECTION_STRING = @"Server=mssqlstud.fhict.local;Database=dbi507678_booked;User Id=dbi507678_booked;Password=booked789;";
 
