@@ -88,7 +88,31 @@ namespace Booked.Infrastructure.Repositories
 
         public void AddFlight(Flight flight)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using(SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+                {
+                    string query = @"INSERT INTO Flights (Airline, DepartureAirport, DepartureCountry, ArrivalAirport, ArrivalCountry, Price, SeatType, NumberOfSeats, ExtraBaggagePrice) " +
+                                    "VALUES (@Airline, @DepartureAirport, @DepartureCountry, @ArrivalAirport, @ArrivalCountry, @Price, @SeatType, @NumberOfSeats, @ExtraBaggagePrice) ";
+                    SqlCommand command = new SqlCommand(query, conn);
+                    command.Parameters.AddWithValue("@Airline", flight.AirlineName);
+                    command.Parameters.AddWithValue("@DepartureAirport", flight.DepartureAirport);
+                    command.Parameters.AddWithValue("@DepartureCountry", flight.DepartureCountry);
+                    command.Parameters.AddWithValue("@ArrivalAirport", flight.ArrivalAirport);
+                    command.Parameters.AddWithValue("@ArrivalCountry", flight.ArrivalCountry);
+                    command.Parameters.AddWithValue("@Price", flight.Price);
+                    command.Parameters.AddWithValue("@SeatType", flight.Seat.ToString());
+                    command.Parameters.AddWithValue("@NumberOfSeats", flight.NumberOfSeats);
+                    command.Parameters.AddWithValue("@ExtraBaggagePrice", flight.ExtraBaggagePrice);
+                    conn.Open();
+                    command.ExecuteNonQuery();
+
+                }
+            }
+            catch(Exception)
+            {
+                throw new Exception("Flight cannot be added");
+            }
         }
 
         public void UpdateHotel(Flight flight)
