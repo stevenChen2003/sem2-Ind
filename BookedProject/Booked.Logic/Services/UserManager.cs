@@ -1,5 +1,4 @@
 ﻿using Booked.Domain.Domain;
-using Booked.Infrastructure.Repositories;
 using BCrypt.Net;
 using System;
 using System.Collections.Generic;
@@ -7,17 +6,18 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Booked.Logic.Interfaces;
 
 namespace Booked.Logic.Services
 {
 	public class UserManager
 	{
-		private UserRepository userRepo;
+        private IUserRepo userRepo;
 
-		public UserManager()
-		{
-			userRepo= new UserRepository();
-		}
+        public UserManager(IUserRepo repo)
+        {
+            userRepo = repo;
+        }
 
         public User GetUser(string email)
         {

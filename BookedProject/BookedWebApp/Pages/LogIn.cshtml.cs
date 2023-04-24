@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
 using Booked.Logic.Services;
 using System.ComponentModel.DataAnnotations;
+using Booked.Infrastructure.Repositories;
 
 namespace BookedWebApp.Pages
 {
@@ -15,7 +16,7 @@ namespace BookedWebApp.Pages
 
         public LogInModel()
         {
-            userManager = new UserManager();
+            userManager = new UserManager(new UserRepository());
         }
 
         [BindProperty]

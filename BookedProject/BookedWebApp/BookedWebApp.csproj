@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Booked.Domain\Booked.Domain.csproj" />
+    <ProjectReference Include="..\Booked.Infrastructure\Booked.Infrastructure.csproj" />
     <ProjectReference Include="..\Booked.Logic\Booked.Logic.csproj" />
   </ItemGroup>
 
