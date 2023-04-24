@@ -35,18 +35,18 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tBAirline = new System.Windows.Forms.TextBox();
+            this.tbDepartureAir = new System.Windows.Forms.TextBox();
+            this.tbArrivalAir = new System.Windows.Forms.TextBox();
             this.groupBoxPrice = new System.Windows.Forms.GroupBox();
             this.numFlightSize = new System.Windows.Forms.NumericUpDown();
             this.comboBoxSeats = new System.Windows.Forms.ComboBox();
             this.numExtraPrice = new System.Windows.Forms.NumericUpDown();
             this.numPrice = new System.Windows.Forms.NumericUpDown();
             this.groupBoxInfo = new System.Windows.Forms.GroupBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.tbArrivalCountry = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.tbDepartureCountry = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btSaveFlight = new System.Windows.Forms.Button();
             this.groupBoxPrice.SuspendLayout();
@@ -119,29 +119,29 @@
             this.label7.TabIndex = 6;
             this.label7.Text = "Extra Baggage price:";
             // 
-            // textBox1
+            // tBAirline
             // 
-            this.textBox1.Location = new System.Drawing.Point(129, 31);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(356, 23);
-            this.textBox1.TabIndex = 7;
+            this.tBAirline.Location = new System.Drawing.Point(129, 31);
+            this.tBAirline.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tBAirline.Name = "tBAirline";
+            this.tBAirline.Size = new System.Drawing.Size(356, 23);
+            this.tBAirline.TabIndex = 7;
             // 
-            // textBox2
+            // tbDepartureAir
             // 
-            this.textBox2.Location = new System.Drawing.Point(129, 69);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(356, 23);
-            this.textBox2.TabIndex = 8;
+            this.tbDepartureAir.Location = new System.Drawing.Point(129, 69);
+            this.tbDepartureAir.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbDepartureAir.Name = "tbDepartureAir";
+            this.tbDepartureAir.Size = new System.Drawing.Size(356, 23);
+            this.tbDepartureAir.TabIndex = 8;
             // 
-            // textBox3
+            // tbArrivalAir
             // 
-            this.textBox3.Location = new System.Drawing.Point(129, 146);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(356, 23);
-            this.textBox3.TabIndex = 9;
+            this.tbArrivalAir.Location = new System.Drawing.Point(129, 146);
+            this.tbArrivalAir.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbArrivalAir.Name = "tbArrivalAir";
+            this.tbArrivalAir.Size = new System.Drawing.Size(356, 23);
+            this.tbArrivalAir.TabIndex = 9;
             // 
             // groupBoxPrice
             // 
@@ -225,15 +225,15 @@
             // 
             // groupBoxInfo
             // 
-            this.groupBoxInfo.Controls.Add(this.textBox6);
+            this.groupBoxInfo.Controls.Add(this.tbArrivalCountry);
             this.groupBoxInfo.Controls.Add(this.label9);
-            this.groupBoxInfo.Controls.Add(this.textBox5);
+            this.groupBoxInfo.Controls.Add(this.tbDepartureCountry);
             this.groupBoxInfo.Controls.Add(this.label8);
             this.groupBoxInfo.Controls.Add(this.label1);
-            this.groupBoxInfo.Controls.Add(this.textBox1);
+            this.groupBoxInfo.Controls.Add(this.tBAirline);
             this.groupBoxInfo.Controls.Add(this.label2);
-            this.groupBoxInfo.Controls.Add(this.textBox3);
-            this.groupBoxInfo.Controls.Add(this.textBox2);
+            this.groupBoxInfo.Controls.Add(this.tbArrivalAir);
+            this.groupBoxInfo.Controls.Add(this.tbDepartureAir);
             this.groupBoxInfo.Controls.Add(this.label3);
             this.groupBoxInfo.Location = new System.Drawing.Point(12, 11);
             this.groupBoxInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -244,13 +244,13 @@
             this.groupBoxInfo.TabStop = false;
             this.groupBoxInfo.Text = "Flight information:";
             // 
-            // textBox6
+            // tbArrivalCountry
             // 
-            this.textBox6.Location = new System.Drawing.Point(129, 185);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(356, 23);
-            this.textBox6.TabIndex = 13;
+            this.tbArrivalCountry.Location = new System.Drawing.Point(129, 185);
+            this.tbArrivalCountry.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbArrivalCountry.Name = "tbArrivalCountry";
+            this.tbArrivalCountry.Size = new System.Drawing.Size(356, 23);
+            this.tbArrivalCountry.TabIndex = 13;
             // 
             // label9
             // 
@@ -261,13 +261,13 @@
             this.label9.TabIndex = 12;
             this.label9.Text = "Arrival Country:";
             // 
-            // textBox5
+            // tbDepartureCountry
             // 
-            this.textBox5.Location = new System.Drawing.Point(129, 106);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(356, 23);
-            this.textBox5.TabIndex = 11;
+            this.tbDepartureCountry.Location = new System.Drawing.Point(129, 106);
+            this.tbDepartureCountry.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbDepartureCountry.Name = "tbDepartureCountry";
+            this.tbDepartureCountry.Size = new System.Drawing.Size(356, 23);
+            this.tbDepartureCountry.TabIndex = 11;
             // 
             // label8
             // 
@@ -286,6 +286,7 @@
             this.btSaveFlight.TabIndex = 32;
             this.btSaveFlight.Text = "Save";
             this.btSaveFlight.UseVisualStyleBackColor = true;
+            this.btSaveFlight.Click += new System.EventHandler(this.btSaveFlight_Click);
             // 
             // AddFlightForm
             // 
@@ -318,14 +319,14 @@
         private Label label5;
         private Label label6;
         private Label label7;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
+        private TextBox tBAirline;
+        private TextBox tbDepartureAir;
+        private TextBox tbArrivalAir;
         private GroupBox groupBoxPrice;
         private GroupBox groupBoxInfo;
-        private TextBox textBox6;
+        private TextBox tbArrivalCountry;
         private Label label9;
-        private TextBox textBox5;
+        private TextBox tbDepartureCountry;
         private Label label8;
         private NumericUpDown numExtraPrice;
         private NumericUpDown numPrice;

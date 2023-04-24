@@ -14,17 +14,17 @@ namespace BookedFormsApp
 {
     public partial class FlightForm : Form
     {
-        private HotelManager hotelManager;
+        private FlightManager flightManager;
 
         public FlightForm()
         {
             InitializeComponent();
-            hotelManager = new HotelManager(new HotelRepository());
+            flightManager = new FlightManager(new FlightRepository());
         }
 
         private void btAddFlight_Click(object sender, EventArgs e)
         {
-            AddFlightForm addFlight = new AddFlightForm();
+            AddFlightForm addFlight = new AddFlightForm(flightManager);
             addFlight.ShowDialog();
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Booked.Logic.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,16 @@ namespace BookedFormsApp
 {
     public partial class AddFlightForm : Form
     {
-        public AddFlightForm()
+        private FlightManager flightManager;
+        public AddFlightForm(FlightManager flightManager)
         {
             InitializeComponent();
+            this.flightManager = flightManager;
+        }
+
+        private void btSaveFlight_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

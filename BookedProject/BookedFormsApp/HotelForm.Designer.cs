@@ -40,7 +40,7 @@
             this.dataGridHotels.AllowUserToAddRows = false;
             this.dataGridHotels.AllowUserToDeleteRows = false;
             this.dataGridHotels.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridHotels.Location = new System.Drawing.Point(16, 11);
+            this.dataGridHotels.Location = new System.Drawing.Point(15, 11);
             this.dataGridHotels.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridHotels.Name = "dataGridHotels";
             this.dataGridHotels.ReadOnly = true;
@@ -52,7 +52,7 @@
             // 
             // btAddhotel
             // 
-            this.btAddhotel.Location = new System.Drawing.Point(16, 474);
+            this.btAddhotel.Location = new System.Drawing.Point(15, 475);
             this.btAddhotel.Name = "btAddhotel";
             this.btAddhotel.Size = new System.Drawing.Size(205, 23);
             this.btAddhotel.TabIndex = 1;
@@ -62,7 +62,7 @@
             // 
             // btRemovehotel
             // 
-            this.btRemovehotel.Location = new System.Drawing.Point(287, 474);
+            this.btRemovehotel.Location = new System.Drawing.Point(287, 475);
             this.btRemovehotel.Name = "btRemovehotel";
             this.btRemovehotel.Size = new System.Drawing.Size(205, 23);
             this.btRemovehotel.TabIndex = 2;
@@ -72,7 +72,7 @@
             // 
             // btUpdateHotel
             // 
-            this.btUpdateHotel.Location = new System.Drawing.Point(550, 474);
+            this.btUpdateHotel.Location = new System.Drawing.Point(550, 475);
             this.btUpdateHotel.Name = "btUpdateHotel";
             this.btUpdateHotel.Size = new System.Drawing.Size(205, 23);
             this.btUpdateHotel.TabIndex = 3;
