@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Booked.Domain.Domain;
+using Booked.Logic.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,14 @@ namespace BookedFormsApp
 {
     public partial class UpdateFlightForm : Form
     {
-        public UpdateFlightForm()
+        private FlightManager flightManager;
+        private Flight flight;
+
+        public UpdateFlightForm(FlightManager fm, Flight f)
         {
             InitializeComponent();
+            flightManager = fm;
+            flight = f;
         }
     }
 }

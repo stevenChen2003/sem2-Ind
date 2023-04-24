@@ -125,6 +125,7 @@ namespace BookedFormsApp
             comboBoxRoom.Enabled = false;
             numHotelSize.Enabled = false;
             btBrowse.Enabled = false;
+            btUpdateHotel.Enabled = false;
         }
 
         public void EnableBox()
@@ -138,6 +139,7 @@ namespace BookedFormsApp
             comboBoxRoom.Enabled = true;
             numHotelSize.Enabled = true;
             btBrowse.Enabled = true;
+            btUpdateHotel.Enabled = true;
         }
     }
 }
