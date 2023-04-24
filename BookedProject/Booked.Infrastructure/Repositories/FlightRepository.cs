@@ -1,6 +1,6 @@
 ﻿using Booked.Domain.Domain;
 using Booked.Domain.Domain.Enum;
-using Booked.Infrastructure.Interfaces;
+using Booked.Logic.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
