@@ -52,7 +52,38 @@ namespace Booked.Infrastructure.Repositories
 
         public IEnumerable<Flight> GetAllFlight()
         {
-            throw new NotImplementedException();
+            List<Flight> ListFlights = new List<Flight>();
+            try
+            {
+                using(SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+                {
+                    string query = @"SELECT * FROM Flights; ";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    conn.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        Flight flightDetails = new Flight(Convert.ToInt32(dr["FlightId"]),
+                                                  dr["Airline"].ToString(),
+                                                  dr["DepartureAirport"].ToString(),
+                                                  dr["DepartureCountry"].ToString(),
+                                                  dr["ArrivalAirport"].ToString(),
+                                                  dr["ArrivalCountry"].ToString(),
+                                                  Convert.ToDecimal(dr["Price"]),
+                                                  (Seats)Enum.Parse(typeof(Seats), dr["SeatType"].ToString()),
+                                                  Convert.ToInt32(dr["NumberOfSeats"]),
+                                                  Convert.ToDecimal(dr["ExtraBaggagePrice"]));
+                        ListFlights.Add(flightDetails);
+                    }
+                    conn.Close();
+                }
+                return ListFlights;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Not Flights found");
+            }
         }
 
         public void AddFlight(Flight flight)
