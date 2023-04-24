@@ -117,12 +117,59 @@ namespace Booked.Infrastructure.Repositories
 
         public void UpdateHotel(Flight flight)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+                {
+                    string query = "UPDATE Flights SET " +
+                                    "Airline = @Airline, " +
+                                    "DepartureAirport = @DepartureAirport," +
+                                    "DepartureCountry = @DepartureCountry," +
+                                    "ArrivalAirport = @ArrivalAirport," +
+                                    "ArrivalAirport = @ArrivalAirport," +
+                                    "Price = @Price," +
+                                    "SeatType = @SeatType," +
+                                    "NumberOfSeats = @NumberOfSeats," +
+                                    "ExtraBaggagePrice = @ExtraBaggagePrice " +
+                                    "WHERE FlightId = @FlightId;";
+                    SqlCommand command = new SqlCommand(query, conn);
+                    command.Parameters.AddWithValue("@FlightId", flight.FlightId);
+                    command.Parameters.AddWithValue("@Airline", flight.AirlineName);
+                    command.Parameters.AddWithValue("@DepartureAirport", flight.DepartureAirport);
+                    command.Parameters.AddWithValue("@DepartureCountry", flight.DepartureCountry);
+                    command.Parameters.AddWithValue("@ArrivalAirport", flight.ArrivalAirport);
+                    command.Parameters.AddWithValue("@ArrivalCountry", flight.ArrivalCountry);
+                    command.Parameters.AddWithValue("@Price", flight.Price);
+                    command.Parameters.AddWithValue("@SeatType", flight.Seat.ToString());
+                    command.Parameters.AddWithValue("@NumberOfSeats", flight.NumberOfSeats);
+                    command.Parameters.AddWithValue("@ExtraBaggagePrice", flight.ExtraBaggagePrice);
+                    conn.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("Cannot be updated");
+            }
         }
 
         public void RemoveFlightByID(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+                {
+                    string query = @"DELETE FROM Flights WHERE FlightId = @FlightId;";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@FlightId", id);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch(Exception)
+            {
+                throw new Exception("Cannot be removed");
+            }
         }
     }
 }
