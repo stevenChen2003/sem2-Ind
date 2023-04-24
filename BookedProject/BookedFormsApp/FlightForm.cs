@@ -1,4 +1,6 @@
-﻿using Booked.Infrastructure.Repositories;
+﻿using Booked.Domain.Domain.Enum;
+using Booked.Domain.Domain;
+using Booked.Infrastructure.Repositories;
 using Booked.Logic.Services;
 using System;
 using System.Collections.Generic;
@@ -20,12 +22,21 @@ namespace BookedFormsApp
         {
             InitializeComponent();
             flightManager = new FlightManager(new FlightRepository());
+            try
+            {
+                LoadGrid();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Database is not connected", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btAddFlight_Click(object sender, EventArgs e)
         {
             AddFlightForm addFlight = new AddFlightForm(flightManager);
             addFlight.ShowDialog();
+            LoadGrid();
         }
 
         private void btRemoveFlight_Click(object sender, EventArgs e)
@@ -37,5 +48,31 @@ namespace BookedFormsApp
         {
 
         }
+
+        public void LoadGrid()
+        {
+            dataGridFlights.DataSource = null;
+            dataGridFlights.Rows.Clear();
+            dataGridFlights.Refresh();
+            dataGridFlights.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("Flight ID", typeof(int));
+            dataTable.Columns.Add("AirlineName", typeof(string));
+            dataTable.Columns.Add("DepartureAirport", typeof(string));
+            dataTable.Columns.Add("DepartureCountry", typeof(string));
+            dataTable.Columns.Add("ArrivalAirport", typeof(string));
+            dataTable.Columns.Add("ArrivalCountry", typeof(string));
+            dataTable.Columns.Add("Price", typeof(decimal));
+            dataTable.Columns.Add("SeatType", typeof(Seats));
+            dataTable.Columns.Add("Nr. Seats", typeof(int));
+            dataTable.Columns.Add("Extra Bag Price", typeof(decimal));
+            foreach (Flight flight in flightManager.GetAllFlight())
+            {
+                dataTable.Rows.Add(flight);
+            }
+            dataGridFlights.DataSource = dataTable;
+        }
+
     }
 }

@@ -31,8 +31,8 @@
             this.btAddFlight = new System.Windows.Forms.Button();
             this.btRemoveFlight = new System.Windows.Forms.Button();
             this.btUpdateFlight = new System.Windows.Forms.Button();
-            this.dataFlights = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataFlights)).BeginInit();
+            this.dataGridFlights = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridFlights)).BeginInit();
             this.SuspendLayout();
             // 
             // btAddFlight
@@ -65,20 +65,20 @@
             this.btUpdateFlight.UseVisualStyleBackColor = true;
             this.btUpdateFlight.Click += new System.EventHandler(this.btUpdateFlight_Click);
             // 
-            // dataFlights
+            // dataGridFlights
             // 
-            this.dataFlights.AllowUserToAddRows = false;
-            this.dataFlights.AllowUserToDeleteRows = false;
-            this.dataFlights.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataFlights.Location = new System.Drawing.Point(15, 11);
-            this.dataFlights.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dataFlights.Name = "dataFlights";
-            this.dataFlights.ReadOnly = true;
-            this.dataFlights.RowHeadersWidth = 51;
-            this.dataFlights.RowTemplate.Height = 29;
-            this.dataFlights.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataFlights.Size = new System.Drawing.Size(938, 426);
-            this.dataFlights.TabIndex = 4;
+            this.dataGridFlights.AllowUserToAddRows = false;
+            this.dataGridFlights.AllowUserToDeleteRows = false;
+            this.dataGridFlights.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridFlights.Location = new System.Drawing.Point(15, 11);
+            this.dataGridFlights.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dataGridFlights.Name = "dataGridFlights";
+            this.dataGridFlights.ReadOnly = true;
+            this.dataGridFlights.RowHeadersWidth = 51;
+            this.dataGridFlights.RowTemplate.Height = 29;
+            this.dataGridFlights.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridFlights.Size = new System.Drawing.Size(938, 426);
+            this.dataGridFlights.TabIndex = 4;
             // 
             // FlightForm
             // 
@@ -87,7 +87,7 @@
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1020, 541);
             this.ControlBox = false;
-            this.Controls.Add(this.dataFlights);
+            this.Controls.Add(this.dataGridFlights);
             this.Controls.Add(this.btUpdateFlight);
             this.Controls.Add(this.btRemoveFlight);
             this.Controls.Add(this.btAddFlight);
@@ -95,7 +95,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FlightForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            ((System.ComponentModel.ISupportInitialize)(this.dataFlights)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridFlights)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -104,6 +104,6 @@
         private Button btAddFlight;
         private Button btRemoveFlight;
         private Button btUpdateFlight;
-        private DataGridView dataFlights;
+        private DataGridView dataGridFlights;
     }
 }
