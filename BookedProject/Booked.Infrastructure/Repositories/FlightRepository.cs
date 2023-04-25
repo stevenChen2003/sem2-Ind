@@ -126,7 +126,7 @@ namespace Booked.Infrastructure.Repositories
                                     "DepartureAirport = @DepartureAirport," +
                                     "DepartureCountry = @DepartureCountry," +
                                     "ArrivalAirport = @ArrivalAirport," +
-                                    "ArrivalAirport = @ArrivalAirport," +
+                                    "ArrivalCountry = @ArrivalCountry," +
                                     "Price = @Price," +
                                     "SeatType = @SeatType," +
                                     "NumberOfSeats = @NumberOfSeats," +

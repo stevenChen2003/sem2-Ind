@@ -44,8 +44,8 @@ namespace BookedFormsApp
                 }
                 else
                 {
-                    Flight flight = new Flight(tBAirline.Text, tbDepartureAir.Text, tbDepartureCountry.Text, tbArrivalAir.Text, tbArrivalCountry.Text, numPrice.Value, (Seats)comboBoxSeats.SelectedIndex, (int)numFlightSize.Value, numExtraPrice.Value);
-                    flightManager.UpdateFlight(flight);
+                    Flight f = new Flight(flight.FlightId,tBAirline.Text, tbDepartureAir.Text, tbDepartureCountry.Text, tbArrivalAir.Text, tbArrivalCountry.Text, numPrice.Value, (Seats)comboBoxSeats.SelectedIndex, (int)numFlightSize.Value, numExtraPrice.Value);
+                    flightManager.UpdateFlight(f);
                     MessageBox.Show("FLight is Updated", "Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     DisableBoxes();
                 }
@@ -56,8 +56,6 @@ namespace BookedFormsApp
             }
         }
 
-
-
         public void LoadInfo()
         {
             tBAirline.Text = flight.AirlineName;
@@ -67,7 +65,7 @@ namespace BookedFormsApp
             tbArrivalCountry.Text = flight.ArrivalCountry;
             numPrice.Value = flight.Price;
             numExtraPrice.Value = flight.ExtraBaggagePrice;
-            comboBoxSeats.SelectedValue = (int)flight.Seat;
+            comboBoxSeats.SelectedIndex = (int)flight.Seat;
             numFlightSize.Value = flight.NumberOfSeats;
         }
 
