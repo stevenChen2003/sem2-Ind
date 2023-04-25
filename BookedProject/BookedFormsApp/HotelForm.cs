@@ -35,11 +35,10 @@ namespace BookedFormsApp
 
         private void btRemoveHotel_Click(object sender, EventArgs e)
         {
-            int id = 0;
             var selectedRow = dataGridHotels.CurrentRow;
             if (selectedRow != null)
             {
-                id = (int)selectedRow.Cells["Hotel ID"].Value;
+                int id = (int)selectedRow.Cells["Hotel ID"].Value;
                 hotelManager.RemoveHotel(id);
                 LoadGrid();
             }
@@ -51,11 +50,10 @@ namespace BookedFormsApp
 
         private void btUpdateHotel_Click(object sender, EventArgs e)
         {
-            int id = 0;
             var selectedRow = dataGridHotels.CurrentRow;
             if (selectedRow != null)
             {
-                id = (int)selectedRow.Cells["Hotel ID"].Value;
+                int id = (int)selectedRow.Cells["Hotel ID"].Value;
                 Hotel hotel = hotelManager.GetHotel(id);
                 UpdateHotelForm updateHotelForm = new UpdateHotelForm(hotelManager, hotel);
                 updateHotelForm.ShowDialog();
