@@ -35,6 +35,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pnContent = new System.Windows.Forms.Panel();
+            this.btBooking = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -42,6 +43,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(39)))), ((int)(((byte)(48)))));
+            this.panel1.Controls.Add(this.btBooking);
             this.panel1.Controls.Add(this.btUser);
             this.panel1.Controls.Add(this.btFlight);
             this.panel1.Controls.Add(this.btHotel);
@@ -128,6 +130,21 @@
             this.pnContent.Size = new System.Drawing.Size(1234, 807);
             this.pnContent.TabIndex = 2;
             // 
+            // btBooking
+            // 
+            this.btBooking.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btBooking.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btBooking.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(197)))), ((int)(((byte)(28)))));
+            this.btBooking.Location = new System.Drawing.Point(3, 323);
+            this.btBooking.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btBooking.Name = "btBooking";
+            this.btBooking.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btBooking.Size = new System.Drawing.Size(158, 52);
+            this.btBooking.TabIndex = 3;
+            this.btBooking.Text = "Booking";
+            this.btBooking.UseVisualStyleBackColor = true;
+            this.btBooking.Click += new System.EventHandler(this.btBooking_Click);
+            // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -153,5 +170,6 @@
         private Button btUser;
         private Button btFlight;
         private Button btHotel;
+        private Button btBooking;
     }
 }
