@@ -9,7 +9,7 @@ namespace Booked.Logic.Services
 {
     public class BookingManager
     {
-        public void AddBooking(Booking booking)
+        public BookingManager()
         {
 
         }
