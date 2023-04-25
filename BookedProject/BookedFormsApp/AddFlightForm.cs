@@ -65,19 +65,17 @@ namespace BookedFormsApp
         //Checker
         private bool CheckTextBoxesEmpty()
         {
-            foreach (Control control in this.Controls)
+            List<TextBox> relevantTextBoxes = new List<TextBox> { tBAirline, tbDepartureAir, tbDepartureCountry, tbArrivalAir, tbArrivalCountry };
+
+            foreach (TextBox textBox in relevantTextBoxes)
             {
-                if (control is TextBox)
+                if (string.IsNullOrEmpty(textBox.Text))
                 {
-                    TextBox textBox = (TextBox)control;
-                    if (!string.IsNullOrEmpty(textBox.Text))
-                    {
-                        return false;
-                    }
+                    return true;
                 }
             }
 
-            return true;
+            return false;
         }
     }
 }

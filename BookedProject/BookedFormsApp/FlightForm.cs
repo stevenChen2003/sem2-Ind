@@ -69,7 +69,7 @@ namespace BookedFormsApp
             dataTable.Columns.Add("Extra Bag Price", typeof(decimal));
             foreach (Flight flight in flightManager.GetAllFlight())
             {
-                dataTable.Rows.Add(flight);
+                dataTable.Rows.Add(flight.FlightId, flight.AirlineName, flight.DepartureAirport, flight.DepartureCountry, flight.ArrivalAirport, flight.ArrivalCountry, flight.Price, flight.Seat, flight.NumberOfSeats, flight.ExtraBaggagePrice);
             }
             dataGridFlights.DataSource = dataTable;
         }
