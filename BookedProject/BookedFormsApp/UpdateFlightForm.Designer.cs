@@ -66,6 +66,7 @@
             this.btEnableBox.TabIndex = 35;
             this.btEnableBox.Text = "Makes Changes";
             this.btEnableBox.UseVisualStyleBackColor = true;
+            this.btEnableBox.Click += new System.EventHandler(this.btEnableBox_Click);
             // 
             // groupBoxInfo
             // 
@@ -294,6 +295,7 @@
             this.btUpdateFlight.TabIndex = 36;
             this.btUpdateFlight.Text = "Update";
             this.btUpdateFlight.UseVisualStyleBackColor = true;
+            this.btUpdateFlight.Click += new System.EventHandler(this.btUpdateFlight_Click);
             // 
             // UpdateFlightForm
             // 
