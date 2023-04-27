@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Booked.Domain.Domain;
+using Booked.Logic.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +10,18 @@ namespace Booked.Logic.Services
 {
     public class HotelBookingManager
     {
+        private IHotelBookingRepo hotelBookingRepo;
+
+        public HotelBookingManager(IHotelBookingRepo repo)
+        {
+            hotelBookingRepo = repo;
+        }
+
+        public void AddBooking(HotelBooking hotelBooking)
+        {
+            hotelBooking.GetPrice();
+            hotelBookingRepo.AddBooking(hotelBooking);
+        }
 
     }
 }

@@ -10,14 +10,21 @@ namespace Booked.Infrastructure.Repositories
 {
     public class HotelBookingRepository : IHotelBookingRepo
     {
-        public bool AddBooking(Booking booking)
+
+        public IEnumerable<Booking> GetAllBooking()
         {
             throw new NotImplementedException();
         }
 
+
         public Booking GetBookingById(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public void AddBooking(HotelBooking b)
+        {
+
         }
 
         public bool RemoveBooking(int id)
@@ -25,9 +32,11 @@ namespace Booked.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public bool UpdateBooking(Booking booking)
+        public bool UpdateBooking(HotelBooking booking)
         {
             throw new NotImplementedException();
         }
+
+
     }
 }
