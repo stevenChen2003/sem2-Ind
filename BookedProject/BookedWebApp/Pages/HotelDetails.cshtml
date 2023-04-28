@@ -3,7 +3,12 @@
 @{
 }
 
-<h1>Hotel Details</h1>
-@Model.Hotel.Name @Model.Hotel.StarRating 
+<div class="container justify-content-center">
+	<h1>@Model.Hotel.Name</h1>
+	<div class="container h-50 w-50">
+		<img src="@($"data:image/png;base64,{Convert.ToBase64String(Model.Hotel.Image)}")" class="img-fluid h-50 w-50" />
+		<p>@Model.Hotel.StarRating/5</p>
+		<p>@Model.Hotel.PricePerNight</p>
+	</div>
+</div>
 
-<img src="@($"data:image/png;base64,{Convert.ToBase64String(Model.Hotel.Image)}")" />
