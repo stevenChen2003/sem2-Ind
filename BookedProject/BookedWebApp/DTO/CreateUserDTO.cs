@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Booked.Domain.Domain;
+using System.ComponentModel.DataAnnotations;
 
 namespace BookedWebApp.DTO
 {
@@ -20,7 +21,10 @@ namespace BookedWebApp.DTO
 
         public CreateUserDTO() { }
 
-
+        public User GetUser()
+        {
+            return new User(FirstName, LastName, Email, DateOfBirth, PhoneNumber, Password);
+        }
 
     }
 }

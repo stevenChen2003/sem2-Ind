@@ -6,6 +6,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Booked.Infrastructure.Repositories;
+using BookedWebApp.DTO;
 
 namespace BookedWebApp.Pages
 {
@@ -19,18 +20,19 @@ namespace BookedWebApp.Pages
         }
 
         [BindProperty]
-        public User User { get; set; }
+        public CreateUserDTO User { get; set; }
 
 
         public IActionResult OnPost()
         {
             if (ModelState.IsValid)
             {
-                if (userManager.AddUser(User))
+                User user = User.GetUser();
+                if (userManager.AddUser(user))
                 {
                     List<Claim> claims = new List<Claim>
                     {
-                        new Claim(ClaimTypes.Name, User.Email)
+                        new Claim(ClaimTypes.Name, user.Email)
                     };
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     HttpContext.SignInAsync(new ClaimsPrincipal(claimsIdentity));
