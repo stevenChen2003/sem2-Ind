@@ -10,7 +10,7 @@ namespace Booked.Logic.Interfaces
     public interface IHotelBookingRepo
     {
         IEnumerable<Booking> GetAllBooking();
-        Booking GetBookingById(int id);
+        HotelBooking GetBookingById(int id);
         void AddBooking(HotelBooking booking);
         bool UpdateBooking(HotelBooking booking);
         bool RemoveBooking(int id);
