@@ -31,11 +31,16 @@ namespace Booked.Infrastructure.Repositories
                 using(SqlConnection conn = new SqlConnection(CONNECTION_STRING))
                 {
                     conn.Open();
-                    string query = "INSERT INTO ";
+                    string query = "INSERT INTO Bookings (UserId, StartDate, EndDate, Price, BookingDate)" +
+									"VALUES (@UserId, @StartDate, @EndDate, @Price, @BookingDate)";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        
-                    }
+						cmd.Parameters.AddWithValue("@UserId", b.User.UserId);
+						cmd.Parameters.AddWithValue("@StartDate", b.StartDate);
+						cmd.Parameters.AddWithValue("@EndDate", b.EndDate);
+						cmd.Parameters.AddWithValue("@Price", b.GetPrice());
+						cmd.Parameters.AddWithValue("@BookingDate", b.BookingDate);
+					}
                     query = "";
 					using (SqlCommand cmd2 = new SqlCommand(query, conn))
 					{
