@@ -19,6 +19,8 @@ namespace BookedWebApp.Pages.Users
             userManager = new UserManager(new UserRepository());
         }
 
+
+        //Change to DTO's later on in life
         [BindProperty]
         public User user { get; set; }
 
