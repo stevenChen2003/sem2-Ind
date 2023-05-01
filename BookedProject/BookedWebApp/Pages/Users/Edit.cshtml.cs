@@ -31,7 +31,7 @@ namespace BookedWebApp.Pages.Users
             user = userManager.GetUser(userEmail);
         }
 
-        public IActionResult OnPost()
+        public IActionResult OnPostUpdate()
         {
             if (userManager.UpdateUser(user))
             {
@@ -42,11 +42,11 @@ namespace BookedWebApp.Pages.Users
 
         public IActionResult OnPostDelete()
         {
-            HttpContext.SignOutAsync();
             if (userManager.DeleteUser(user.Email))
             {
-                return Redirect("Login");
-            }
+                HttpContext.SignOutAsync();
+                return Redirect("~/Login");
+            };
             return Page();
         }
 
