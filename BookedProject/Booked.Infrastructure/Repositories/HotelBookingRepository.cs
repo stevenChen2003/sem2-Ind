@@ -18,6 +18,7 @@ namespace Booked.Infrastructure.Repositories
             List<Booking> AllHotelBookings = new List<Booking>();
             try
             {
+                //Need to finish this part
 				using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
                 {
 					string query = @"SELECT * FROM Bookings; ";

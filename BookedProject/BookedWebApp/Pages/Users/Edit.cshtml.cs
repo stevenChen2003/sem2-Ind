@@ -42,5 +42,14 @@ namespace BookedWebApp.Pages.Users
             return Page();
         }
 
+        public IActionResult OnPostDelete()
+        {
+            if (userManager.DeleteUser(user.Email))
+            {
+                return Redirect("/Index");
+            }
+            return Page();
+        }
+
     }
 }
