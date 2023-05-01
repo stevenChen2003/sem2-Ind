@@ -2,6 +2,7 @@ using Booked.Domain.Domain;
 using Booked.Infrastructure.Repositories;
 using Booked.Logic.Services;
 using BookedWebApp.DTO;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -18,9 +19,6 @@ namespace BookedWebApp.Pages.Users
             userManager = new UserManager(new UserRepository());
         }
 
-        /// <summary>
-        /// Need to change and use DTO
-        /// </summary>
         [BindProperty]
         public User user { get; set; }
 
@@ -44,9 +42,10 @@ namespace BookedWebApp.Pages.Users
 
         public IActionResult OnPostDelete()
         {
+            HttpContext.SignOutAsync();
             if (userManager.DeleteUser(user.Email))
             {
-                return Redirect("/Index");
+                return Redirect("Login");
             }
             return Page();
         }
