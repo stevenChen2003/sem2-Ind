@@ -39,7 +39,13 @@
             <input type="email" asp-for="user.Email" class="form-control" value="@Model.user.Email" readonly>
         </div>
 
-        <button type="submit" asp-page-handler="Update" class="btn btn-primary">Change</button>
-        <button type="submit" asp-page-handler="Delete" class="btn btn-primary">Delete Account</button>
+        <div class="clearfix">
+            <div class="float-start">
+                <button type="submit" asp-page-handler="Update" class="btn btn-primary btn-lg">Change</button>
+            </div>
+            <div class="float-end">
+                <button type="submit" asp-page-handler="Delete" class="btn btn-primary btn-lg">Delete Account</button>
+            </div>
+        </div>
     </form>
 </div>
