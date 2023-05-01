@@ -15,7 +15,19 @@ namespace Booked.Infrastructure.Repositories
 
 		public IEnumerable<Booking> GetAllBooking()
         {
-            throw new NotImplementedException();
+            List<Booking> AllHotelBookings = new List<Booking>();
+            try
+            {
+				using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+                {
+					string query = @"SELECT * FROM Bookings; ";
+				}
+                return AllHotelBookings;
+			}
+            catch (SqlException)
+			{
+                throw new Exception("No bookings found");
+            }
         }
 
 
