@@ -40,11 +40,17 @@ namespace Booked.Infrastructure.Repositories
 						cmd.Parameters.AddWithValue("@EndDate", b.EndDate);
 						cmd.Parameters.AddWithValue("@Price", b.GetPrice());
 						cmd.Parameters.AddWithValue("@BookingDate", b.BookingDate);
+
+                        //Gets the generated id
+                        b.BookingId = (int)cmd.ExecuteScalar();
 					}
-                    query = "";
+                    query = "INSERT INTO HotelBookings (BookingId, HotelId, Amount_Of_Days)" +
+							"VALUES (@BookingId, @HotelId, @Amount_Of_Days)"; ;
 					using (SqlCommand cmd2 = new SqlCommand(query, conn))
 					{
-
+						cmd2.Parameters.AddWithValue("@BookingId", b.BookingId);
+						cmd2.Parameters.AddWithValue("@HotelId", b.Hotel.HotelId);
+						cmd2.Parameters.AddWithValue("@Amount_Of_Days", b.AmountOfDays);
 					}
 					conn.Close();
                 }
