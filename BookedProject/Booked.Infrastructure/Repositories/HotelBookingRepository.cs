@@ -22,13 +22,23 @@ namespace Booked.Infrastructure.Repositories
 				using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
                 {
 					string query = @"SELECT * FROM Bookings; ";
-				}
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+
+                    }
+
+                }
                 return AllHotelBookings;
 			}
             catch (SqlException)
 			{
                 throw new Exception("No bookings found");
             }
+        }
+
+        public IEnumerable<Booking> GetBookingByUserId(int userId)
+        {
+            throw new NotImplementedException();
         }
 
 
@@ -84,7 +94,6 @@ namespace Booked.Infrastructure.Repositories
         {
             throw new NotImplementedException();
         }
-
 
     }
 }

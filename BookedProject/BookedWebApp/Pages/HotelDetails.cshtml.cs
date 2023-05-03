@@ -15,5 +15,10 @@ namespace BookedWebApp.Pages
             HotelManager hotelManager = new HotelManager(new HotelRepository());
             Hotel = hotelManager.GetHotel(id);
         }
+
+        public void OnPost()
+        {
+
+        }
     }
 }
