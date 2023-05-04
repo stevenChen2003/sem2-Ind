@@ -33,7 +33,7 @@ namespace BookedWebApp.Pages
 
 			if (ModelState.IsValid)
 			{
-				return RedirectToPage("/Payment");
+				return RedirectToPage("/Payment", new { start = DateStart.ToString("yyyy-MM-dd"), end = DateEnd.ToString("yyyy-MM-dd"), hotelId = id });
 			}
 			else
 			{
