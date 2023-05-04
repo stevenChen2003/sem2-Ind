@@ -9,16 +9,28 @@ namespace BookedWebApp.Pages
     public class HotelDetailsModel : PageModel
     {
 		public Hotel Hotel { get; private set; }
-		
-        public void OnGet(int id)
+
+        [BindProperty]
+        public DateTime DateStart { get; set; }
+		[BindProperty]
+		public DateTime DateEnd { get; set; }
+
+		public void OnGet(int id)
         {
             HotelManager hotelManager = new HotelManager(new HotelRepository());
             Hotel = hotelManager.GetHotel(id);
-        }
+		}
 
-        public void OnPost()
-        {
-
-        }
-    }
+		public IActionResult OnPost(int id)
+		{
+			if (ModelState.IsValid)
+			{
+				return RedirectToPage("~/Payment");
+			}
+			else
+			{
+				return RedirectToPage("/HotelDetails", new { id });
+			}
+		}
+	}
 }

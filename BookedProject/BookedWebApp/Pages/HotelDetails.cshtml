@@ -4,28 +4,29 @@
 }
 
 <div class="container justify-content-center align-content-center">
-	<h1>@Model.Hotel.Name</h1>
-	<img src="@($"data:image/png;base64,{Convert.ToBase64String(Model.Hotel.Image)}")" class="img-fluid h-50 w-50" />
-	<p>@Model.Hotel.StarRating/5</p>
-	<p>@Model.Hotel.PricePerNight</p>
+	<div>
+		<h1>@Model.Hotel.Name</h1>
+		<img src="@($"data:image/png;base64,{Convert.ToBase64String(Model.Hotel.Image)}")" class="img-fluid h-50 w-50" />
+		<p>Rating: @Model.Hotel.StarRating/5</p>
+		<p>Price per night: @Model.Hotel.PricePerNight</p>
+	</div>
 
 	<form class="d-flex flex-column" method="post">
+		<input type="hidden" name="id" value="@Model.Hotel.HotelId" />
 		<div class="d-flex align-items-center py-2">
-
-
 			<!--Date section-->
 			<div>
-				<label for="" class="form-label mb-0 text-white fw-bold">Start</label>
-				<input type="date" class="form-control">
+				<label class="form-label mb-0 text-white fw-bold">Start</label>
+				<input asp-for=DateStart type="date" class="form-control" value="">
 			</div>
 
 			<div>
-				<label for="" class="form-label mb-0 text-white fw-bold">End</label>
-				<input type="date" class="form-control">
+				<label class="form-label mb-0 text-white fw-bold">End</label>
+				<input asp-for=DateEnd type="date" class="form-control" value="">
 			</div>
 		</div>
 
-		<!--Submit/Search button-->
+		<!--Submit button-->
 		<div class="d-flex align-items-center justify-content-center pt-2">
 			<button type="submit" class="btn-primary">
 				Book now
