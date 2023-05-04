@@ -12,14 +12,14 @@ namespace Booked.Domain.Domain
         public int AmountOfDays { get; set; }
 
         //Without id
-		public HotelBooking(User user, DateTime startDate, DateTime endDate, string description, DateTime bookingDate, Hotel hotel) : base(user, startDate, endDate, bookingDate)
+		public HotelBooking(User user, DateTime startDate, DateTime endDate, DateTime bookingDate, Hotel hotel) : base(user, startDate, endDate, bookingDate)
         {
             Hotel= hotel;
             AmountOfDays = (EndDate.Date - StartDate.Date).Days;
         }
 
         //With ID
-        public HotelBooking(int id, User user, DateTime startDate, DateTime endDate, string description, DateTime bookingDate, Hotel hotel) : base(id, user, startDate, endDate, bookingDate)
+        public HotelBooking(int id, User user, DateTime startDate, DateTime endDate, DateTime bookingDate, Hotel hotel) : base(id, user, startDate, endDate, bookingDate)
         {
             Hotel= hotel;
             AmountOfDays = (EndDate.Date - StartDate.Date).Days;
