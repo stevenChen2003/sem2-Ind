@@ -4,15 +4,29 @@
 	Layout = "_HomeLayout";
 }
 
-<div class="container m-5">
-    <form method="get">
-        <label>Search:</label>
-        <input type="text" asp-for="query" />
-        <button type="submit">Search</button>
+
+<div class="container mt-5">
+    <form class="d-flex justify-content-between align-content-center" method="get" asp-page="./Hotels">
+        <div class="input-group-text h-25 w-75">
+            <input type="text" class="form-control" placeholder="Search" asp-for="query">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+        <div class="input-group-text h-25">
+            <label for="sort" class="me-2">Sort:</label>
+            <select class="form-select" asp-for="SortOrder">
+                <option value="name">Name</option>
+                <option value="price_asc">Price: Low to High</option>
+                <option value="price_desc">Price: High to Low</option>
+            </select>
+        </div>
     </form>
+</div>
+
+
+<div class="container m-5">
     @if (Model.ListHotel != null)
     {
-        <div class="row mt-5">
+        <div class="row">
             @foreach (var hotel in Model.ListHotel)
             {
                 <div class="col-md-6 col-lg-4 mb-4">

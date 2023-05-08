@@ -32,7 +32,7 @@ namespace Booked.Logic.Services
 		{
 			if (string.IsNullOrEmpty(search))
 			{
-                return null;
+                return hotelRepo.GetAllHotel();
             }
 
             if (hotelRepo.GetAllHotelBySearch(search) == null)

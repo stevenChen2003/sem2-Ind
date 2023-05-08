@@ -10,6 +10,7 @@ namespace BookedWebApp.Pages
     {
         public IEnumerable<Hotel> ListHotel { get; set; }
         public string query { get; set; }
+        public string SortOrder { get; set; }
 
         public void OnGet(string query)
         {
