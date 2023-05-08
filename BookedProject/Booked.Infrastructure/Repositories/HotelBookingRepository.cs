@@ -55,6 +55,7 @@ namespace Booked.Infrastructure.Repositories
                 {
                     conn.Open();
                     string query = "INSERT INTO Bookings (UserId, StartDate, EndDate, Price, BookingDate)" +
+									"OUTPUT INSERTED.BookingId " +
 									"VALUES (@UserId, @StartDate, @EndDate, @Price, @BookingDate)";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
