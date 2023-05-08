@@ -36,6 +36,11 @@ namespace BookedWebApp.Pages
 
         public IActionResult OnPost()
         {
+            if (ModelState.IsValid)
+            {
+                hotelBookingManager.AddBooking(hotelBooking);
+				return Redirect("/Index");
+			}
             return Page();
         }
     }

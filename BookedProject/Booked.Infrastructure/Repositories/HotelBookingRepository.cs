@@ -90,6 +90,7 @@ namespace Booked.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
+        //Use for cancel maybe?, work on it later
         public bool UpdateBooking(HotelBooking booking)
         {
             throw new NotImplementedException();
