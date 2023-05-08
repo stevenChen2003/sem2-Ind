@@ -19,7 +19,6 @@ namespace Booked.Logic.Services
 
         public void AddBooking(HotelBooking hotelBooking)
         {
-            hotelBooking.GetPrice();
             hotelBookingRepo.AddBooking(hotelBooking);
         }
 
