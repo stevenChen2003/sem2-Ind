@@ -22,23 +22,34 @@ namespace BookedWebApp.Pages
 			userManager = new UserManager(new UserRepository());
 		}
 
-        public User user { get; set; }
-        public Hotel hotel { get; set; }
-        public HotelBooking hotelBooking { get; set; }
+		public HotelBooking hotelBooking { get; set; }
+		public User user { get; set; }
+		
+		[BindProperty]
+		public int hotelId { get; set; }
+		public Hotel hotel { get; set; }
+		[BindProperty]
+		public DateTime start { get; set; }
+		[BindProperty]
+		public DateTime end { get; set; }
 
         public void OnGet(int hotelId, DateTime start, DateTime end)
         {
 			string userEmail = User.Identity.Name;
 			user = userManager.GetUser(userEmail);
-            hotel = hotelManager.GetHotel(hotelId);
+			hotel = hotelManager.GetHotel(hotelId);
 			hotelBooking = new HotelBooking(user, start, end, DateTime.Today, hotel);
-        }
+		}
 
         public IActionResult OnPost()
         {
-            if (ModelState.IsValid)
+			string userEmail = User.Identity.Name;
+			user = userManager.GetUser(userEmail);
+			hotel = hotelManager.GetHotel(hotelId);
+			hotelBooking = new HotelBooking(user, start, end, DateTime.Today, hotel);
+			if (ModelState.IsValid)
             {
-                hotelBookingManager.AddBooking(hotelBooking);
+				hotelBookingManager.AddBooking(hotelBooking);
 				return Redirect("/Index");
 			}
             return Page();

@@ -8,6 +8,10 @@
 </div>
 
 <form method="post">
+	<input type="hidden" asp-for="start" value="@Model.hotelBooking.StartDate" />
+	<input type="hidden" asp-for="end" value="@Model.hotelBooking.EndDate" />
+	<input type="hidden" asp-for="hotelId" value="@Model.hotelBooking.Hotel.HotelId" />
+
 	<div class="d-flex align-items-center justify-content-center pt-2">
 		<button type="submit" class="btn-primary">
 			Pay Now
