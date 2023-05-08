@@ -28,7 +28,25 @@ namespace Booked.Logic.Services
 			return hotelRepo.GetAllHotel();
 		}
 
-		public void AddHotel(string name, string address, string city, string country, int starRating, decimal pricePerNight, Rooms roomType, int maximumBooking, byte[] image)
+		public IEnumerable<Hotel> GetHotelsByCountry(string search)
+		{
+			if (string.IsNullOrEmpty(search))
+			{
+                return null;
+            }
+
+            if (hotelRepo.GetAllHotelBySearch(search) == null)
+			{
+				return null;
+			}
+			else
+			{
+                return hotelRepo.GetAllHotelBySearch(search);
+            }
+		}
+
+
+        public void AddHotel(string name, string address, string city, string country, int starRating, decimal pricePerNight, Rooms roomType, int maximumBooking, byte[] image)
 		{
 			try
 			{
