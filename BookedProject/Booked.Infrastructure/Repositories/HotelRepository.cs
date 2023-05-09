@@ -190,11 +190,11 @@ namespace Booked.Infrastructure.Repositories
             {
                 using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
                 {
-                    string query = @"SELECT * FROM Hotels WHERE Country= @Search; ";
+                    string query = @"SELECT * FROM Hotels WHERE Country LIKE @Search; ";
                     SqlCommand cmd = new SqlCommand(query, conn);
 
                     conn.Open();
-                    cmd.Parameters.AddWithValue("@Search", search);
+                    cmd.Parameters.AddWithValue("@Search", $"{search}%");
                     SqlDataReader dr = cmd.ExecuteReader();
 
                     while (dr.Read())
