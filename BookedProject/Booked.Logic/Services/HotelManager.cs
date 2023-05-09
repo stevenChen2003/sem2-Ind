@@ -49,7 +49,6 @@ namespace Booked.Logic.Services
 		{
 			try
 			{
-				hotelRepo.AddHotel(hotel);
 				if (!CheckIfHotelExist(hotel))
 				{
                     hotelRepo.AddHotel(hotel);
