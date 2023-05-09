@@ -182,7 +182,7 @@ namespace Booked.Infrastructure.Repositories
             }
         }
 
-        public IEnumerable<Hotel> GetAllHotelBySearch(string search)
+        public IEnumerable<Hotel> GetAllHotelBySearch(string search, string sort)
         {
             List<Hotel> AllHotel = new List<Hotel>();
 
@@ -190,7 +190,24 @@ namespace Booked.Infrastructure.Repositories
             {
                 using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
                 {
-                    string query = @"SELECT * FROM Hotels WHERE Country LIKE @Search; ";
+                    string query = @"SELECT * FROM Hotels WHERE Country LIKE @Search ";
+
+                    switch (sort)
+                    {
+                        case "name_desc":
+                            query += " ORDER BY Name DESC;";
+                            break;
+                        case "price_asc":
+                            query += " ORDER BY PricePerNight ASC;";
+                            break;
+                        case "price_desc":
+                            query += " ORDER BY PricePerNight DESC;";
+                            break;
+                        default:
+                            query += " ORDER BY Name ASC;";
+                            break;
+                    }
+
                     SqlCommand cmd = new SqlCommand(query, conn);
 
                     conn.Open();

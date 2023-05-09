@@ -28,20 +28,15 @@ namespace Booked.Logic.Services
 			return hotelRepo.GetAllHotel();
 		}
 
-		public IEnumerable<Hotel> GetHotelsByCountry(string search)
+		public IEnumerable<Hotel> GetHotelsByCountry(string search, string sort)
 		{
 			if (string.IsNullOrEmpty(search))
 			{
                 return hotelRepo.GetAllHotel();
             }
-
-            if (hotelRepo.GetAllHotelBySearch(search) == null)
-			{
-				return null;
-			}
 			else
 			{
-                return hotelRepo.GetAllHotelBySearch(search);
+                return hotelRepo.GetAllHotelBySearch(search, sort);
             }
 		}
 

@@ -19,9 +19,9 @@ namespace BookedWebApp.Pages
         public string query { get; set; }
         public string SortOrder { get; set; }
 
-        public void OnGet(string query)
+        public void OnGet(string query, string SortOrder)
         {
-            ListHotel = hotelManager.GetHotelsByCountry(query);
+            ListHotel = hotelManager.GetHotelsByCountry(query, SortOrder);
         }
     }
 }

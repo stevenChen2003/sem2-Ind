@@ -14,6 +14,6 @@ namespace Booked.Logic.Interfaces
         void AddHotel(Hotel hotel);
         void UpdateHotel(Hotel hotel);
         void RemoveHotelByID(int id);
-        IEnumerable<Hotel> GetAllHotelBySearch(string search);
+        IEnumerable<Hotel> GetAllHotelBySearch(string search, string sort);
     }
 }

@@ -14,7 +14,8 @@
         <div class="input-group-text h-25">
             <label for="sort" class="me-2">Sort:</label>
             <select class="form-select" asp-for="SortOrder">
-                <option value="name">Name</option>
+                <option value="name_asc">Name A-Z</option>
+                <option value="name_desc">Name Z-A</option>
                 <option value="price_asc">Price: Low to High</option>
                 <option value="price_desc">Price: High to Low</option>
             </select>
@@ -44,6 +45,7 @@
     }
     else
     {
+        <p>No Hotels found</p>
     }
 </div>
 
