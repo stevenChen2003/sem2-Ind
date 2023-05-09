@@ -1,3 +1,6 @@
+using Booked.Infrastructure.Repositories;
+using Booked.Logic.Interfaces;
+using Booked.Logic.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +13,20 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddScoped<HotelBookingManager>();
+builder.Services.AddScoped<IHotelBookingRepo, HotelBookingRepository>();
+
+builder.Services.AddScoped<HotelManager>();
+builder.Services.AddScoped<IHotelRepo, HotelRepository>();
+
+builder.Services.AddScoped<FlightBookingManager>();
+builder.Services.AddScoped<IFlightBookingRepo, FlightBookingRepository>();
+
+builder.Services.AddScoped<FlightManager>();
+builder.Services.AddScoped<IFlightRepo, FlightRepository>();
+
+builder.Services.AddScoped<UserManager>();
+builder.Services.AddScoped<IUserRepo, UserRepository>();
 
 var app = builder.Build();
 

@@ -14,9 +14,9 @@ namespace BookedWebApp.Pages.Users
     {
         private readonly UserManager userManager;
 
-        public EditModel()
+        public EditModel(UserManager mng)
         {
-            userManager = new UserManager(new UserRepository());
+            userManager = mng;
         }
 
 
