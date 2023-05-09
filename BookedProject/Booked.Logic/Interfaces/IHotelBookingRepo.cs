@@ -15,6 +15,5 @@ namespace Booked.Logic.Interfaces
         void AddBooking(HotelBooking booking);
         bool UpdateBooking(HotelBooking booking);
         bool RemoveBooking(int id);
-        bool CheckAvailables();
     }
 }

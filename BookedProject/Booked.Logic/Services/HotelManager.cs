@@ -45,12 +45,20 @@ namespace Booked.Logic.Services
             }
 		}
 
-        public void AddHotel(string name, string address, string city, string country, int starRating, decimal pricePerNight, Rooms roomType, int maximumBooking, byte[] image)
+        public bool AddHotel(Hotel hotel)
 		{
 			try
 			{
-				Hotel hotel = new Hotel(name, address, city, country, starRating, pricePerNight, roomType, maximumBooking, image);
 				hotelRepo.AddHotel(hotel);
+				if (!CheckIfHotelExist(hotel))
+				{
+                    hotelRepo.AddHotel(hotel);
+					return true;
+                }
+				else
+				{
+					return false;
+				}
 
 			}
 			catch(Exception)
