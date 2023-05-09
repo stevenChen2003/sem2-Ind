@@ -45,7 +45,6 @@ namespace Booked.Logic.Services
             }
 		}
 
-
         public void AddHotel(string name, string address, string city, string country, int starRating, decimal pricePerNight, Rooms roomType, int maximumBooking, byte[] image)
 		{
 			try
@@ -85,5 +84,17 @@ namespace Booked.Logic.Services
 			}
 		}
 
-	}
+        public bool CheckIfHotelExist(Hotel hotel)
+        {
+            foreach (Hotel h in hotelRepo.GetAllHotel())
+            {
+                if (hotel.Name == h.Name && hotel.Address == h.Address && hotel.City == h.City && hotel.Country == h.Country && hotel.Room == h.Room)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+    }
 }

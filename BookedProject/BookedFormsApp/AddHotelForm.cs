@@ -1,4 +1,5 @@
-﻿using Booked.Domain.Domain.Enum;
+﻿using Booked.Domain.Domain;
+using Booked.Domain.Domain.Enum;
 using Booked.Infrastructure.Repositories;
 using Booked.Logic.Services;
 using System;
@@ -63,7 +64,9 @@ namespace BookedFormsApp
                         picBoxHotel.Image.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
                         imageData = stream.ToArray();
                     }
-                    hotelManager.AddHotel(name, address, city, country, starRating, price, rooms, size, imageData);
+
+                    Hotel hotel = new Hotel(name, address, city, country, starRating, price, rooms, size, imageData);
+                    hotelManager.AddHotel(hotel);
                     MessageBox.Show("Hotel is added", "Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ClearBoxes();
                 }
