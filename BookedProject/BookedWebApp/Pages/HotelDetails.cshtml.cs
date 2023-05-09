@@ -10,9 +10,9 @@ namespace BookedWebApp.Pages
     {
 		private readonly HotelManager hotelManager;
 
-		public HotelDetailsModel()
+		public HotelDetailsModel(HotelManager mng)
 		{
-			hotelManager = new HotelManager(new HotelRepository());
+			hotelManager = mng;
 		}
 
 		public Hotel Hotel { get; private set; }

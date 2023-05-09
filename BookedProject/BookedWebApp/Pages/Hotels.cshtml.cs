@@ -8,14 +8,20 @@ namespace BookedWebApp.Pages
 {
     public class HotelsModel : PageModel
     {
+        private readonly HotelManager hotelManager;
+
+        public HotelsModel(HotelManager hotelManager)
+        {
+            this.hotelManager = hotelManager;
+        }
+
         public IEnumerable<Hotel> ListHotel { get; set; }
         public string query { get; set; }
         public string SortOrder { get; set; }
 
         public void OnGet(string query)
         {
-            HotelManager mng = new HotelManager(new HotelRepository());
-            ListHotel = mng.GetHotelsByCountry(query);
+            ListHotel = hotelManager.GetHotelsByCountry(query);
         }
     }
 }

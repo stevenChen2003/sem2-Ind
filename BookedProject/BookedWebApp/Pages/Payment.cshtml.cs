@@ -15,11 +15,11 @@ namespace BookedWebApp.Pages
         private readonly HotelManager hotelManager;
         private readonly UserManager userManager;
 
-        public PaymentModel()
+        public PaymentModel(HotelBookingManager hotelBookingManager, HotelManager hotelManager, UserManager userManager)
         {
-            hotelBookingManager = new HotelBookingManager(new HotelBookingRepository());
-            hotelManager = new HotelManager(new HotelRepository());
-			userManager = new UserManager(new UserRepository());
+			this.hotelBookingManager = hotelBookingManager;
+			this.hotelManager = hotelManager;
+			this.userManager = userManager;
 		}
 
 		public HotelBooking hotelBooking { get; set; }

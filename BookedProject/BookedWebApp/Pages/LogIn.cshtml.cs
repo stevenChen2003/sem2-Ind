@@ -14,9 +14,9 @@ namespace BookedWebApp.Pages
     {
         private readonly UserManager userManager;
 
-        public LogInModel()
+        public LogInModel(UserManager mng)
         {
-            userManager = new UserManager(new UserRepository());
+            userManager = mng;
         }
 
         [BindProperty]
