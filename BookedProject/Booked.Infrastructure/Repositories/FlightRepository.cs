@@ -171,5 +171,35 @@ namespace Booked.Infrastructure.Repositories
                 throw new Exception("Cannot be removed");
             }
         }
+
+        public IEnumerable<string> GetFlightCountries()
+        {
+            List<string> listCountries = new List<string>();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+                {
+                    string query = @"SELECT DISTINCT DepartureCountry FROM Flights; ";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    conn.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        string country = dr["DepartureCountry"].ToString();
+
+
+                        listCountries.Add(country);
+                    }
+                    conn.Close();
+                }
+                return listCountries;
+            }
+            catch (SqlException)
+            {
+                throw new Exception("Not info found");
+            }
+
+        }
     }
 }

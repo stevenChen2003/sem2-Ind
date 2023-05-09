@@ -37,11 +37,10 @@
 							<label for="exampleDataList" class="form-label mb-0 fw-bold text-white">From</label>
 							<input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Country">
 							<datalist id="datalistOptions">
-								<option value="San Francisco"></option>
-								<option value="New York"></option>
-								<option value="Seattle"></option>
-								<option value="Los Angeles"></option>
-								<option value="Chicago"></option>
+								@foreach (var country in Model.Countries)
+								{
+									<option value="@country"></option>
+								}
 							</datalist>
 						</div>
 
@@ -50,11 +49,10 @@
 							<label for="exampleDataList" class="form-label mb-0 fw-bold text-white">From</label>
 							<input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Country">
 							<datalist id="datalistOptions">
-								<option value="San Francisco"></option>
-								<option value="New York"></option>
-								<option value="Seattle"></option>
-								<option value="Los Angeles"></option>
-								<option value="Chicago"></option>
+								@foreach (var country in Model.Countries)
+								{
+									<option value="@country"></option>
+								}
 							</datalist>
 						</div>
 

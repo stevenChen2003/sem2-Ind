@@ -64,5 +64,10 @@ namespace Booked.Logic.Services
             }
         }
 
+        public IEnumerable<string> GetCountries()
+        {
+            return flightRepo.GetFlightCountries();
+        }
+
     }
 }
