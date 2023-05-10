@@ -21,9 +21,9 @@ namespace BookedWebApp.Pages
         public string query { get; set; }
         public string SortOrder { get; set; }
         [BindProperty]
-        public DateTime CheckInDate { get; set; } = DateTime.Today;
+        public DateTime CheckInDate { get; set; }
         [BindProperty]
-        public DateTime CheckOutDate { get; set; } = DateTime.Today.AddDays(1);
+        public DateTime CheckOutDate { get; set; }
 
         public void OnGet(string query, string SortOrder)
         {
