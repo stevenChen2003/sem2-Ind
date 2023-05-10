@@ -11,15 +11,17 @@ namespace BookedWebApp.Pages
 	[Authorize]
 	public class PaymentModel : PageModel
     {
+		private readonly BookingManager _bookingManager;
         private readonly HotelBookingManager hotelBookingManager;
         private readonly HotelManager hotelManager;
         private readonly UserManager userManager;
 
-        public PaymentModel(HotelBookingManager hotelBookingManager, HotelManager hotelManager, UserManager userManager)
+        public PaymentModel(HotelBookingManager hotelBookingManager, HotelManager hotelManager, UserManager userManager, BookingManager bookingManager)
         {
 			this.hotelBookingManager = hotelBookingManager;
 			this.hotelManager = hotelManager;
 			this.userManager = userManager;
+			_bookingManager = bookingManager;
 		}
 
 		public HotelBooking hotelBooking { get; set; }
@@ -49,7 +51,7 @@ namespace BookedWebApp.Pages
 			hotelBooking = new HotelBooking(user, start, end, DateTime.Today, hotel);
 			if (ModelState.IsValid)
             {
-				hotelBookingManager.AddBooking(hotelBooking);
+				_bookingManager.AddBooking(hotelBooking);
 				return Redirect("/Index");
 			}
             return Page();

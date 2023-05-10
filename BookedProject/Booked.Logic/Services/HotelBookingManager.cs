@@ -24,7 +24,7 @@ namespace Booked.Logic.Services
 
         public bool CheckAvailabe(HotelBooking hotelBooking)
         {
-            if(hotelBooking.Hotel.MaximumBooking < 1)
+            if(hotelBooking.Hotel.MaximumBooking >= 1)
             {
                 return false;
             }

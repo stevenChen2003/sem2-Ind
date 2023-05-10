@@ -13,6 +13,9 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Services.AddScoped<BookingManager>();
+
 builder.Services.AddScoped<HotelBookingManager>();
 builder.Services.AddScoped<IHotelBookingRepo, HotelBookingRepository>();
 
