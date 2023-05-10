@@ -4,21 +4,28 @@
 	Layout = "_HomeLayout";
 }
 
-
 <div class="container mt-5">
-    <form class="d-flex justify-content-between align-content-center" method="get" asp-page="./Hotels">
-        <div class="input-group-text h-25 w-75">
+    <form class="d-flex flex-column flex-md-row align-items-start align-items-md-center" method="get" asp-page="./Hotels">
+        <div class="input-group-text w-100 w-md-50">
             <input type="text" class="form-control" placeholder="Search" asp-for="query">
             <button class="btn btn-primary" type="submit">Search</button>
         </div>
-        <div class="input-group-text h-25">
-            <label for="sort" class="me-2">Sort:</label>
+        <div class="input-group-text w-100 w-lg-25">
+            <label for="sort" class="me-2 text-black">Sort:</label>
             <select class="form-select" asp-for="SortOrder">
                 <option value="name_asc">Name A-Z</option>
                 <option value="name_desc">Name Z-A</option>
                 <option value="price_asc">Price: Low to High</option>
                 <option value="price_desc">Price: High to Low</option>
             </select>
+        </div>
+        <div class="input-group-text w-100 w-lg-25">
+            <label class="me-2 form-label mb-0 text-black">Check-in:</label>
+            <input asp-for="CheckInDate" type="date" class="form-control">
+        </div>
+        <div class="input-group-text w-100 w-lg-25">
+            <label class="me-2 form-label mb-0 text-black">Check-out:</label>
+            <input asp-for="CheckOutDate" type="date" class="form-control">
         </div>
     </form>
 </div>
@@ -36,7 +43,7 @@
                         <div class="card-body">
                             <h5 class="card-title">@hotel.Name</h5>
                             <p class="card-text">Price per night: @hotel.PricePerNight</p>
-                            <a class="btn btn-primary" asp-page="/HotelDetails" asp-route-id="@hotel.HotelId">More details</a>
+                            <a class="btn btn-primary" asp-page="/HotelDetails" asp-route-id="@hotel.HotelId" asp-route-checkInDate="@Model.CheckInDate.ToString("yyyy-MM-dd")" asp-route-checkOutDate="@Model.CheckOutDate.ToString("yyyy-MM-dd")">More details</a>
                         </div>
                     </div>
                 </div>

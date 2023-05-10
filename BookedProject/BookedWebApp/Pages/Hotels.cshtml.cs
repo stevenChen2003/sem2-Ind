@@ -16,8 +16,14 @@ namespace BookedWebApp.Pages
         }
 
         public IEnumerable<Hotel> ListHotel { get; set; }
+
+
         public string query { get; set; }
         public string SortOrder { get; set; }
+        [BindProperty]
+        public DateTime CheckInDate { get; set; } = DateTime.Today;
+        [BindProperty]
+        public DateTime CheckOutDate { get; set; } = DateTime.Today.AddDays(1);
 
         public void OnGet(string query, string SortOrder)
         {

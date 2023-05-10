@@ -22,10 +22,11 @@ namespace BookedWebApp.Pages
 		[BindProperty]
 		public DateTime DateEnd { get; set; }
 
-		public void OnGet(int id)
+
+		public void OnGet(int id, string checkInDate, string checkOutDate)
         {
             Hotel = hotelManager.GetHotel(id);
-		}
+        }
 
 		public IActionResult OnPost(int id)
 		{
