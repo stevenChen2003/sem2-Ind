@@ -11,6 +11,7 @@ namespace Booked.Logic.Interfaces
     {
         Flight GetFlightByID(int id);
         IEnumerable<Flight> GetAllFlight();
+        IEnumerable<Flight> GetAllFlights(string depart, string arrive);
         void AddFlight(Flight flight);
         void UpdateHotel(Flight flight);
         void RemoveFlightByID(int id);

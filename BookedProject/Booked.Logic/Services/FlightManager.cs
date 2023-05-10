@@ -27,16 +27,37 @@ namespace Booked.Logic.Services
             return flightRepo.GetAllFlight();
         }
 
-        public void AddFlight(Flight flight)
+        public bool AddFlight(Flight flight)
         {
             try
             {
-                flightRepo.AddFlight(flight);
+                if (CheckIfFlightExist(flight))
+                {
+					flightRepo.AddFlight(flight);
+                    return true;
+				}
+                else
+                {
+                    return false;
+                }
             }
             catch(Exception)
             {
                 throw new Exception("Adding not succesfull");
             }
+        }
+
+        public bool CheckIfFlightExist(Flight flight)
+        {
+            foreach (Flight f in flightRepo.GetAllFlight())
+            {
+                if (f.AirlineName == flight.AirlineName && f.DepartureAirport == flight.DepartureAirport && f.ArrivalAirport == flight.ArrivalAirport && f.Seat == flight.Seat)
+                {
+                    return true;
+                }
+            }
+            return false;
+
         }
 
 

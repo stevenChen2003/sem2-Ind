@@ -20,6 +20,7 @@ namespace BookedWebApp.Pages
         public void OnGet()
         {
             Countries = flightManager.GetCountries();
+            FlightsList = flightManager.GetAllFlight();
         }
     }
 }

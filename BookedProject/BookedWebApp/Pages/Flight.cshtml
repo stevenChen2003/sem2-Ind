@@ -11,7 +11,7 @@
 			<div class="col-lg-3"></div>
 
 			<div class="col-lg-6 bg-dark p-4 rounded-1">
-				<form class="d-flex flex-column" method="post">
+				<form class="d-flex flex-column" method="get">
 
 					<!--Radio-->
 					<div class="d-flex align-items-center text-white fw-bold">
@@ -80,5 +80,28 @@
 			<div class="col-lg-3"></div>
 		</div>
 	</div>
+</div>
 
+<div class="container m-5">
+	@if (Model.FlightsList != null)
+	{
+		<div class="row">
+			@foreach (var flight in Model.FlightsList)
+			{
+				<div class="col-md-6 col-lg-4 mb-4">
+					<div class="card h-100">
+						<div class="card-body">
+							<h5 class="card-title">@flight.DepartureCountry</h5>
+							<h5 class="card-title">@flight.ArrivalCountry</h5>
+							<a class="btn btn-primary" asp-page="/HotelDetails" asp-route-id="@flight.FlightId">More details</a>
+						</div>
+					</div>
+				</div>
+			}
+		</div>
+	}
+	else
+	{
+		<p>No Hotels found</p>
+	}
 </div>

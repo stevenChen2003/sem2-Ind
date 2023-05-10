@@ -36,9 +36,16 @@ namespace BookedFormsApp
                 else
                 {
                     Flight flight = new Flight(tBAirline.Text, tbDepartureAir.Text, tbDepartureCountry.Text, tbArrivalAir.Text, tbArrivalCountry.Text, numPrice.Value, (Seats)comboBoxSeats.SelectedIndex, (int)numFlightSize.Value, numExtraPrice.Value);
-                    flightManager.AddFlight(flight);
-                    MessageBox.Show("FLight is added", "Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ClearBoxes();
+                    if (flightManager.AddFlight(flight))
+                    {
+						MessageBox.Show("FLight is added", "Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
+						ClearBoxes();
+					}
+                    else
+                    {
+						MessageBox.Show("FLight already exist", "Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
+						ClearBoxes();
+					}
                 }
             }
             catch (Exception)
