@@ -2,3 +2,36 @@
 @model BookedWebApp.Pages.FlightDetailsModel
 @{
 }
+
+<div class="container justify-content-center align-content-center">
+	<div>
+		<h1>@Model.Flight.AirlineName</h1>
+		<p>@Model.Flight.DepartureAirport</p>
+		<p>@Model.Flight.DepartureCountry</p>
+		<p>@Model.Flight.ArrivalAirport</p>
+		<p>@Model.Flight.ArrivalCountry</p>
+	</div>
+
+	<form class="d-flex flex-column" method="post">
+		<input type="hidden" name="id" value="@Model.Flight.FlightId" />
+		<div class="d-flex align-items-center py-2">
+			<!--Date section-->
+			<div>
+				<label class="form-label mb-0 text-white fw-bold">Start</label>
+				<input asp-for=DateStart type="date" class="form-control" value="">
+			</div>
+
+			<div>
+				<label class="form-label mb-0 text-white fw-bold">End</label>
+				<input asp-for=DateEnd type="date" class="form-control" value="">
+			</div>
+		</div>
+
+		<!--Submit button-->
+		<div class="d-flex align-items-center justify-content-center pt-2">
+			<button type="submit" class="btn-primary">
+				Book now
+			</button>
+		</div>
+	</form>
+</div>

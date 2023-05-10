@@ -12,13 +12,13 @@ namespace BookedWebApp.Pages
 	public class PaymentModel : PageModel
     {
 		private readonly BookingManager _bookingManager;
-        private readonly HotelBookingManager hotelBookingManager;
+        //private readonly HotelBookingManager hotelBookingManager;
         private readonly HotelManager hotelManager;
         private readonly UserManager userManager;
 
-        public PaymentModel(HotelBookingManager hotelBookingManager, HotelManager hotelManager, UserManager userManager, BookingManager bookingManager)
+        public PaymentModel(HotelManager hotelManager, UserManager userManager, BookingManager bookingManager)
         {
-			this.hotelBookingManager = hotelBookingManager;
+			//this.hotelBookingManager = hotelBookingManager;
 			this.hotelManager = hotelManager;
 			this.userManager = userManager;
 			_bookingManager = bookingManager;
