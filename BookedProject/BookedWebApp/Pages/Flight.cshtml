@@ -5,15 +5,17 @@
 }
 
 <div class="bgHotel d-block d-md-flex d-xl-flex flex-column">
+	<!-- remove later
 	<h1>Pick a date</h1>
-	<div class="container-fluid pb-3">
+	-->
+	<div class="container-fluid pb-3 pt-5">
 		<div class="row">
 			<div class="col-lg-3"></div>
 
 			<div class="col-lg-6 bg-dark p-4 rounded-1">
 				<form class="d-flex flex-column" method="get">
 
-					<!--Radio-->
+					<!--Radio-
 					<div class="d-flex align-items-center text-white fw-bold">
 						<div class="form-check">
 							<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
@@ -28,13 +30,13 @@
 								One way
 							</label>
 						</div>
-					</div>
+					</div> Remove when know we finish with details page-->
 
 					<!--Search thing-->
-					<div class="d-flex align-items-center py-2">
+					<div class="d-flex align-items-center py-2 justify-content-center"> <!--Remove "justify-content later"-->
 						<!--From location-->
 						<div>
-							<label for="exampleDataList" class="form-label mb-0 fw-bold text-white">From</label>
+							<label for="exampleDataList" class="form-label mb-0 fw-bold text-white">From:</label>
 							<input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Country">
 							<datalist id="datalistOptions">
 								@foreach (var country in Model.Countries)
@@ -44,9 +46,12 @@
 							</datalist>
 						</div>
 
+						<!--Remove later-->
+						<div class="mx-1"></div>
+
 						<!--To location-->
 						<div>
-							<label for="exampleDataList" class="form-label mb-0 fw-bold text-white">From</label>
+							<label for="exampleDataList" class="form-label mb-0 fw-bold text-white">To:</label>
 							<input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Country">
 							<datalist id="datalistOptions">
 								@foreach (var country in Model.Countries)
