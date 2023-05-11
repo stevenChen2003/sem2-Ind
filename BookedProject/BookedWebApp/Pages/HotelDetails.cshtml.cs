@@ -38,7 +38,7 @@ namespace BookedWebApp.Pages
 			}
 			else
 			{
-				//Display messege that the dates are not filled int
+				//Need to display messege that the dates are not filled in
 				return Page();
 			}
 		}
