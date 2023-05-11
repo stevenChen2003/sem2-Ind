@@ -22,4 +22,9 @@
     <ProjectReference Include="..\Booked.Logic\Booked.Logic.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Mocks\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>
