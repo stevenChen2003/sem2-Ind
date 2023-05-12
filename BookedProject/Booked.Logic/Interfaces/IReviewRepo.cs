@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestBookedProject.Services
+namespace Booked.Logic.Interfaces
 {
-	public class BookingManagerTest
+	public interface IReviewRepo
 	{
 	}
 }

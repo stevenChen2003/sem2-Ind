@@ -28,11 +28,13 @@ namespace Booked.Logic.Services
 			}
 			else if (booking is FlightBooking)
 			{
+				flightBookingRepo.AddBooking((FlightBooking)booking);
 				return true;
 			}
 			return false;
 		}
 
+		/*
 		public bool CheckAvailabe(HotelBooking hotelBooking)
 		{
 			if (hotelBooking.Hotel.MaximumBooking >= 1)
@@ -41,5 +43,6 @@ namespace Booked.Logic.Services
 			}
 			return true;
 		}
+		*/
 	}
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TestBookedProject.Services
 {
-	public class BookingManagerTest
+	public class HotelManagerTest
 	{
 	}
 }
