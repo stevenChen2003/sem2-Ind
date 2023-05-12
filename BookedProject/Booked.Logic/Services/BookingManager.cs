@@ -34,6 +34,8 @@ namespace Booked.Logic.Services
 			return false;
 		}
 
+
+
 		/*
 		public bool CheckAvailabe(HotelBooking hotelBooking)
 		{

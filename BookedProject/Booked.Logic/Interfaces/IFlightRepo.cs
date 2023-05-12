@@ -16,5 +16,6 @@ namespace Booked.Logic.Interfaces
         void UpdateHotel(Flight flight);
         void RemoveFlightByID(int id);
         IEnumerable<string> GetFlightCountries();
+        //Include later the search/filter for website
     }
 }

@@ -57,9 +57,7 @@ namespace Booked.Logic.Services
                 }
             }
             return false;
-
         }
-
 
         public void UpdateFlight(Flight flight)
         {
@@ -85,6 +83,7 @@ namespace Booked.Logic.Services
             }
         }
 
+        //For displaying
         public IEnumerable<string> GetCountries()
         {
             return flightRepo.GetFlightCountries();
