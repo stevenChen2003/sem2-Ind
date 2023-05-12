@@ -42,13 +42,15 @@ namespace TestBookedProject.Mocks
 
 		public void RemoveUserByEmail(string email)
 		{
-			foreach (User user in users)
-			{
-				if (user.Email == email) users.Remove(user);
-			}
-		}
+            User userToRemove = FindUserByEmail(email);
+            if (userToRemove != null)
+            {
+                users.Remove(userToRemove);
+            }
 
-		public void UpdateUser(User user)
+        }
+
+        public void UpdateUser(User user)
 		{
             foreach (User u in users)
             {
