@@ -14,32 +14,46 @@ namespace TestBookedProject.Mocks
 
 		public void AddUser(User user)
 		{
-			throw new NotImplementedException();
+			users.Add(user);
 		}
 
 		public User FindUserByEmail(string email)
 		{
-			throw new NotImplementedException();
+			foreach (var user in users)
+			{
+				if (user.Email == email) return user;
+			}
+			return null;
 		}
 
 		public IEnumerable<User> GetAllUser()
 		{
-			throw new NotImplementedException();
+			return users;
 		}
 
 		public string GetHashedAndSaltPassword(string email)
 		{
-			throw new NotImplementedException();
+			foreach(var user in users)
+			{
+                if (user.Email == email) return user.Password;
+            }
+			return string.Empty;
 		}
 
 		public void RemoveUserByEmail(string email)
 		{
-			throw new NotImplementedException();
+			foreach (User user in users)
+			{
+				if (user.Email == email) users.Remove(user);
+			}
 		}
 
 		public void UpdateUser(User user)
 		{
-			throw new NotImplementedException();
-		}
+            foreach (User u in users)
+            {
+                if (u.UserId == user.UserId) user = u;
+            }
+        }
 	}
 }
