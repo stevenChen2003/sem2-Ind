@@ -58,12 +58,11 @@ namespace Booked.Infrastructure.Repositories
 			throw new NotImplementedException();
 		}
 
-		public FlightBooking GetBookingById(int id)
+		public IEnumerable<Booking> GetBookingByUserId(int userId)
 		{
 			throw new NotImplementedException();
 		}
-
-		public IEnumerable<Booking> GetBookingByUserId(int userId)
+		public FlightBooking GetBookingById(int id)
 		{
 			throw new NotImplementedException();
 		}

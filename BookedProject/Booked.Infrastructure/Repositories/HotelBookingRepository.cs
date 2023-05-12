@@ -21,7 +21,10 @@ namespace Booked.Infrastructure.Repositories
                 //Need to finish this part
 				using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
                 {
-					string query = @"SELECT * FROM Bookings; ";
+					string query = @"SELECT b.*, hb.Amount_Of_Days, h.*
+                                    FROM Bookings b
+                                    INNER JOIN HotelBookings hb ON b.BookingId = hb.BookingId
+                                    INNER JOIN Hotels h ON hb.HotelId = h.HotelId;";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
 
