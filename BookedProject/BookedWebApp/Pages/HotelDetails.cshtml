@@ -36,3 +36,62 @@
 </div>
 
 
+<div class="container mt-5 text-white bg-dark">
+    <div class="row">
+        <div class="col-md-9">
+            <h3 class="text-center mb-5">Reviews</h3>
+
+            <div class="scrollable-container">
+                <div class="card-deck">
+                    @if (Model.Hotel.Reviews == null)
+                    {
+                        <p>No Reviews</p>
+                    }
+                    else
+                    {
+                        @foreach (var review in Model.Hotel.Reviews)
+                        {
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <h5 class="card-title">@review.User.Email</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">@review.User.Email</h6>
+                                    <p class="card-text">@review.Description</p>
+                                    @if (User.Identity.Name == review.User.Email)
+                                    {
+                                        <a class="btn btn-secondary">Edit Review</a>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <h2 class="text-center my-5">Add Review</h2>
+
+            <div>
+                <form method="post">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" id="title" name="Title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="body">Body</label>
+                        <textarea class="form-control" id="body" name="Body" rows="5" required></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" asp-page-handler="Review" class="btn btn-primary">Submit Review</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

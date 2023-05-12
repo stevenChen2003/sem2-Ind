@@ -89,3 +89,8 @@ a.nav-link:hover {
     background-position: center;
     background-size: cover;
 }
+
+.scrollable-container {
+    height: 500px;
+    overflow-y: auto;
+}
