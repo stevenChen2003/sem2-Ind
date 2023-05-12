@@ -8,36 +8,36 @@ using System.Threading.Tasks;
 
 namespace TestBookedProject.Mocks
 {
-	public class FakeUserRepo : IUserRepo
+	public class FakeHotelRepo : IHotelRepo
 	{
-		private List<User> users = new List<User>();
+		private List<Hotel> hotels = new List<Hotel>();
 
-		public void AddUser(User user)
+		public void AddHotel(Hotel hotel)
 		{
 			throw new NotImplementedException();
 		}
 
-		public User FindUserByEmail(string email)
+		public IEnumerable<Hotel> GetAllHotel()
 		{
 			throw new NotImplementedException();
 		}
 
-		public IEnumerable<User> GetAllUser()
+		public IEnumerable<Hotel> GetAllHotelBySearch(string search, string sort)
 		{
 			throw new NotImplementedException();
 		}
 
-		public string GetHashedAndSaltPassword(string email)
+		public Hotel GetHotelByID(int id)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void RemoveUserByEmail(string email)
+		public void RemoveHotelByID(int id)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void UpdateUser(User user)
+		public void UpdateHotel(Hotel hotel)
 		{
 			throw new NotImplementedException();
 		}
