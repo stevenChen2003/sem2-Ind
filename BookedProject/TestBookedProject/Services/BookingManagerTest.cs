@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Booked.Logic.Services
+namespace TestBookedProject.Services
 {
-	public class FlightBookingManager
+	internal class BookingManagerTest
 	{
 	}
 }
