@@ -23,7 +23,7 @@ namespace BookedWebApp.Pages
 		public DateTime DateEnd { get; set; }
 
 
-		public void OnGet(int id, string checkInDate, string checkOutDate)
+		public void OnGet(int id)
         {
             Hotel = hotelManager.GetHotel(id);
         }

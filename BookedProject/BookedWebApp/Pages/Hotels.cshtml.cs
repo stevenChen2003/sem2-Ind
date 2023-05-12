@@ -20,10 +20,11 @@ namespace BookedWebApp.Pages
 
         public string query { get; set; }
         public string SortOrder { get; set; }
+        /*
         [BindProperty]
         public DateTime CheckInDate { get; set; }
         [BindProperty]
-        public DateTime CheckOutDate { get; set; }
+        public DateTime CheckOutDate { get; set; }*/
 
         public void OnGet(string query, string SortOrder)
         {

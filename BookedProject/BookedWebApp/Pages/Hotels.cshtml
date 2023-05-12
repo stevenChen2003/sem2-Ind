@@ -45,7 +45,7 @@
                         <div class="card-body">
                             <h5 class="card-title">@hotel.Name</h5>
                             <p class="card-text">Price per night: @hotel.PricePerNight</p>
-                            <a class="btn btn-primary" asp-page="/HotelDetails" asp-route-id="@hotel.HotelId" asp-route-checkInDate="@Model.CheckInDate.ToString("yyyy-MM-dd")" asp-route-checkOutDate="@Model.CheckOutDate.ToString("yyyy-MM-dd")">More details</a>
+                            <a class="btn btn-primary" asp-page="/HotelDetails" asp-route-id="@hotel.HotelId">More details</a>
                         </div>
                     </div>
                 </div>
