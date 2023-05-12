@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Booked.Infrastructure.Repositories
 {
-    public class ImageRepository
-    {
+	public class ReviewRepository
+	{
 
-    }
+	}
 }
