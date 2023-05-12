@@ -33,12 +33,16 @@ namespace TestBookedProject.Mocks
 
 		public string GetHashedAndSaltPassword(string email)
 		{
-			foreach(var user in users)
-			{
-                if (user.Email == email) return user.Password;
+            User user = FindUserByEmail(email);
+            if (user != null)
+            {
+				return user.Password;
             }
-			return string.Empty;
-		}
+			else
+			{
+				return null;
+			}
+        }
 
 		public void RemoveUserByEmail(string email)
 		{

@@ -67,6 +67,21 @@ namespace TestBookedProject.Services
 			Assert.IsTrue(result);
         }
 
+		[TestMethod]
+		public void CheckPasswordUserTest()
+		{
+            UserManager manager = new UserManager(new FakeUserRepo());
+            User user1 = new User("Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password");
+            string email = "s.chen@company.nl";
+			string password = "password";
+
+            manager.AddUser(user1);
+			bool result = manager.CheckPassword(password, email);
+
+			Assert.IsTrue(result);
+
+        }
+
 
 	}
 }
