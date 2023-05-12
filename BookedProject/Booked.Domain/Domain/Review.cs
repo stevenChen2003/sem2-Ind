@@ -8,16 +8,16 @@ namespace Booked.Domain.Domain
 {
 	public class Review
 	{
-		public int UserId { get; set; }
+		public User User { get; set; }
 		public int HotelId { get; set; }
 		public string Description { get; set; }
 		public int Rating { get; set; }
 		
 		public Review() { }
 
-		public Review(int userId, int hotelId, string description, int rating)
+		public Review(User user, int hotelId, string description, int rating)
 		{
-			UserId= userId;
+			User= user;
 			HotelId= hotelId;
 			Description= description;
 			Rating= rating;
