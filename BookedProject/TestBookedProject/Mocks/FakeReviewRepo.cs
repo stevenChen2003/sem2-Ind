@@ -17,29 +17,49 @@ namespace TestBookedProject.Mocks
 			reviews.Add(review);
 		}
 
-        public bool CheckIfReviewExist(Review review)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<Review> GetAllReviewBasedOnHotelId(int hotelId)
 		{
-			throw new NotImplementedException();
+			List<Review> found = new List<Review>();
+			foreach (Review review in reviews)
+			{
+				if (review.HotelId == hotelId)
+				{
+					found.Add(review);
+				}
+			}
+			return found;
 		}
 
 		public List<Review> GetAllReviewBasedOnUserdId(int userId)
 		{
-			throw new NotImplementedException();
-		}
+            List<Review> found = new List<Review>();
+            foreach (Review review in reviews)
+            {
+                if (review.User.UserId == userId)
+                {
+                    found.Add(review);
+                }
+            }
+			return found;
+        }
 
 		public void RemoveReviewByID(int id)
 		{
-			throw new NotImplementedException();
+			foreach (Review review in reviews)
+			{
+				if (review.Id == id)
+				{
+					reviews.Remove(review);
+				}
+			}
 		}
 
 		public void UpdateReview(Review review)
 		{
-			throw new NotImplementedException();
-		}
+            foreach (Review r in reviews)
+            {
+                if (r.Id == review.Id) review = r;
+            }
+        }
 	}
 }

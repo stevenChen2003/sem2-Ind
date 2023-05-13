@@ -36,12 +36,9 @@ namespace TestBookedProject.Mocks
             User user = FindUserByEmail(email);
             if (user != null)
             {
-				return user.Password;
+                return user.Password;
             }
-			else
-			{
-				return null;
-			}
+            return null;
         }
 
 		public void RemoveUserByEmail(string email)
@@ -56,9 +53,13 @@ namespace TestBookedProject.Mocks
 
         public void UpdateUser(User user)
 		{
-            foreach (User u in users)
-            {
-                if (u.UserId == user.UserId) user = u;
+            User userExist = FindUserByEmail(user.Email);
+			if (userExist != null)
+			{
+                userExist.FirstName = user.FirstName;
+                userExist.LastName = user.LastName;
+                userExist.DateOfBirth = user.DateOfBirth;
+                userExist.PhoneNumber = user.PhoneNumber;
             }
         }
 	}

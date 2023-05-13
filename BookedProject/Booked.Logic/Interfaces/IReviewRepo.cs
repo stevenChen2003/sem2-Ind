@@ -14,6 +14,5 @@ namespace Booked.Logic.Interfaces
 		void AddReview(Review review);
 		void UpdateReview(Review review);
 		void RemoveReviewByID(int id);
-		bool CheckIfReviewExist(Review review);
 	}
 }

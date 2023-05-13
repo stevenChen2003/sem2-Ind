@@ -39,6 +39,129 @@ namespace Booked.Infrastructure.Repositories
 			}
 		}
 
+        public List<Review> GetAllReviewBasedOnHotelId(int hotelId)
+		{
+			try
+			{
+				List<Review> ReviewList = new List<Review>();
+
+				using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+				{
+					string query = @"SELECT * FROM Reviews r JOIN Users u ON r.UserId = u.UserId WHERE r.HotelId = @HotelId;";
+
+					SqlCommand cmd = new SqlCommand(query, conn);
+					cmd.Parameters.AddWithValue("@HotelId", hotelId);
+					conn.Open();
+
+					SqlDataReader dr = cmd.ExecuteReader();
+
+					while (dr.Read())
+					{
+						User user = new User();
+						user.UserId = Convert.ToInt32(dr["UserId"]);
+						user.FirstName = dr["FirstName"].ToString();
+						user.LastName = dr["LastName"].ToString();
+						user.Email = dr["Email"].ToString();
+
+						ReviewList.Add(new Review(Convert.ToInt32(dr["ReviewId"]),
+												  user,
+												  Convert.ToInt32(dr["HotelId"]),
+												  dr["Description"].ToString(),
+												  Convert.ToInt32(dr["Rating"])));
+					}
+					conn.Close();
+				}
+				return ReviewList;
+
+			}
+			catch (SqlException)
+			{
+				throw new Exception("Cannot find Reviews");
+			}
+		}
+
+		public List<Review> GetAllReviewBasedOnUserdId(int userId)
+		{
+            try
+            {
+                List<Review> ReviewList = new List<Review>();
+
+                using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+                {
+                    string query = @"SELECT * FROM Reviews r JOIN Users u ON r.UserId = u.UserId WHERE r.UserdId = @UserdId;";
+
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@UserdId", userId);
+                    conn.Open();
+
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        User user = new User();
+                        user.UserId = Convert.ToInt32(dr["UserId"]);
+                        user.FirstName = dr["FirstName"].ToString();
+                        user.LastName = dr["LastName"].ToString();
+                        user.Email = dr["Email"].ToString();
+
+                        ReviewList.Add(new Review(Convert.ToInt32(dr["ReviewId"]),
+                                                  user,
+                                                  Convert.ToInt32(dr["HotelId"]),
+                                                  dr["Description"].ToString(),
+                                                  Convert.ToInt32(dr["Rating"])));
+                    }
+                    conn.Close();
+                }
+                return ReviewList;
+
+            }
+            catch (SqlException)
+            {
+                throw new Exception("Cannot find Reviews");
+            }
+        }
+
+		public void RemoveReviewByID(int id)
+		{
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+                {
+                    string query = "DELETE FROM Reviews WHERE ReviewId = @ReviewId; ";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+
+                    conn.Open();
+                    cmd.Parameters.AddWithValue("@ReviewId", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException)
+            {
+                throw new Exception("Cannot remove review");
+            }
+        }
+
+		public void UpdateReview(Review review)
+		{
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+                {
+                    string query = "UPDATE Reviews SET Description = @Description WHERE ReviewId = @ReviewId;";
+                    SqlCommand command = new SqlCommand(query, conn);
+                    command.Parameters.AddWithValue("@ReviewId", review.Id);
+                    command.Parameters.AddWithValue("@Description", review.Description);
+                    conn.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("Cannot be updated");
+            }
+        }
+
+        /*
         public bool CheckIfReviewExist(Review review)
         {
 			try
@@ -67,61 +190,7 @@ namespace Booked.Infrastructure.Repositories
 			{
 				return false;
 			}
-        }
+        }*/
 
-        public List<Review> GetAllReviewBasedOnHotelId(int hotelId)
-		{
-			try
-			{
-				List<Review> ReviewList = new List<Review>();
-
-				using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
-				{
-					string query = @"SELECT * FROM Reviews r JOIN Users u ON r.UserId = u.UserId WHERE r.HotelId = @HotelId;";
-
-					SqlCommand cmd = new SqlCommand(query, conn);
-					cmd.Parameters.AddWithValue("@HotelId", hotelId);
-					conn.Open();
-
-					SqlDataReader dr = cmd.ExecuteReader();
-
-					while (dr.Read())
-					{
-						User user = new User();
-						user.UserId = Convert.ToInt32(dr["UserId"]);
-						user.FirstName = dr["FirstName"].ToString();
-						user.LastName = dr["LastName"].ToString();
-						user.Email = dr["Email"].ToString();
-
-						ReviewList.Add(new Review(user,
-												  Convert.ToInt32(dr["HotelId"]),
-												  dr["Description"].ToString(),
-												  Convert.ToInt32(dr["Rating"])));
-					}
-					conn.Close();
-				}
-				return ReviewList;
-
-			}
-			catch (SqlException)
-			{
-				throw new Exception("Cannot find Reviews");
-			}
-		}
-
-		public List<Review> GetAllReviewBasedOnUserdId(int userId)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void RemoveReviewByID(int id)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void UpdateReview(Review review)
-		{
-			throw new NotImplementedException();
-		}
-	}
+    }
 }

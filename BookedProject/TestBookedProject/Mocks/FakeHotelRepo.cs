@@ -10,36 +10,62 @@ namespace TestBookedProject.Mocks
 {
 	public class FakeHotelRepo : IHotelRepo
 	{
-		private List<Hotel> hotels = new List<Hotel>();
+		private List<Hotel> hotelsList = new List<Hotel>();
 
 		public void AddHotel(Hotel hotel)
 		{
-			throw new NotImplementedException();
+			hotelsList.Add(hotel);
 		}
 
 		public IEnumerable<Hotel> GetAllHotel()
 		{
-			throw new NotImplementedException();
+			return hotelsList;
 		}
 
 		public IEnumerable<Hotel> GetAllHotelBySearch(string search, string sort)
 		{
-			throw new NotImplementedException();
-		}
+            return hotelsList.Where(h => h.Country.StartsWith(search))
+                     .OrderBy(h => h.Name);
+        }
 
 		public Hotel GetHotelByID(int id)
 		{
-			throw new NotImplementedException();
+			foreach (var hotel in hotelsList)
+			{
+				if (hotel.HotelId == id)
+				{
+					return hotel;
+				}
+			}
+			return null;
 		}
 
 		public void RemoveHotelByID(int id)
 		{
-			throw new NotImplementedException();
+			foreach(var hotel in hotelsList)
+			{
+                if (hotel.HotelId == id)
+                {
+                    hotelsList.Remove(hotel);
+                }
+            }
 		}
 
 		public void UpdateHotel(Hotel hotel)
 		{
-			throw new NotImplementedException();
-		}
+            var existingHotel = hotelsList.FirstOrDefault(h => h.HotelId == hotel.HotelId);
+            if (existingHotel != null)
+            {
+                existingHotel.Name = hotel.Name;
+                existingHotel.Address = hotel.Address;
+                existingHotel.City = hotel.City;
+                existingHotel.Country = hotel.Country;
+                existingHotel.StarRating = hotel.StarRating;
+                existingHotel.PricePerNight = hotel.PricePerNight;
+                existingHotel.Room = hotel.Room;
+                existingHotel.MaximumBooking = hotel.MaximumBooking;
+                existingHotel.Image = hotel.Image;
+            }
+        }
 	}
 }
