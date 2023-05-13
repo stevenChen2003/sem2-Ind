@@ -10,12 +10,19 @@ namespace TestBookedProject.Mocks
 {
 	public class FakeReviewRepo : IReviewRepo
 	{
-		public void AddReview(Review review)
+        private List<Review> reviews = new List<Review>();
+
+        public void AddReview(Review review)
 		{
-			throw new NotImplementedException();
+			reviews.Add(review);
 		}
 
-		public IEnumerable<Review> GetAllReviewBasedOnHotelId(int hotelId)
+        public bool CheckIfReviewExist(Review review)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Review> GetAllReviewBasedOnHotelId(int hotelId)
 		{
 			throw new NotImplementedException();
 		}

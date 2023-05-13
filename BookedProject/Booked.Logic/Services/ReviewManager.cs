@@ -42,7 +42,13 @@ namespace Booked.Logic.Services
 		//Check if user has review on the hotel
 		public bool CheckIfReviewExist(Review review)
 		{
-
+			foreach (Review r in reviewRepo.GetAllReviewBasedOnHotelId(review.HotelId))
+			{
+				if(r.HotelId == review.HotelId && r.User.UserId == review.User.UserId)
+				{
+					return true;
+				}
+			}
 			return false;
 		}
 
