@@ -29,19 +29,42 @@ namespace TestBookedProject.Services
         {
             ReviewManager manager = new ReviewManager(new FakeReviewRepo());
             User user1 = new User(1,"Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password");
-            Review review1 = new Review(user1, 1, "Good", 5);
-            Review review2 = new Review(user1, 1, "Good", 5);
-            Review review3 = new Review(user1, 3, "Good", 5);
+            Review review1 = new Review(1,user1, 1, "Good", 5);
+            Review review2 = new Review(1, user1, 1, "Good", 5);
 
             manager.AddReview(review1);
             bool result1 = manager.CheckIfReviewExist(review2);
-            bool result2 = manager.AddReview(review3);
 
             Assert.IsTrue(result1);
         }
 
+        [TestMethod]
+        public void UpdateReviewTest()
+        {
+            ReviewManager manager = new ReviewManager(new FakeReviewRepo());
+            User user1 = new User(1, "Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password");
+            Review review1 = new Review(1, user1, 1, "Good", 5);
+            Review review2 = new Review(1, user1, 1, "Nice", 5);
 
+            manager.AddReview(review1);
+            bool result = manager.UpdateReview(review2); 
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void RemoveReviewTest()
+        {
+            ReviewManager manager = new ReviewManager(new FakeReviewRepo());
+            User user1 = new User(1, "Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password");
+            Review review1 = new Review(1, user1, 1, "Good", 5);
+            Review review2 = new Review(1, user1, 1, "Good", 5);
+
+            manager.AddReview(review1);
+            bool result = manager.DeleteReview(review2.Id);
+            Assert.IsTrue(result);
+        }
 
 
     }
+
 }

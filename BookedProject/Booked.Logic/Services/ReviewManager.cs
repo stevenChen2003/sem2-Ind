@@ -80,11 +80,11 @@ namespace Booked.Logic.Services
         }
 
         //Delete
-        public bool DeleteReview(Review review)
+        public bool DeleteReview(int id)
         {
             try
             {
-                reviewRepo.RemoveReviewByID(review.Id);
+                reviewRepo.RemoveReviewByID(id);
                 return true;
             }
             catch

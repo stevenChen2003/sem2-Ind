@@ -48,7 +48,6 @@ namespace TestBookedProject.Mocks
             {
                 users.Remove(userToRemove);
             }
-
         }
 
         public void UpdateUser(User user)

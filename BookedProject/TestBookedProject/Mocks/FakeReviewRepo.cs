@@ -45,14 +45,12 @@ namespace TestBookedProject.Mocks
 
 		public void RemoveReviewByID(int id)
 		{
-			foreach (Review review in reviewslist)
-			{
-				if (review.Id == id)
-				{
-					reviewslist.Remove(review);
-				}
-			}
-		}
+			Review review = GetReviewById(id);
+            if (review != null)
+            {
+                reviewslist.Remove(review);
+            }
+        }
 
 		public void UpdateReview(Review review)
 		{
@@ -62,5 +60,15 @@ namespace TestBookedProject.Mocks
                 oldReview.Description = review.Description;
             }
         }
+
+		public Review GetReviewById(int id)
+		{
+            foreach (Review review in reviewslist)
+            {
+                if (review.Id == id) return review;
+            }
+            return null;
+        }
+
 	}
 }

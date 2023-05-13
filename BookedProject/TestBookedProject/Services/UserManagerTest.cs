@@ -59,10 +59,11 @@ namespace TestBookedProject.Services
 		public void UpdateUserTest()
 		{
             UserManager manager = new UserManager(new FakeUserRepo());
-            User user1 = new User("Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password"); 
-			User user2 = new User("Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 3, 3), "33789987", "password");
+            User user1 = new User(1,"Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password"); 
+			User user2 = new User(1,"Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 3, 3), "33789987", "password");
 
-            bool result = manager.UpdateUser(user1);
+			manager.AddUser(user1);
+            bool result = manager.UpdateUser(user2);
 
 			Assert.IsTrue(result);
         }
