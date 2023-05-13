@@ -25,7 +25,7 @@ namespace TestBookedProject.Mocks
 			throw new NotImplementedException();
 		}
 
-		public IEnumerable<Booking> GetBookingByUserId(int userId)
+		public IEnumerable<Booking> GetAllBookingByUserId(int userId)
 		{
 			throw new NotImplementedException();
 		}

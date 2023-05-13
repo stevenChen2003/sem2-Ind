@@ -39,7 +39,7 @@ namespace Booked.Infrastructure.Repositories
             }
         }
 
-        public IEnumerable<Booking> GetBookingByUserId(int userId)
+        public IEnumerable<Booking> GetAllBookingByUserId(int userId)
         {
             throw new NotImplementedException();
         }

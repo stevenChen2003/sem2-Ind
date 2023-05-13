@@ -34,17 +34,12 @@ namespace Booked.Logic.Services
 			return false;
 		}
 
+		//Get
 
 
-		/*
-		public bool CheckAvailabe(HotelBooking hotelBooking)
-		{
-			if (hotelBooking.Hotel.MaximumBooking >= 1)
-			{
-				return false;
-			}
-			return true;
-		}
-		*/
+		//Update
+
+
+		//Delet
 	}
 }

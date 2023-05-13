@@ -25,7 +25,7 @@ namespace TestBookedProject.Services
 		}
 
 		[TestMethod]
-		public void AddDuplicateSameEmailUserTest()
+		public void AddSameEmailUserTest()
 		{
             UserManager manager = new UserManager(new FakeUserRepo());
             User user1 = new User("Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password");
