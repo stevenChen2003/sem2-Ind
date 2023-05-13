@@ -53,6 +53,17 @@ namespace Booked.Logic.Services
 		}
 
 		//Get
+		public List<Review> GetReviewsBaseOnHotelId(int hotelid)
+		{
+			try
+			{
+				 return reviewRepo.GetAllReviewBasedOnHotelId(hotelid);
+			}
+			catch
+			{
+				return null;
+			}
+		}
 
 		//Update
 

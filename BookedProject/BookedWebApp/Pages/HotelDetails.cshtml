@@ -68,25 +68,39 @@
             </div>
         </div>
 
-        <div class="col-md-3">
-            <h2 class="text-center my-5">Add Review</h2>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="col-md-3">
+                <h2 class="text-center my-5">Add Review</h2>
 
-            <div>
-                <form method="post">
-                    <div class="form-group">
-                        <label for="title">Title</label>
-                        <input type="text" class="form-control" id="title" name="Title" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="body">Body</label>
-                        <textarea class="form-control" id="body" name="Body" rows="5" required></textarea>
-                    </div>
-                    <div class="text-center">
-                        <button type="submit" asp-page-handler="Review" class="btn btn-primary">Submit Review</button>
-                    </div>
-                </form>
+                <div>
+                    <form method="post">
+                        <input type="hidden" name="hotelid" value="@Model.Hotel.HotelId" />
+                        <div class="form-group">
+                            <label for="body">Body</label>
+                            <textarea class="form-control" id="body" name="description" rows="5" required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" asp-page-handler="Review" class="btn btn-primary">Submit Review</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
+        }
+        else
+        {
+            <div class="col-md-3">
+                <h2 class="text-center my-5">Add Review</h2>
+
+                <div>
+                    <p>Log in to add reviews</p>
+                    <form method="get" asp-page="/LogIn">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                </div>
+            </div>
+        }
+
     </div>
 </div>
 

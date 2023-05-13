@@ -9,8 +9,8 @@ namespace Booked.Logic.Interfaces
 {
 	public interface IReviewRepo
 	{
-        IEnumerable<Review> GetAllReviewBasedOnHotelId(int hotelId);
-		IEnumerable<Review> GetAllReviewBasedOnUserdId(int userId);
+        List<Review> GetAllReviewBasedOnHotelId(int hotelId);
+		List<Review> GetAllReviewBasedOnUserdId(int userId);
 		void AddReview(Review review);
 		void UpdateReview(Review review);
 		void RemoveReviewByID(int id);

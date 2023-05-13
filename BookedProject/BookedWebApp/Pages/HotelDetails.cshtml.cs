@@ -9,10 +9,12 @@ namespace BookedWebApp.Pages
     public class HotelDetailsModel : PageModel
     {
 		private readonly HotelManager hotelManager;
+		private readonly ReviewManager reviewManager;
 
-		public HotelDetailsModel(HotelManager mng)
+		public HotelDetailsModel(HotelManager mng, ReviewManager reviewManager)
 		{
 			hotelManager = mng;
+			this.reviewManager = reviewManager;
 		}
 
 		public Hotel Hotel { get; private set; }
@@ -26,6 +28,7 @@ namespace BookedWebApp.Pages
 		public void OnGet(int id)
         {
             Hotel = hotelManager.GetHotel(id);
+			Hotel.Reviews = reviewManager.GetReviewsBaseOnHotelId(id);
         }
 
 		public IActionResult OnPost(int id)
@@ -42,5 +45,11 @@ namespace BookedWebApp.Pages
 				return Page();
 			}
 		}
-	}
+
+		public IActionResult OnPostReview(int id)
+		{
+            return Page();
+        }
+
+    }
 }

@@ -25,7 +25,14 @@ namespace Booked.Logic.Services
 
 		public IEnumerable<Hotel> GetAllHotel()
 		{
-			return hotelRepo.GetAllHotel();
+			try
+			{
+                return hotelRepo.GetAllHotel();
+            }
+			catch
+			{
+				return null;
+			}
 		}
 
 		public IEnumerable<Hotel> GetHotelsByCountry(string search, string sort)

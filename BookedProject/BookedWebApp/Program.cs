@@ -31,6 +31,9 @@ builder.Services.AddScoped<IFlightRepo, FlightRepository>();
 builder.Services.AddScoped<UserManager>();
 builder.Services.AddScoped<IUserRepo, UserRepository>();
 
+builder.Services.AddScoped<ReviewManager>();
+builder.Services.AddScoped<IReviewRepo, ReviewRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

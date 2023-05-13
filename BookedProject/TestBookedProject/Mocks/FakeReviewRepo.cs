@@ -22,12 +22,12 @@ namespace TestBookedProject.Mocks
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Review> GetAllReviewBasedOnHotelId(int hotelId)
+        public List<Review> GetAllReviewBasedOnHotelId(int hotelId)
 		{
 			throw new NotImplementedException();
 		}
 
-		public IEnumerable<Review> GetAllReviewBasedOnUserdId(int userId)
+		public List<Review> GetAllReviewBasedOnUserdId(int userId)
 		{
 			throw new NotImplementedException();
 		}

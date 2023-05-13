@@ -69,7 +69,7 @@ namespace Booked.Infrastructure.Repositories
 			}
         }
 
-        public IEnumerable<Review> GetAllReviewBasedOnHotelId(int hotelId)
+        public List<Review> GetAllReviewBasedOnHotelId(int hotelId)
 		{
 			try
 			{
@@ -111,7 +111,7 @@ namespace Booked.Infrastructure.Repositories
 			}
 		}
 
-		public IEnumerable<Review> GetAllReviewBasedOnUserdId(int userId)
+		public List<Review> GetAllReviewBasedOnUserdId(int userId)
 		{
 			throw new NotImplementedException();
 		}
