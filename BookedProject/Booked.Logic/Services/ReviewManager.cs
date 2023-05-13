@@ -18,14 +18,31 @@ namespace Booked.Logic.Services
 		}
 
 		//Add
-		public void AddReview(Review review)
+		public bool AddReview(Review review)
 		{
+            try
+            {
+                if (!CheckIfReviewExist(review))
+                {
+                    reviewRepo.AddReview(review);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
 
-		}
+            }
+            catch (Exception)
+            {
+                throw new Exception("Adding not succesfull");
+            }
+        }
 
 		//Check if user has review on the hotel
 		public bool CheckIfReviewExist(Review review)
 		{
+
 			return false;
 		}
 
