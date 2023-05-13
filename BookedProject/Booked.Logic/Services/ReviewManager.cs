@@ -65,9 +65,33 @@ namespace Booked.Logic.Services
 			}
 		}
 
-		//Update
+        //Update
+        public bool UpdateReview(Review review)
+        {
+            try
+            {
+                reviewRepo.UpdateReview(review);
+				return true;
+            }
+            catch
+            {
+				return false;
+            }
+        }
 
-		//Delete
-		
-	}
+        //Delete
+        public bool DeleteReview(Review review)
+        {
+            try
+            {
+                reviewRepo.RemoveReviewByID(review.Id);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+    }
 }

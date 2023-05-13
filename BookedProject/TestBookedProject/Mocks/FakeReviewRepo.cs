@@ -10,17 +10,17 @@ namespace TestBookedProject.Mocks
 {
 	public class FakeReviewRepo : IReviewRepo
 	{
-        private List<Review> reviews = new List<Review>();
+        private List<Review> reviewslist = new List<Review>();
 
         public void AddReview(Review review)
 		{
-			reviews.Add(review);
+			reviewslist.Add(review);
 		}
 
         public List<Review> GetAllReviewBasedOnHotelId(int hotelId)
 		{
 			List<Review> found = new List<Review>();
-			foreach (Review review in reviews)
+			foreach (Review review in reviewslist)
 			{
 				if (review.HotelId == hotelId)
 				{
@@ -33,7 +33,7 @@ namespace TestBookedProject.Mocks
 		public List<Review> GetAllReviewBasedOnUserdId(int userId)
 		{
             List<Review> found = new List<Review>();
-            foreach (Review review in reviews)
+            foreach (Review review in reviewslist)
             {
                 if (review.User.UserId == userId)
                 {
@@ -45,20 +45,21 @@ namespace TestBookedProject.Mocks
 
 		public void RemoveReviewByID(int id)
 		{
-			foreach (Review review in reviews)
+			foreach (Review review in reviewslist)
 			{
 				if (review.Id == id)
 				{
-					reviews.Remove(review);
+					reviewslist.Remove(review);
 				}
 			}
 		}
 
 		public void UpdateReview(Review review)
 		{
-            foreach (Review r in reviews)
+            var oldReview = reviewslist.FirstOrDefault(r => r.Id == review.Id);
+            if (oldReview != null)
             {
-                if (r.Id == review.Id) review = r;
+                oldReview.Description = review.Description;
             }
         }
 	}

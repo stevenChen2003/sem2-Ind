@@ -10,39 +10,57 @@ namespace TestBookedProject.Mocks
 {
 	public class FakeFlightRepo : IFlightRepo
 	{
+		private List<Flight> flightList = new List<Flight>();
+
 		public void AddFlight(Flight flight)
 		{
-			throw new NotImplementedException();
+			flightList.Add(flight);
 		}
 
 		public IEnumerable<Flight> GetAllFlight()
 		{
-			throw new NotImplementedException();
+			return flightList;
 		}
 
 		public IEnumerable<Flight> GetAllFlights(string depart, string arrive)
 		{
-			throw new NotImplementedException();
-		}
+            return flightList.Where(f => f.DepartureCountry == depart && f.ArrivalCountry == arrive);
+        }
 
 		public Flight GetFlightByID(int id)
 		{
-			throw new NotImplementedException();
-		}
+            return flightList.FirstOrDefault(f => f.FlightId == id);
+        }
 
 		public IEnumerable<string> GetFlightCountries()
 		{
-			throw new NotImplementedException();
-		}
+            return flightList.Select(f => f.DepartureCountry).Distinct();
+        }
 
 		public void RemoveFlightByID(int id)
 		{
-			throw new NotImplementedException();
-		}
+            var flightToRemove = flightList.FirstOrDefault(f => f.FlightId == id);
+            if (flightToRemove != null)
+            {
+                flightList.Remove(flightToRemove);
+            }
+        }
 
 		public void UpdateHotel(Flight flight)
 		{
-			throw new NotImplementedException();
-		}
+            var oldFlight = flightList.FirstOrDefault(f => f.FlightId == flight.FlightId);
+            if (oldFlight != null)
+            {
+                oldFlight.AirlineName = flight.AirlineName;
+                oldFlight.DepartureAirport = flight.DepartureAirport;
+                oldFlight.DepartureCountry = flight.DepartureCountry;
+                oldFlight.ArrivalAirport = flight.ArrivalAirport;
+                oldFlight.ArrivalCountry = flight.ArrivalCountry;
+                oldFlight.Price = flight.Price;
+                oldFlight.Seat = flight.Seat;
+                oldFlight.NumberOfSeats = flight.NumberOfSeats;
+                oldFlight.ExtraBaggagePrice = flight.ExtraBaggagePrice;
+            }
+        }
 	}
 }

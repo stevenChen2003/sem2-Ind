@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace TestBookedProject.Services
 {
-	public class ReviewManagerTest
+    [TestClass]
+    public class ReviewManagerTest
 	{
-	}
+    }
 }
