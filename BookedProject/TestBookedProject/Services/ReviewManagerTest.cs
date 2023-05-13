@@ -64,6 +64,27 @@ namespace TestBookedProject.Services
             Assert.IsTrue(result);
         }
 
+        [TestMethod]
+        public void GetReviewsBaseOnHotelId_ReturnListOfReviews_WhenHotelExists()
+        {
+            // Arrange
+            ReviewManager manager = new ReviewManager(new FakeReviewRepo());
+            User user1 = new User(1, "Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password");
+            User user2 = new User(2, "Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password");
+            Review review1 = new Review(1, user1, 1, "Good", 5);
+            Review review2 = new Review(2, user2, 1, "Nice", 5);
+            var hotelId = 1;
+
+            // Act
+            manager.AddReview(review1);
+            manager.AddReview(review2);
+            var result = manager.GetReviewsBaseOnHotelId(hotelId);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result.Count);
+        }
+
 
     }
 
