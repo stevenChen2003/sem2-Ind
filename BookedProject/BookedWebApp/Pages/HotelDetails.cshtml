@@ -55,7 +55,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">@review.User.Email</h5>
                                     <h6 class="card-subtitle mb-2 text-muted">@review.User.Email</h6>
-                                    <p class="card-text">@review.Description</p>
+                                    <p class="card-text text-black">@review.Description</p>
                                     @if (User.Identity.Name == review.User.Email)
                                     {
                                         <a class="btn btn-secondary">Edit Review</a>
@@ -79,6 +79,10 @@
                         <div class="form-group">
                             <label for="body">Body</label>
                             <textarea class="form-control" id="body" name="description" rows="5" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="rating">Rating</label>
+                            <input type="number" class="form-control" id="rating" name="rating" min="1" max="5" required />
                         </div>
                         <div class="text-center">
                             <button type="submit" asp-page-handler="Review" class="btn btn-primary">Submit Review</button>

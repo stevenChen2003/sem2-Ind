@@ -10,11 +10,13 @@ namespace BookedWebApp.Pages
     {
 		private readonly HotelManager hotelManager;
 		private readonly ReviewManager reviewManager;
+		private readonly UserManager userManager;
 
-		public HotelDetailsModel(HotelManager mng, ReviewManager reviewManager)
+		public HotelDetailsModel(HotelManager mng, ReviewManager reviewManager, UserManager userManager)
 		{
 			hotelManager = mng;
 			this.reviewManager = reviewManager;
+			this.userManager = userManager;
 		}
 
 		public Hotel Hotel { get; private set; }
@@ -42,13 +44,21 @@ namespace BookedWebApp.Pages
 			else
 			{
 				//Need to display messege that the dates are not filled in
-				return Page();
+				return RedirectToPage("/HotelDetails", new {id = id});
 			}
 		}
 
-		public IActionResult OnPostReview(int id)
+		public IActionResult OnPostReview(int hotelid, string description, int rating)
 		{
-            return Page();
+			string email = User.Identity.Name;
+			User user = userManager.GetUser(email);
+			Review review = new Review(user, hotelid, description, rating);
+			if (ModelState.IsValid)
+			{
+				reviewManager.AddReview(review);
+                return RedirectToPage("/HotelDetails", new { id = hotelid });
+            }
+            return RedirectToPage("/HotelDetails", new { id = hotelid });
         }
 
     }

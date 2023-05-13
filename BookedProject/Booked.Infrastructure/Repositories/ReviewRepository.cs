@@ -77,7 +77,7 @@ namespace Booked.Infrastructure.Repositories
 
 				using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
 				{
-					string query = @"SELECT * FROM Reviews WHERE HotelId= @HotelId; ";
+					string query = @"SELECT * FROM Reviews r JOIN Users u ON r.UserId = u.UserId WHERE r.HotelId = @HotelId;";
 
 					SqlCommand cmd = new SqlCommand(query, conn);
 					cmd.Parameters.AddWithValue("@HotelId", hotelId);
@@ -87,13 +87,11 @@ namespace Booked.Infrastructure.Repositories
 
 					while (dr.Read())
 					{
-						User user = new User(Convert.ToInt32(dr["3"]),
-													dr["FirstName"].ToString(),
-													dr["LastName"].ToString(),
-													dr["Email"].ToString(),
-													Convert.ToDateTime(dr["Date_of_Birth"]),
-													dr["PhoneNumber"].ToString(),
-													dr["Password"].ToString());
+						User user = new User();
+						user.UserId = Convert.ToInt32(dr["UserId"]);
+						user.FirstName = dr["FirstName"].ToString();
+						user.LastName = dr["LastName"].ToString();
+						user.Email = dr["Email"].ToString();
 
 						ReviewList.Add(new Review(user,
 												  Convert.ToInt32(dr["HotelId"]),
