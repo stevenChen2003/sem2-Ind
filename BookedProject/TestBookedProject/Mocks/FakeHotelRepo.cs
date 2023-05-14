@@ -24,8 +24,26 @@ namespace TestBookedProject.Mocks
 
 		public IEnumerable<Hotel> GetAllHotelBySearch(string search, string sort)
 		{
-            return hotelsList.Where(h => h.Country.StartsWith(search))
-                     .OrderBy(h => h.Name);
+            var filteredHotels = hotelsList.Where(h => h.Country.StartsWith(search));
+
+            IOrderedEnumerable<Hotel> sortedHotels;
+            switch (sort)
+            {
+                case "name_desc":
+                    sortedHotels = filteredHotels.OrderByDescending(h => h.Name);
+                    break;
+                case "price_asc":
+                    sortedHotels = filteredHotels.OrderBy(h => h.PricePerNight);
+                    break;
+                case "price_desc":
+                    sortedHotels = filteredHotels.OrderByDescending(h => h.PricePerNight);
+                    break;
+                default:
+                    sortedHotels = filteredHotels.OrderBy(h => h.Name);
+                    break;
+            }
+
+            return sortedHotels;
         }
 
 		public Hotel GetHotelByID(int id)
@@ -42,14 +60,12 @@ namespace TestBookedProject.Mocks
 
 		public void RemoveHotelByID(int id)
 		{
-			foreach(var hotel in hotelsList)
-			{
-                if (hotel.HotelId == id)
-                {
-                    hotelsList.Remove(hotel);
-                }
+            Hotel hotel = GetHotelByID(id);
+            if (hotel != null)
+            {
+                hotelsList.Remove(hotel);
             }
-		}
+        }
 
 		public void UpdateHotel(Hotel hotel)
 		{

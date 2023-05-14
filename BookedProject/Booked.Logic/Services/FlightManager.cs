@@ -31,7 +31,7 @@ namespace Booked.Logic.Services
         {
             try
             {
-                if (CheckIfFlightExist(flight))
+                if (!CheckIfFlightExist(flight))
                 {
 					flightRepo.AddFlight(flight);
                     return true;
