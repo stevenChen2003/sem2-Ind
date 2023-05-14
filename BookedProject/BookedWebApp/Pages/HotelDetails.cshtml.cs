@@ -32,15 +32,15 @@ namespace BookedWebApp.Pages
 
         public void OnGet(int id)
         {
-            Hotel = hotelManager.GetHotel(id);
-			Hotel.Reviews = reviewManager.GetReviewsBaseOnHotelId(id);
+			Hotel = hotelManager.GetHotel(id);
+            Hotel.Reviews = reviewManager.GetReviewsBaseOnHotelId(id);
         }
 
 		public IActionResult OnPost(int id)
 		{
 			Hotel = hotelManager.GetHotel(id);
 
-			if (ModelState.IsValid)
+			if (ModelState.IsValid && DateStart >= DateTime.Today && DateEnd > DateStart)
 			{
 				return RedirectToPage("/Payment", new { start = DateStart.ToString("yyyy-MM-dd"), end = DateEnd.ToString("yyyy-MM-dd"), hotelId = id });
 			}
@@ -51,7 +51,7 @@ namespace BookedWebApp.Pages
 			}
 		}
 
-		public IActionResult OnPostReview(int hotelid, string description, int rating)
+		public IActionResult OnPostAddReview(int hotelid, string description, int rating)
 		{
 			string email = User.Identity.Name;
 			User user = userManager.GetUser(email);
