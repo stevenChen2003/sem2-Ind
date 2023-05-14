@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TestBookedProject.Mocks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestBookedProject.Services
 {
@@ -25,7 +26,7 @@ namespace TestBookedProject.Services
         }
 
         [TestMethod]
-        public void CheckIfHotelExist_When_Added()
+        public void CheckIfFlightExist_When_Added()
         {
             FlightManager manager = new FlightManager(new FakeFlightRepo());
             Flight flight1 = new Flight("Air France", "Paris Charles de Gaulle Airport", "France", "London Heathrow Airport", "United Kingdom", (decimal)100.00, Seats.ECONOMY, 200, (decimal)25.00);
@@ -44,7 +45,33 @@ namespace TestBookedProject.Services
         [TestMethod]
         public void RemoveFlightTest()
         {
+            FlightManager manager = new FlightManager(new FakeFlightRepo());
+            Flight flight1 = new Flight(1,"Air France", "Paris Charles de Gaulle Airport", "France", "London Heathrow Airport", "United Kingdom", (decimal)100.00, Seats.ECONOMY, 200, (decimal)25.00);
+            Flight flight2 = new Flight(2,"Easy Jet", "Paris Charles de Gaulle Airport", "France", "London Heathrow Airport", "United Kingdom", (decimal)100.00, Seats.ECONOMY, 200, (decimal)25.00);
+            Flight flight3 = new Flight(3,"KLM", "Paris Charles de Gaulle Airport", "France", "London Heathrow Airport", "United Kingdom", (decimal)100.00, Seats.ECONOMY, 200, (decimal)25.00);
 
+            manager.AddFlight(flight1);
+            manager.AddFlight(flight2);
+            manager.AddFlight(flight3);
+            manager.RemoveFlight(3);
+            int count = manager.GetAllFlight().Count();
+
+            Assert.AreEqual(2, count);
+        }
+
+        [TestMethod]
+        public void UpdateFlightTest()
+        {
+            FlightManager manager = new FlightManager(new FakeFlightRepo());
+            Flight flight1 = new Flight(1, "Air France", "Paris Charles de Gaulle Airport", "France", "London Heathrow Airport", "United Kingdom", (decimal)100.00, Seats.ECONOMY, 200, (decimal)25.00);
+            Flight flightUpdated = new Flight(1, "Easy Jet", "Paris Charles de Gaulle Airport", "France", "London Heathrow Airport", "United Kingdom", (decimal)100.00, Seats.ECONOMY, 200, (decimal)25.00);
+
+            manager.AddFlight(flight1);
+            manager.UpdateFlight(flightUpdated);
+
+            Flight flight = manager.GetFlight(1);
+            Assert.IsNotNull(flight);
+            Assert.AreEqual("Easy Jet", flight.AirlineName);
         }
 
 
