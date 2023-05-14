@@ -89,10 +89,17 @@ namespace Booked.Logic.Services
             return flightRepo.GetFlightCountries();
         }
 
-        /*
-        public IEnumerable<Flight> GetFlightsBySearch(string search)
+        
+        public IEnumerable<Flight> GetFlightsBySearch(string depart, string arrive)
         {
-
-        }*/
+            if (!string.IsNullOrEmpty(depart) && !string.IsNullOrEmpty(arrive))
+            {
+                return flightRepo.GetAllFlights(depart, arrive);
+            }
+            else
+            {
+                return flightRepo.GetAllFlight();
+            }
+        }
     }
 }

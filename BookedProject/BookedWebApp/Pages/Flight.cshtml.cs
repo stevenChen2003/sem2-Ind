@@ -17,10 +17,13 @@ namespace BookedWebApp.Pages
         public IEnumerable<string> Countries { get; set; }
         public IEnumerable<Flight> FlightsList { get; set; }
 
-        public void OnGet()
+        public string depart { get; set; }
+        public string arrive { get; set; }
+
+        public void OnGet(string depart, string arrive)
         {
             Countries = flightManager.GetCountries();
-            FlightsList = flightManager.GetAllFlight();
+            FlightsList = flightManager.GetFlightsBySearch(depart, arrive);
         }
     }
 }

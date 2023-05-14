@@ -43,6 +43,7 @@ namespace Booked.Logic.Services
             }
 			else
 			{
+				search = search.Substring(0, 1).ToUpper() + search.Substring(1).ToLower();
                 return hotelRepo.GetAllHotelBySearch(search, sort);
             }
 		}
