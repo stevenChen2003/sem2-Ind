@@ -65,6 +65,18 @@ namespace Booked.Logic.Services
 			}
 		}
 
+        public Review GetReviewById(int id)
+        {
+            try
+            {
+                return reviewRepo.GetReview(id);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         //Update
         public bool UpdateReview(Review review)
         {
@@ -92,6 +104,8 @@ namespace Booked.Logic.Services
                 return false;
             }
         }
+
+
 
     }
 }

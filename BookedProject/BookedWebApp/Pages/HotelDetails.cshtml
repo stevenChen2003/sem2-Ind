@@ -58,8 +58,20 @@
                                     <p class="card-text text-black">@review.Description</p>
                                     @if (User.Identity.Name == review.User.Email)
                                     {
-                                        <a class="btn btn-secondary">Edit Review</a>
+                                        <button class="btn btn-secondary" onclick="editReview('@review.Id')">Edit Review</button>
                                     }
+                                </div>
+                                <div class="card-footer" id="editReview-@review.Id" style="display: none;">
+                                    <form method="post" asp-page-handler="EditReview">
+                                        <input type="hidden" name="ReviewId" value="@review.Id" />
+                                        <div class="form-group text-black">
+                                            <label for="description">Description:</label>
+                                            <textarea id="description" name="EditDescription" class="form-control">@review.Description</textarea>
+                                            <span asp-validation-for="EditDescription" class="text-danger"></span>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                                        <button type="button" class="btn btn-secondary" onclick="cancelEditReview('@review.Id')">Cancel</button>
+                                    </form>
                                 </div>
                             </div>
                         }
@@ -85,7 +97,7 @@
                             <input type="number" class="form-control" id="rating" name="rating" min="1" max="5" required />
                         </div>
                         <div class="text-center">
-                            <button type="submit" asp-page-handler="Review" class="btn btn-primary">Submit Review</button>
+                            <button type="submit" asp-page-handler="AddReview" class="btn btn-primary">Submit Review</button>
                         </div>
                     </form>
                 </div>
@@ -107,6 +119,22 @@
 
     </div>
 </div>
+
+<script>
+    function editReview(reviewId) {
+        // hide the card body
+        $('#editReview-' + reviewId).prev('.card-body').hide();
+        // show the edit form
+        $('#editReview-' + reviewId).show();
+    }
+
+    function cancelEditReview(reviewId) {
+        // hide the edit form
+        $('#editReview-' + reviewId).hide();
+        // show the card body
+        $('#editReview-' + reviewId).prev('.card-body').show();
+    }
+</script>
 
 
 

@@ -11,6 +11,7 @@ namespace Booked.Logic.Interfaces
 	{
         List<Review> GetAllReviewBasedOnHotelId(int hotelId);
 		List<Review> GetAllReviewBasedOnUserdId(int userId);
+		Review GetReview(int reviewId);
 		void AddReview(Review review);
 		void UpdateReview(Review review);
 		void RemoveReviewByID(int id);

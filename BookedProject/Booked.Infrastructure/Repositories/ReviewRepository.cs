@@ -39,6 +39,46 @@ namespace Booked.Infrastructure.Repositories
 			}
 		}
 
+        public Review GetReview(int reviewId)
+        {
+            try
+            {
+                Review review = new Review();
+                using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+                {
+                    string query = @"SELECT * FROM Reviews r JOIN Users u ON r.UserId = u.UserId WHERE r.ReviewId = @ReviewId;";
+
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@ReviewId", reviewId);
+                    conn.Open();
+
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    if (dr.Read())
+                    {
+                        User user = new User();
+                        user.UserId = Convert.ToInt32(dr["UserId"]);
+                        user.FirstName = dr["FirstName"].ToString();
+                        user.LastName = dr["LastName"].ToString();
+                        user.Email = dr["Email"].ToString();
+
+                        review = new Review(Convert.ToInt32(dr["ReviewId"]),
+                                                  user,
+                                                  Convert.ToInt32(dr["HotelId"]),
+                                                  dr["Description"].ToString(),
+                                                  Convert.ToInt32(dr["Rating"]));
+                    }
+                    conn.Close();
+                }
+                return review;
+
+            }
+            catch (SqlException)
+            {
+                throw new Exception("Cannot find Reviews");
+            }
+        }
+
         public List<Review> GetAllReviewBasedOnHotelId(int hotelId)
 		{
 			try
@@ -121,7 +161,7 @@ namespace Booked.Infrastructure.Repositories
             }
         }
 
-		public void RemoveReviewByID(int id)
+        public void RemoveReviewByID(int id)
 		{
             try
             {

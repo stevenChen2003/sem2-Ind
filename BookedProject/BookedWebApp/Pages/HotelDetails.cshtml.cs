@@ -3,11 +3,12 @@ using Booked.Infrastructure.Repositories;
 using Booked.Logic.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.ComponentModel.DataAnnotations;
 
 namespace BookedWebApp.Pages
 {
-    public class HotelDetailsModel : PageModel
-    {
+	public class HotelDetailsModel : PageModel
+	{
 		private readonly HotelManager hotelManager;
 		private readonly ReviewManager reviewManager;
 		private readonly UserManager userManager;
@@ -21,13 +22,20 @@ namespace BookedWebApp.Pages
 
 		public Hotel Hotel { get; private set; }
 
-        [BindProperty]
-        public DateTime DateStart { get; set; }
+		[BindProperty]
+		public DateTime DateStart { get; set; }
 		[BindProperty]
 		public DateTime DateEnd { get; set; }
 
+        [BindProperty]
+        public int ReviewId { get; set; }
 
-		public void OnGet(int id)
+        [BindProperty]
+        [Required]
+        public string EditDescription { get; set; }
+
+
+        public void OnGet(int id)
         {
             Hotel = hotelManager.GetHotel(id);
 			Hotel.Reviews = reviewManager.GetReviewsBaseOnHotelId(id);
@@ -48,7 +56,7 @@ namespace BookedWebApp.Pages
 			}
 		}
 
-		public IActionResult OnPostReview(int hotelid, string description, int rating)
+		public IActionResult OnPostAddReview(int hotelid, string description, int rating)
 		{
 			string email = User.Identity.Name;
 			User user = userManager.GetUser(email);
@@ -59,6 +67,19 @@ namespace BookedWebApp.Pages
                 return RedirectToPage("/HotelDetails", new { id = hotelid });
             }
             return RedirectToPage("/HotelDetails", new { id = hotelid });
+        }
+
+        public IActionResult OnPostEditReview()
+        {
+            Review review = reviewManager.GetReviewById(ReviewId);
+			if (ModelState.IsValid)
+			{
+                review.Description = EditDescription;
+                reviewManager.UpdateReview(review);
+                return RedirectToPage("/HotelDetails", new { id = review.HotelId });
+            }
+
+            return RedirectToPage("/HotelDetails", new { id = review.HotelId });
         }
 
     }

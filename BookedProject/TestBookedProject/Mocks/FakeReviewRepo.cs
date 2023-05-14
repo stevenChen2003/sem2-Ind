@@ -70,5 +70,9 @@ namespace TestBookedProject.Mocks
             return null;
         }
 
-	}
+        public Review GetReview(int reviewId)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
