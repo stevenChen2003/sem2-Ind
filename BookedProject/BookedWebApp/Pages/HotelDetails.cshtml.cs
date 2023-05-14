@@ -64,12 +64,13 @@ namespace BookedWebApp.Pages
             return RedirectToPage("/HotelDetails", new { id = hotelid });
         }
 
-        public IActionResult OnPostEditReview(string EditDescription)
+        public IActionResult OnPostEditReview(string EditDescription, int Editrating)
         {
             Review review = reviewManager.GetReviewById(ReviewId);
 			if (ModelState.IsValid)
 			{
                 review.Description = EditDescription;
+				review.Rating = Editrating;
                 reviewManager.UpdateReview(review);
                 return RedirectToPage("/HotelDetails", new { id = review.HotelId });
             }

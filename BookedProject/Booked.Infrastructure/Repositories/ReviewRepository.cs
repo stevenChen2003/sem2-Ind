@@ -187,10 +187,11 @@ namespace Booked.Infrastructure.Repositories
             {
                 using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
                 {
-                    string query = "UPDATE Reviews SET Description = @Description WHERE ReviewId = @ReviewId;";
+                    string query = "UPDATE Reviews SET Description = @Description, Rating = @Rating WHERE ReviewId = @ReviewId;";
                     SqlCommand command = new SqlCommand(query, conn);
                     command.Parameters.AddWithValue("@ReviewId", review.Id);
                     command.Parameters.AddWithValue("@Description", review.Description);
+                    command.Parameters.AddWithValue("@Rating", review.Rating);
                     conn.Open();
                     command.ExecuteNonQuery();
                 }

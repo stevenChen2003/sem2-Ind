@@ -58,6 +58,7 @@ namespace TestBookedProject.Mocks
             if (oldReview != null)
             {
                 oldReview.Description = review.Description;
+                oldReview.Rating = review.Rating;
             }
         }
 

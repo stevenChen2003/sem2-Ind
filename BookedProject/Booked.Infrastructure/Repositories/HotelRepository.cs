@@ -190,7 +190,7 @@ namespace Booked.Infrastructure.Repositories
             {
                 using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
                 {
-                    string query = @"SELECT * FROM Hotels WHERE Country LIKE @Search ";
+                    string query = @"SELECT * FROM Hotels WHERE Country LIKE @Search OR Name LIKE @Search OR City LIKE @Search ";
 
                     switch (sort)
                     {
