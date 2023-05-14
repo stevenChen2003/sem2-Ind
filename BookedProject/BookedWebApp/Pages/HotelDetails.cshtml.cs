@@ -82,5 +82,17 @@ namespace BookedWebApp.Pages
             return RedirectToPage("/HotelDetails", new { id = review.HotelId });
         }
 
+        public IActionResult OnPostDeleteReview()
+        {
+            Review review = reviewManager.GetReviewById(ReviewId);
+            if (ModelState.IsValid)
+            {
+                reviewManager.DeleteReview(review.Id);
+                return RedirectToPage("/HotelDetails", new { id = review.HotelId });
+            }
+
+            return RedirectToPage("/HotelDetails", new { id = review.HotelId });
+        }
+
     }
 }

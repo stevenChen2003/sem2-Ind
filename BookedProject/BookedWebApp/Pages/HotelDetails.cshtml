@@ -53,7 +53,6 @@
                         {
                             <div class="card mb-4">
                                 <div class="card-body">
-                                    <h5 class="card-title">@review.User.Email</h5>
                                     <h6 class="card-subtitle mb-2 text-muted">@review.User.Email</h6>
                                     <p class="card-text text-black">@review.Description</p>
                                     @if (User.Identity.Name == review.User.Email)
@@ -62,15 +61,19 @@
                                     }
                                 </div>
                                 <div class="card-footer" id="editReview-@review.Id" style="display: none;">
-                                    <form method="post" asp-page-handler="EditReview">
+                                    <form method="post">
                                         <input type="hidden" name="ReviewId" value="@review.Id" />
                                         <div class="form-group text-black">
                                             <label for="description">Description:</label>
                                             <textarea id="description" name="EditDescription" class="form-control">@review.Description</textarea>
                                             <span asp-validation-for="EditDescription" class="text-danger"></span>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Save Changes</button>
-                                        <button type="button" class="btn btn-secondary" onclick="cancelEditReview('@review.Id')">Cancel</button>
+
+                                        <div class="flex-column">
+                                            <button type="submit" asp-page-handler="EditReview" class="btn btn-primary">Save Changes</button>
+                                            <button type="submit" asp-page-handler="DeleteReview" class="btn btn-primary">Delete</button>
+                                            <button type="button" class="btn btn-secondary" onclick="cancelEditReview('@review.Id')">Cancel</button>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -82,26 +85,40 @@
 
         @if (User.Identity.IsAuthenticated)
         {
-            <div class="col-md-3">
-                <h2 class="text-center my-5">Add Review</h2>
+            bool userReviewed = Model.Hotel.Reviews.Any(r => r.User.Email == User.Identity.Name);
+            if (!userReviewed)
+            {
+                <div class="col-md-3">
+                    <h2 class="text-center my-5">Add Review</h2>
 
-                <div>
-                    <form method="post">
-                        <input type="hidden" name="hotelid" value="@Model.Hotel.HotelId" />
-                        <div class="form-group">
-                            <label for="body">Body</label>
-                            <textarea class="form-control" id="body" name="description" rows="5" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="rating">Rating</label>
-                            <input type="number" class="form-control" id="rating" name="rating" min="1" max="5" required />
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" asp-page-handler="AddReview" class="btn btn-primary">Submit Review</button>
-                        </div>
-                    </form>
+                    <div>
+                        <form method="post">
+                            <input type="hidden" name="hotelid" value="@Model.Hotel.HotelId" />
+                            <div class="form-group">
+                                <label for="body">Description:</label>
+                                <textarea class="form-control" id="body" name="description" rows="5" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="rating">Rating:</label>
+                                <input type="number" class="form-control" id="rating" name="rating" min="1" max="5" required />
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" asp-page-handler="AddReview" class="btn btn-primary">Submit Review</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
+            }
+            else
+            {
+                <div class="col-md-3">
+                    <h2 class="text-center my-5">Add Review</h2>
+
+                    <div>
+                        <p>Already have a review</p>
+                    </div>
+                </div>
+            }
         }
         else
         {
