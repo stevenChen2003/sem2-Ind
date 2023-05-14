@@ -66,7 +66,6 @@
                                         <div class="form-group text-black">
                                             <label for="description">Description:</label>
                                             <textarea id="description" name="EditDescription" class="form-control">@review.Description</textarea>
-                                            <span asp-validation-for="EditDescription" class="text-danger"></span>
                                         </div>
 
                                         <div class="flex-column">
@@ -103,7 +102,7 @@
                                 <input type="number" class="form-control" id="rating" name="rating" min="1" max="5" required />
                             </div>
                             <div class="text-center">
-                                <button type="submit" asp-page-handler="AddReview" class="btn btn-primary">Submit Review</button>
+                                <button type="submit" asp-page-handler="Review" class="btn btn-primary">Submit Review</button>
                             </div>
                         </form>
                     </div>

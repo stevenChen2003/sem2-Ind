@@ -46,7 +46,12 @@ namespace TestBookedProject.Mocks
             return sortedHotels;
         }
 
-		public Hotel GetHotelByID(int id)
+        public IEnumerable<Hotel> GetAllWebsiteHotel(string sort)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Hotel GetHotelByID(int id)
 		{
 			foreach (var hotel in hotelsList)
 			{

@@ -30,11 +30,6 @@ namespace BookedWebApp.Pages
         [BindProperty]
         public int ReviewId { get; set; }
 
-        [BindProperty]
-        [Required]
-        public string EditDescription { get; set; }
-
-
         public void OnGet(int id)
         {
             Hotel = hotelManager.GetHotel(id);
@@ -56,7 +51,7 @@ namespace BookedWebApp.Pages
 			}
 		}
 
-		public IActionResult OnPostAddReview(int hotelid, string description, int rating)
+		public IActionResult OnPostReview(int hotelid, string description, int rating)
 		{
 			string email = User.Identity.Name;
 			User user = userManager.GetUser(email);
@@ -69,7 +64,7 @@ namespace BookedWebApp.Pages
             return RedirectToPage("/HotelDetails", new { id = hotelid });
         }
 
-        public IActionResult OnPostEditReview()
+        public IActionResult OnPostEditReview(string EditDescription)
         {
             Review review = reviewManager.GetReviewById(ReviewId);
 			if (ModelState.IsValid)

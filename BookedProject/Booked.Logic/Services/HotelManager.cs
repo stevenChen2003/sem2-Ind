@@ -39,7 +39,7 @@ namespace Booked.Logic.Services
 		{
 			if (string.IsNullOrEmpty(search))
 			{
-                return hotelRepo.GetAllHotel();
+                return hotelRepo.GetAllWebsiteHotel(sort);
             }
 			else
 			{
