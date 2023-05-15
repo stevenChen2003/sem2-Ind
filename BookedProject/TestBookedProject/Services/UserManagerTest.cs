@@ -50,7 +50,7 @@ namespace TestBookedProject.Services
 
             manager.AddUser(user1);
 			manager.AddUser(user3);
-			bool result = manager.DeleteUser(user1.Email);
+			bool result = manager.DeleteUser(user1.UserId);
 
 			Assert.IsTrue(result);
         }

@@ -26,7 +26,16 @@ namespace TestBookedProject.Mocks
 			return null;
 		}
 
-		public IEnumerable<User> GetAllUser()
+        public User FindUserByid(int id)
+        {
+            foreach (var user in users)
+            {
+                if (user.UserId == id) return user;
+            }
+            return null;
+        }
+
+        public IEnumerable<User> GetAllUser()
 		{
 			return users;
 		}
@@ -41,9 +50,9 @@ namespace TestBookedProject.Mocks
             return null;
         }
 
-		public void RemoveUserByEmail(string email)
+		public void RemoveUserByEmail(int id)
 		{
-            User userToRemove = FindUserByEmail(email);
+            User userToRemove = FindUserByid(id);
             if (userToRemove != null)
             {
                 users.Remove(userToRemove);

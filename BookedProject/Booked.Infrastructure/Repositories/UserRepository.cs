@@ -121,16 +121,16 @@ namespace Booked.Infrastructure.Repositories
             }
         }
 
-        public void RemoveUserByEmail(string email)
+        public void RemoveUserByEmail(int id)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
                 {
-                    string query = "DELETE FROM Users WHERE Email= @Email; ";
+                    string query = "UPDATE Bookings SET UserId = NULL WHERE UserId = @UserId " + "DELETE FROM Users WHERE UserId= @UserId; ";
                     SqlCommand cmd = new SqlCommand(query, conn);
                     conn.Open();
-                    cmd.Parameters.AddWithValue("@Email", email);
+                    cmd.Parameters.AddWithValue("@UserId", id);
                     cmd.ExecuteNonQuery();
                 }
             }

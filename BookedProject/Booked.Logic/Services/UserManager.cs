@@ -52,11 +52,11 @@ namespace Booked.Logic.Services
             }
         }
 
-        public bool DeleteUser(string email)
+        public bool DeleteUser(int id)
         {
             try
             {
-                userRepo.RemoveUserByEmail(email);
+                userRepo.RemoveUserByEmail(id);
                 return true;
             }
             catch

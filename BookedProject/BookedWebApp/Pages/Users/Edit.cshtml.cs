@@ -44,7 +44,7 @@ namespace BookedWebApp.Pages.Users
 
         public IActionResult OnPostDelete()
         {
-            if (userManager.DeleteUser(user.Email))
+            if (userManager.DeleteUser(user.UserId))
             {
                 HttpContext.SignOutAsync();
                 return Redirect("~/Login");
