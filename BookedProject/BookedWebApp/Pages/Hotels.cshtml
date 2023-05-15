@@ -34,7 +34,7 @@
 
 
 <div class="container m-5">
-    @if (Model.ListHotel != null)
+    @if (Model.ListHotel.Count() != 0)
     {
         <div class="row">
             @foreach (var hotel in Model.ListHotel)

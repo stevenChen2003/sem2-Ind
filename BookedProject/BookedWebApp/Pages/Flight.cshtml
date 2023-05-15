@@ -88,7 +88,7 @@
 </div>
 
 <div class="container mt-5 justify-content-center align-content-center">
-	@if (Model.FlightsList != null)
+	@if (Model.FlightsList.Count() != 0)
 	{
 		<div class="row">
 			@foreach (var flight in Model.FlightsList)
@@ -109,6 +109,6 @@
 	}
 	else
 	{
-		<p>No Hotels found</p>
+		<p>No Flights found</p>
 	}
 </div>
