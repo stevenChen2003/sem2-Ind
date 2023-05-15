@@ -25,12 +25,27 @@ namespace Booked.Infrastructure.Repositories
                                     FROM Bookings b
                                     INNER JOIN HotelBookings hb ON b.BookingId = hb.BookingId
                                     INNER JOIN Hotels h ON hb.HotelId = h.HotelId;";
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
+
+					SqlCommand cmd = new SqlCommand(query, conn);
+
+					conn.Open();
+					SqlDataReader dr = cmd.ExecuteReader();
+
+                    while (dr.Read())
                     {
+                        Hotel hotel = new Hotel();
+                        hotel.HotelId = Convert.ToInt32(dr["HotelId"]);
+                        hotel.Name = dr["Name"].ToString();
+						hotel.PricePerNight = Convert.ToDecimal(dr["PricePerNight"]);
 
-                    }
 
-                }
+						User user = new User();
+                        user.UserId = Convert.ToInt32(dr["UserId"]);
+
+                        AllHotelBookings.Add(new HotelBooking(Convert.ToInt32(dr["BookingId"]), user, (DateTime)dr["StartDate"], (DateTime)dr["EndDate"], (DateTime)dr["BookingDate"], hotel));
+					}
+
+				}
                 return AllHotelBookings;
 			}
             catch (SqlException)
@@ -41,8 +56,46 @@ namespace Booked.Infrastructure.Repositories
 
         public IEnumerable<Booking> GetAllBookingByUserId(int userId)
         {
-            throw new NotImplementedException();
-        }
+			List<Booking> AllHotelBookings = new List<Booking>();
+			try
+			{
+				using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+				{
+					string query = @"SELECT b.*, hb.Amount_Of_Days, h.*
+                                    FROM Bookings b
+                                    INNER JOIN HotelBookings hb ON b.BookingId = hb.BookingId
+                                    INNER JOIN Hotels h ON hb.HotelId = h.HotelId
+                                    WHERE UserId = @UserId;";
+
+					SqlCommand cmd = new SqlCommand(query, conn);
+					
+                    conn.Open();
+					cmd.Parameters.AddWithValue("@UserId", userId);
+
+					SqlDataReader dr = cmd.ExecuteReader();
+
+					while (dr.Read())
+					{
+						Hotel hotel = new Hotel();
+						hotel.HotelId = Convert.ToInt32(dr["HotelId"]);
+						hotel.Name = dr["Name"].ToString();
+						hotel.PricePerNight = Convert.ToDecimal(dr["PricePerNight"]);
+
+
+						User user = new User();
+						user.UserId = Convert.ToInt32(dr["UserId"]);
+
+						AllHotelBookings.Add(new HotelBooking(Convert.ToInt32(dr["BookingId"]), user, (DateTime)dr["StartDate"], (DateTime)dr["EndDate"], (DateTime)dr["BookingDate"], hotel));
+					}
+
+				}
+				return AllHotelBookings;
+			}
+			catch (SqlException)
+			{
+				throw new Exception("No bookings found");
+			}
+		}
 
 
         public HotelBooking GetBookingById(int id)

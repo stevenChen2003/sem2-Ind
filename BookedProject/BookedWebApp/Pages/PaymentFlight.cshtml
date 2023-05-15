@@ -2,3 +2,20 @@
 @model BookedWebApp.Pages.PaymentFlightModel
 @{
 }
+
+<div class="container">
+	<h1>Payment Details:</h1>
+	<p>Price: @Model.flightBooking.GetPrice()</p>
+</div>
+
+<form method="post">
+	<input type="hidden" asp-for="start" value="@Model.flightBooking.StartDate" />
+	<input type="hidden" asp-for="end" value="@Model.flightBooking.EndDate" />
+	<input type="hidden" asp-for="flightId" value="@Model.flightBooking.Flight.FlightId" />
+
+	<div class="d-flex align-items-center justify-content-center pt-2">
+		<button type="submit" class="btn-primary">
+			Pay Now
+		</button>
+	</div>
+</form>

@@ -27,20 +27,20 @@ namespace BookedWebApp.Pages
             Flight = flightManager.GetFlight(id);
         }
 
-		/*
 		public IActionResult OnPost(int id)
 		{
 			Flight = flightManager.GetFlight(id);
 
 			if (ModelState.IsValid)
 			{
-				return RedirectToPage("/Payment", new { start = DateStart.ToString("yyyy-MM-dd"), end = DateEnd.ToString("yyyy-MM-dd"), hotelId = id });
+				return RedirectToPage("/PaymentFlight", new { start = DateStart.ToString("yyyy-MM-dd"), end = DateEnd.ToString("yyyy-MM-dd"), hotelId = id });
 			}
 			else
 			{
 				//Display messege that the dates are not filled int
 				return Page();
 			}
-		}*/
+		}
+
 	}
 }

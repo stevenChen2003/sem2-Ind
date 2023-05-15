@@ -11,10 +11,12 @@ namespace BookedWebApp.Pages.Users
     public class DetailsModel : PageModel
     {
         private readonly UserManager userManager;
+        private readonly BookingManager bookingManager;
 
-        public DetailsModel(UserManager mng)
+        public DetailsModel(UserManager mng, BookingManager bookingManager)
         {
             userManager = mng;
+            this.bookingManager = bookingManager;
         }
 
         [BindProperty]
