@@ -159,7 +159,7 @@ namespace Booked.Infrastructure.Repositories
             {
                 using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
                 {
-                    string query = @"DELETE FROM Flights WHERE FlightId = @FlightId;";
+                    string query = "UPDATE FlightBookings SET FlightId = NULL WHERE FlightId= @FlightId " + "DELETE FROM Flights WHERE FlightId = @FlightId;";
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@FlightId", id);
                     conn.Open();

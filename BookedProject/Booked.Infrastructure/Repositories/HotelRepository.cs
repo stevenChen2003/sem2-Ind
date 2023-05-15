@@ -168,7 +168,7 @@ namespace Booked.Infrastructure.Repositories
 			{
 				using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
 				{
-					string query = "DELETE FROM Hotels WHERE HotelId= @HotelId; ";
+					string query = "UPDATE HotelBookings SET HotelId = NULL WHERE HotelId= @HotelId " + "DELETE FROM Hotels WHERE HotelId= @HotelId; ";
                     SqlCommand cmd = new SqlCommand(query, conn);
 
                     conn.Open();
