@@ -30,12 +30,12 @@ namespace TestBookedProject.Mocks
 			throw new NotImplementedException();
 		}
 
-		public bool RemoveBooking(int id)
+		public void RemoveBooking(int id)
 		{
 			throw new NotImplementedException();
 		}
 
-		public bool UpdateBooking(HotelBooking booking)
+		public void UpdateBooking(HotelBooking booking)
 		{
 			throw new NotImplementedException();
 		}

@@ -51,6 +51,6 @@ namespace Booked.Logic.Services
 		//Update
 
 
-		//Delet
+		//Delete
 	}
 }

@@ -67,12 +67,27 @@ namespace Booked.Infrastructure.Repositories
 			throw new NotImplementedException();
 		}
 
-		public bool RemoveBooking(int id)
+		public void RemoveBooking(int id)
 		{
-			throw new NotImplementedException();
-		}
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+                {
+                    string query = "DELETE FROM Bookings WHERE BookingId = @BookingId; ";
+                    SqlCommand cmd = new SqlCommand(query, conn);
 
-		public bool UpdateBooking(FlightBooking booking)
+                    conn.Open();
+                    cmd.Parameters.AddWithValue("@BookingId", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException)
+            {
+                throw new Exception("Cannot remove");
+            }
+        }
+
+		public void UpdateBooking(FlightBooking booking)
 		{
 			throw new NotImplementedException();
 		}
