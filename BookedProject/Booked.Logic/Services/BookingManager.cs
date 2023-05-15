@@ -35,7 +35,17 @@ namespace Booked.Logic.Services
 		}
 
 		//Get
-
+		public IEnumerable<Booking> GetAllBookingByUserId(int usedId)
+		{
+			try
+			{
+				return hotelBookingRepo.GetAllBookingByUserId(usedId);
+			}
+			catch (Exception ex)
+			{
+				throw new Exception("Not working");
+			}
+		}
 
 
 		//Update

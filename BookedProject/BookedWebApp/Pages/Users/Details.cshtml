@@ -15,3 +15,21 @@
 <div class="container text-center">
     <a class="btn btn-dark btn-outline-light" asp-page="/Users/Edit" role="button">Edit information</a>
 </div>
+
+
+
+<div class="container text-center mt-5">
+    <h1 class="display-4">Bookings</h1>
+    @if(Model.user.Bookings != null)
+    {
+        foreach(var booking in Model.user.Bookings)
+        {
+            <p>@booking.BookingId Price: @booking.GetPrice()</p>
+        }
+    }
+    else
+    {
+        <p>No booking</p>
+    }
+
+</div>

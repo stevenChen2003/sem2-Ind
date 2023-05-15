@@ -26,6 +26,7 @@ namespace BookedWebApp.Pages.Users
         {
             string userEmail = User.Identity.Name;
             user = userManager.GetUser(userEmail);
+            user.Bookings = bookingManager.GetAllBookingByUserId(user.UserId);
         }
     }
 }
