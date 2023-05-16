@@ -50,6 +50,7 @@ namespace Booked.Infrastructure.Repositories
             }
         }
 
+        //Use for count because of major changes
         public IEnumerable<Flight> GetAllFlight()
         {
             List<Flight> ListFlights = new List<Flight>();
@@ -172,6 +173,7 @@ namespace Booked.Infrastructure.Repositories
             }
         }
 
+        //Use for search bar
         public IEnumerable<string> GetFlightCountries()
         {
             List<string> listCountries = new List<string>();
@@ -202,6 +204,7 @@ namespace Booked.Infrastructure.Repositories
 
         }
 
+        //Now use for count because of pagination
 		public IEnumerable<Flight> GetAllFlights(string depart, string arrive)
 		{
 			List<Flight> ListFlights = new List<Flight>();
@@ -239,5 +242,90 @@ namespace Booked.Infrastructure.Repositories
 				throw new Exception("Not Flights found");
 			}
 		}
+
+		public IEnumerable<Flight> GetFlightsPerPage(string depart, string arrive, int itemsPerPage, int offset)
+		{
+			List<Flight> ListFlights = new List<Flight>();
+			try
+			{
+				using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+				{
+					string query = @"SELECT * FROM Flights WHERE DepartureCountry = @Depart AND ArrivalCountry = @Arrive ORDER BY FlightId OFFSET @Offset ROWS FETCH NEXT @ItemsPerPage ROWS ONLY;";
+					SqlCommand cmd = new SqlCommand(query, conn);
+					conn.Open();
+					cmd.Parameters.AddWithValue("@Depart", depart);
+					cmd.Parameters.AddWithValue("@Arrive", arrive);
+					cmd.Parameters.AddWithValue("@Offset", offset);
+					cmd.Parameters.AddWithValue("@ItemsPerPage", itemsPerPage);
+					SqlDataReader dr = cmd.ExecuteReader();
+
+					while (dr.Read())
+					{
+						Flight flightDetails = new Flight(Convert.ToInt32(dr["FlightId"]),
+												  dr["Airline"].ToString(),
+												  dr["DepartureAirport"].ToString(),
+												  dr["DepartureCountry"].ToString(),
+												  dr["ArrivalAirport"].ToString(),
+												  dr["ArrivalCountry"].ToString(),
+												  Convert.ToDecimal(dr["Price"]),
+												  (Seats)Enum.Parse(typeof(Seats), dr["SeatType"].ToString()),
+												  Convert.ToInt32(dr["NumberOfSeats"]),
+												  Convert.ToDecimal(dr["ExtraBaggagePrice"]));
+						ListFlights.Add(flightDetails);
+					}
+					conn.Close();
+				}
+				return ListFlights;
+			}
+			catch (Exception)
+			{
+				throw new Exception("Not Flights found");
+			}
+		}
+
+		public IEnumerable<Flight> GetAllFlightsPerPage(int itemsPerPage, int offset)
+		{
+            if (offset < 0)
+            {
+                offset = 0;
+            }
+
+			List<Flight> ListFlights = new List<Flight>();
+			try
+			{
+				using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+				{
+					string query = @"SELECT * FROM Flights ORDER BY FlightId OFFSET @Offset ROWS FETCH NEXT @ItemsPerPage ROWS ONLY;";
+					SqlCommand cmd = new SqlCommand(query, conn);
+					conn.Open();
+					cmd.Parameters.AddWithValue("@Offset", offset);
+					cmd.Parameters.AddWithValue("@ItemsPerPage", itemsPerPage);
+					SqlDataReader dr = cmd.ExecuteReader();
+
+					while (dr.Read())
+					{
+						Flight flightDetails = new Flight(Convert.ToInt32(dr["FlightId"]),
+												  dr["Airline"].ToString(),
+												  dr["DepartureAirport"].ToString(),
+												  dr["DepartureCountry"].ToString(),
+												  dr["ArrivalAirport"].ToString(),
+												  dr["ArrivalCountry"].ToString(),
+												  Convert.ToDecimal(dr["Price"]),
+												  (Seats)Enum.Parse(typeof(Seats), dr["SeatType"].ToString()),
+												  Convert.ToInt32(dr["NumberOfSeats"]),
+												  Convert.ToDecimal(dr["ExtraBaggagePrice"]));
+						ListFlights.Add(flightDetails);
+					}
+					conn.Close();
+				}
+				return ListFlights;
+			}
+			catch (SqlException)
+			{
+				throw new Exception("Not Flights found");
+			}
+		}
+
+
 	}
 }

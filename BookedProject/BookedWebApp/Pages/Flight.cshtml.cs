@@ -20,10 +20,17 @@ namespace BookedWebApp.Pages
         public string depart { get; set; }
         public string arrive { get; set; }
 
-        public void OnGet(string depart, string arrive)
+        //Pagenation
+        public int CurrentPage { get; set; } = 1;
+        public int ItemsPerPage { get; set; } = 6;
+        public int TotalItems { get; set; }
+
+        public void OnGet(string depart, string arrive, int currentPage)
         {
             Countries = flightManager.GetCountries();
-            FlightsList = flightManager.GetFlightsBySearch(depart, arrive);
-        }
+            CurrentPage = currentPage > 0? currentPage : 1;
+            FlightsList = flightManager.GetFlightsBySearch(depart, arrive, ItemsPerPage, (CurrentPage - 1) * ItemsPerPage);
+			TotalItems = flightManager.GetTotalFlightsCount(depart, arrive);
+		}
     }
 }
