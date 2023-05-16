@@ -35,17 +35,29 @@ namespace Booked.Logic.Services
 			}
 		}
 
-		public IEnumerable<Hotel> GetHotelsByCountry(string search, string sort)
+		public IEnumerable<Hotel> GetHotelsByCountry(string search, string sort, int itemsPerPage, int offset)
 		{
 			if (string.IsNullOrEmpty(search))
 			{
-                return hotelRepo.GetAllWebsiteHotel(sort);
+                return hotelRepo.GetAllHotelPerPage(sort, itemsPerPage, offset);
             }
 			else
 			{
 				search = search.Substring(0, 1).ToUpper() + search.Substring(1).ToLower();
-                return hotelRepo.GetAllHotelBySearch(search, sort);
+                return hotelRepo.GetHotelPerPage(search, sort, itemsPerPage, offset);
             }
+		}
+
+		public int GetTotalHotelCount(string search)
+		{
+			if (!string.IsNullOrEmpty(search))
+			{
+				return hotelRepo.GetAllHotelBySearchCount(search);
+			}
+			else
+			{
+				return hotelRepo.GetAllHotel().Count();
+			}
 		}
 
         public bool AddHotel(Hotel hotel)

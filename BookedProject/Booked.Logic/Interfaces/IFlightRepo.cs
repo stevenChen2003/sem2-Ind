@@ -12,6 +12,8 @@ namespace Booked.Logic.Interfaces
         Flight GetFlightByID(int id);
         IEnumerable<Flight> GetAllFlight();
         IEnumerable<Flight> GetAllFlights(string depart, string arrive);
+
+
         IEnumerable<Flight> GetFlightsPerPage(string depart, string arrive, int itemsPerPage, int offset);
 		IEnumerable<Flight> GetAllFlightsPerPage(int itemsPerPage, int offset);
 		void AddFlight(Flight flight);

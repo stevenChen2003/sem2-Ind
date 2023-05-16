@@ -8,11 +8,11 @@
     <form class="d-flex flex-column flex-md-row align-items-start align-items-md-center" method="get" asp-page="./Hotels">
         <div class="input-group-text w-100 w-md-50">
             <input type="text" class="form-control" placeholder="Search base on Name, City or Country" asp-for="query">
-            <button class="btn btn-primary" type="submit">Search</button>
+            <button class="btn btn-primary" name="search" type="submit">Search</button>
         </div>
         <div class="input-group-text w-100 w-lg-25">
             <label for="sort" class="me-2 text-black">Sort:</label>
-            <select class="form-select" asp-for="SortOrder">
+            <select class="form-select" asp-for="SortOrder" id="sort-select">
                 <option value="name_asc">Name A-Z</option>
                 <option value="name_desc">Name Z-A</option>
                 <option value="price_asc">Price: Low to High</option>
@@ -58,4 +58,26 @@
     }
 </div>
 
+<div class=" container d-flex justify-content-center">
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            @for (var i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                    <a asp-page="/Hotels" asp-route-currentpage="@i" asp-route-query="@Model.query" asp-route-SortOrder="@Model.SortOrder" class="page-link">@i</a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>
+
+
+
+<script>
+    const sortSelect = document.getElementById("sort-select");
+    sortSelect.addEventListener("change", () => {
+        const form = document.querySelector("form");
+        form.submit();
+    });
+</script>
 

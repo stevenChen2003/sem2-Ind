@@ -285,11 +285,6 @@ namespace Booked.Infrastructure.Repositories
 
 		public IEnumerable<Flight> GetAllFlightsPerPage(int itemsPerPage, int offset)
 		{
-            if (offset < 0)
-            {
-                offset = 0;
-            }
-
 			List<Flight> ListFlights = new List<Flight>();
 			try
 			{

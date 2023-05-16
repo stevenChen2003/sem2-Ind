@@ -17,18 +17,34 @@ namespace BookedWebApp.Pages
 
         public IEnumerable<Hotel> ListHotel { get; set; }
 
-
+        //SearchBar
         public string query { get; set; }
         public string SortOrder { get; set; }
+
+        //Pagination
+		public int CurrentPage { get; set; } = 1;
+		public int ItemsPerPage { get; set; } = 2;
+		public int TotalItems { get; set; }
+
+		public int TotalPages => (int)Math.Ceiling(decimal.Divide(TotalItems, ItemsPerPage));
+		
         /*
         [BindProperty]
         public DateTime CheckInDate { get; set; }
         [BindProperty]
         public DateTime CheckOutDate { get; set; }*/
 
-        public void OnGet(string query, string SortOrder)
+		public void OnGet(string query, string SortOrder, int currentPage)
         {
-            ListHotel = hotelManager.GetHotelsByCountry(query, SortOrder);
-        }
+			CurrentPage = currentPage > 0 ? currentPage : 1;
+			if (!string.IsNullOrEmpty(query) || !string.IsNullOrEmpty(SortOrder))
+			{
+				this.query = query;
+				this.SortOrder = SortOrder;
+			}
+
+			ListHotel = hotelManager.GetHotelsByCountry(query, SortOrder, ItemsPerPage, (CurrentPage - 1) * ItemsPerPage);
+            TotalItems = hotelManager.GetTotalHotelCount(query);
+		}
     }
 }

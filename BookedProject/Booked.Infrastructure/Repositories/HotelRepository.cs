@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Booked.Domain.Domain.Enum;
 using System.Drawing;
 using Booked.Logic.Interfaces;
+using System.Text.RegularExpressions;
 
 namespace Booked.Infrastructure.Repositories
 {
@@ -182,7 +183,7 @@ namespace Booked.Infrastructure.Repositories
             }
         }
 
-        public IEnumerable<Hotel> GetAllHotelBySearch(string search, string sort)
+        public int GetAllHotelBySearchCount(string search)
         {
             List<Hotel> AllHotel = new List<Hotel>();
 
@@ -190,24 +191,7 @@ namespace Booked.Infrastructure.Repositories
             {
                 using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
                 {
-                    string query = @"SELECT * FROM Hotels WHERE Country LIKE @Search OR Name LIKE @Search OR City LIKE @Search ";
-
-                    switch (sort)
-                    {
-                        case "name_desc":
-                            query += " ORDER BY Name DESC;";
-                            break;
-                        case "price_asc":
-                            query += " ORDER BY PricePerNight ASC;";
-                            break;
-                        case "price_desc":
-                            query += " ORDER BY PricePerNight DESC;";
-                            break;
-                        default:
-                            query += " ORDER BY Name ASC;";
-                            break;
-                    }
-
+                    string query = @"SELECT * FROM Hotels WHERE Country LIKE @Search OR Name LIKE @Search OR City LIKE @Search ;";
                     SqlCommand cmd = new SqlCommand(query, conn);
 
                     conn.Open();
@@ -233,7 +217,7 @@ namespace Booked.Infrastructure.Repositories
                     conn.Close();
                 }
 
-                return AllHotel;
+                return AllHotel.Count();
 
             }
             catch (SqlException)
@@ -242,63 +226,138 @@ namespace Booked.Infrastructure.Repositories
             }
         }
 
-        public IEnumerable<Hotel> GetAllWebsiteHotel(string sort)
-        {
-            List<Hotel> AllHotel = new List<Hotel>();
+		public IEnumerable<Hotel> GetAllHotelPerPage(string sort, int itemsPerPage, int offset)
+		{
+			List<Hotel> AllHotel = new List<Hotel>();
 
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
-                {
-                    string query = @"SELECT * FROM Hotels ";
+			try
+			{
+				using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+				{
+					string query = @"SELECT * FROM Hotels ";
 
-                    switch (sort)
-                    {
-                        case "name_desc":
-                            query += " ORDER BY Name DESC;";
-                            break;
-                        case "price_asc":
-                            query += " ORDER BY PricePerNight ASC;";
-                            break;
-                        case "price_desc":
-                            query += " ORDER BY PricePerNight DESC;";
-                            break;
-                        default:
-                            query += " ORDER BY Name ASC;";
-                            break;
-                    }
+					switch (sort)
+					{
+						case "name_desc":
+							query += " ORDER BY Name DESC ";
+							break;
+						case "price_asc":
+							query += " ORDER BY PricePerNight ASC ";
+							break;
+						case "price_desc":
+							query += " ORDER BY PricePerNight DESC ";
+							break;
+						default:
+							query += " ORDER BY Name ASC ";
+							break;
+					}
 
-                    SqlCommand cmd = new SqlCommand(query, conn);
+					//Pagination
+					query += "OFFSET @Offset ROWS FETCH NEXT @ItemsPerPage ROWS ONLY;";
 
-                    conn.Open();
-                    SqlDataReader dr = cmd.ExecuteReader();
+					SqlCommand cmd = new SqlCommand(query, conn);
 
-                    while (dr.Read())
-                    {
-                        byte[] imagedate = (byte[])dr["Image"];
-                        Rooms roomType = (Rooms)Enum.Parse(typeof(Rooms), dr["RoomType"].ToString());
+					conn.Open();
+					cmd.Parameters.AddWithValue("@Offset", offset);
+					cmd.Parameters.AddWithValue("@ItemsPerPage", itemsPerPage);
+					SqlDataReader dr = cmd.ExecuteReader();
 
-                        AllHotel.Add(new Hotel(Convert.ToInt32(dr["HotelId"]),
-                                                    dr["Name"].ToString(),
-                                                    dr["Address"].ToString(),
-                                                    dr["City"].ToString(),
-                                                    dr["Country"].ToString(),
-                                                    Convert.ToInt32(dr["StarRating"]),
-                                                    Convert.ToDecimal(dr["PricePerNight"]),
-                                                    roomType,
-                                                    Convert.ToInt32(dr["MaximumBooking"]),
-                                                    imagedate));
-                    }
-                    conn.Close();
-                }
+					while (dr.Read())
+					{
+						byte[] imagedate = (byte[])dr["Image"];
+						Rooms roomType = (Rooms)Enum.Parse(typeof(Rooms), dr["RoomType"].ToString());
 
-                return AllHotel;
+						AllHotel.Add(new Hotel(Convert.ToInt32(dr["HotelId"]),
+													dr["Name"].ToString(),
+													dr["Address"].ToString(),
+													dr["City"].ToString(),
+													dr["Country"].ToString(),
+													Convert.ToInt32(dr["StarRating"]),
+													Convert.ToDecimal(dr["PricePerNight"]),
+													roomType,
+													Convert.ToInt32(dr["MaximumBooking"]),
+													imagedate));
+					}
+					conn.Close();
+				}
 
-            }
-            catch (SqlException)
-            {
-                throw new Exception("Hotels not found");
-            }
-        }
-    }
+				return AllHotel;
+
+			}
+			catch (SqlException)
+			{
+				throw new Exception("Hotels not found");
+			}
+		}
+
+
+		public IEnumerable<Hotel> GetHotelPerPage(string search, string sort, int itemsPerPage, int offset)
+		{
+			List<Hotel> AllHotel = new List<Hotel>();
+
+			try
+			{
+				using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+				{
+					string query = @"SELECT * FROM Hotels WHERE Country LIKE @Search OR Name LIKE @Search OR City LIKE @Search ";
+
+					switch (sort)
+					{
+						case "name_desc":
+							query += " ORDER BY Name DESC ";
+							break;
+						case "price_asc":
+							query += " ORDER BY PricePerNight ASC ";
+							break;
+						case "price_desc":
+							query += " ORDER BY PricePerNight DESC ";
+							break;
+						default:
+							query += " ORDER BY Name ASC ";
+							break;
+					}
+
+                    //Pagination
+                    query += "OFFSET @Offset ROWS FETCH NEXT @ItemsPerPage ROWS ONLY;";
+
+					SqlCommand cmd = new SqlCommand(query, conn);
+
+					conn.Open();
+					cmd.Parameters.AddWithValue("@Search", $"{search}%");
+					cmd.Parameters.AddWithValue("@Offset", offset);
+					cmd.Parameters.AddWithValue("@ItemsPerPage", itemsPerPage);
+					SqlDataReader dr = cmd.ExecuteReader();
+
+					while (dr.Read())
+					{
+						byte[] imagedate = (byte[])dr["Image"];
+						Rooms roomType = (Rooms)Enum.Parse(typeof(Rooms), dr["RoomType"].ToString());
+
+						AllHotel.Add(new Hotel(Convert.ToInt32(dr["HotelId"]),
+													dr["Name"].ToString(),
+													dr["Address"].ToString(),
+													dr["City"].ToString(),
+													dr["Country"].ToString(),
+													Convert.ToInt32(dr["StarRating"]),
+													Convert.ToDecimal(dr["PricePerNight"]),
+													roomType,
+													Convert.ToInt32(dr["MaximumBooking"]),
+													imagedate));
+					}
+					conn.Close();
+				}
+
+				return AllHotel;
+
+			}
+			catch (SqlException)
+			{
+				throw new Exception("Hotels not found");
+			}
+
+		}
+
+
+
+	}
 }
