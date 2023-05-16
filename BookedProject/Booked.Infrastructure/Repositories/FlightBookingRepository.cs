@@ -14,9 +14,6 @@ namespace Booked.Infrastructure.Repositories
 	{
 		private const string CONNECTION_STRING = @"Server=mssqlstud.fhict.local;Database=dbi507678_booked;User Id=dbi507678_booked;Password=booked789;";
 
-
-        string query = "SELECT b.*, fb.ExtraLuggage, f.* FROM Bookings b INNER JOIN FlightBookings fb ON b.BookingId = fb.BookingId INNER JOIN Flights f ON fb.FlightId = f.FlightId;";
-
         public void AddBooking(FlightBooking b)
 		{
             try
@@ -65,8 +62,9 @@ namespace Booked.Infrastructure.Repositories
                 //Need to finish this part
                 using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
                 {
-                    string query = @"SELECT b.*, fb.ExtraLuggage, f.* FROM Bookings 
-                                     b INNER JOIN FlightBookings fb ON b.BookingId = fb.BookingId 
+                    string query = @"SELECT b.*, fb.ExtraLuggage, f.* 
+                                     FROM Bookings b
+                                     INNER JOIN FlightBookings fb ON b.BookingId = fb.BookingId 
                                      INNER JOIN Flights f ON fb.FlightId = f.FlightId;";
 
                     SqlCommand cmd = new SqlCommand(query, conn);
@@ -99,8 +97,45 @@ namespace Booked.Infrastructure.Repositories
 
 		public IEnumerable<Booking> GetBookingByUserId(int userId)
 		{
-			throw new NotImplementedException();
-		}
+            List<Booking> AllFlightBookings = new List<Booking>();
+            try
+            {
+                //Need to finish this part
+                using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+                {
+                    string query = @"SELECT b.*, fb.ExtraLuggage, f.* 
+                                     FROM Bookings b
+                                     INNER JOIN FlightBookings fb ON b.BookingId = fb.BookingId 
+                                     INNER JOIN Flights f ON fb.FlightId = f.FlightId
+                                     WHERE UserId = @UserId;";
+
+                    SqlCommand cmd = new SqlCommand(query, conn);
+
+                    conn.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        Flight flight = new Flight();
+                        flight.FlightId = Convert.ToInt32(dr["FlightId"]);
+                        flight.AirlineName = dr["Airline"].ToString();
+                        flight.Price = Convert.ToDecimal(dr["Price"]);
+                        flight.ExtraBaggagePrice = Convert.ToDecimal(dr["ExtraBaggagePrice"]);
+
+                        User user = new User();
+                        user.UserId = Convert.ToInt32(dr["UserId"]);
+
+                        AllFlightBookings.Add(new FlightBooking(Convert.ToInt32(dr["BookingId"]), user, (DateTime)dr["StartDate"], (DateTime)dr["EndDate"], (DateTime)dr["BookingDate"], flight, (bool)dr["ExtraLuggage"]));
+                    }
+
+                }
+                return AllFlightBookings;
+            }
+            catch (SqlException)
+            {
+                throw new Exception("No bookings found");
+            }
+        }
 		public FlightBooking GetBookingById(int id)
 		{
 			throw new NotImplementedException();
