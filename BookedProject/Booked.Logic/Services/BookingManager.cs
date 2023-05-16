@@ -39,8 +39,26 @@ namespace Booked.Logic.Services
 		{
 			try
 			{
-				return hotelBookingRepo.GetAllBookingByUserId(usedId);
-			}
+				if (flightBookingRepo.GetBookingByUserId(usedId) != null && hotelBookingRepo.GetAllBookingByUserId(usedId) != null)
+				{
+					return hotelBookingRepo.GetAllBookingByUserId(usedId).Concat(flightBookingRepo.GetBookingByUserId(usedId));
+				}
+				else if (flightBookingRepo.GetBookingByUserId(usedId) != null && hotelBookingRepo.GetAllBookingByUserId(usedId) == null)
+				{
+					return flightBookingRepo.GetBookingByUserId(usedId);
+
+                }
+				else if (flightBookingRepo.GetBookingByUserId(usedId) == null && hotelBookingRepo.GetAllBookingByUserId(usedId) != null)
+				{
+					return hotelBookingRepo.GetAllBookingByUserId(usedId);
+
+                }
+                else
+				{
+					return null;
+				}
+
+            }
 			catch (Exception ex)
 			{
 				throw new Exception("Not working");
