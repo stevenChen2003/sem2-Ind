@@ -46,6 +46,16 @@ namespace TestBookedProject.Mocks
             return sortedHotels;
         }
 
+        public int GetAllHotelBySearchCount(string search)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Hotel> GetAllHotelPerPage(string sort, int itemsPerPage, int offset)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Hotel> GetAllWebsiteHotel(string sort)
         {
             throw new NotImplementedException();
@@ -63,7 +73,12 @@ namespace TestBookedProject.Mocks
 			return null;
 		}
 
-		public void RemoveHotelByID(int id)
+        public IEnumerable<Hotel> GetHotelPerPage(string search, string sort, int itemsPerPage, int offset)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveHotelByID(int id)
 		{
             Hotel hotel = GetHotelByID(id);
             if (hotel != null)

@@ -27,7 +27,12 @@ namespace TestBookedProject.Mocks
             return flightList.Where(f => f.DepartureCountry == depart && f.ArrivalCountry == arrive);
         }
 
-		public Flight GetFlightByID(int id)
+        public IEnumerable<Flight> GetAllFlightsPerPage(int itemsPerPage, int offset)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Flight GetFlightByID(int id)
 		{
             return flightList.FirstOrDefault(f => f.FlightId == id);
         }
@@ -37,7 +42,12 @@ namespace TestBookedProject.Mocks
             return flightList.Select(f => f.DepartureCountry).Distinct();
         }
 
-		public void RemoveFlightByID(int id)
+        public IEnumerable<Flight> GetFlightsPerPage(string depart, string arrive, int itemsPerPage, int offset)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveFlightByID(int id)
 		{
             var flightToRemove = flightList.FirstOrDefault(f => f.FlightId == id);
             if (flightToRemove != null)
