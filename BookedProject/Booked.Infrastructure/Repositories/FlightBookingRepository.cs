@@ -112,7 +112,8 @@ namespace Booked.Infrastructure.Repositories
                     SqlCommand cmd = new SqlCommand(query, conn);
 
                     conn.Open();
-                    SqlDataReader dr = cmd.ExecuteReader();
+					cmd.Parameters.AddWithValue("@UserId", userId);
+					SqlDataReader dr = cmd.ExecuteReader();
 
                     while (dr.Read())
                     {

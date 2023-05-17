@@ -14,12 +14,14 @@ namespace BookedWebApp.Pages
             flightManager = _flightManager;
         }
 
-        public Flight Flight { get; set; }
+        public Flight Flight { get; private set; }
 
 		[BindProperty]
 		public DateTime DateStart { get; set; }
 		[BindProperty]
 		public DateTime DateEnd { get; set; }
+		[BindProperty]
+		public bool extra { get; set; }
 
 
 		public void OnGet(int id)
@@ -31,9 +33,9 @@ namespace BookedWebApp.Pages
 		{
 			Flight = flightManager.GetFlight(id);
 
-			if (ModelState.IsValid)
+			if (ModelState.IsValid && DateStart >= DateTime.Today && DateEnd > DateStart)
 			{
-				return RedirectToPage("/PaymentFlight", new { start = DateStart.ToString("yyyy-MM-dd"), end = DateEnd.ToString("yyyy-MM-dd"), hotelId = id });
+				return RedirectToPage("/PaymentFlight", new { start = DateStart.ToString("yyyy-MM-dd"), end = DateEnd.ToString("yyyy-MM-dd"), flightId = id, Extra = extra });
 			}
 			else
 			{
