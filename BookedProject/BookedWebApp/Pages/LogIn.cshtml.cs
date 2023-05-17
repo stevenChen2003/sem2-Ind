@@ -47,7 +47,7 @@ namespace BookedWebApp.Pages
                 }
                 else
                 {
-                    ViewData["Message"] = "Incorrect password or email.";
+                    TempData["Message"] = "Incorrect password or email.";
                     return Page();
                 }
             }
