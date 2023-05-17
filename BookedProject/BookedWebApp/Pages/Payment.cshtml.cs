@@ -50,7 +50,7 @@ namespace BookedWebApp.Pages
 			if (ModelState.IsValid)
             {
 				_bookingManager.AddBooking(hotelBooking);
-				return Redirect("/Index");
+				return RedirectToPage("/Index");
 			}
             return Page();
         }

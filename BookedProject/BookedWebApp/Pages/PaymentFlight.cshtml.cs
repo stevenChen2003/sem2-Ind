@@ -21,7 +21,7 @@ namespace BookedWebApp.Pages
         }
 
         public FlightBooking flightBooking { get; set; }
-        public FlightBooking flightBooking2 { get; set; }
+        //public FlightBooking flightBooking2 { get; set; }
         public User user { get; set; }
 
 
@@ -44,6 +44,21 @@ namespace BookedWebApp.Pages
 			flightBooking = new FlightBooking(user, start, end, DateTime.Today, flight, Extra);
 		}
 
+		public IActionResult OnPost()
+		{
+			string userEmail = User.Identity.Name;
+			user = userManager.GetUser(userEmail);
+			flight = flightManager.GetFlight(flightId);
+			flightBooking = new FlightBooking(user, start, end, DateTime.Today, flight, Extra);
+			if (ModelState.IsValid)
+			{
+				bookingManager.AddBooking(flightBooking);
+				TempData["BookingCompletedMessage"] = "Your booking has been successfully completed.";
+				return RedirectToPage("/Index");
+			}
+			return Page();
+		}
 
-    }
+
+	}
 }

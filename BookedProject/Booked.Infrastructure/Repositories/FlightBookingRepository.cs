@@ -40,7 +40,7 @@ namespace Booked.Infrastructure.Repositories
                     using (SqlCommand cmd2 = new SqlCommand(query, conn))
                     {
                         cmd2.Parameters.AddWithValue("@BookingId", b.BookingId);
-                        cmd2.Parameters.AddWithValue("@HotelId", b.Flight.FlightId);
+                        cmd2.Parameters.AddWithValue("@FlightId", b.Flight.FlightId);
                         cmd2.Parameters.AddWithValue("@ExtraLuggage", b.ExtraLuggage);
                         cmd2.ExecuteNonQuery();
                     }
