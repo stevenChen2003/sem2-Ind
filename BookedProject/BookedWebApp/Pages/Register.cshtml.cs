@@ -20,14 +20,23 @@ namespace BookedWebApp.Pages
         }
 
         [BindProperty]
-        public CreateUserDTO User { get; set; }
+        public CreateUserDTO Creadentials { get; set; }
+
+		public async Task<IActionResult> OnGetAsync(string returnUrl = null)
+		{
+			if (User.Identity.IsAuthenticated)
+			{
+				return RedirectToPage("/Index");
+			}
+			return Page();
+		}
 
 
-        public IActionResult OnPost()
+		public IActionResult OnPost()
         {
             if (ModelState.IsValid)
             {
-                User user = User.GetUser();
+                User user = Creadentials.GetUser();
                 if (userManager.AddUser(user))
                 {
                     List<Claim> claims = new List<Claim>

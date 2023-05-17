@@ -10,7 +10,7 @@ using Booked.Infrastructure.Repositories;
 
 namespace BookedWebApp.Pages
 {
-    public class LogInModel : PageModel
+	public class LogInModel : PageModel
     {
         private readonly UserManager userManager;
 
@@ -27,11 +27,16 @@ namespace BookedWebApp.Pages
         [Required, DataType(DataType.Password)]
         public string Password { get; set; }
 
-        public void OnGet()
-        {
-        }
+		public async Task<IActionResult> OnGetAsync(string returnUrl = null)
+		{
+			if (User.Identity.IsAuthenticated)
+			{
+				return RedirectToPage("/Index");
+			}
+            return Page();
+		}
 
-        public IActionResult OnPost()
+		public IActionResult OnPost()
         {
             if (ModelState.IsValid)
             {
