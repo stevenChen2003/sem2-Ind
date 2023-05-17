@@ -27,6 +27,11 @@ namespace BookedWebApp.Pages
 
 		public int TotalPages => (int)Math.Ceiling(decimal.Divide(TotalItems, ItemsPerPage));
 
+		public bool ShowPrevious => CurrentPage > 1;
+		public bool ShowNext => CurrentPage < TotalPages;
+		public bool ShowFirst => CurrentPage != 1;
+		public bool ShowLast => CurrentPage != TotalPages;
+
 
 		public void OnGet(string depart, string arrive, int currentPage)
         {
