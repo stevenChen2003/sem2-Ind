@@ -27,14 +27,19 @@ namespace BookedWebApp.Pages
 		public int TotalItems { get; set; }
 
 		public int TotalPages => (int)Math.Ceiling(decimal.Divide(TotalItems, ItemsPerPage));
-		
+
+        public bool ShowPrevious => CurrentPage > 1;
+        public bool ShowNext => CurrentPage < TotalPages;
+        public bool ShowFirst => CurrentPage != 1;
+        public bool ShowLast => CurrentPage != TotalPages;
+
         /*
         [BindProperty]
         public DateTime CheckInDate { get; set; }
         [BindProperty]
         public DateTime CheckOutDate { get; set; }*/
 
-		public void OnGet(string query, string SortOrder, int currentPage)
+        public void OnGet(string query, string SortOrder, int currentPage)
         {
 			CurrentPage = currentPage > 0 ? currentPage : 1;
 			if (!string.IsNullOrEmpty(query) || !string.IsNullOrEmpty(SortOrder))
