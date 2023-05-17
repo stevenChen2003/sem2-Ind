@@ -43,7 +43,7 @@ namespace BookedWebApp.Pages
                     };
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     HttpContext.SignInAsync(new ClaimsPrincipal(claimsIdentity));
-                    return Redirect("/Index");
+                    return RedirectToPage("/Index");
                 }
                 else
                 {
