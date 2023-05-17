@@ -5,6 +5,20 @@
     Layout = "_HomeLayout";
 }
 
+@if (TempData.ContainsKey("BookingCompletedMessage"))
+{
+    <div id="success-message" class="alert alert-success text-black">
+        <p>@TempData["BookingCompletedMessage"]</p>
+    </div>
+
+    <script>
+        setTimeout(function() {
+            var successMessage = document.getElementById("success-message");
+            successMessage.style.display = "none";
+        }, 3000);
+    </script>
+}
+
 <div class="container-fluid">
     <div id="home-carousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-indicators">

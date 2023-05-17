@@ -50,7 +50,8 @@ namespace BookedWebApp.Pages
 			if (ModelState.IsValid)
             {
 				_bookingManager.AddBooking(hotelBooking);
-				return RedirectToPage("/Index");
+                TempData["BookingCompletedMessage"] = "Your booking has been successfully completed.";
+                return RedirectToPage("/Index");
 			}
             return Page();
         }
