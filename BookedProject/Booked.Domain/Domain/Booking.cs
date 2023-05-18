@@ -14,6 +14,8 @@ namespace Booked.Domain.Domain
         public DateTime EndDate { get; set; }
         public decimal Price { get; set; }
         public DateTime BookingDate { get; set; }
+        public string Status { get; set; }
+
 
         //Without ID
         public Booking(User user, DateTime startDate, DateTime endDate, DateTime bookingDate)
@@ -26,7 +28,7 @@ namespace Booked.Domain.Domain
         }
 
         //With ID
-        public Booking(int id,User user, DateTime startDate, DateTime endDate, DateTime bookingDate)
+        public Booking(int id,User user, DateTime startDate, DateTime endDate, DateTime bookingDate, string status)
         {
             BookingId = id;
             User = user;
@@ -34,6 +36,7 @@ namespace Booked.Domain.Domain
             EndDate = endDate;
             Price = 0;
             BookingDate = bookingDate;
+            Status = status;
         }
 
         public virtual decimal GetPrice() { return Price; }

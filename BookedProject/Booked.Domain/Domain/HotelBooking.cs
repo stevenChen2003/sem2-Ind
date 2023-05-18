@@ -19,7 +19,7 @@ namespace Booked.Domain.Domain
         }
 
         //With ID
-        public HotelBooking(int id, User user, DateTime startDate, DateTime endDate, DateTime bookingDate, Hotel hotel) : base(id, user, startDate, endDate, bookingDate)
+        public HotelBooking(int id, User user, DateTime startDate, DateTime endDate, DateTime bookingDate, Hotel hotel, string status) : base(id, user, startDate, endDate, bookingDate, status)
         {
             Hotel= hotel;
             AmountOfDays = (EndDate.Date - StartDate.Date).Days;

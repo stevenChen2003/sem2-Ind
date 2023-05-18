@@ -20,9 +20,9 @@ namespace Booked.Infrastructure.Repositories
 				using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
 				{
 					conn.Open();
-					string query = "INSERT INTO Bookings (UserId, StartDate, EndDate, Price, BookingDate)" +
+					string query = "INSERT INTO Bookings (UserId, StartDate, EndDate, Price, BookingDate, Status)" +
 									"OUTPUT INSERTED.BookingId " +
-									"VALUES (@UserId, @StartDate, @EndDate, @Price, @BookingDate)";
+									"VALUES (@UserId, @StartDate, @EndDate, @Price, @BookingDate, @Status)";
 					using (SqlCommand cmd = new SqlCommand(query, conn))
 					{
 						cmd.Parameters.AddWithValue("@UserId", booking.User.UserId);
@@ -30,6 +30,7 @@ namespace Booked.Infrastructure.Repositories
 						cmd.Parameters.AddWithValue("@EndDate", booking.EndDate);
 						cmd.Parameters.AddWithValue("@Price", booking.GetPrice());
 						cmd.Parameters.AddWithValue("@BookingDate", booking.BookingDate);
+						cmd.Parameters.AddWithValue("@Status", "Paid");
 
 						//Gets the generated id
 						booking.BookingId = (int)cmd.ExecuteScalar();
@@ -60,9 +61,9 @@ namespace Booked.Infrastructure.Repositories
 				using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
 				{
 					conn.Open();
-					string query = "INSERT INTO Bookings (UserId, StartDate, EndDate, Price, BookingDate)" +
+					string query = "INSERT INTO Bookings (UserId, StartDate, EndDate, Price, BookingDate, Status)" +
 									"OUTPUT INSERTED.BookingId " +
-									"VALUES (@UserId, @StartDate, @EndDate, @Price, @BookingDate)";
+									"VALUES (@UserId, @StartDate, @EndDate, @Price, @BookingDate, @Status)";
 					using (SqlCommand cmd = new SqlCommand(query, conn))
 					{
 						cmd.Parameters.AddWithValue("@UserId", hotelBooking.User.UserId);
@@ -70,6 +71,7 @@ namespace Booked.Infrastructure.Repositories
 						cmd.Parameters.AddWithValue("@EndDate", hotelBooking.EndDate);
 						cmd.Parameters.AddWithValue("@Price", hotelBooking.GetPrice());
 						cmd.Parameters.AddWithValue("@BookingDate", hotelBooking.BookingDate);
+						cmd.Parameters.AddWithValue("@Status", "Paid");
 
 						//Gets the generated id
 						hotelBooking.BookingId = (int)cmd.ExecuteScalar();
@@ -121,7 +123,7 @@ namespace Booked.Infrastructure.Repositories
 						User user = new User();
 						user.UserId = Convert.ToInt32(flightDr["UserId"]);
 
-						allBookings.Add(new FlightBooking(Convert.ToInt32(flightDr["BookingId"]), user, (DateTime)flightDr["StartDate"], (DateTime)flightDr["EndDate"], (DateTime)flightDr["BookingDate"], flight, (bool)flightDr["ExtraLuggage"]));
+						allBookings.Add(new FlightBooking(Convert.ToInt32(flightDr["BookingId"]), user, (DateTime)flightDr["StartDate"], (DateTime)flightDr["EndDate"], (DateTime)flightDr["BookingDate"], flight, (bool)flightDr["ExtraLuggage"], flightDr["Status"].ToString()));
 					}
 
 					flightDr.Close();
@@ -145,7 +147,7 @@ namespace Booked.Infrastructure.Repositories
 						User user = new User();
 						user.UserId = Convert.ToInt32(hotelDr["UserId"]);
 
-						allBookings.Add(new HotelBooking(Convert.ToInt32(hotelDr["BookingId"]), user, (DateTime)hotelDr["StartDate"], (DateTime)hotelDr["EndDate"], (DateTime)hotelDr["BookingDate"], hotel));
+						allBookings.Add(new HotelBooking(Convert.ToInt32(hotelDr["BookingId"]), user, (DateTime)hotelDr["StartDate"], (DateTime)hotelDr["EndDate"], (DateTime)hotelDr["BookingDate"], hotel, hotelDr["Status"].ToString()));
 					}
 
 					hotelDr.Close();
@@ -190,7 +192,7 @@ namespace Booked.Infrastructure.Repositories
 						User user = new User();
 						user.UserId = Convert.ToInt32(flightDr["UserId"]);
 
-						allBookings.Add(new FlightBooking(Convert.ToInt32(flightDr["BookingId"]), user, (DateTime)flightDr["StartDate"], (DateTime)flightDr["EndDate"], (DateTime)flightDr["BookingDate"], flight, (bool)flightDr["ExtraLuggage"]));
+						allBookings.Add(new FlightBooking(Convert.ToInt32(flightDr["BookingId"]), user, (DateTime)flightDr["StartDate"], (DateTime)flightDr["EndDate"], (DateTime)flightDr["BookingDate"], flight, (bool)flightDr["ExtraLuggage"], flightDr["Status"].ToString()));
 					}
 
 					flightDr.Close();
@@ -217,7 +219,7 @@ namespace Booked.Infrastructure.Repositories
 						User user = new User();
 						user.UserId = Convert.ToInt32(hotelDr["UserId"]);
 
-						allBookings.Add(new HotelBooking(Convert.ToInt32(hotelDr["BookingId"]), user, (DateTime)hotelDr["StartDate"], (DateTime)hotelDr["EndDate"], (DateTime)hotelDr["BookingDate"], hotel));
+						allBookings.Add(new HotelBooking(Convert.ToInt32(hotelDr["BookingId"]), user, (DateTime)hotelDr["StartDate"], (DateTime)hotelDr["EndDate"], (DateTime)hotelDr["BookingDate"], hotel, hotelDr["Status"].ToString()));
 					}
 
 					hotelDr.Close();
@@ -243,7 +245,7 @@ namespace Booked.Infrastructure.Repositories
 
 		public void UpdateBooking(Booking booking)
 		{
-			throw new NotImplementedException();
+			
 		}
 	}
 }

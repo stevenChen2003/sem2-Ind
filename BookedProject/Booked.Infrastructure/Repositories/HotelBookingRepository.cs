@@ -42,7 +42,7 @@ namespace Booked.Infrastructure.Repositories
 						User user = new User();
                         user.UserId = Convert.ToInt32(dr["UserId"]);
 
-                        AllHotelBookings.Add(new HotelBooking(Convert.ToInt32(dr["BookingId"]), user, (DateTime)dr["StartDate"], (DateTime)dr["EndDate"], (DateTime)dr["BookingDate"], hotel));
+                        AllHotelBookings.Add(new HotelBooking(Convert.ToInt32(dr["BookingId"]), user, (DateTime)dr["StartDate"], (DateTime)dr["EndDate"], (DateTime)dr["BookingDate"], hotel, dr["Status"].ToString()));
 					}
 
 				}
@@ -85,7 +85,7 @@ namespace Booked.Infrastructure.Repositories
 						User user = new User();
 						user.UserId = Convert.ToInt32(dr["UserId"]);
 
-						AllHotelBookings.Add(new HotelBooking(Convert.ToInt32(dr["BookingId"]), user, (DateTime)dr["StartDate"], (DateTime)dr["EndDate"], (DateTime)dr["BookingDate"], hotel));
+						AllHotelBookings.Add(new HotelBooking(Convert.ToInt32(dr["BookingId"]), user, (DateTime)dr["StartDate"], (DateTime)dr["EndDate"], (DateTime)dr["BookingDate"], hotel, dr["Status"].ToString()));
 					}
 
 				}

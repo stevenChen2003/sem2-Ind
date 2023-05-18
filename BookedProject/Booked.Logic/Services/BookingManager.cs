@@ -10,25 +10,23 @@ namespace Booked.Logic.Services
 {
 	public class BookingManager
 	{
-		private IHotelBookingRepo hotelBookingRepo;
-		private IFlightBookingRepo flightBookingRepo;
+		private IBookingRepo bookingRepo;
 
-		public BookingManager(IHotelBookingRepo hotelBookingRepo, IFlightBookingRepo flightBookingRepo)
+		public BookingManager(IBookingRepo bookingRepo)
 		{
-			this.hotelBookingRepo = hotelBookingRepo;
-			this.flightBookingRepo = flightBookingRepo;
+			this.bookingRepo = bookingRepo;
 		}
 
 		public bool AddBooking(Booking booking)
 		{
 			if (booking is HotelBooking)
 			{
-				hotelBookingRepo.AddBooking((HotelBooking)booking);
+				bookingRepo.AddHotelBooking((HotelBooking)booking);
 				return true;
 			}
 			else if (booking is FlightBooking)
 			{
-				flightBookingRepo.AddBooking((FlightBooking)booking);
+				bookingRepo.AddFlightBooking((FlightBooking)booking);
 				return true;
 			}
 			return false;
@@ -39,25 +37,7 @@ namespace Booked.Logic.Services
 		{
 			try
 			{
-				if (flightBookingRepo.GetBookingByUserId(usedId) != null && hotelBookingRepo.GetAllBookingByUserId(usedId) != null)
-				{
-					return hotelBookingRepo.GetAllBookingByUserId(usedId).Concat(flightBookingRepo.GetBookingByUserId(usedId));
-				}
-				else if (flightBookingRepo.GetBookingByUserId(usedId) != null && hotelBookingRepo.GetAllBookingByUserId(usedId) == null)
-				{
-					return flightBookingRepo.GetBookingByUserId(usedId);
-
-                }
-				else if (flightBookingRepo.GetBookingByUserId(usedId) == null && hotelBookingRepo.GetAllBookingByUserId(usedId) != null)
-				{
-					return hotelBookingRepo.GetAllBookingByUserId(usedId);
-
-                }
-                else
-				{
-					return null;
-				}
-
+				return bookingRepo.GetBookingByUserId(usedId);
             }
 			catch (Exception ex)
 			{
@@ -65,10 +45,23 @@ namespace Booked.Logic.Services
 			}
 		}
 
-
 		//Update
-
+		public bool UpdateBooking(Booking booking)
+		{
+			try
+			{
+				bookingRepo.UpdateBooking(booking);
+				return true;
+			}
+			catch
+			{
+				return false;
+			}
+		}
 
 		//Delete
+
+
+
 	}
 }

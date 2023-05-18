@@ -17,7 +17,7 @@ namespace Booked.Domain.Domain
             ExtraLuggage = extra;
         }
 
-        public FlightBooking(int id,User user, DateTime startDate, DateTime endDate, DateTime bookingDate, Flight flight, bool extra) : base(id, user, startDate, endDate, bookingDate)
+        public FlightBooking(int id,User user, DateTime startDate, DateTime endDate, DateTime bookingDate, Flight flight, bool extra, string status) : base(id, user, startDate, endDate, bookingDate, status)
         {
             Flight = flight;
             ExtraLuggage = extra;

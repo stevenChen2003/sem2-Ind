@@ -83,7 +83,7 @@ namespace Booked.Infrastructure.Repositories
                         User user = new User();
                         user.UserId = Convert.ToInt32(dr["UserId"]);
 
-                        AllFlightBookings.Add(new FlightBooking(Convert.ToInt32(dr["BookingId"]), user, (DateTime)dr["StartDate"], (DateTime)dr["EndDate"], (DateTime)dr["BookingDate"], flight, (bool)dr["ExtraLuggage"]));
+                        AllFlightBookings.Add(new FlightBooking(Convert.ToInt32(dr["BookingId"]), user, (DateTime)dr["StartDate"], (DateTime)dr["EndDate"], (DateTime)dr["BookingDate"], flight, (bool)dr["ExtraLuggage"], dr["Status"].ToString()));
                     }
 
                 }
@@ -126,7 +126,7 @@ namespace Booked.Infrastructure.Repositories
                         User user = new User();
                         user.UserId = Convert.ToInt32(dr["UserId"]);
 
-                        AllFlightBookings.Add(new FlightBooking(Convert.ToInt32(dr["BookingId"]), user, (DateTime)dr["StartDate"], (DateTime)dr["EndDate"], (DateTime)dr["BookingDate"], flight, (bool)dr["ExtraLuggage"]));
+                        AllFlightBookings.Add(new FlightBooking(Convert.ToInt32(dr["BookingId"]), user, (DateTime)dr["StartDate"], (DateTime)dr["EndDate"], (DateTime)dr["BookingDate"], flight, (bool)dr["ExtraLuggage"], dr["Status"].ToString()));
                     }
 
                 }
