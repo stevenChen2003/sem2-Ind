@@ -240,11 +240,41 @@ namespace Booked.Infrastructure.Repositories
 
 		public void RemoveBooking(int id)
 		{
-			throw new NotImplementedException();
+			try
+			{
+				using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+				{
+					string query = "DELETE FROM Bookings WHERE BookingId = @BookingId; ";
+					SqlCommand cmd = new SqlCommand(query, conn);
+
+					conn.Open();
+					cmd.Parameters.AddWithValue("@BookingId", id);
+					cmd.ExecuteNonQuery();
+				}
+			}
+			catch (SqlException)
+			{
+				throw new Exception("Cannot remove hotel");
+			}
 		}
 
 		public void UpdateBooking(Booking booking)
 		{
+			try
+			{
+				using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+				{
+					string query = "UPDATE Bookings SET Status = Canceled WHERE BookingId = @BookingId; ";
+					SqlCommand command = new SqlCommand(query, conn);
+					command.Parameters.AddWithValue("@BookingId", booking.BookingId);
+					conn.Open();
+					command.ExecuteNonQuery();
+				}
+			}
+			catch (SqlException)
+			{
+				throw new Exception("Update failed");
+			}
 			
 		}
 	}
