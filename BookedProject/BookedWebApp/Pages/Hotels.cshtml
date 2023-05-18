@@ -59,7 +59,7 @@
 </div>
 
 
-<div class=" container d-flex justify-content-center">
+<div class="container d-flex justify-content-center">
     <nav aria-label="Page navigation">
         <ul class="pagination">
             <li class="page-item @(!Model.ShowFirst? "disabled":"")">
@@ -69,6 +69,41 @@
             <li class="page-item @(!Model.ShowPrevious? "disabled":"")">
                 <a asp-page="/Hotels" asp-route-currentPage="@(Model.CurrentPage -1)" asp-route-query="@Model.query" asp-route-SortOrder="@Model.SortOrder" class="page-link"><</a>
             </li>
+
+            @if (Model.TotalPages <= 3)
+            {
+                for (int i = 1; i <= Model.TotalPages; i++)
+                {
+                    <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                        <a asp-page="/Hotels" asp-route-currentPage="@i" asp-route-query="@Model.query" asp-route-SortOrder="@Model.SortOrder" class="page-link">@i</a>
+                    </li>
+                }
+            }
+            else
+            {
+                int startPage = Model.CurrentPage - 1;
+                int endPage = Model.CurrentPage + 1;
+
+                if (startPage <= 0)
+                {
+                    endPage += Math.Abs(startPage) + 1;
+                    startPage = 1;
+                }
+
+                if (endPage > Model.TotalPages)
+                {
+                    startPage -= endPage - Model.TotalPages;
+                    endPage = Model.TotalPages;
+                }
+
+                for (int i = startPage; i <= endPage; i++)
+                {
+                    <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                        <a asp-page="/Hotels" asp-route-currentPage="@i" asp-route-query="@Model.query" asp-route-SortOrder="@Model.SortOrder" class="page-link">@i</a>
+                    </li>
+                }
+            }
+
             <li class="page-item  @(!Model.ShowNext? "disabled":"")">
                 <a asp-page="/Hotels" asp-route-currentPage="@(Model.CurrentPage + 1)" asp-route-query="@Model.query" asp-route-SortOrder="@Model.SortOrder" class="page-link">></a>
             </li>

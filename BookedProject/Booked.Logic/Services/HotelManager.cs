@@ -52,11 +52,11 @@ namespace Booked.Logic.Services
 		{
 			if (!string.IsNullOrEmpty(search))
 			{
-				return hotelRepo.GetAllHotelBySearchCount(search);
+				return hotelRepo.GetHotelBySearchCount(search);
 			}
 			else
 			{
-				return hotelRepo.GetAllHotel().Count();
+				return hotelRepo.GetAllHotelCount();
 			}
 		}
 

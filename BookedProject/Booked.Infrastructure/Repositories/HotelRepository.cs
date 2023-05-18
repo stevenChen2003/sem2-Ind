@@ -183,41 +183,28 @@ namespace Booked.Infrastructure.Repositories
             }
         }
 
-        public int GetAllHotelBySearchCount(string search)
+        public int GetHotelBySearchCount(string search)
         {
-            List<Hotel> AllHotel = new List<Hotel>();
-
+			int count = 0;
             try
             {
                 using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
                 {
-                    string query = @"SELECT * FROM Hotels WHERE Country LIKE @Search OR Name LIKE @Search OR City LIKE @Search ;";
+                    string query = @"SELECT COUNT(*) FROM Hotels WHERE Country LIKE @Search OR Name LIKE @Search OR City LIKE @Search ;";
                     SqlCommand cmd = new SqlCommand(query, conn);
 
                     conn.Open();
                     cmd.Parameters.AddWithValue("@Search", $"{search}%");
-                    SqlDataReader dr = cmd.ExecuteReader();
-
-                    while (dr.Read())
+                    object result = cmd.ExecuteScalar();
+                    if (result != null)
                     {
-                        byte[] imagedate = (byte[])dr["Image"];
-                        Rooms roomType = (Rooms)Enum.Parse(typeof(Rooms), dr["RoomType"].ToString());
-
-                        AllHotel.Add(new Hotel(Convert.ToInt32(dr["HotelId"]),
-                                                    dr["Name"].ToString(),
-                                                    dr["Address"].ToString(),
-                                                    dr["City"].ToString(),
-                                                    dr["Country"].ToString(),
-                                                    Convert.ToInt32(dr["StarRating"]),
-                                                    Convert.ToDecimal(dr["PricePerNight"]),
-                                                    roomType,
-                                                    Convert.ToInt32(dr["MaximumBooking"]),
-                                                    imagedate));
+                        count = (int)result;
                     }
+					else { count = 0; }
                     conn.Close();
                 }
 
-                return AllHotel.Count();
+                return count;
 
             }
             catch (SqlException)
@@ -226,7 +213,36 @@ namespace Booked.Infrastructure.Repositories
             }
         }
 
-		public IEnumerable<Hotel> GetAllHotelPerPage(string sort, int itemsPerPage, int offset)
+        public int GetAllHotelCount()
+        {
+            int count = 0;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+                {
+                    string query = @"SELECT COUNT(*) FROM Hotels;";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+
+                    conn.Open();
+                    object result = cmd.ExecuteScalar();
+                    if (result != null)
+                    {
+                        count = (int)result;
+                    }
+                    else { count = 0; }
+                    conn.Close();
+                }
+
+                return count;
+
+            }
+            catch (SqlException)
+            {
+                throw new Exception("Hotels not found");
+            }
+        }
+
+        public IEnumerable<Hotel> GetAllHotelPerPage(string sort, int itemsPerPage, int offset)
 		{
 			List<Hotel> AllHotel = new List<Hotel>();
 
@@ -358,6 +374,5 @@ namespace Booked.Infrastructure.Repositories
 		}
 
 
-
-	}
+    }
 }

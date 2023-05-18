@@ -15,7 +15,8 @@ namespace Booked.Logic.Interfaces
         void AddHotel(Hotel hotel);
         void UpdateHotel(Hotel hotel);
         void RemoveHotelByID(int id);
-        int GetAllHotelBySearchCount(string search);
+        int GetAllHotelCount();
+        int GetHotelBySearchCount(string search);
 
         //Need to clean up this interface
         IEnumerable<Hotel> GetAllHotelPerPage(string sort, int itemsPerPage, int offset);
