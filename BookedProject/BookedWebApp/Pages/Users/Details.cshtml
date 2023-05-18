@@ -24,7 +24,7 @@
     {
         foreach(var booking in Model.user.Bookings)
         {
-            <p>@booking.BookingId Price: @booking.GetPrice()</p>
+            <p>@booking.BookingId Price: @booking.GetPrice() Status: @booking.Status</p>
         }
     }
     else
