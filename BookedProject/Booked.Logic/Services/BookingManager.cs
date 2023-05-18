@@ -60,7 +60,18 @@ namespace Booked.Logic.Services
 		}
 
 		//Delete
-
+		public bool DeleteBooking(Booking booking)
+		{
+			try
+			{
+				bookingRepo.RemoveBooking(booking.BookingId);
+				return true;
+			}
+			catch
+			{
+				return false;
+			}
+		}
 
 
 	}

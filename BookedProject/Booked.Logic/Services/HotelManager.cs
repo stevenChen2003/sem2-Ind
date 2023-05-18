@@ -37,6 +37,7 @@ namespace Booked.Logic.Services
 
 		public IEnumerable<Hotel> GetHotelsByCountry(string search, string sort, int itemsPerPage, int offset)
 		{
+			//Maybe add the switch in here instead of repo
 			if (string.IsNullOrEmpty(search))
 			{
                 return hotelRepo.GetAllHotelPerPage(sort, itemsPerPage, offset);
