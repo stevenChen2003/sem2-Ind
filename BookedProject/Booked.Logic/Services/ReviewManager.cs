@@ -106,6 +106,27 @@ namespace Booked.Logic.Services
         }
 
 
+		//Calculate hotel rating
+		public float GetAvgRating(int id)
+		{
+			List<Review> reviews = GetReviewsBaseOnHotelId(id);
 
-    }
+			if (reviews.Count == 0)
+			{
+				return 0;
+			}
+
+			float rating = 0;
+
+			foreach (Review review in reviews)
+			{
+				rating += review.Rating;
+			}
+
+			float avgRating = (float)Math.Round(rating / reviews.Count, 1);
+			return avgRating;
+		}
+
+
+	}
 }

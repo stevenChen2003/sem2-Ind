@@ -34,6 +34,8 @@ namespace BookedWebApp.Pages
         {
 			Hotel = hotelManager.GetHotel(id);
             Hotel.Reviews = reviewManager.GetReviewsBaseOnHotelId(id);
+
+			Hotel.StarRating = reviewManager.GetAvgRating(id);
         }
 
 		public IActionResult OnPost(int id)

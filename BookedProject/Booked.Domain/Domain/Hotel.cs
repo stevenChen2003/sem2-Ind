@@ -14,7 +14,8 @@ namespace Booked.Domain.Domain
         public string Address { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
-        public int StarRating { get; set; }
+
+        public float StarRating { get; set; }
         public decimal PricePerNight { get; set; }
         public Rooms Room { get; set; }
         public int MaximumBooking { get; set; }
@@ -52,11 +53,6 @@ namespace Booked.Domain.Domain
             Image = image;
         }
 
-        
 
-        public void AddReview(Review review)
-        {
-            Reviews.Add(review);
-        }
 	}
 }

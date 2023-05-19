@@ -235,7 +235,67 @@ namespace Booked.Infrastructure.Repositories
 
 		public Booking GetBookingById(int id)
 		{
-			throw new NotImplementedException();
+			Booking booking = null;
+			try
+			{
+				using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+				{
+					// Retrieve flight bookings
+					string flightQuery = @"SELECT * FROM Bookings b JOIN FlightBookings fb ON b.BookingId = fb.BookingId WHERE b.BookingId = @BookingId ;";
+					SqlCommand flightCmd = new SqlCommand(flightQuery, conn);
+
+					flightCmd.Parameters.AddWithValue("@BookingId", id);
+
+					conn.Open();
+					SqlDataReader flightDr = flightCmd.ExecuteReader();
+
+					if (flightDr.Read())
+					{
+						Flight flight = new Flight();
+						flight.FlightId = Convert.ToInt32(flightDr["FlightId"]);
+						flight.AirlineName = flightDr["Airline"].ToString();
+						flight.Price = Convert.ToDecimal(flightDr["Price"]);
+						flight.ExtraBaggagePrice = Convert.ToDecimal(flightDr["ExtraBaggagePrice"]);
+
+						User user = new User();
+						user.UserId = Convert.ToInt32(flightDr["UserId"]);
+
+						booking = new FlightBooking(Convert.ToInt32(flightDr["BookingId"]), user, (DateTime)flightDr["StartDate"], (DateTime)flightDr["EndDate"], (DateTime)flightDr["BookingDate"], flight, (bool)flightDr["ExtraLuggage"], flightDr["Status"].ToString());
+					}
+
+					flightDr.Close();
+
+					// Retrieve hotel bookings
+					string hotelQuery = @"SELECT * FROM Bookings b JOIN HotelBookings hb ON b.BookingId = hb.BookingId WHERE b.BookingId = @BookingId;";
+					SqlCommand hotelCmd = new SqlCommand(hotelQuery, conn);
+
+					hotelCmd.Parameters.AddWithValue("@BookingId", id);
+
+					SqlDataReader hotelDr = hotelCmd.ExecuteReader();
+
+					if (hotelDr.Read())
+					{
+						Hotel hotel = new Hotel();
+						hotel.HotelId = Convert.ToInt32(hotelDr["HotelId"]);
+						hotel.Name = hotelDr["Name"].ToString();
+						hotel.PricePerNight = Convert.ToDecimal(hotelDr["PricePerNight"]);
+
+						User user = new User();
+						user.UserId = Convert.ToInt32(hotelDr["UserId"]);
+
+						booking = new HotelBooking(Convert.ToInt32(hotelDr["BookingId"]), user, (DateTime)hotelDr["StartDate"], (DateTime)hotelDr["EndDate"], (DateTime)hotelDr["BookingDate"], hotel, hotelDr["Status"].ToString());
+					}
+
+					hotelDr.Close();
+				}
+
+				return booking;
+			}
+			catch(Exception ex)
+			{
+				throw ex;
+			}
+
 		}
 
 		public void RemoveBooking(int id)
