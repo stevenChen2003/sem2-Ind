@@ -127,6 +127,28 @@ namespace Booked.Logic.Services
 			return avgRating;
 		}
 
+		//Statistics for each rating 
+		public int[] GetSummaryRating(int hotelid)
+		{
+			List<Review> reviews = GetReviewsBaseOnHotelId(hotelid);
+			if (reviews.Count == 0)
+			{
+				return null;
+			}
+
+			int[] Summary = new int[5] {0,0,0,0,0};
+			for (int i = 1; i <= 5; i++)
+			{
+				foreach (Review review in reviews)
+				{
+					if (review.Rating == i)
+					{
+						Summary[i - 1] += 1;
+					}
+				}
+			}
+			return Summary;
+		}
 
 	}
 }

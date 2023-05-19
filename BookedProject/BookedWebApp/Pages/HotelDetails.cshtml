@@ -44,12 +44,20 @@
 
             <div class="scrollable-container">
                 <div class="card-deck">
-                    @if (Model.Hotel.Reviews == null)
+                    @if (Model.Hotel.Reviews == null || Model.SummaryReview == null)
                     {
                         <p>No Reviews</p>
                     }
                     else
                     {
+                        <div>
+                            <h3>Summary Review</h3>
+                            @for(int i = 5; i >= 1; i--)
+                            {
+                                <p>Rating @i:------------@Model.SummaryReview[i-1]</p>
+                            }
+                        </div>
+
                         @foreach (var review in Model.Hotel.Reviews)
                         {
                             <div class="card mb-4">
