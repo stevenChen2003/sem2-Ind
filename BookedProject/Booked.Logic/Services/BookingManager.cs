@@ -73,6 +73,17 @@ namespace Booked.Logic.Services
 			}
 		}
 
+		public Booking GetBookingByid(int id)
+		{
+			try
+			{
+				return bookingRepo.GetBookingById(id);
+			}
+			catch
+			{
+				return null;
+			}
+		}
 
 	}
 }
