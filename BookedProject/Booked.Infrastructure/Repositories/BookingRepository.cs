@@ -240,7 +240,6 @@ namespace Booked.Infrastructure.Repositories
 			{
 				using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
 				{
-					// Retrieve flight bookings
 					string flightQuery = @"SELECT * FROM Bookings b JOIN FlightBookings fb ON b.BookingId = fb.BookingId WHERE b.BookingId = @BookingId ;";
 					SqlCommand flightCmd = new SqlCommand(flightQuery, conn);
 
@@ -265,7 +264,6 @@ namespace Booked.Infrastructure.Repositories
 
 					flightDr.Close();
 
-					// Retrieve hotel bookings
 					string hotelQuery = @"SELECT * FROM Bookings b JOIN HotelBookings hb ON b.BookingId = hb.BookingId WHERE b.BookingId = @BookingId;";
 					SqlCommand hotelCmd = new SqlCommand(hotelQuery, conn);
 
