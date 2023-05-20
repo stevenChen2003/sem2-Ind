@@ -37,33 +37,32 @@
 
 
 <!--Review section-->
-<div class="container mt-5 text-white bg-dark">
+<div class="container mt-5 text-white bg-dark p-3 mb-3">
     <div class="row">
         <div class="col-md-9">
             <h3 class="text-center mb-5">Reviews</h3>
-
-            <div class="scrollable-container">
-                <div class="card-deck">
-                    @if (Model.Hotel.Reviews == null || Model.SummaryReview == null)
+            @if (Model.Hotel.Reviews == null || Model.SummaryReview == null)
+            {
+                <p>No Reviews</p>
+            }
+            else
+            {
+                <div>
+                    <h3>Summary Review</h3>
+                    @for (int i = 5; i >= 1; i--)
                     {
-                        <p>No Reviews</p>
+                        <p>Rating @i:------------@Model.SummaryReview[i-1]</p>
                     }
-                    else
-                    {
-                        <div>
-                            <h3>Summary Review</h3>
-                            @for(int i = 5; i >= 1; i--)
-                            {
-                                <p>Rating @i:------------@Model.SummaryReview[i-1]</p>
-                            }
-                        </div>
+                </div>
 
+                <div class="scrollable-container m-3">
+                    <div class="card-deck">
                         @foreach (var review in Model.Hotel.Reviews)
                         {
                             <div class="card mb-4">
                                 <div class="card-body">
                                     <h6 class="card-subtitle mb-2 text-muted">@review.User.Email</h6>
-                                    <p class ="card-text text-black">Rating: @review.Rating</p>
+                                    <p class="card-text text-black">Rating: @review.Rating</p>
                                     <p class="card-text text-black">@review.Description</p>
                                     @if (User.Identity.Name == review.User.Email)
                                     {
@@ -92,9 +91,9 @@
                                 </div>
                             </div>
                         }
-                    }
+                    </div>
                 </div>
-            </div>
+            }
         </div>
 
         @if (User.Identity.IsAuthenticated)
@@ -150,6 +149,8 @@
 
     </div>
 </div>
+
+
 
 <script>
     function editReview(reviewId) {
