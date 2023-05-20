@@ -17,12 +17,12 @@ builder.Services.AddRazorPages();
 builder.Services.AddScoped<BookingManager>();
 builder.Services.AddScoped<IBookingRepo, BookingRepository>();
 
-builder.Services.AddScoped<IHotelBookingRepo, HotelBookingRepository>();
+//builder.Services.AddScoped<IHotelBookingRepo, HotelBookingRepository>();
 
 builder.Services.AddScoped<HotelManager>();
 builder.Services.AddScoped<IHotelRepo, HotelRepository>();
 
-builder.Services.AddScoped<IFlightBookingRepo, FlightBookingRepository>();
+//builder.Services.AddScoped<IFlightBookingRepo, FlightBookingRepository>();
 
 builder.Services.AddScoped<FlightManager>();
 builder.Services.AddScoped<IFlightRepo, FlightRepository>();

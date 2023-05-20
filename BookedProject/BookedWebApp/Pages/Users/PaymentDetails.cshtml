@@ -2,3 +2,16 @@
 @model BookedWebApp.Pages.Users.PaymentDetailsModel
 @{
 }
+
+@if (Model.FlightBooking != null)
+{
+	<h2>Payment Details:</h2>
+	<p>@Model.FlightBooking.Flight.AirlineName</p>
+
+}
+else
+{
+	<h2>Payment Details:</h2>
+	<p>@Model.HotelBooking.Hotel.Name</p>
+
+}
