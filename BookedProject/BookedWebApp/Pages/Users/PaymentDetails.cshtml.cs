@@ -21,16 +21,16 @@ namespace BookedWebApp.Pages.Users
 
         public void OnGet(int id)
         {
-            if (bookingManager.GetBookingByid(id) is HotelBooking)
-            {
-                HotelBooking = (HotelBooking)bookingManager.GetBookingByid(id);
-
-			}
-            else if (bookingManager.GetBookingByid(id) is FlightBooking)
+            if (bookingManager.GetBookingByid(id) is FlightBooking)
 			{
                 FlightBooking  = (FlightBooking)bookingManager.GetBookingByid(id);
 			}
+            else if (bookingManager.GetBookingByid(id) is HotelBooking)
+            {
+				HotelBooking = (HotelBooking)bookingManager.GetBookingByid(id);
+			}
 
-        }
+
+		}
     }
 }

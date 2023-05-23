@@ -25,6 +25,7 @@
         foreach(var booking in Model.user.Bookings)
         {
             <p>@booking.BookingId Price: @booking.GetPrice() Status: @booking.Status</p>
+            <a class="btn btn-primary" asp-page="/Users/PaymentDetails" asp-route-id="@booking.BookingId">Payment Details</a>
         }
     }
     else

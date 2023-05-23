@@ -240,7 +240,7 @@ namespace Booked.Infrastructure.Repositories
 			{
 				using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
 				{
-					string flightQuery = @"SELECT * FROM Bookings b JOIN FlightBookings fb ON b.BookingId = fb.BookingId WHERE b.BookingId = @BookingId ;";
+					string flightQuery = @"SELECT * FROM Bookings b JOIN FlightBookings fb ON b.BookingId = fb.BookingId JOIN Flights f ON fb.FlightId = f.FlightId WHERE b.BookingId = @BookingId; ";
 					SqlCommand flightCmd = new SqlCommand(flightQuery, conn);
 
 					flightCmd.Parameters.AddWithValue("@BookingId", id);
@@ -264,7 +264,7 @@ namespace Booked.Infrastructure.Repositories
 
 					flightDr.Close();
 
-					string hotelQuery = @"SELECT * FROM Bookings b JOIN HotelBookings hb ON b.BookingId = hb.BookingId WHERE b.BookingId = @BookingId;";
+					string hotelQuery = @"SELECT * FROM Bookings b JOIN HotelBookings hb ON b.BookingId = hb.BookingId JOIN Hotels h ON hb.HotelId = h.HotelId WHERE b.BookingId = @BookingId;";
 					SqlCommand hotelCmd = new SqlCommand(hotelQuery, conn);
 
 					hotelCmd.Parameters.AddWithValue("@BookingId", id);
