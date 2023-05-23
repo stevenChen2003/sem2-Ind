@@ -73,6 +73,7 @@ namespace Booked.Logic.Services
 			}
 		}
 
+		//Get the Booking details
 		public Booking GetBookingByid(int id)
 		{
 			try
