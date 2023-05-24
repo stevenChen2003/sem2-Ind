@@ -22,41 +22,12 @@ namespace TestBookedProject.Mocks
 			return hotelsList;
 		}
 
-		public IEnumerable<Hotel> GetAllHotelBySearch(string search, string sort)
+		public int GetAllHotelCount()
 		{
-            var filteredHotels = hotelsList.Where(h => h.Country.StartsWith(search));
+			throw new NotImplementedException();
+		}
 
-            IOrderedEnumerable<Hotel> sortedHotels;
-            switch (sort)
-            {
-                case "name_desc":
-                    sortedHotels = filteredHotels.OrderByDescending(h => h.Name);
-                    break;
-                case "price_asc":
-                    sortedHotels = filteredHotels.OrderBy(h => h.PricePerNight);
-                    break;
-                case "price_desc":
-                    sortedHotels = filteredHotels.OrderByDescending(h => h.PricePerNight);
-                    break;
-                default:
-                    sortedHotels = filteredHotels.OrderBy(h => h.Name);
-                    break;
-            }
-
-            return sortedHotels;
-        }
-
-        public int GetAllHotelBySearchCount(string search)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Hotel> GetAllHotelPerPage(string sort, int itemsPerPage, int offset)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Hotel> GetAllWebsiteHotel(string sort)
+		public IEnumerable<Hotel> GetAllHotelPerPage(string sort, int itemsPerPage, int offset)
         {
             throw new NotImplementedException();
         }
@@ -73,7 +44,12 @@ namespace TestBookedProject.Mocks
 			return null;
 		}
 
-        public IEnumerable<Hotel> GetHotelPerPage(string search, string sort, int itemsPerPage, int offset)
+		public int GetHotelBySearchCount(string search)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IEnumerable<Hotel> GetHotelPerPage(string search, string sort, int itemsPerPage, int offset)
         {
             throw new NotImplementedException();
         }
