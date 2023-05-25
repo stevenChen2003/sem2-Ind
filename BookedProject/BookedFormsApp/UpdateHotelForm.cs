@@ -96,7 +96,7 @@ namespace BookedFormsApp
             tbAddress.Text = hotel.Address;
             tBCity.Text = hotel.City;
             tBCountry.Text = hotel.Country;
-            numStarRating.Value = hotel.StarRating;
+            numStarRating.Value = (decimal)hotel.StarRating;
             numPrice.Value = hotel.PricePerNight;
             comboBoxRoom.SelectedIndex = (int)hotel.Room;
             numHotelSize.Value = hotel.MaximumBooking;

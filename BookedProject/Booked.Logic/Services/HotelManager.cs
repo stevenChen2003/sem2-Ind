@@ -105,9 +105,9 @@ namespace Booked.Logic.Services
 			{
 				hotelRepo.UpdateHotel(hotel);
 			}
-			catch(Exception)
+			catch(Exception ex)
 			{
-				throw new Exception("Cannot update hotel information");
+				throw new Exception("Cannot update hotel information", ex);
 			}
 		}
 
