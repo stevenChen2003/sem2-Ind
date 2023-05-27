@@ -63,19 +63,26 @@ namespace BookedFormsApp
 
         private void btUpdateFlight_Click(object sender, EventArgs e)
         {
-            var selectedRow = dataGridFlights.CurrentRow;
-            if (selectedRow != null)
+            try
             {
-                int id = (int)selectedRow.Cells["Flight ID"].Value;
-                Flight flight = flightManager.GetFlight(id);
-                UpdateFlightForm updateFlightForm = new UpdateFlightForm(flightManager, flight);
-                updateFlightForm.ShowDialog();
-                LoadGrid();
-            }
-            else
-            {
-                MessageBox.Show("Please select a flight", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+				var selectedRow = dataGridFlights.CurrentRow;
+				if (selectedRow != null)
+				{
+					int id = (int)selectedRow.Cells["Flight ID"].Value;
+					Flight flight = flightManager.GetFlight(id);
+					UpdateFlightForm updateFlightForm = new UpdateFlightForm(flightManager, flight);
+					updateFlightForm.ShowDialog();
+					LoadGrid();
+				}
+				else
+				{
+					MessageBox.Show("Please select a flight", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			}
+			catch (InvalidOperationException i)
+			{
+				MessageBox.Show(i.Message);
+			}
         }
 
         public void LoadGrid()
