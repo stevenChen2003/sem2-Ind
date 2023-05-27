@@ -53,6 +53,18 @@ namespace Booked.Domain.Domain
             Image = image;
         }
 
+		public Hotel(int id, string name, string address, string city, string country, int starRating, decimal pricePerNight, Rooms room, int maximumBooking)
+		{
+			HotelId = id;
+			Name = name;
+			Address = address;
+			City = city;
+			Country = country;
+			StarRating = starRating;
+			PricePerNight = pricePerNight;
+			Room = room;
+			MaximumBooking = maximumBooking;
+		}
 
 	}
 }

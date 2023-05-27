@@ -61,7 +61,7 @@ namespace Booked.Infrastructure.Repositories
 			{
 				using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
 				{
-					string query = @"SELECT * FROM Hotels; ";
+					string query = @"SELECT HotelId, Name, Address, City, Country, StarRating, PricePerNight, RoomType, MaximumBooking FROM Hotels;";
 
 					SqlCommand cmd = new SqlCommand(query, conn);
 
@@ -70,7 +70,6 @@ namespace Booked.Infrastructure.Repositories
 
 					while (dr.Read())
 					{
-						byte[] imagedate = (byte[])dr["Image"];
 						Rooms roomType = (Rooms)Enum.Parse(typeof(Rooms), dr["RoomType"].ToString());
 
                         AllHotel.Add(new Hotel(Convert.ToInt32(dr["HotelId"]),
@@ -81,8 +80,7 @@ namespace Booked.Infrastructure.Repositories
                                                     Convert.ToInt32(dr["StarRating"]),
 													Convert.ToDecimal(dr["PricePerNight"]),
 													roomType,
-                                                    Convert.ToInt32(dr["MaximumBooking"]),
-                                                    imagedate));
+                                                    Convert.ToInt32(dr["MaximumBooking"])));
 					}
 					conn.Close();
 				}
