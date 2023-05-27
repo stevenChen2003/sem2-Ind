@@ -48,9 +48,9 @@ namespace Booked.Infrastructure.Repositories
 				}
 
 			}
-			catch (SqlException)
+			catch (SqlException ex)
 			{
-				throw new Exception("Cannot add Booking");
+				throw new Exception(ex.Message);
 			}
 		}
 
@@ -89,9 +89,9 @@ namespace Booked.Infrastructure.Repositories
 				}
 
 			}
-			catch (SqlException)
+			catch (SqlException ex)
 			{
-				throw new Exception("Cannot add Booking");
+				throw new Exception(ex.Message);
 			}
 		}
 
@@ -289,9 +289,9 @@ namespace Booked.Infrastructure.Repositories
 
 				return booking;
 			}
-			catch(Exception ex)
+			catch(SqlException)
 			{
-				throw ex;
+				throw new Exception("No bookings found");
 			}
 
 		}
