@@ -27,24 +27,23 @@ namespace Booked.Logic.Services
             return flightRepo.GetAllFlight();
         }
 
-        public bool AddFlight(Flight flight)
+        public void AddFlight(Flight flight)
         {
             try
             {
-                if (!CheckIfFlightExist(flight))
+                if (CheckIfFlightExist(flight))
                 {
-					flightRepo.AddFlight(flight);
-                    return true;
+					throw new InvalidOperationException("Flight already exist");
 				}
                 else
                 {
-                    return false;
-                }
+					flightRepo.AddFlight(flight);
+				}
             }
-            catch(Exception)
+            catch(InvalidOperationException i)
             {
-                throw new Exception("Adding not succesfull");
-            }
+                throw new InvalidOperationException(i.Message);
+			}
         }
 
         public bool CheckIfFlightExist(Flight flight)
@@ -67,7 +66,7 @@ namespace Booked.Logic.Services
             }
             catch(Exception)
             {
-                throw new Exception("Cannot update flight information");
+                throw new InvalidOperationException("Cannot update flight information");
             }
         }
 
@@ -79,7 +78,7 @@ namespace Booked.Logic.Services
             }
             catch (Exception)
             {
-                throw new Exception("Cannot remove hotel");
+                throw new InvalidOperationException("Cannot remove hotel");
             }
         }
 

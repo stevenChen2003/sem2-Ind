@@ -41,16 +41,23 @@ namespace BookedFormsApp
 
         private void btRemoveFlight_Click(object sender, EventArgs e)
         {
-            var selectedRow = dataGridFlights.CurrentRow;
-            if (selectedRow != null)
+            try
             {
-                int id = (int)selectedRow.Cells["Flight ID"].Value;
-                flightManager.RemoveFlight(id);
-                LoadGrid();
-            }
-            else
+				var selectedRow = dataGridFlights.CurrentRow;
+				if (selectedRow != null)
+				{
+					int id = (int)selectedRow.Cells["Flight ID"].Value;
+					flightManager.RemoveFlight(id);
+					LoadGrid();
+				}
+				else
+				{
+					MessageBox.Show("Please select a flight", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			}
+            catch (InvalidOperationException i)
             {
-                MessageBox.Show("Please select a flight", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(i.Message);
             }
         }
 
