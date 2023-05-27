@@ -25,6 +25,12 @@ namespace Booked.Logic.Services
             return foundUser;
         }
 
+        public IEnumerable<User> GetAllUsers()
+        {
+            return userRepo.GetAllUser();
+        }
+
+
 		public bool AddUser(User user)
 		{
 			if (userRepo.FindUserByEmail(user.Email) != null)
