@@ -43,37 +43,35 @@ namespace Booked.Logic.Services
 			{
 				return bookingRepo.GetBookingByUserId(usedId);
             }
-			catch (Exception ex)
+			catch (Exception)
 			{
-				throw new Exception("Not working");
+				throw new InvalidOperationException("No booking found");
 			}
 		}
 
 		//Update
-		public bool UpdateBooking(Booking booking)
+		public void UpdateBooking(Booking booking)
 		{
 			try
 			{
 				bookingRepo.UpdateBooking(booking);
-				return true;
 			}
-			catch
+			catch (Exception)
 			{
-				return false;
+				throw new InvalidOperationException("Booking cannot be cancelled");
 			}
 		}
 
 		//Delete
-		public bool DeleteBooking(Booking booking)
+		public void DeleteBooking(Booking booking)
 		{
 			try
 			{
 				bookingRepo.RemoveBooking(booking.BookingId);
-				return true;
 			}
-			catch
+			catch (Exception)
 			{
-				return false;
+				throw new InvalidOperationException("Booking cannot be deleted");
 			}
 		}
 
@@ -84,9 +82,9 @@ namespace Booked.Logic.Services
 			{
 				return bookingRepo.GetBookingById(id);
 			}
-			catch
+			catch (Exception)
 			{
-				return null;
+				throw new InvalidOperationException("Booking not found");
 			}
 		}
 
