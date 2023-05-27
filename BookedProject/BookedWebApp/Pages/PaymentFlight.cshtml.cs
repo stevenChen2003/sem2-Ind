@@ -52,9 +52,17 @@ namespace BookedWebApp.Pages
 			flightBooking = new FlightBooking(user, start, end, DateTime.Today, flight, Extra);
 			if (ModelState.IsValid)
 			{
-				bookingManager.AddBooking(flightBooking);
-				TempData["BookingCompletedMessage"] = "Your booking has been successfully completed.";
-				return RedirectToPage("/Index");
+				try
+				{
+					bookingManager.AddBooking(flightBooking);
+					TempData["BookingCompletedMessage"] = "Your booking has been successfully completed.";
+					return RedirectToPage("/Index");
+				}
+				catch (InvalidOperationException ex)
+				{
+					ViewData["Message"] = $"{ex.Message}";
+					return Page();
+				}
 			}
 			return Page();
 		}

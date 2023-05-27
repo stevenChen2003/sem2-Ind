@@ -17,19 +17,23 @@ namespace Booked.Logic.Services
 			this.bookingRepo = bookingRepo;
 		}
 
-		public bool AddBooking(Booking booking)
+		public void AddBooking(Booking booking)
 		{
-			if (booking is HotelBooking)
+			try
 			{
-				bookingRepo.AddHotelBooking((HotelBooking)booking);
-				return true;
+				if (booking is HotelBooking)
+				{
+					bookingRepo.AddHotelBooking((HotelBooking)booking);
+				}
+				else if (booking is FlightBooking)
+				{
+					bookingRepo.AddFlightBooking((FlightBooking)booking);
+				}
 			}
-			else if (booking is FlightBooking)
+			catch (Exception ex)
 			{
-				bookingRepo.AddFlightBooking((FlightBooking)booking);
-				return true;
+				throw new InvalidOperationException("Error making booking", ex);
 			}
-			return false;
 		}
 
 		//Get

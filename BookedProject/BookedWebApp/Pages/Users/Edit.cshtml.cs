@@ -48,7 +48,7 @@ namespace BookedWebApp.Pages.Users
             {
                 HttpContext.SignOutAsync();
                 return Redirect("~/Login");
-            };
+            }
             return Page();
         }
 
