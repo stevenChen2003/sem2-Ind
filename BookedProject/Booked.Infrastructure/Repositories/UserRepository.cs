@@ -16,33 +16,39 @@ namespace Booked.Infrastructure.Repositories
         public User FindUserByEmail(string email)
         {
             User DetailUser = new User();
-
-            using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+            try
             {
-                string query = @"SELECT * FROM Users WHERE Email= @Email; ";
+				using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+				{
+					string query = @"SELECT * FROM Users WHERE Email= @Email; ";
 
-                SqlCommand cmd = new SqlCommand(query, conn);
+					SqlCommand cmd = new SqlCommand(query, conn);
 
-                conn.Open();
-                cmd.Parameters.AddWithValue("@Email", email);
+					conn.Open();
+					cmd.Parameters.AddWithValue("@Email", email);
 
-                SqlDataReader dr = cmd.ExecuteReader();
+					SqlDataReader dr = cmd.ExecuteReader();
 
-                if (dr.Read())
-                {
-                    DetailUser.UserId = Convert.ToInt32(dr["UserId"]);
-                    DetailUser.FirstName = dr["FirstName"].ToString();
-                    DetailUser.LastName = dr["LastName"].ToString();
-                    DetailUser.Email = dr["Email"].ToString();
-                    DetailUser.DateOfBirth = Convert.ToDateTime(dr["Date_of_Birth"]);
-                    DetailUser.PhoneNumber = dr["PhoneNumber"].ToString();
-                    DetailUser.Password = dr["Password"].ToString();
-                }
+					if (dr.Read())
+					{
+						DetailUser.UserId = Convert.ToInt32(dr["UserId"]);
+						DetailUser.FirstName = dr["FirstName"].ToString();
+						DetailUser.LastName = dr["LastName"].ToString();
+						DetailUser.Email = dr["Email"].ToString();
+						DetailUser.DateOfBirth = Convert.ToDateTime(dr["Date_of_Birth"]);
+						DetailUser.PhoneNumber = dr["PhoneNumber"].ToString();
+						DetailUser.Password = dr["Password"].ToString();
+					}
 
-                else { DetailUser = null; }
-                conn.Close();
+					else { DetailUser = null; }
+					conn.Close();
+				}
+				return DetailUser;
+			}
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
-            return DetailUser;
         }
 
         public IEnumerable<User> GetAllUser()
@@ -81,21 +87,28 @@ namespace Booked.Infrastructure.Repositories
 
         public void AddUser(User user)
         {
-            using (SqlConnection connection = new SqlConnection(CONNECTION_STRING))
+            try
             {
-                string query = "INSERT INTO Users (FirstName, LastName, Email, Date_of_Birth, PhoneNumber, Password) " +
-                               "VALUES (@FirstName, @LastName, @Email, @Date_of_Birth, @PhoneNumber, @Password)";
+				using (SqlConnection connection = new SqlConnection(CONNECTION_STRING))
+				{
+					string query = "INSERT INTO Users (FirstName, LastName, Email, Date_of_Birth, PhoneNumber, Password) " +
+								   "VALUES (@FirstName, @LastName, @Email, @Date_of_Birth, @PhoneNumber, @Password)";
 
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@FirstName", user.FirstName);
-                command.Parameters.AddWithValue("@LastName", user.LastName);
-                command.Parameters.AddWithValue("@Email", user.Email);
-                command.Parameters.AddWithValue("@Date_of_Birth", user.DateOfBirth);
-                command.Parameters.AddWithValue("@PhoneNumber", user.PhoneNumber);
-                command.Parameters.AddWithValue("@Password", user.Password);
-                connection.Open();
-                command.ExecuteNonQuery();
-            }
+					SqlCommand command = new SqlCommand(query, connection);
+					command.Parameters.AddWithValue("@FirstName", user.FirstName);
+					command.Parameters.AddWithValue("@LastName", user.LastName);
+					command.Parameters.AddWithValue("@Email", user.Email);
+					command.Parameters.AddWithValue("@Date_of_Birth", user.DateOfBirth);
+					command.Parameters.AddWithValue("@PhoneNumber", user.PhoneNumber);
+					command.Parameters.AddWithValue("@Password", user.Password);
+					connection.Open();
+					command.ExecuteNonQuery();
+				}
+			}
+            catch (Exception ex)
+            {
+				throw new Exception(ex.Message);
+			}
         }
 
         public void UpdateUser(User user)
@@ -143,30 +156,36 @@ namespace Booked.Infrastructure.Repositories
         public string GetHashedAndSaltPassword(string email)
         {
             string hashedPassword = "";
-
-            using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+            try
             {
-                string query = @"SELECT Password FROM Users WHERE Email= @Email; ";
+				using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+				{
+					string query = @"SELECT Password FROM Users WHERE Email= @Email; ";
 
-                SqlCommand cmd = new SqlCommand(query, conn);
+					SqlCommand cmd = new SqlCommand(query, conn);
 
-                conn.Open();
-                cmd.Parameters.AddWithValue("@Email", email);
+					conn.Open();
+					cmd.Parameters.AddWithValue("@Email", email);
 
-                SqlDataReader dr = cmd.ExecuteReader();
+					SqlDataReader dr = cmd.ExecuteReader();
 
-                if (dr.Read())
-                {
-                    hashedPassword = dr["Password"].ToString();
-                }
+					if (dr.Read())
+					{
+						hashedPassword = dr["Password"].ToString();
+					}
 
-                else
-                {
-                    hashedPassword= null;
-                }
-                conn.Close();
+					else
+					{
+						hashedPassword = null;
+					}
+					conn.Close();
+				}
+				return hashedPassword;
+			}
+            catch (SqlException ex)
+			{
+                throw new Exception(ex.Message);
             }
-            return hashedPassword;
         }
 
     }

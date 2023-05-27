@@ -19,38 +19,44 @@ namespace Booked.Infrastructure.Repositories
 		public Hotel GetHotelByID(int id)
 		{
 			Hotel DetailsHotel = new Hotel();
-
-			using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+			try
 			{
-				string query = @"SELECT * FROM Hotels WHERE HotelId= @HotelId; ";
-
-				SqlCommand cmd = new SqlCommand(query, conn);
-
-				conn.Open();
-				cmd.Parameters.AddWithValue("@HotelId", id);
-
-				SqlDataReader dr = cmd.ExecuteReader();
-
-				while (dr.Read())
+				using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
 				{
-					DetailsHotel.HotelId = Convert.ToInt32(dr["HotelId"]);
-					DetailsHotel.Name = dr["Name"].ToString();
-					DetailsHotel.Address = dr["Address"].ToString();
-					DetailsHotel.City = dr["City"].ToString();
-					DetailsHotel.Country = dr["Country"].ToString();
-					DetailsHotel.StarRating = Convert.ToInt32(dr["StarRating"]);
-					DetailsHotel.PricePerNight = Convert.ToDecimal(dr["PricePerNight"]);
-                    Rooms roomType = (Rooms)Enum.Parse(typeof(Rooms), dr["RoomType"].ToString());
-					DetailsHotel.Room = roomType;
-					DetailsHotel.MaximumBooking = Convert.ToInt32(dr["MaximumBooking"]);
+					string query = @"SELECT * FROM Hotels WHERE HotelId= @HotelId; ";
 
-                    byte[] imagedate = (byte[])dr["Image"];
-					DetailsHotel.Image = imagedate;
+					SqlCommand cmd = new SqlCommand(query, conn);
 
-                }
-				conn.Close();
+					conn.Open();
+					cmd.Parameters.AddWithValue("@HotelId", id);
+
+					SqlDataReader dr = cmd.ExecuteReader();
+
+					while (dr.Read())
+					{
+						DetailsHotel.HotelId = Convert.ToInt32(dr["HotelId"]);
+						DetailsHotel.Name = dr["Name"].ToString();
+						DetailsHotel.Address = dr["Address"].ToString();
+						DetailsHotel.City = dr["City"].ToString();
+						DetailsHotel.Country = dr["Country"].ToString();
+						DetailsHotel.StarRating = Convert.ToInt32(dr["StarRating"]);
+						DetailsHotel.PricePerNight = Convert.ToDecimal(dr["PricePerNight"]);
+						Rooms roomType = (Rooms)Enum.Parse(typeof(Rooms), dr["RoomType"].ToString());
+						DetailsHotel.Room = roomType;
+						DetailsHotel.MaximumBooking = Convert.ToInt32(dr["MaximumBooking"]);
+
+						byte[] imagedate = (byte[])dr["Image"];
+						DetailsHotel.Image = imagedate;
+
+					}
+					conn.Close();
+				}
+				return DetailsHotel;
 			}
-			return DetailsHotel;
+			catch (Exception ex)
+			{
+				throw new Exception(ex.Message);
+			}
 		}
 		
 		public IEnumerable<Hotel> GetAllHotel()
