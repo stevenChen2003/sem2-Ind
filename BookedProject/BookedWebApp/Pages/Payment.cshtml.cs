@@ -49,9 +49,17 @@ namespace BookedWebApp.Pages
 			hotelBooking = new HotelBooking(user, start, end, DateTime.Today, hotel);
 			if (ModelState.IsValid)
             {
-				_bookingManager.AddBooking(hotelBooking);
-                TempData["BookingCompletedMessage"] = "Your booking has been successfully completed.";
-                return RedirectToPage("/Index");
+				try
+				{
+					_bookingManager.AddBooking(hotelBooking);
+					TempData["BookingCompletedMessage"] = "Your booking has been successfully completed.";
+					return RedirectToPage("/Index");
+				}
+				catch (InvalidOperationException ex)
+				{
+					ViewData["Message"] = $"{ex.Message}";
+					return Page();
+				}
 			}
             return Page();
         }
