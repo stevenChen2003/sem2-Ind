@@ -19,11 +19,11 @@ namespace BookedFormsApp
         private HotelManager hotelManager;
         private Hotel hotel;
 
-        public UpdateHotelForm(HotelManager manager, Hotel h)
+        public UpdateHotelForm(HotelManager manager, int id)
         {
             InitializeComponent();
             hotelManager = manager;
-            hotel = h;
+            hotel = hotelManager.GetHotel(id);
             LoadInfo();
             DisableBox();
         }
