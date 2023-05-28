@@ -20,9 +20,10 @@ namespace TestBookedProject.Services
             FlightManager manager = new FlightManager(new FakeFlightRepo());
             Flight flight = new Flight("Air France", "Paris Charles de Gaulle Airport", "France", "London Heathrow Airport", "United Kingdom", (decimal)100.00, Seats.ECONOMY, 200, (decimal)25.00);
 
-            bool result = manager.AddFlight(flight);
+            manager.AddFlight(flight);
+            int i = manager.GetAllFlight().Count();
 
-            Assert.IsTrue(result);
+            Assert.AreEqual(1, i);
         }
 
         [TestMethod]
@@ -31,15 +32,11 @@ namespace TestBookedProject.Services
             FlightManager manager = new FlightManager(new FakeFlightRepo());
             Flight flight1 = new Flight("Air France", "Paris Charles de Gaulle Airport", "France", "London Heathrow Airport", "United Kingdom", (decimal)100.00, Seats.ECONOMY, 200, (decimal)25.00);
             Flight flight2= new Flight("Air France", "Paris Charles de Gaulle Airport", "France", "London Heathrow Airport", "United Kingdom", (decimal)100.00, Seats.ECONOMY, 200, (decimal)25.00);
-            Flight flight3 = new Flight("KLM", "Paris Charles de Gaulle Airport", "France", "London Heathrow Airport", "United Kingdom", (decimal)100.00, Seats.ECONOMY, 200, (decimal)25.00);
 
             manager.AddFlight(flight1);
-            bool result = manager.AddFlight(flight2);
-            bool result2 = manager.AddFlight(flight3);
 
-            Assert.IsFalse(result);
-            Assert.IsTrue(result2);
-        }
+			Assert.ThrowsException<InvalidOperationException>(() => manager.AddFlight(flight2), "Flight already exist");
+		}
 
 
         [TestMethod]
@@ -73,7 +70,6 @@ namespace TestBookedProject.Services
             Assert.IsNotNull(flight);
             Assert.AreEqual("Easy Jet", flight.AirlineName);
         }
-
 
     }
 }

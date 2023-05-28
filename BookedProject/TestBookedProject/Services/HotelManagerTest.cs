@@ -20,9 +20,10 @@ namespace TestBookedProject.Services
             byte[] bytes = { 7 };
             Hotel hotel = new Hotel("Marriot", "Bob street", "Eindhoven", "Netherlands", 5, Convert.ToDecimal(555.55), Rooms.NORMAL, 5, bytes);
 
-            bool result = manager.AddHotel(hotel);
+			manager.AddHotel(hotel);
+			int i = manager.GetAllHotel().Count();
 
-            Assert.IsTrue(result);
+            Assert.AreEqual(1, i);
         }
 
         [TestMethod]
@@ -32,15 +33,11 @@ namespace TestBookedProject.Services
             byte[] bytes = { 7 };
             Hotel hotel1 = new Hotel("Marriot", "Bob street", "Eindhoven", "Netherlands", 5, Convert.ToDecimal(555.55), Rooms.NORMAL, 5, bytes);
             Hotel hotel2 = new Hotel("Marriot", "Bob street", "Eindhoven", "Netherlands", 5, Convert.ToDecimal(555.55), Rooms.NORMAL, 5, bytes);
-            Hotel hotel3 = new Hotel("Marriot", "Bob street", "Eindhoven", "Netherlands", 5, Convert.ToDecimal(555.55), Rooms.FAMILY, 5, bytes);
 
             manager.AddHotel(hotel1);
-            bool result = manager.AddHotel(hotel2); 
-            bool result2 = manager.AddHotel(hotel3);
-            
-            Assert.IsFalse(result);
-            Assert.IsTrue(result2);
-        }
+
+			Assert.ThrowsException<InvalidOperationException>(() => manager.AddHotel(hotel2), "Hotel already exist");
+		}
 
         [TestMethod]
         public void RemoveHotelTest()
