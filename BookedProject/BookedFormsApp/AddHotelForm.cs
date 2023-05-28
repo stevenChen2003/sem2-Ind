@@ -66,19 +66,17 @@ namespace BookedFormsApp
                     }
 
                     Hotel hotel = new Hotel(name, address, city, country, starRating, price, rooms, size, imageData);
-                    if (hotelManager.AddHotel(hotel))
-                    {
-                        MessageBox.Show("Hotel is added", "Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        ClearBoxes();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Hotel already exist", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    hotelManager.AddHotel(hotel);
+					MessageBox.Show("Hotel is added", "Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					ClearBoxes();
 
                 }
 
             }
+            catch (InvalidOperationException i)
+			{
+				MessageBox.Show(i.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
             catch (Exception)
             {
                 MessageBox.Show("Hotel not added", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

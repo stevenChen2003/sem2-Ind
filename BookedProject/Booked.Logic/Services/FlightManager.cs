@@ -24,7 +24,14 @@ namespace Booked.Logic.Services
 
         public IEnumerable<Flight> GetAllFlight()
         {
-            return flightRepo.GetAllFlight();
+            try
+            {
+				return flightRepo.GetAllFlight();
+			}
+            catch (Exception)
+            {
+                throw new Exception("Database not connected");
+            }
         }
 
         public void AddFlight(Flight flight)
@@ -78,7 +85,7 @@ namespace Booked.Logic.Services
             }
             catch (Exception)
             {
-                throw new InvalidOperationException("Cannot remove hotel");
+                throw new InvalidOperationException("Cannot remove flight");
             }
         }
 

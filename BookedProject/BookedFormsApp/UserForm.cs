@@ -44,22 +44,29 @@ namespace BookedFormsApp
 
 		public void LoadGrid()
 		{
-			dataGridUser.DataSource = null;
-			dataGridUser.Rows.Clear();
-			dataGridUser.Refresh();
-			dataGridUser.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-			DataTable dataTable = new DataTable();
-			dataTable.Columns.Add("ID", typeof(int));
-			dataTable.Columns.Add("Email", typeof(string));
-			dataTable.Columns.Add("Name", typeof(string));
-			dataTable.Columns.Add("Date of birth", typeof(DateTime));
-			dataTable.Columns.Add("Phone number", typeof(string));
-			foreach (User user in userManager.GetAllUsers())
+			try
 			{
-				dataTable.Rows.Add(user.UserId, user.Email, $"{user.FirstName} {user.LastName}", user.DateOfBirth, user.PhoneNumber);
+				dataGridUser.DataSource = null;
+				dataGridUser.Rows.Clear();
+				dataGridUser.Refresh();
+				dataGridUser.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+				DataTable dataTable = new DataTable();
+				dataTable.Columns.Add("ID", typeof(int));
+				dataTable.Columns.Add("Email", typeof(string));
+				dataTable.Columns.Add("Name", typeof(string));
+				dataTable.Columns.Add("Date of birth", typeof(DateTime));
+				dataTable.Columns.Add("Phone number", typeof(string));
+				foreach (User user in userManager.GetAllUsers())
+				{
+					dataTable.Rows.Add(user.UserId, user.Email, $"{user.FirstName} {user.LastName}", user.DateOfBirth, user.PhoneNumber);
+				}
+				dataGridUser.DataSource = dataTable;
 			}
-			dataGridUser.DataSource = dataTable;
+			catch (Exception)
+			{
+				throw new Exception();
+			}
 		}
 	}
 }

@@ -30,9 +30,9 @@ namespace Booked.Logic.Services
 			{
                 return hotelRepo.GetAllHotel();
             }
-			catch
+			catch (Exception)
 			{
-				return null;
+				throw new Exception("Not connected to database");
 			}
 		}
 
@@ -78,24 +78,23 @@ namespace Booked.Logic.Services
 			}
 		}
 
-        public bool AddHotel(Hotel hotel)
+        public void AddHotel(Hotel hotel)
 		{
 			try
 			{
-				if (!CheckIfHotelExist(hotel))
+				if (CheckIfHotelExist(hotel))
 				{
-                    hotelRepo.AddHotel(hotel);
-					return true;
-                }
+					throw new InvalidOperationException("Hotel already exist");
+				}
 				else
 				{
-					return false;
+					hotelRepo.AddHotel(hotel);
 				}
 
 			}
-			catch(Exception)
+			catch(InvalidOperationException i)
 			{
-				throw new Exception("Adding not succesfull");
+				throw new InvalidOperationException(i.Message);
 			}
         }
 

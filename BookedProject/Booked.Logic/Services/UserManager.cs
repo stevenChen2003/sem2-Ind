@@ -27,7 +27,14 @@ namespace Booked.Logic.Services
 
         public IEnumerable<User> GetAllUsers()
         {
-            return userRepo.GetAllUser();
+            try
+            {
+				return userRepo.GetAllUser();
+			}
+            catch(Exception)
+            {
+                throw new Exception("Database not connected");
+            }
         }
 
 
