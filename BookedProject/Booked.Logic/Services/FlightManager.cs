@@ -52,6 +52,10 @@ namespace Booked.Logic.Services
             {
                 throw new FlightExistException(i.Message);
 			}
+            catch (Exception)
+            {
+                throw new Exception("Error adding flight please try again");
+            }
         }
 
         public bool CheckIfFlightExist(Flight flight)

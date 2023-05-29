@@ -97,6 +97,10 @@ namespace Booked.Logic.Services
 			{
 				throw new HotelExistException(i.Message);
 			}
+			catch (Exception)
+			{
+				throw new Exception("Error adding hotel please try again");
+			}
         }
 
 		public void UpdateHotel(Hotel hotel)
