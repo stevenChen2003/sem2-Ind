@@ -12,11 +12,12 @@ namespace BookedWebApp.DTO
         [Required]
         [EmailAddress]
         public string Email { get; set; }
-        [Required]
-        public DateTime DateOfBirth { get; set; }
+		[Required(ErrorMessage = "Date of birth is required.")]
+		public DateTime DateOfBirth { get; set; }
         [Required]
         public string PhoneNumber { get; set; }
         [Required]
+        [MinLength(7, ErrorMessage = "Password must be at least 7 characters long.")]
         public string Password { get; set; }
 
         public CreateUserDTO() { }
