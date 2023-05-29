@@ -99,8 +99,5 @@ namespace TestBookedProject.Services
             Assert.ThrowsException<Exception>(() => manager.UpdateHotel(hotelUpdated), "Cannot update hotel");
         }
 
-
-
-
     }
 }

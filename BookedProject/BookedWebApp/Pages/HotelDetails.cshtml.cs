@@ -51,7 +51,6 @@ namespace BookedWebApp.Pages
 			}
 			else
 			{
-				//Need to display messege that the dates are not filled in
 				return RedirectToPage("/HotelDetails", new {id = id});
 			}
 		}

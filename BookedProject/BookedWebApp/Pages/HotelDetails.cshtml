@@ -17,12 +17,12 @@
 			<!--Date section-->
 			<div>
 				<label class="form-label mb-0 text-white fw-bold">Start</label>
-				<input asp-for=DateStart type="date" class="form-control" value="@Model.DateStart">
+                <input asp-for=DateStart type="date" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" min="@DateTime.Now.ToString("yyyy-MM-dd")">
 			</div>
 
 			<div>
 				<label class="form-label mb-0 text-white fw-bold">End</label>
-				<input asp-for=DateEnd type="date" class="form-control" value="@Model.DateStart">
+                <input asp-for=DateEnd type="date" class="form-control" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" min="@DateTime.Now.ToString("yyyy-MM-dd")">
 			</div>
 		</div>
 

@@ -28,7 +28,7 @@ namespace TestBookedProject.Services
         }
 
         [TestMethod]
-        public void CheckIfFlightExist_When_Added()
+        public void CheckIfFlightExist_When_Added_ShouldThrow_FlightExistExeption()
         {
             FlightManager manager = new FlightManager(new FakeFlightRepo());
             Flight flight1 = new Flight("Air France", "Paris Charles de Gaulle Airport", "France", "London Heathrow Airport", "United Kingdom", (decimal)100.00, Seats.ECONOMY, 200, (decimal)25.00);
