@@ -4,11 +4,11 @@
 }
 
 <div class="container text-center">
-    <h1 class="display-4">User infromation</h1>
+    <h1>User infromation</h1>
     <p>
         Your email is: @Model.user.Email <br/>
         Name: @Model.user.FirstName @Model.user.LastName<br/>
-        Date of Birth: @Model.user.DateOfBirth
+        Date of Birth: @Model.user.DateOfBirth.ToString("d/M/yyyy")
     </p>
 </div>
 
@@ -18,16 +18,31 @@
 </div>
 
 
-
-<div class="container text-center mt-5">
-    <h1 class="display-4">Bookings</h1>
-    @if(Model.user.Bookings != null)
+<div class="container mt-5 mb-3">
+    <h3>Booking history</h3>
+    @if (Model.user.Bookings != null)
     {
-        foreach(var booking in Model.user.Bookings)
-        {
-            <p>@booking.BookingId Price: @booking.GetPrice() Status: @booking.Status</p>
-            <a class="btn btn-primary" asp-page="/Users/PaymentDetails" asp-route-id="@booking.BookingId">Payment Details</a>
-        }
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Booking Date</th>
+                    <th>Price</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var booking in Model.user.Bookings)
+                {
+                    <tr>
+                        <td>@booking.BookingId</td>
+                        <td>@booking.BookingDate.ToString("d/M/yyyy")</td>
+                        <td>@booking.GetPrice()</td>
+                        <td><a class="btn btn-primary" asp-page="/Users/PaymentDetails" asp-route-id="@booking.BookingId">Payment Details</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     }
     else
     {
