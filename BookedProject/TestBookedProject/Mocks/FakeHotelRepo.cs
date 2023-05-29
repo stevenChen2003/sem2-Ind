@@ -56,28 +56,44 @@ namespace TestBookedProject.Mocks
 
         public void RemoveHotelByID(int id)
 		{
-            Hotel hotel = GetHotelByID(id);
-            if (hotel != null)
-            {
-                hotelsList.Remove(hotel);
+			try
+			{
+                Hotel hotel = GetHotelByID(id);
+                if (hotel == null)
+                {
+                    throw new Exception("Error");
+                }
+				else
+				{
+                    hotelsList.Remove(hotel);
+                }
             }
+			catch (Exception)
+			{
+				throw new Exception();
+			}
         }
 
 		public void UpdateHotel(Hotel hotel)
 		{
-            var existingHotel = hotelsList.FirstOrDefault(h => h.HotelId == hotel.HotelId);
-            if (existingHotel != null)
-            {
-                existingHotel.Name = hotel.Name;
-                existingHotel.Address = hotel.Address;
-                existingHotel.City = hotel.City;
-                existingHotel.Country = hotel.Country;
-                existingHotel.StarRating = hotel.StarRating;
-                existingHotel.PricePerNight = hotel.PricePerNight;
-                existingHotel.Room = hotel.Room;
-                existingHotel.MaximumBooking = hotel.MaximumBooking;
-                existingHotel.Image = hotel.Image;
+			try
+			{
+                var existingHotel = hotelsList.FirstOrDefault(h => h.HotelId == hotel.HotelId);
+                if (existingHotel != null)
+                {
+                    existingHotel.Name = hotel.Name;
+                    existingHotel.Address = hotel.Address;
+                    existingHotel.City = hotel.City;
+                    existingHotel.Country = hotel.Country;
+                    existingHotel.StarRating = hotel.StarRating;
+                    existingHotel.PricePerNight = hotel.PricePerNight;
+                    existingHotel.Room = hotel.Room;
+                    existingHotel.MaximumBooking = hotel.MaximumBooking;
+                    existingHotel.Image = hotel.Image;
+                }
+				else { throw new Exception(); }
             }
+			catch(Exception) { throw new Exception("Error"); }
         }
 	}
 }

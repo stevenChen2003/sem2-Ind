@@ -1,4 +1,5 @@
 ﻿using Booked.Domain.Domain;
+using Booked.Logic.Exceptions;
 using Booked.Logic.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -40,16 +41,16 @@ namespace Booked.Logic.Services
             {
                 if (CheckIfFlightExist(flight))
                 {
-					throw new InvalidOperationException("Flight already exist");
+					throw new FlightExistException("Flight already exist");
 				}
                 else
                 {
 					flightRepo.AddFlight(flight);
 				}
             }
-            catch(InvalidOperationException i)
+            catch(FlightExistException i)
             {
-                throw new InvalidOperationException(i.Message);
+                throw new FlightExistException(i.Message);
 			}
         }
 

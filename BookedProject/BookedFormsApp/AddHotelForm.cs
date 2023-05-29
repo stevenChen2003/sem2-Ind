@@ -1,6 +1,7 @@
 ﻿using Booked.Domain.Domain;
 using Booked.Domain.Domain.Enum;
 using Booked.Infrastructure.Repositories;
+using Booked.Logic.Exceptions;
 using Booked.Logic.Services;
 using System;
 using System.Collections.Generic;
@@ -73,13 +74,13 @@ namespace BookedFormsApp
                 }
 
             }
-            catch (InvalidOperationException i)
+            catch (FlightExistException i)
 			{
 				MessageBox.Show(i.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
             catch (Exception)
             {
-                MessageBox.Show("Hotel not added", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error in adding hotel please try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

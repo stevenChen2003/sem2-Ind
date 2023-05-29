@@ -1,5 +1,6 @@
 ﻿using Booked.Domain.Domain;
 using Booked.Domain.Domain.Enum;
+using Booked.Logic.Exceptions;
 using Booked.Logic.Interfaces;
 using System;
 using System.Collections;
@@ -84,7 +85,7 @@ namespace Booked.Logic.Services
 			{
 				if (CheckIfHotelExist(hotel))
 				{
-					throw new InvalidOperationException("Hotel already exist");
+					throw new HotelExistException("Hotel already exist");
 				}
 				else
 				{
@@ -92,9 +93,9 @@ namespace Booked.Logic.Services
 				}
 
 			}
-			catch(InvalidOperationException i)
+			catch(HotelExistException i)
 			{
-				throw new InvalidOperationException(i.Message);
+				throw new HotelExistException(i.Message);
 			}
         }
 

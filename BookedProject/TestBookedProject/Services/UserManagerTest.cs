@@ -1,4 +1,5 @@
 ﻿using Booked.Domain.Domain;
+using Booked.Logic.Exceptions;
 using Booked.Logic.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -19,9 +20,10 @@ namespace TestBookedProject.Services
 			UserManager manager = new UserManager(new FakeUserRepo());
 			User user = new User("Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password");
 
-			bool result = manager.AddUser(user);
+			manager.AddUser(user);
+			int i = manager.GetAllUsers().Count();
 
-			Assert.IsTrue(result);
+			Assert.AreEqual(1, i);
 		}
 
 		[TestMethod]
@@ -30,14 +32,10 @@ namespace TestBookedProject.Services
             UserManager manager = new UserManager(new FakeUserRepo());
             User user1 = new User("Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password");
             User user2 = new User("Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password");
-            User user3 = new User("Steve", "Wu", "s.wu@company.nl", new DateTime(1980, 1, 1), "789987", "password");
             
 			manager.AddUser(user1);
-			bool result = manager.AddUser(user2);
-            bool result2 = manager.AddUser(user3);
 
-			Assert.IsFalse(result);
-            Assert.IsTrue(result2);
+            Assert.ThrowsException<EmailExistException>(() => manager.AddUser(user2), "Flight already exist");
         }
 
 		[TestMethod]
@@ -50,9 +48,9 @@ namespace TestBookedProject.Services
 
             manager.AddUser(user1);
 			manager.AddUser(user3);
-			bool result = manager.DeleteUser(user1.UserId);
+			manager.DeleteUser(user1.UserId);
 
-			Assert.IsTrue(result);
+			Assert.AreEqual(1, manager.GetAllUsers().Count());
         }
 
 		[TestMethod]
@@ -63,9 +61,11 @@ namespace TestBookedProject.Services
 			User user2 = new User(1,"Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 3, 3), "33789987", "password");
 
 			manager.AddUser(user1);
-            bool result = manager.UpdateUser(user2);
+			manager.UpdateUser(user2);
+			User userResult = manager.GetUser("s.chen@company.nl");
 
-			Assert.IsTrue(result);
+
+            Assert.AreEqual("33789987", userResult.PhoneNumber);
         }
 
 		[TestMethod]

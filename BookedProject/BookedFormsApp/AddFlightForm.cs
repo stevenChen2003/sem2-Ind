@@ -1,5 +1,6 @@
 ﻿using Booked.Domain.Domain;
 using Booked.Domain.Domain.Enum;
+using Booked.Logic.Exceptions;
 using Booked.Logic.Services;
 using System;
 using System.Collections.Generic;
@@ -40,7 +41,7 @@ namespace BookedFormsApp
 					MessageBox.Show("FLight is added", "Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            catch (InvalidOperationException i)
+            catch (FlightExistException i)
             {
                 MessageBox.Show(i.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ClearBoxes();

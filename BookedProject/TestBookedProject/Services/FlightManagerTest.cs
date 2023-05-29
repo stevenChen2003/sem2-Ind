@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TestBookedProject.Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Booked.Logic.Exceptions;
 
 namespace TestBookedProject.Services
 {
@@ -35,7 +36,7 @@ namespace TestBookedProject.Services
 
             manager.AddFlight(flight1);
 
-			Assert.ThrowsException<InvalidOperationException>(() => manager.AddFlight(flight2), "Flight already exist");
+			Assert.ThrowsException<FlightExistException>(() => manager.AddFlight(flight2), "Flight already exist");
 		}
 
 
