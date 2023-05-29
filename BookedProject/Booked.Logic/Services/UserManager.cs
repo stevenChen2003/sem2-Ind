@@ -59,30 +59,28 @@ namespace Booked.Logic.Services
             }
 		}
 
-        public bool UpdateUser(User user)
+        public void UpdateUser(User user)
         {
             try
             {
                 userRepo.UpdateUser(user);
-                return true;
             }
-            catch
+            catch (Exception)
             {
-                return false;
+                throw new Exception ("Error in updating, please try again");
             }
         }
 
-        public bool DeleteUser(int id)
+        public void DeleteUser(int id)
         {
             try
             {
                 userRepo.RemoveUserByEmail(id);
-                return true;
             }
-            catch
-            {
-                return false;
-            }
+            catch (Exception)
+			{
+				throw new Exception("Error in deleting account, please try again");
+			}
         }
 
         //Gonna move this to another class, maybe
@@ -99,7 +97,7 @@ namespace Booked.Logic.Services
                 string hashedPassword = userRepo.GetHashedAndSaltPassword(email);
                 return BCrypt.Net.BCrypt.Verify(password, hashedPassword);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }

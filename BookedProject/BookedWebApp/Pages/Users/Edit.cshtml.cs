@@ -35,21 +35,31 @@ namespace BookedWebApp.Pages.Users
 
         public IActionResult OnPostUpdate()
         {
-            if (userManager.UpdateUser(user))
+            try
             {
-                return Redirect("/Users/Details");
+                userManager.UpdateUser(user);
+				return Redirect("/Users/Details");
+			}
+            catch (Exception e)
+            {
+                ViewData["Message"] = e.Message;
+				return Page();
             }
-            return Page();
         }
 
         public IActionResult OnPostDelete()
         {
-            if (userManager.DeleteUser(user.UserId))
+            try
             {
-                HttpContext.SignOutAsync();
-                return Redirect("~/Login");
-            }
-            return Page();
+                userManager.DeleteUser(user.UserId);
+				HttpContext.SignOutAsync();
+				return Redirect("~/Login");
+			}
+            catch (Exception e)
+			{
+				ViewData["Message"] = e.Message;
+				return Page();
+			}
         }
 
     }
