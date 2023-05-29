@@ -51,6 +51,7 @@ namespace BookedWebApp.Pages
 			}
 			else
 			{
+				TempData["Message"] = "Date's are incorrect";
 				return RedirectToPage("/HotelDetails", new {id = id});
 			}
 		}

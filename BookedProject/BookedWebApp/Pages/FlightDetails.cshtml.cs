@@ -39,7 +39,7 @@ namespace BookedWebApp.Pages
 			}
 			else
 			{
-				//Display messege that the dates are not filled int
+				TempData["Message"] = "Date's are incorrect";
 				return Page();
 			}
 		}

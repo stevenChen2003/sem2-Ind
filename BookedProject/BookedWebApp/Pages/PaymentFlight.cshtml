@@ -15,8 +15,10 @@
 	<input type="hidden" asp-for="flightId" value="@Model.flightBooking.Flight.FlightId" />
 
 	<div class="d-flex align-items-center justify-content-center pt-2">
-		<button type="submit" class="btn-primary">
+		<button type="submit" class="btn btn-primary mx-1">
 			Pay Now
 		</button>
+
+		<a href="@Request.Headers["Referer"].ToString()" class="btn btn-primary">Cancel</a>
 	</div>
 </form>
