@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Booked.Logic.Interfaces;
+using Booked.Logic.Exceptions;
 
 namespace Booked.Logic.Services
 {
@@ -38,17 +39,23 @@ namespace Booked.Logic.Services
         }
 
 
-		public bool AddUser(User user)
+		public void AddUser(User user)
 		{
-			if (userRepo.FindUserByEmail(user.Email) != null)
-			{
-				return false;
+            try
+            {
+				if (userRepo.FindUserByEmail(user.Email) != null)
+				{
+                    throw new EmailExistException("Email exist");
+				}
+				else
+				{
+					user.Password = HashPassword(user.Password);
+					userRepo.AddUser(user);
+				}
 			}
-			else
-			{
-                user.Password = HashPassword(user.Password);
-                userRepo.AddUser(user);
-				return true;
+            catch(EmailExistException e)
+            {
+                throw new EmailExistException(e.Message);
             }
 		}
 

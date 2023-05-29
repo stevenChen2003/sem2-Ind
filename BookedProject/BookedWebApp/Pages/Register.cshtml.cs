@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Booked.Infrastructure.Repositories;
 using BookedWebApp.DTO;
+using Booked.Logic.Exceptions;
 
 namespace BookedWebApp.Pages
 {
@@ -37,21 +38,23 @@ namespace BookedWebApp.Pages
             if (ModelState.IsValid)
             {
                 User user = Creadentials.GetUser();
-                if (userManager.AddUser(user))
+                try
                 {
-                    List<Claim> claims = new List<Claim>
-                    {
-                        new Claim(ClaimTypes.Name, user.Email)
-                    };
-                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                    HttpContext.SignInAsync(new ClaimsPrincipal(claimsIdentity));
-                    return Redirect("~/Index");
-                }
-                else
+                    userManager.AddUser(user);
+					List<Claim> claims = new List<Claim>
+					{
+						new Claim(ClaimTypes.Name, user.Email)
+					};
+					var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+					HttpContext.SignInAsync(new ClaimsPrincipal(claimsIdentity));
+					return Redirect("~/Index");
+
+				}
+                catch (EmailExistException)
                 {
-                    ViewData["Message"] = "Email already exists.";
-                    return Page();
-                }
+					ViewData["Message"] = "Email already exists.";
+					return Page();
+				}
 
             }
             return Page();
