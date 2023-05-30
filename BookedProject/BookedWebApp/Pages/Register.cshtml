@@ -33,7 +33,7 @@
         <div class="mb-3">
             <label asp-for="Creadentials.DateOfBirth" class="form-label">Date of Birth: </label>
             <span class="text-danger" asp-validation-for="Creadentials.DateOfBirth"></span>
-            <input type="date" asp-for="Creadentials.DateOfBirth" class="form-control" value="">
+            <input type="date" asp-for="Creadentials.DateOfBirth" class="form-control" value="" max="@(DateTime.Today.AddYears(-18).ToString("yyyy-MM-dd"))">
         </div>
 
         <div class="mb-3">
