@@ -74,7 +74,7 @@ namespace BookedFormsApp
                 }
 
             }
-            catch (FlightExistException i)
+            catch (HotelExistException i)
 			{
 				MessageBox.Show(i.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
