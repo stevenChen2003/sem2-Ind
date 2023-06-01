@@ -35,7 +35,7 @@ namespace TestBookedProject.Services
             
 			manager.AddUser(user1);
 
-            Assert.ThrowsException<EmailExistException>(() => manager.AddUser(user2), "Flight already exist");
+            Assert.ThrowsException<EmailExistException>(() => manager.AddUser(user2), "User email already exist");
         }
 
 		[TestMethod]
