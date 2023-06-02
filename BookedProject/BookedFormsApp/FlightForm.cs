@@ -43,18 +43,18 @@ namespace BookedFormsApp
         {
             try
             {
-				var selectedRow = dataGridFlights.CurrentRow;
-				if (selectedRow != null)
-				{
-					int id = (int)selectedRow.Cells["Flight ID"].Value;
-					flightManager.RemoveFlight(id);
-					LoadGrid();
-				}
-				else
-				{
-					MessageBox.Show("Please select a flight", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}
-			}
+                var selectedRow = dataGridFlights.CurrentRow;
+                if (selectedRow != null)
+                {
+                    int id = (int)selectedRow.Cells["Flight ID"].Value;
+                    flightManager.RemoveFlight(id);
+                    LoadGrid();
+                }
+                else
+                {
+                    MessageBox.Show("Please select a flight", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
             catch (InvalidOperationException i)
             {
                 MessageBox.Show(i.Message);
@@ -65,57 +65,99 @@ namespace BookedFormsApp
         {
             try
             {
-				var selectedRow = dataGridFlights.CurrentRow;
-				if (selectedRow != null)
-				{
-					int id = (int)selectedRow.Cells["Flight ID"].Value;
-					Flight flight = flightManager.GetFlight(id);
-					UpdateFlightForm updateFlightForm = new UpdateFlightForm(flightManager, flight);
-					updateFlightForm.ShowDialog();
-					LoadGrid();
-				}
-				else
-				{
-					MessageBox.Show("Please select a flight", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}
-			}
-			catch (InvalidOperationException i)
-			{
-				MessageBox.Show(i.Message);
-			}
+                var selectedRow = dataGridFlights.CurrentRow;
+                if (selectedRow != null)
+                {
+                    int id = (int)selectedRow.Cells["Flight ID"].Value;
+                    Flight flight = flightManager.GetFlight(id);
+                    UpdateFlightForm updateFlightForm = new UpdateFlightForm(flightManager, flight);
+                    updateFlightForm.ShowDialog();
+                    LoadGrid();
+                }
+                else
+                {
+                    MessageBox.Show("Please select a flight", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (InvalidOperationException i)
+            {
+                MessageBox.Show(i.Message);
+            }
         }
 
         public void LoadGrid()
         {
             try
             {
-				dataGridFlights.DataSource = null;
-				dataGridFlights.Rows.Clear();
-				dataGridFlights.Refresh();
-				dataGridFlights.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dataGridFlights.DataSource = null;
+                dataGridFlights.Rows.Clear();
+                dataGridFlights.Refresh();
+                dataGridFlights.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-				DataTable dataTable = new DataTable();
-				dataTable.Columns.Add("Flight ID", typeof(int));
-				dataTable.Columns.Add("AirlineName", typeof(string));
-				dataTable.Columns.Add("DepartureAirport", typeof(string));
-				dataTable.Columns.Add("DepartureCountry", typeof(string));
-				dataTable.Columns.Add("ArrivalAirport", typeof(string));
-				dataTable.Columns.Add("ArrivalCountry", typeof(string));
-				dataTable.Columns.Add("Price", typeof(decimal));
-				dataTable.Columns.Add("SeatType", typeof(Seats));
-				dataTable.Columns.Add("Nr. Seats", typeof(int));
-				dataTable.Columns.Add("Extra Bag Price", typeof(decimal));
-				foreach (Flight flight in flightManager.GetAllFlight())
-				{
-					dataTable.Rows.Add(flight.FlightId, flight.AirlineName, flight.DepartureAirport, flight.DepartureCountry, flight.ArrivalAirport, flight.ArrivalCountry, flight.Price, flight.Seat, flight.NumberOfSeats, flight.ExtraBaggagePrice);
-				}
-				dataGridFlights.DataSource = dataTable;
-			}
+                DataTable dataTable = new DataTable();
+                dataTable.Columns.Add("Flight ID", typeof(int));
+                dataTable.Columns.Add("AirlineName", typeof(string));
+                dataTable.Columns.Add("DepartureAirport", typeof(string));
+                dataTable.Columns.Add("DepartureCountry", typeof(string));
+                dataTable.Columns.Add("ArrivalAirport", typeof(string));
+                dataTable.Columns.Add("ArrivalCountry", typeof(string));
+                dataTable.Columns.Add("Price", typeof(decimal));
+                dataTable.Columns.Add("SeatType", typeof(Seats));
+                dataTable.Columns.Add("Nr. Seats", typeof(int));
+                dataTable.Columns.Add("Extra Bag Price", typeof(decimal));
+                foreach (Flight flight in flightManager.GetAllFlight())
+                {
+                    dataTable.Rows.Add(flight.FlightId, flight.AirlineName, flight.DepartureAirport, flight.DepartureCountry, flight.ArrivalAirport, flight.ArrivalCountry, flight.Price, flight.Seat, flight.NumberOfSeats, flight.ExtraBaggagePrice);
+                }
+                dataGridFlights.DataSource = dataTable;
+            }
             catch (Exception)
             {
                 throw new Exception();
             }
 
+        }
+
+        private void buttonFlightSearch_Click(object sender, EventArgs e)
+        {
+            if (textBoxDep.Text == string.Empty || textBoxArrive.Text == string.Empty)
+            {
+                MessageBox.Show("Search field is empty");
+            }
+            else
+            {
+                try
+                {
+                    int i = flightManager.GetTotalFlightsCount(textBoxDep.Text, textBoxArrive.Text);
+                    dataGridFlights.DataSource = null;
+                    dataGridFlights.Rows.Clear();
+                    dataGridFlights.Refresh();
+                    dataGridFlights.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                    DataTable dataTable = new DataTable();
+                    dataTable.Columns.Add("Flight ID", typeof(int));
+                    dataTable.Columns.Add("AirlineName", typeof(string));
+                    dataTable.Columns.Add("DepartureAirport", typeof(string));
+                    dataTable.Columns.Add("DepartureCountry", typeof(string));
+                    dataTable.Columns.Add("ArrivalAirport", typeof(string));
+                    dataTable.Columns.Add("ArrivalCountry", typeof(string));
+                    dataTable.Columns.Add("Price", typeof(decimal));
+                    dataTable.Columns.Add("SeatType", typeof(Seats));
+                    dataTable.Columns.Add("Nr. Seats", typeof(int));
+                    dataTable.Columns.Add("Extra Bag Price", typeof(decimal));
+                    foreach (Flight flight in flightManager.GetFlightsBySearch(textBoxDep.Text, textBoxArrive.Text, i, 0))
+                    {
+                        dataTable.Rows.Add(flight.FlightId, flight.AirlineName, flight.DepartureAirport, flight.DepartureCountry, flight.ArrivalAirport, flight.ArrivalCountry, flight.Price, flight.Seat, flight.NumberOfSeats, flight.ExtraBaggagePrice);
+                    }
+                    dataGridFlights.DataSource = dataTable;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "No content", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadGrid();
+                }
+
+            }
         }
 
     }

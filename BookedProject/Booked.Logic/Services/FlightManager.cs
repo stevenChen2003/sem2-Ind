@@ -103,13 +103,20 @@ namespace Booked.Logic.Services
         
         public IEnumerable<Flight> GetFlightsBySearch(string depart, string arrive, int itemsPerPage, int offset)
         {
-            if (!string.IsNullOrEmpty(depart) && !string.IsNullOrEmpty(arrive))
+            try
             {
-                return flightRepo.GetFlightsPerPage(depart, arrive, itemsPerPage, offset);
+                if (!string.IsNullOrEmpty(depart) && !string.IsNullOrEmpty(arrive))
+                {
+                    return flightRepo.GetFlightsPerPage(depart, arrive, itemsPerPage, offset);
+                }
+                else
+                {
+                    return flightRepo.GetAllFlightsPerPage(itemsPerPage, offset);
+                }
             }
-            else
+            catch (Exception e)
             {
-                return flightRepo.GetAllFlightsPerPage(itemsPerPage, offset);
+                throw new Exception(e.Message, e);
             }
         }
 

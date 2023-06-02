@@ -279,7 +279,7 @@ namespace Booked.Infrastructure.Repositories
 			}
 			catch (Exception)
 			{
-				throw new Exception("Not Flights found");
+				throw new Exception("No Flights found");
 			}
 		}
 

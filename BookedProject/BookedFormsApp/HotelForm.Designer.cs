@@ -1,108 +1,134 @@
 ﻿namespace BookedFormsApp
 {
-	partial class HotelForm
-	{
-		/// <summary>
-		///  Required designer variable.
-		/// </summary>
-		private System.ComponentModel.IContainer components = null;
+    partial class HotelForm
+    {
+        /// <summary>
+        ///  Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
 
-		/// <summary>
-		///  Clean up any resources being used.
-		/// </summary>
-		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing && (components != null))
-			{
-				components.Dispose();
-			}
-			base.Dispose(disposing);
-		}
+        /// <summary>
+        ///  Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
-		#region Windows Form Designer generated code
+        #region Windows Form Designer generated code
 
-		/// <summary>
-		///  Required method for Designer support - do not modify
-		///  the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
-            this.dataGridHotels = new System.Windows.Forms.DataGridView();
-            this.btAddhotel = new System.Windows.Forms.Button();
-            this.btRemovehotel = new System.Windows.Forms.Button();
-            this.btUpdateHotel = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridHotels)).BeginInit();
-            this.SuspendLayout();
+        /// <summary>
+        ///  Required method for Designer support - do not modify
+        ///  the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            dataGridHotels = new DataGridView();
+            btAddhotel = new Button();
+            btRemovehotel = new Button();
+            btUpdateHotel = new Button();
+            textBoxSearchHotel = new TextBox();
+            buttonHotelSearch = new Button();
+            ((System.ComponentModel.ISupportInitialize)dataGridHotels).BeginInit();
+            SuspendLayout();
             // 
             // dataGridHotels
             // 
-            this.dataGridHotels.AllowUserToAddRows = false;
-            this.dataGridHotels.AllowUserToDeleteRows = false;
-            this.dataGridHotels.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridHotels.Location = new System.Drawing.Point(15, 11);
-            this.dataGridHotels.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dataGridHotels.Name = "dataGridHotels";
-            this.dataGridHotels.ReadOnly = true;
-            this.dataGridHotels.RowHeadersWidth = 51;
-            this.dataGridHotels.RowTemplate.Height = 29;
-            this.dataGridHotels.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridHotels.Size = new System.Drawing.Size(938, 426);
-            this.dataGridHotels.TabIndex = 0;
+            dataGridHotels.AllowUserToAddRows = false;
+            dataGridHotels.AllowUserToDeleteRows = false;
+            dataGridHotels.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridHotels.Location = new Point(17, 58);
+            dataGridHotels.Name = "dataGridHotels";
+            dataGridHotels.ReadOnly = true;
+            dataGridHotels.RowHeadersWidth = 51;
+            dataGridHotels.RowTemplate.Height = 29;
+            dataGridHotels.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridHotels.Size = new Size(1072, 457);
+            dataGridHotels.TabIndex = 0;
             // 
             // btAddhotel
             // 
-            this.btAddhotel.Location = new System.Drawing.Point(15, 475);
-            this.btAddhotel.Name = "btAddhotel";
-            this.btAddhotel.Size = new System.Drawing.Size(205, 23);
-            this.btAddhotel.TabIndex = 1;
-            this.btAddhotel.Text = "Add";
-            this.btAddhotel.UseVisualStyleBackColor = true;
-            this.btAddhotel.Click += new System.EventHandler(this.btAddHotel_Click);
+            btAddhotel.Location = new Point(17, 633);
+            btAddhotel.Margin = new Padding(3, 4, 3, 4);
+            btAddhotel.Name = "btAddhotel";
+            btAddhotel.Size = new Size(234, 31);
+            btAddhotel.TabIndex = 1;
+            btAddhotel.Text = "Add";
+            btAddhotel.UseVisualStyleBackColor = true;
+            btAddhotel.Click += btAddHotel_Click;
             // 
             // btRemovehotel
             // 
-            this.btRemovehotel.Location = new System.Drawing.Point(287, 475);
-            this.btRemovehotel.Name = "btRemovehotel";
-            this.btRemovehotel.Size = new System.Drawing.Size(205, 23);
-            this.btRemovehotel.TabIndex = 2;
-            this.btRemovehotel.Text = "Remove";
-            this.btRemovehotel.UseVisualStyleBackColor = true;
-            this.btRemovehotel.Click += new System.EventHandler(this.btRemoveHotel_Click);
+            btRemovehotel.Location = new Point(328, 633);
+            btRemovehotel.Margin = new Padding(3, 4, 3, 4);
+            btRemovehotel.Name = "btRemovehotel";
+            btRemovehotel.Size = new Size(234, 31);
+            btRemovehotel.TabIndex = 2;
+            btRemovehotel.Text = "Remove";
+            btRemovehotel.UseVisualStyleBackColor = true;
+            btRemovehotel.Click += btRemoveHotel_Click;
             // 
             // btUpdateHotel
             // 
-            this.btUpdateHotel.Location = new System.Drawing.Point(550, 475);
-            this.btUpdateHotel.Name = "btUpdateHotel";
-            this.btUpdateHotel.Size = new System.Drawing.Size(205, 23);
-            this.btUpdateHotel.TabIndex = 3;
-            this.btUpdateHotel.Text = "Update";
-            this.btUpdateHotel.UseVisualStyleBackColor = true;
-            this.btUpdateHotel.Click += new System.EventHandler(this.btUpdateHotel_Click);
+            btUpdateHotel.Location = new Point(629, 633);
+            btUpdateHotel.Margin = new Padding(3, 4, 3, 4);
+            btUpdateHotel.Name = "btUpdateHotel";
+            btUpdateHotel.Size = new Size(234, 31);
+            btUpdateHotel.TabIndex = 3;
+            btUpdateHotel.Text = "Update";
+            btUpdateHotel.UseVisualStyleBackColor = true;
+            btUpdateHotel.Click += btUpdateHotel_Click;
+            // 
+            // textBoxSearchHotel
+            // 
+            textBoxSearchHotel.Location = new Point(17, 12);
+            textBoxSearchHotel.Name = "textBoxSearchHotel";
+            textBoxSearchHotel.Size = new Size(432, 27);
+            textBoxSearchHotel.TabIndex = 6;
+            // 
+            // buttonHotelSearch
+            // 
+            buttonHotelSearch.Location = new Point(477, 12);
+            buttonHotelSearch.Name = "buttonHotelSearch";
+            buttonHotelSearch.Size = new Size(94, 29);
+            buttonHotelSearch.TabIndex = 7;
+            buttonHotelSearch.Text = "Search";
+            buttonHotelSearch.UseVisualStyleBackColor = true;
+            buttonHotelSearch.Click += buttonHotelSearch_Click;
             // 
             // HotelForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1020, 541);
-            this.ControlBox = false;
-            this.Controls.Add(this.dataGridHotels);
-            this.Controls.Add(this.btUpdateHotel);
-            this.Controls.Add(this.btRemovehotel);
-            this.Controls.Add(this.btAddhotel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "HotelForm";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridHotels)).EndInit();
-            this.ResumeLayout(false);
-
-		}
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.Control;
+            ClientSize = new Size(1166, 721);
+            ControlBox = false;
+            Controls.Add(buttonHotelSearch);
+            Controls.Add(textBoxSearchHotel);
+            Controls.Add(dataGridHotels);
+            Controls.Add(btUpdateHotel);
+            Controls.Add(btRemovehotel);
+            Controls.Add(btAddhotel);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "HotelForm";
+            WindowState = FormWindowState.Maximized;
+            ((System.ComponentModel.ISupportInitialize)dataGridHotels).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
+        }
 
         #endregion
         private DataGridView dataGridHotels;
         private Button btAddhotel;
         private Button btRemovehotel;
         private Button btUpdateHotel;
+        private TextBox textBoxSearchHotel;
+        private Button buttonHotelSearch;
     }
 }

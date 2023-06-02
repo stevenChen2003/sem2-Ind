@@ -28,76 +28,129 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btAddFlight = new System.Windows.Forms.Button();
-            this.btRemoveFlight = new System.Windows.Forms.Button();
-            this.btUpdateFlight = new System.Windows.Forms.Button();
-            this.dataGridFlights = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridFlights)).BeginInit();
-            this.SuspendLayout();
+            btAddFlight = new Button();
+            btRemoveFlight = new Button();
+            btUpdateFlight = new Button();
+            dataGridFlights = new DataGridView();
+            textBoxDep = new TextBox();
+            buttonFlightSearch = new Button();
+            textBoxArrive = new TextBox();
+            label1 = new Label();
+            label2 = new Label();
+            ((System.ComponentModel.ISupportInitialize)dataGridFlights).BeginInit();
+            SuspendLayout();
             // 
             // btAddFlight
             // 
-            this.btAddFlight.Location = new System.Drawing.Point(12, 475);
-            this.btAddFlight.Name = "btAddFlight";
-            this.btAddFlight.Size = new System.Drawing.Size(205, 23);
-            this.btAddFlight.TabIndex = 1;
-            this.btAddFlight.Text = "Add";
-            this.btAddFlight.UseVisualStyleBackColor = true;
-            this.btAddFlight.Click += new System.EventHandler(this.btAddFlight_Click);
+            btAddFlight.Location = new Point(14, 633);
+            btAddFlight.Margin = new Padding(3, 4, 3, 4);
+            btAddFlight.Name = "btAddFlight";
+            btAddFlight.Size = new Size(234, 31);
+            btAddFlight.TabIndex = 1;
+            btAddFlight.Text = "Add";
+            btAddFlight.UseVisualStyleBackColor = true;
+            btAddFlight.Click += btAddFlight_Click;
             // 
             // btRemoveFlight
             // 
-            this.btRemoveFlight.Location = new System.Drawing.Point(307, 475);
-            this.btRemoveFlight.Name = "btRemoveFlight";
-            this.btRemoveFlight.Size = new System.Drawing.Size(205, 23);
-            this.btRemoveFlight.TabIndex = 2;
-            this.btRemoveFlight.Text = "Remove";
-            this.btRemoveFlight.UseVisualStyleBackColor = true;
-            this.btRemoveFlight.Click += new System.EventHandler(this.btRemoveFlight_Click);
+            btRemoveFlight.Location = new Point(351, 633);
+            btRemoveFlight.Margin = new Padding(3, 4, 3, 4);
+            btRemoveFlight.Name = "btRemoveFlight";
+            btRemoveFlight.Size = new Size(234, 31);
+            btRemoveFlight.TabIndex = 2;
+            btRemoveFlight.Text = "Remove";
+            btRemoveFlight.UseVisualStyleBackColor = true;
+            btRemoveFlight.Click += btRemoveFlight_Click;
             // 
             // btUpdateFlight
             // 
-            this.btUpdateFlight.Location = new System.Drawing.Point(597, 475);
-            this.btUpdateFlight.Name = "btUpdateFlight";
-            this.btUpdateFlight.Size = new System.Drawing.Size(205, 23);
-            this.btUpdateFlight.TabIndex = 3;
-            this.btUpdateFlight.Text = "Update";
-            this.btUpdateFlight.UseVisualStyleBackColor = true;
-            this.btUpdateFlight.Click += new System.EventHandler(this.btUpdateFlight_Click);
+            btUpdateFlight.Location = new Point(682, 633);
+            btUpdateFlight.Margin = new Padding(3, 4, 3, 4);
+            btUpdateFlight.Name = "btUpdateFlight";
+            btUpdateFlight.Size = new Size(234, 31);
+            btUpdateFlight.TabIndex = 3;
+            btUpdateFlight.Text = "Update";
+            btUpdateFlight.UseVisualStyleBackColor = true;
+            btUpdateFlight.Click += btUpdateFlight_Click;
             // 
             // dataGridFlights
             // 
-            this.dataGridFlights.AllowUserToAddRows = false;
-            this.dataGridFlights.AllowUserToDeleteRows = false;
-            this.dataGridFlights.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridFlights.Location = new System.Drawing.Point(15, 11);
-            this.dataGridFlights.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dataGridFlights.Name = "dataGridFlights";
-            this.dataGridFlights.ReadOnly = true;
-            this.dataGridFlights.RowHeadersWidth = 51;
-            this.dataGridFlights.RowTemplate.Height = 29;
-            this.dataGridFlights.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridFlights.Size = new System.Drawing.Size(938, 426);
-            this.dataGridFlights.TabIndex = 4;
+            dataGridFlights.AllowUserToAddRows = false;
+            dataGridFlights.AllowUserToDeleteRows = false;
+            dataGridFlights.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridFlights.Location = new Point(14, 82);
+            dataGridFlights.Name = "dataGridFlights";
+            dataGridFlights.ReadOnly = true;
+            dataGridFlights.RowHeadersWidth = 51;
+            dataGridFlights.RowTemplate.Height = 29;
+            dataGridFlights.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridFlights.Size = new Size(1072, 512);
+            dataGridFlights.TabIndex = 4;
+            // 
+            // textBoxDep
+            // 
+            textBoxDep.Location = new Point(14, 35);
+            textBoxDep.Name = "textBoxDep";
+            textBoxDep.Size = new Size(254, 27);
+            textBoxDep.TabIndex = 5;
+            // 
+            // buttonFlightSearch
+            // 
+            buttonFlightSearch.Location = new Point(601, 35);
+            buttonFlightSearch.Name = "buttonFlightSearch";
+            buttonFlightSearch.Size = new Size(94, 29);
+            buttonFlightSearch.TabIndex = 8;
+            buttonFlightSearch.Text = "Search";
+            buttonFlightSearch.UseVisualStyleBackColor = true;
+            buttonFlightSearch.Click += buttonFlightSearch_Click;
+            // 
+            // textBoxArrive
+            // 
+            textBoxArrive.Location = new Point(304, 35);
+            textBoxArrive.Name = "textBoxArrive";
+            textBoxArrive.Size = new Size(254, 27);
+            textBoxArrive.TabIndex = 9;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(14, 12);
+            label1.Name = "label1";
+            label1.Size = new Size(46, 20);
+            label1.TabIndex = 10;
+            label1.Text = "From:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(304, 12);
+            label2.Name = "label2";
+            label2.Size = new Size(28, 20);
+            label2.TabIndex = 11;
+            label2.Text = "To:";
             // 
             // FlightForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(1020, 541);
-            this.ControlBox = false;
-            this.Controls.Add(this.dataGridFlights);
-            this.Controls.Add(this.btUpdateFlight);
-            this.Controls.Add(this.btRemoveFlight);
-            this.Controls.Add(this.btAddFlight);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "FlightForm";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridFlights)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ButtonHighlight;
+            ClientSize = new Size(1166, 721);
+            ControlBox = false;
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(textBoxArrive);
+            Controls.Add(buttonFlightSearch);
+            Controls.Add(textBoxDep);
+            Controls.Add(dataGridFlights);
+            Controls.Add(btUpdateFlight);
+            Controls.Add(btRemoveFlight);
+            Controls.Add(btAddFlight);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Name = "FlightForm";
+            WindowState = FormWindowState.Maximized;
+            ((System.ComponentModel.ISupportInitialize)dataGridFlights).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -105,5 +158,10 @@
         private Button btRemoveFlight;
         private Button btUpdateFlight;
         private DataGridView dataGridFlights;
+        private TextBox textBoxDep;
+        private Button buttonFlightSearch;
+        private TextBox textBoxArrive;
+        private Label label1;
+        private Label label2;
     }
 }
