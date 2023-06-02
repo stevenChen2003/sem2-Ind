@@ -19,24 +19,27 @@ namespace BookedWebApp.Pages.Users
             userManager = mng;
         }
 
-
-        //Change to DTO's later on in life
-        [BindProperty]
         public User user { get; set; }
 
-        //[BindProperty]
+        [BindProperty]
         public UpdateUser UpdateUser { get; set; }
 
         public void OnGet()
         {
             string userEmail = User.Identity.Name;
             user = userManager.GetUser(userEmail);
+            UpdateUser = new UpdateUser(user);
         }
 
         public IActionResult OnPostUpdate()
         {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
             try
             {
+                user = UpdateUser.GetUser();
                 userManager.UpdateUser(user);
 				return Redirect("/Users/Details");
 			}
@@ -51,6 +54,7 @@ namespace BookedWebApp.Pages.Users
         {
             try
             {
+                user = UpdateUser.GetUser();
                 userManager.DeleteUser(user.UserId);
 				HttpContext.SignOutAsync();
 				return Redirect("~/Login");

@@ -47,7 +47,7 @@ namespace Booked.Infrastructure.Repositories
 			}
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("Error loading from database");
             }
         }
 
@@ -81,7 +81,7 @@ namespace Booked.Infrastructure.Repositories
             }
             catch (Exception)
             {
-                throw new Exception("Error");
+                throw new Exception("No users found");
             }
         }
 

@@ -32,9 +32,9 @@ namespace Booked.Logic.Services
             {
 				return userRepo.GetAllUser();
 			}
-            catch(Exception)
+            catch(Exception ex)
             {
-                throw new Exception("Database not connected");
+                throw new Exception(ex.Message, ex);
             }
         }
 

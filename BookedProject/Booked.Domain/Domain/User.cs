@@ -41,6 +41,5 @@ namespace Booked.Domain.Domain
             Password = password;
         }
 
-
     }
 }
