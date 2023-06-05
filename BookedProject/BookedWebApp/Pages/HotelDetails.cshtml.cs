@@ -88,8 +88,16 @@ namespace BookedWebApp.Pages
 			{
                 review.Description = EditDescription;
 				review.Rating = Editrating;
-                reviewManager.UpdateReview(review);
-                return RedirectToPage("/HotelDetails", new { id = review.HotelId });
+				try
+				{
+                    reviewManager.UpdateReview(review);
+                    return RedirectToPage("/HotelDetails", new { id = review.HotelId });
+                }
+				catch (Exception ex)
+				{
+					TempData["ReviewError"] = ex.Message;
+
+                }
             }
 
             return RedirectToPage("/HotelDetails", new { id = review.HotelId });
@@ -100,8 +108,16 @@ namespace BookedWebApp.Pages
             Review review = reviewManager.GetReviewById(ReviewId);
             if (ModelState.IsValid)
             {
-                reviewManager.DeleteReview(review.Id);
-                return RedirectToPage("/HotelDetails", new { id = review.HotelId });
+				try
+				{
+                    reviewManager.DeleteReview(review.Id);
+                    return RedirectToPage("/HotelDetails", new { id = review.HotelId });
+                }
+				catch (Exception ex)
+                {
+                    TempData["ReviewError"] = ex.Message;
+                }
+
             }
 
             return RedirectToPage("/HotelDetails", new { id = review.HotelId });

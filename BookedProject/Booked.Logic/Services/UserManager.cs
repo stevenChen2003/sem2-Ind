@@ -41,23 +41,16 @@ namespace Booked.Logic.Services
 
 		public void AddUser(User user)
 		{
-            try
+            if (userRepo.FindUserByEmail(user.Email) != null)
             {
-				if (userRepo.FindUserByEmail(user.Email) != null)
-				{
-                    throw new EmailExistException("Email exist");
-				}
-				else
-				{
-					user.Password = HashPassword(user.Password);
-					userRepo.AddUser(user);
-				}
-			}
-            catch(EmailExistException e)
-            {
-                throw new EmailExistException(e.Message);
+                throw new EmailExistException("Email exist");
             }
-		}
+            else
+            {
+                user.Password = HashPassword(user.Password);
+                userRepo.AddUser(user);
+            }
+        }
 
         public void UpdateUser(User user)
         {

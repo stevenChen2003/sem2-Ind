@@ -77,31 +77,15 @@ namespace Booked.Logic.Services
         }
 
         //Update
-        public bool UpdateReview(Review review)
+        public void UpdateReview(Review review)
         {
-            try
-            {
-                reviewRepo.UpdateReview(review);
-				return true;
-            }
-            catch
-            {
-				return false;
-            }
+            reviewRepo.UpdateReview(review);
         }
 
         //Delete
-        public bool DeleteReview(int id)
+        public void DeleteReview(int id)
         {
-            try
-            {
-                reviewRepo.RemoveReviewByID(id);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            reviewRepo.RemoveReviewByID(id);
         }
 
 

@@ -74,6 +74,7 @@
                                 </div>
 
                                 <div class="card-footer" id="editReview-@review.Id" style="display: none;">
+                                    <p class="text-danger">@TempData["ReviewError"]</p>
                                     <form method="post">
                                         <input type="hidden" name="ReviewId" value="@review.Id" />
                                         <div class="form-group text-black">
@@ -108,6 +109,7 @@
                     <h2 class="text-center my-5">Add Review</h2>
 
                     <div>
+                        <p class="text-danger">@TempData["InvalidReview"]</p>
                         <form method="post">
                             <input type="hidden" name="hotelid" value="@Model.Hotel.HotelId" />
                             <div class="form-group">
@@ -118,7 +120,7 @@
                                 <label for="rating">Rating:</label>
                                 <input type="number" class="form-control" id="rating" name="rating" value="5" min="1" max="5" required />
                             </div>
-                            <div class="text-center">
+                            <div class="text-center mt-3">
                                 <button type="submit" asp-page-handler="AddReview" class="btn btn-primary">Submit Review</button>
                             </div>
                         </form>
