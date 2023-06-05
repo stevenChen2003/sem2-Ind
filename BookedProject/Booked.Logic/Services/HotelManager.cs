@@ -14,15 +14,29 @@ namespace Booked.Logic.Services
 	public class HotelManager
 	{
 		private IHotelRepo hotelRepo;
+		private IReviewRepo reviewerRepo;
 
 		public HotelManager(IHotelRepo repo)
 		{
 			hotelRepo = repo;
 		}
 
+		public HotelManager(IHotelRepo hotelRepo, IReviewRepo reviewRepo)
+		{
+			this.hotelRepo = hotelRepo;
+			this.reviewerRepo = reviewRepo;
+		}
+
 		public Hotel GetHotel(int id)
 		{
 			return hotelRepo.GetHotelByID(id);
+		}
+
+		public Hotel GetHotelWithReviews(int id)
+		{
+			Hotel hotel = hotelRepo.GetHotelByID(id);
+			hotel.Reviews = reviewerRepo.GetAllReviewBasedOnHotelId(id);
+			return hotel;
 		}
 
 		public IEnumerable<Hotel> GetAllHotel()
