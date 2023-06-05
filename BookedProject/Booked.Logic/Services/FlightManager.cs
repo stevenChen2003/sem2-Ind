@@ -48,10 +48,6 @@ namespace Booked.Logic.Services
 					flightRepo.AddFlight(flight);
 				}
             }
-            catch(FlightExistException i)
-            {
-                throw new FlightExistException(i.Message);
-			}
             catch (Exception)
             {
                 throw new Exception("Error adding flight please try again");

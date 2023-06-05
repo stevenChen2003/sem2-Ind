@@ -46,6 +46,11 @@ namespace BookedFormsApp
                 MessageBox.Show(i.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ClearBoxes();
             }
+            catch (Exception i)
+			{
+				MessageBox.Show(i.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				ClearBoxes();
+			}
         }
 
 
