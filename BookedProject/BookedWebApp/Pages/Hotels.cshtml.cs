@@ -23,7 +23,7 @@ namespace BookedWebApp.Pages
 
         //Pagination
 		public int CurrentPage { get; set; } = 1;
-		public int ItemsPerPage { get; set; } = 2;
+		public int ItemsPerPage { get; set; } = 3;
 		public int TotalItems { get; set; }
 
 		public int TotalPages => (int)Math.Ceiling(decimal.Divide(TotalItems, ItemsPerPage));
