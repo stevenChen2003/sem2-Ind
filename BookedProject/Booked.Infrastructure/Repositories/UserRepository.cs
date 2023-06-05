@@ -184,7 +184,7 @@ namespace Booked.Infrastructure.Repositories
 			}
             catch (SqlException ex)
 			{
-                throw new Exception(ex.Message);
+                throw new Exception("Password not found", ex);
             }
         }
 

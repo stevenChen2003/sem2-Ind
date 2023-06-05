@@ -202,36 +202,5 @@ namespace Booked.Infrastructure.Repositories
             }
         }
 
-        /*
-        public bool CheckIfReviewExist(Review review)
-        {
-			try
-			{
-                using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
-				{
-                    string query = "SELECT COUNT(*) FROM Reviews WHERE UserId = @UserId AND HotelId = @HotelId";
-					SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@UserId", review.User.UserId);
-                    cmd.Parameters.AddWithValue("@HotelId", review.HotelId);
-					conn.Open();
-
-                    int count = (int)cmd.ExecuteScalar();
-
-                    if (count > 0)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-            }
-			catch
-			{
-				return false;
-			}
-        }*/
-
     }
 }

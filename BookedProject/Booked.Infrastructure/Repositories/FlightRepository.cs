@@ -50,7 +50,6 @@ namespace Booked.Infrastructure.Repositories
             }
         }
 
-        //Use for count because of major changes
         public IEnumerable<Flight> GetAllFlight()
         {
             List<Flight> ListFlights = new List<Flight>();
@@ -83,7 +82,7 @@ namespace Booked.Infrastructure.Repositories
             }
             catch (Exception)
             {
-                throw new Exception("Not Flights found");
+                throw new Exception("No Flights found");
             }
         }
 
@@ -239,7 +238,7 @@ namespace Booked.Infrastructure.Repositories
 			}
 			catch (Exception)
 			{
-				throw new Exception("Not Flights found");
+				throw new Exception("No Flights found");
 			}
 		}
 
@@ -317,7 +316,7 @@ namespace Booked.Infrastructure.Repositories
 			}
 			catch (SqlException)
 			{
-				throw new Exception("Not Flights found");
+				throw new Exception("No Flights found");
 			}
 		}
 

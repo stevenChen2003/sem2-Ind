@@ -53,9 +53,9 @@ namespace Booked.Infrastructure.Repositories
 				}
 				return DetailsHotel;
 			}
-			catch (Exception ex)
+			catch (SqlException ex)
 			{
-				throw new Exception(ex.Message);
+				throw new Exception("Couldn't find hotel", ex);
 			}
 		}
 		
@@ -162,9 +162,9 @@ namespace Booked.Infrastructure.Repositories
                     command.ExecuteNonQuery();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception("Cannot be updated");
+                throw new Exception("Cannot be updated", ex);
             }
         }
 
@@ -182,9 +182,9 @@ namespace Booked.Infrastructure.Repositories
 					cmd.ExecuteNonQuery();
                 }
 			}
-			catch (SqlException)
+			catch (SqlException ex)
 			{
-				throw new Exception("Cannot remove hotel");
+				throw new Exception("Cannot remove hotel", ex);
             }
         }
 
@@ -212,9 +212,9 @@ namespace Booked.Infrastructure.Repositories
                 return count;
 
             }
-            catch (SqlException)
+            catch (SqlException ex)
             {
-                throw new Exception("Hotels not found");
+                throw new Exception("Hotels not found", ex);
             }
         }
 
@@ -241,9 +241,9 @@ namespace Booked.Infrastructure.Repositories
                 return count;
 
             }
-            catch (SqlException)
+            catch (SqlException ex)
             {
-                throw new Exception("Hotels not found");
+                throw new Exception("Hotels not found", ex);
             }
         }
 
@@ -305,9 +305,9 @@ namespace Booked.Infrastructure.Repositories
 				return AllHotel;
 
 			}
-			catch (SqlException)
+			catch (SqlException ex)
 			{
-				throw new Exception("Hotels not found");
+				throw new Exception("Hotels not found", ex);
 			}
 		}
 
@@ -371,9 +371,9 @@ namespace Booked.Infrastructure.Repositories
 				return AllHotel;
 
 			}
-			catch (SqlException)
+			catch (SqlException ex)
 			{
-				throw new Exception("Hotels not found");
+				throw new Exception("Hotels not found", ex);
 			}
 
 		}
