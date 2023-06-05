@@ -65,7 +65,7 @@ namespace TestBookedProject.Services
 
 			manager.AddFlight(flight1);
 
-			Assert.ThrowsException<InvalidOperationException>(() => manager.RemoveFlight(3), "Cannot remove hotel");
+			Assert.ThrowsException<InvalidOperationException>(() => manager.RemoveFlight(3), "Cannot remove flight");
 		}
 
 		[TestMethod]
@@ -92,7 +92,7 @@ namespace TestBookedProject.Services
 
 			manager.AddFlight(flight1);
 
-			Assert.ThrowsException<Exception>(() => manager.UpdateFlight(flightUpdated), "Cannot update hotel");
+			Assert.ThrowsException<Exception>(() => manager.UpdateFlight(flightUpdated), "Cannot update flight");
 		}
 
 	}

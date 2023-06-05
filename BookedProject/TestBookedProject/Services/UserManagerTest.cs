@@ -1,4 +1,5 @@
 ﻿using Booked.Domain.Domain;
+using Booked.Domain.Domain.Enum;
 using Booked.Logic.Exceptions;
 using Booked.Logic.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -27,7 +28,7 @@ namespace TestBookedProject.Services
 		}
 
 		[TestMethod]
-		public void AddSameEmailUserTest()
+		public void AddSameEmailUserTest_ShouldThrowException()
 		{
             UserManager manager = new UserManager(new FakeUserRepo());
             User user1 = new User("Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password");
@@ -54,6 +55,20 @@ namespace TestBookedProject.Services
         }
 
 		[TestMethod]
+		public void RemoveUser_ID_Not_Exist_ShouldThrowException()
+		{
+			UserManager manager = new UserManager(new FakeUserRepo());
+			User user1 = new User(1,"Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password");
+			User user3 = new User("Steve", "Wu", "s.wu@company.nl", new DateTime(1980, 1, 1), "789987", "password");
+
+
+			manager.AddUser(user1);
+			manager.DeleteUser(user1.UserId);
+
+			Assert.ThrowsException<Exception>(() => manager.DeleteUser(1), "Cannot remove user");
+		}
+
+		[TestMethod]
 		public void UpdateUserTest()
 		{
             UserManager manager = new UserManager(new FakeUserRepo());
@@ -67,6 +82,18 @@ namespace TestBookedProject.Services
 
             Assert.AreEqual("33789987", userResult.PhoneNumber);
         }
+
+		[TestMethod]
+		public void UpdateUser_Email_Not_Exist_ShouldThrowException()
+		{
+			UserManager manager = new UserManager(new FakeUserRepo());
+			User user1 = new User("Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password");
+			User userUpdated = new User("Steven", "Chen", "s.wu@company.nl", new DateTime(1980, 3, 3), "33789987", "password");
+
+			manager.AddUser(user1);
+
+			Assert.ThrowsException<Exception>(() => manager.UpdateUser(userUpdated), "Cannot remove user");
+		}
 
 		[TestMethod]
 		public void CheckPasswordUserTest()

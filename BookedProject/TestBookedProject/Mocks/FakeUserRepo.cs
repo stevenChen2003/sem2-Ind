@@ -57,6 +57,10 @@ namespace TestBookedProject.Mocks
             {
                 users.Remove(userToRemove);
             }
+            else
+            {
+                throw new Exception("Cannot remove user");
+            }
         }
 
         public void UpdateUser(User user)
@@ -69,6 +73,10 @@ namespace TestBookedProject.Mocks
                 userExist.DateOfBirth = user.DateOfBirth;
                 userExist.PhoneNumber = user.PhoneNumber;
             }
+            else
+            {
+				throw new Exception("Cannot update user");
+			}
         }
 
 	}
