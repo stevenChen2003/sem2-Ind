@@ -83,7 +83,6 @@ namespace Booked.Logic.Services
 			}
         }
 
-        //Gonna move this to another class, maybe
         public string HashPassword(string password)
         {
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);

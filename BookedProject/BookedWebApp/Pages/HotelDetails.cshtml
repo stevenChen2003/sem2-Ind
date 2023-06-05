@@ -82,7 +82,7 @@
                                         </div>
                                         <div class="form-group text-black">
                                             <label for="rating">Rating:</label>
-                                            <input type="number" class="form-control" id="rating" name="Editrating" min="1" max="5" required />
+                                            <input type="number" class="form-control" id="rating" value="@review.Rating" name="Editrating" min="1" max="5" required />
                                         </div>
 
                                         <div class="flex-column">
@@ -116,7 +116,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="rating">Rating:</label>
-                                <input type="number" class="form-control" id="rating" name="rating" min="1" max="5" required />
+                                <input type="number" class="form-control" id="rating" name="rating"  value="5" min="1" max="5" required />
                             </div>
                             <div class="text-center">
                                 <button type="submit" asp-page-handler="AddReview" class="btn btn-primary">Submit Review</button>

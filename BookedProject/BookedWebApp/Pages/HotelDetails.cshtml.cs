@@ -63,8 +63,15 @@ namespace BookedWebApp.Pages
 			Review review = new Review(user, hotelid, description, rating);
 			if (ModelState.IsValid)
 			{
-				reviewManager.AddReview(review);
-                return RedirectToPage("/HotelDetails", new { id = hotelid });
+				try
+				{
+                    reviewManager.AddReview(review);
+                    return RedirectToPage("/HotelDetails", new { id = hotelid });
+                }
+				catch (Exception ex)
+				{
+
+				}
             }
             return RedirectToPage("/HotelDetails", new { id = hotelid });
         }
