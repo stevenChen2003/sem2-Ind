@@ -10,39 +10,46 @@ namespace TestBookedProject.Mocks
 {
 	public class FakeBookingRepo : IBookingRepo
 	{
+		private List<Booking> bookings;
+
+		public FakeBookingRepo()
+		{
+			bookings = new List<Booking>();
+		}
+
 		public void AddFlightBooking(FlightBooking booking)
 		{
-			throw new NotImplementedException();
+			bookings.Add(booking);
 		}
 
 		public void AddHotelBooking(HotelBooking hotelBooking)
 		{
-			throw new NotImplementedException();
+			bookings.Add(hotelBooking);
 		}
 
 		public IEnumerable<Booking> GetAllBooking()
 		{
-			throw new NotImplementedException();
-		}
-
-		public Booking GetBookingById(int id)
-		{
-			throw new NotImplementedException();
+			return bookings;
 		}
 
 		public IEnumerable<Booking> GetBookingByUserId(int userId)
 		{
-			throw new NotImplementedException();
+			return bookings.Where(b => b.User.UserId == userId);
+		}
+
+		public Booking GetBookingById(int id)
+		{
+			return bookings.FirstOrDefault(b => b.BookingId == id);
 		}
 
 		public void RemoveBooking(int id)
 		{
-			throw new NotImplementedException();
+			bookings.RemoveAll(b => b.BookingId == id);
 		}
 
 		public void UpdateBooking(Booking booking)
 		{
-			throw new NotImplementedException();
+			// No implementation needed for fake repository
 		}
 	}
 }

@@ -58,6 +58,17 @@ namespace TestBookedProject.Services
         }
 
         [TestMethod]
+		public void RemoveFlight_ID_Not_Exist_ShouldThrowException()
+		{
+			FlightManager manager = new FlightManager(new FakeFlightRepo());
+			Flight flight1 = new Flight(1, "Air France", "Paris Charles de Gaulle Airport", "France", "London Heathrow Airport", "United Kingdom", (decimal)100.00, Seats.ECONOMY, 200, (decimal)25.00);
+
+			manager.AddFlight(flight1);
+
+			Assert.ThrowsException<InvalidOperationException>(() => manager.RemoveFlight(3), "Cannot remove hotel");
+		}
+
+		[TestMethod]
         public void UpdateFlightTest()
         {
             FlightManager manager = new FlightManager(new FakeFlightRepo());
@@ -72,5 +83,17 @@ namespace TestBookedProject.Services
             Assert.AreEqual("Easy Jet", flight.AirlineName);
         }
 
-    }
+		[TestMethod]
+		public void UpdateFlight_ID_Not_Exist_ShouldThrowException()
+		{
+			FlightManager manager = new FlightManager(new FakeFlightRepo());
+			Flight flight1 = new Flight(1, "Air France", "Paris Charles de Gaulle Airport", "France", "London Heathrow Airport", "United Kingdom", (decimal)100.00, Seats.ECONOMY, 200, (decimal)25.00);
+			Flight flightUpdated = new Flight(3, "Easy Jet", "Paris Charles de Gaulle Airport", "France", "London Heathrow Airport", "United Kingdom", (decimal)100.00, Seats.ECONOMY, 200, (decimal)25.00);
+
+			manager.AddFlight(flight1);
+
+			Assert.ThrowsException<Exception>(() => manager.UpdateFlight(flightUpdated), "Cannot update hotel");
+		}
+
+	}
 }

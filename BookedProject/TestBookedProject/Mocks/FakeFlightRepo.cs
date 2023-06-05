@@ -49,28 +49,44 @@ namespace TestBookedProject.Mocks
 
         public void RemoveFlightByID(int id)
 		{
-            var flightToRemove = flightList.FirstOrDefault(f => f.FlightId == id);
-            if (flightToRemove != null)
-            {
-                flightList.Remove(flightToRemove);
-            }
-        }
+			try
+			{
+				Flight flight = GetFlightByID(id);
+				if (flight == null)
+				{
+					throw new Exception("Error");
+				}
+				else
+				{
+					flightList.Remove(flight);
+				}
+			}
+			catch (Exception)
+			{
+				throw new Exception();
+			}
+		}
 
 		public void UpdateHotel(Flight flight)
 		{
-            var oldFlight = flightList.FirstOrDefault(f => f.FlightId == flight.FlightId);
-            if (oldFlight != null)
-            {
-                oldFlight.AirlineName = flight.AirlineName;
-                oldFlight.DepartureAirport = flight.DepartureAirport;
-                oldFlight.DepartureCountry = flight.DepartureCountry;
-                oldFlight.ArrivalAirport = flight.ArrivalAirport;
-                oldFlight.ArrivalCountry = flight.ArrivalCountry;
-                oldFlight.Price = flight.Price;
-                oldFlight.Seat = flight.Seat;
-                oldFlight.NumberOfSeats = flight.NumberOfSeats;
-                oldFlight.ExtraBaggagePrice = flight.ExtraBaggagePrice;
-            }
-        }
+			try
+			{
+				var oldFlight = flightList.FirstOrDefault(f => f.FlightId == flight.FlightId);
+				if (oldFlight != null)
+				{
+					oldFlight.AirlineName = flight.AirlineName;
+					oldFlight.DepartureAirport = flight.DepartureAirport;
+					oldFlight.DepartureCountry = flight.DepartureCountry;
+					oldFlight.ArrivalAirport = flight.ArrivalAirport;
+					oldFlight.ArrivalCountry = flight.ArrivalCountry;
+					oldFlight.Price = flight.Price;
+					oldFlight.Seat = flight.Seat;
+					oldFlight.NumberOfSeats = flight.NumberOfSeats;
+					oldFlight.ExtraBaggagePrice = flight.ExtraBaggagePrice;
+				}
+				else { throw new Exception(); }
+			}
+			catch (Exception) { throw new Exception("Error"); }
+		}
 	}
 }

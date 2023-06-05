@@ -67,7 +67,7 @@ namespace Booked.Logic.Services
             }
             catch(Exception)
             {
-                throw new InvalidOperationException("Cannot update flight information");
+                throw new Exception("Cannot update flight information");
             }
         }
 
@@ -83,12 +83,10 @@ namespace Booked.Logic.Services
             }
         }
 
-        //For displaying
         public IEnumerable<string> GetCountries()
         {
             return flightRepo.GetFlightCountries();
         }
-
         
         public IEnumerable<Flight> GetFlightsBySearch(string depart, string arrive, int itemsPerPage, int offset)
         {
