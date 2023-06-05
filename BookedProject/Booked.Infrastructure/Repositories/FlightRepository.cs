@@ -111,7 +111,7 @@ namespace Booked.Infrastructure.Repositories
             }
             catch(Exception)
             {
-                throw new Exception("Flight cannot be added");
+                throw new Exception("Error adding flight pleas try again");
             }
         }
 

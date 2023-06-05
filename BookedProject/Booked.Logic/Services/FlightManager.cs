@@ -37,22 +37,15 @@ namespace Booked.Logic.Services
 
         public void AddFlight(Flight flight)
         {
-            try
-            {
-                if (CheckIfFlightExist(flight))
-                {
-					throw new FlightExistException("Flight already exist");
-				}
-                else
-                {
-					flightRepo.AddFlight(flight);
-				}
-            }
-            catch (Exception)
-            {
-                throw new Exception("Error adding flight please try again");
-            }
-        }
+			if (CheckIfFlightExist(flight))
+			{
+				throw new FlightExistException("Flight already exist");
+			}
+			else
+			{
+				flightRepo.AddFlight(flight);
+			}
+		}
 
         public bool CheckIfFlightExist(Flight flight)
         {
