@@ -78,9 +78,9 @@ namespace BookedFormsApp
 			{
 				MessageBox.Show(i.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Error in adding hotel please try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

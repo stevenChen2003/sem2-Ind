@@ -88,5 +88,37 @@ namespace Booked.Logic.Services
 			}
 		}
 
-	}
+
+		//Popular booking
+        public List<int> GetPopularHotelBookings()
+        {
+            Dictionary<int, int> hotelIdAndCount = new Dictionary<int, int>();
+
+            List<HotelBooking> hotelBookings = new List<HotelBooking>();
+            foreach (var b in bookingRepo.GetAllBooking())
+            {
+                if (b is HotelBooking)
+                {
+                    hotelBookings.Add((HotelBooking)b);
+                }
+            }
+
+            foreach (var h in hotelBookings)
+            {
+                if (hotelIdAndCount.ContainsKey(h.Hotel.HotelId))
+                {
+                    hotelIdAndCount[h.Hotel.HotelId] += 1;
+                }
+                else
+                {
+                    hotelIdAndCount.Add(h.Hotel.HotelId, 1);
+                }
+            }
+
+            int[] topThreeKeys = hotelIdAndCount.OrderByDescending(x => x.Value).Take(3).Select(x => x.Key).ToArray();
+            return topThreeKeys.ToList();
+        }
+
+
+    }
 }

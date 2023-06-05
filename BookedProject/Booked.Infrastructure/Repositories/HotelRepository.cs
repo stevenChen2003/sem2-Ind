@@ -94,9 +94,9 @@ namespace Booked.Infrastructure.Repositories
 				return AllHotel;
 
 			}
-			catch (SqlException)
+			catch (SqlException ex)
             {
-				throw new Exception("Hotels not found");
+				throw new Exception("Hotels not found", ex);
 			}
 		}
 
@@ -123,9 +123,10 @@ namespace Booked.Infrastructure.Repositories
                     command.ExecuteNonQuery();
                 }
             }
-            catch (SqlException)
+            catch (SqlException ex)
             {
-                throw new Exception("Cannot add hotel");
+				//Custome exception
+                throw new Exception("Error adding hotel please try again", ex);
             }
         }
 
@@ -254,9 +255,8 @@ namespace Booked.Infrastructure.Repositories
 			{
 				using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
 				{
+					//Sorting
 					string query = @"SELECT * FROM Hotels ";
-
-					/*
 					switch (sort)
 					{
 						case "name_desc":
@@ -271,10 +271,10 @@ namespace Booked.Infrastructure.Repositories
 						default:
 							query += " ORDER BY Name ASC ";
 							break;
-					}*/
+					}
 
-					//Pagination and sorting
-					query += sort + "OFFSET @Offset ROWS FETCH NEXT @ItemsPerPage ROWS ONLY;";
+					//Pagination
+					query += "OFFSET @Offset ROWS FETCH NEXT @ItemsPerPage ROWS ONLY;";
 
 					SqlCommand cmd = new SqlCommand(query, conn);
 
@@ -321,8 +321,7 @@ namespace Booked.Infrastructure.Repositories
 				using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
 				{
 					string query = @"SELECT * FROM Hotels WHERE Country LIKE @Search OR Name LIKE @Search OR City LIKE @Search ";
-
-					/*
+					//Sorting
 					switch (sort)
 					{
 						case "name_desc":
@@ -337,10 +336,10 @@ namespace Booked.Infrastructure.Repositories
 						default:
 							query += " ORDER BY Name ASC ";
 							break;
-					}*/
+					}
 
-                    //Pagination and sorting
-                    query += sort + "OFFSET @Offset ROWS FETCH NEXT @ItemsPerPage ROWS ONLY;";
+                    //Pagination
+                    query += "OFFSET @Offset ROWS FETCH NEXT @ItemsPerPage ROWS ONLY;";
 
 					SqlCommand cmd = new SqlCommand(query, conn);
 
