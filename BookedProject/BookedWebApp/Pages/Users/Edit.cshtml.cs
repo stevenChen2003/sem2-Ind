@@ -21,6 +21,7 @@ namespace BookedWebApp.Pages.Users
 
         public User user { get; set; }
 
+        //DTO's
         [BindProperty]
         public UpdateUser UpdateUser { get; set; }
 
