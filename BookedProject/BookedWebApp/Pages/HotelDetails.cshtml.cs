@@ -1,5 +1,6 @@
 using Booked.Domain.Domain;
 using Booked.Infrastructure.Repositories;
+using Booked.Logic.Exceptions;
 using Booked.Logic.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -68,10 +69,14 @@ namespace BookedWebApp.Pages
                     reviewManager.AddReview(review);
                     return RedirectToPage("/HotelDetails", new { id = hotelid });
                 }
+				catch (AlreadyExistException ex)
+                {
+                    TempData["InvalidReview"] = ex.Message;
+                }
 				catch (Exception ex)
 				{
-
-				}
+                    TempData["InvalidReview"] = ex.Message;
+                }
             }
             return RedirectToPage("/HotelDetails", new { id = hotelid });
         }

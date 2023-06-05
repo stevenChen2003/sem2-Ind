@@ -1,4 +1,5 @@
 ﻿using Booked.Domain.Domain;
+using Booked.Logic.Exceptions;
 using Booked.Logic.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -18,20 +19,18 @@ namespace Booked.Logic.Services
 		}
 
 		//Add
-		public bool AddReview(Review review)
+		public void AddReview(Review review)
 		{
             try
             {
-                if (!CheckIfReviewExist(review))
+                if (CheckIfReviewExist(review))
                 {
-                    reviewRepo.AddReview(review);
-                    return true;
+					throw new AlreadyExistException("User already has review");
                 }
-                else
-                {
-                    return false;
-                }
-
+				else
+				{
+					reviewRepo.AddReview(review);
+				}
             }
             catch (Exception)
             {
