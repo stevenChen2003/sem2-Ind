@@ -39,7 +39,33 @@ namespace TestBookedProject.Services
             Assert.ThrowsException<EmailExistException>(() => manager.AddUser(user2), "User email already exist");
         }
 
-		[TestMethod]
+        [TestMethod]
+        public void CheckPasswordUserTest_When_Password_Correct()
+        {
+            UserManager manager = new UserManager(new FakeUserRepo());
+            User user1 = new User("Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password");
+            string email = "s.chen@company.nl";
+
+            manager.AddUser(user1);
+            bool result = manager.CheckPassword("password", email);
+
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void CheckPasswordUserTest_When_Password_Incorrect()
+        {
+            UserManager manager = new UserManager(new FakeUserRepo());
+            User user1 = new User("Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password");
+            string email = "s.chen@company.nl";
+
+            manager.AddUser(user1);
+            bool result2 = manager.CheckPassword("test", email);
+
+            Assert.IsFalse(result2);
+        }
+
+        [TestMethod]
 		public void RemoveUserTest()
 		{
             UserManager manager = new UserManager(new FakeUserRepo());
@@ -95,22 +121,28 @@ namespace TestBookedProject.Services
 			Assert.ThrowsException<Exception>(() => manager.UpdateUser(userUpdated), "Cannot remove user");
 		}
 
-		[TestMethod]
-		public void CheckPasswordUserTest()
+
+        [TestMethod]
+        public void GetUserTest_Email_That_Exist()
+        {
+            UserManager manager = new UserManager(new FakeUserRepo());
+            User user1 = new User("Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password");
+
+            manager.AddUser(user1);
+
+            Assert.IsNotNull(manager.GetUser("s.chen@company.nl"));
+        }
+
+        [TestMethod]
+		public void GetUserTest_Email_Not_Exist_Should_Return_Null()
 		{
             UserManager manager = new UserManager(new FakeUserRepo());
             User user1 = new User("Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password");
-            string email = "s.chen@company.nl";
 
             manager.AddUser(user1);
-			bool result = manager.CheckPassword("password", email);
-			bool result2 = manager.CheckPassword("test", email);
 
-			Assert.IsTrue(result);
-			Assert.IsFalse(result2);
-
+			Assert.IsNull(manager.GetUser("s.wu@company.nl"));
         }
 
-
-	}
+    }
 }
