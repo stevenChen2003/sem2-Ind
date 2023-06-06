@@ -4,8 +4,30 @@
 }
 
 <div class="container">
-	<h1>Payment Details:</h1>
-	<p>Price: @Model.flightBooking.GetPrice()</p>
+	<h1>Payment Details</h1>
+	<hr>
+	<div class="mt-2 mb-2">
+		<h3>Flight information:</h3>
+		<p>Airline: @Model.flightBooking.Flight.AirlineName</p>
+		<div class="row">
+			<div class="col-md-6">
+				<h5>Departure:</h5>
+				<p>Airport: @Model.flightBooking.Flight.DepartureAirport</p>
+				<p>Country: @Model.flightBooking.Flight.DepartureCountry</p>
+			</div>
+			<div class="col-md-6">
+				<h5>Arrival:</h5>
+				<p class="text-right">Aiport: @Model.flightBooking.Flight.ArrivalAirport</p>
+				<p class="text-right">Country: @Model.flightBooking.Flight.ArrivalCountry</p>
+			</div>
+		</div>
+		<div>
+			<p>Type Seat: @Model.flightBooking.Flight.Seat.ToString()</p>
+		</div>
+	</div>
+
+	<hr>
+	<h5>Price: @Model.flightBooking.GetPrice()</h5>
 </div>
 
 <form method="post">
