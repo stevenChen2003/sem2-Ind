@@ -22,6 +22,7 @@ namespace BookedFormsApp
 		{
 			InitializeComponent();
 			bookingManager = new BookingManager(new BookingRepository());
+			comboBoxFilter.SelectedIndex = 0;
 			try
 			{
 				LoadGrid();
@@ -32,7 +33,7 @@ namespace BookedFormsApp
 			}
 		}
 
-		
+
 		public void LoadGrid()
 		{
 			try
@@ -49,7 +50,23 @@ namespace BookedFormsApp
 				dataTable.Columns.Add("Price", typeof(string));
 
 				string bookingType = "";
-				foreach (Booking booking in bookingManager.GetAllBooking())
+
+				List<Booking> bookingsList = bookingManager.GetAllBooking().ToList();
+
+				if (comboBoxFilter.SelectedIndex == 2)
+				{
+					bookingsList = bookingsList.Where(b => b is HotelBooking).ToList();
+				}
+				else if (comboBoxFilter.SelectedIndex == 1)
+				{
+					bookingsList = bookingsList.Where(b => b is FlightBooking).ToList();
+				}
+				else
+				{
+					bookingsList = bookingManager.GetAllBooking().ToList();
+				}
+
+				foreach (Booking booking in bookingsList)
 				{
 					if (booking is HotelBooking)
 					{
@@ -67,8 +84,12 @@ namespace BookedFormsApp
 			{
 				throw new Exception();
 			}
-
 		}
-		
+
+		private void comboBoxFilter_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			LoadGrid();
+		}
+
 	}
 }

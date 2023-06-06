@@ -31,7 +31,7 @@
 			dataGridBooking = new DataGridView();
 			btBookingDetail = new Button();
 			btRemoveBooking = new Button();
-			comboBox1 = new ComboBox();
+			comboBoxFilter = new ComboBox();
 			((System.ComponentModel.ISupportInitialize)dataGridBooking).BeginInit();
 			SuspendLayout();
 			// 
@@ -69,15 +69,16 @@
 			btRemoveBooking.Text = "Remove";
 			btRemoveBooking.UseVisualStyleBackColor = true;
 			// 
-			// comboBox1
+			// comboBoxFilter
 			// 
-			comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-			comboBox1.FormattingEnabled = true;
-			comboBox1.Items.AddRange(new object[] { "All booking", "Flight booking", "Hotel" });
-			comboBox1.Location = new Point(21, 34);
-			comboBox1.Name = "comboBox1";
-			comboBox1.Size = new Size(184, 28);
-			comboBox1.TabIndex = 11;
+			comboBoxFilter.DropDownStyle = ComboBoxStyle.DropDownList;
+			comboBoxFilter.FormattingEnabled = true;
+			comboBoxFilter.Items.AddRange(new object[] { "All booking", "Flight booking", "Hotel" });
+			comboBoxFilter.Location = new Point(21, 34);
+			comboBoxFilter.Name = "comboBoxFilter";
+			comboBoxFilter.Size = new Size(184, 28);
+			comboBoxFilter.TabIndex = 11;
+			comboBoxFilter.SelectedIndexChanged += comboBoxFilter_SelectedIndexChanged;
 			// 
 			// BookingForm
 			// 
@@ -85,7 +86,7 @@
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(1150, 672);
 			ControlBox = false;
-			Controls.Add(comboBox1);
+			Controls.Add(comboBoxFilter);
 			Controls.Add(dataGridBooking);
 			Controls.Add(btBookingDetail);
 			Controls.Add(btRemoveBooking);
@@ -102,6 +103,6 @@
 		private DataGridView dataGridBooking;
 		private Button btBookingDetail;
 		private Button btRemoveBooking;
-		private ComboBox comboBox1;
+		private ComboBox comboBoxFilter;
 	}
 }
