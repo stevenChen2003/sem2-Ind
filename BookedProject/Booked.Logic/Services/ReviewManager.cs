@@ -58,10 +58,10 @@ namespace Booked.Logic.Services
 			{
 				 return reviewRepo.GetAllReviewBasedOnHotelId(hotelid);
 			}
-			catch
+			catch (Exception)
 			{
-				return null;
-			}
+                return null;
+            }
 		}
 
         public Review GetReviewById(int id)
@@ -70,7 +70,7 @@ namespace Booked.Logic.Services
             {
                 return reviewRepo.GetReview(id);
             }
-            catch
+            catch (Exception)
             {
                 return null;
             }
