@@ -31,7 +31,7 @@ namespace Booked.Logic.Services
 			}
             catch (Exception)
             {
-                throw new Exception("Database not connected");
+                throw new Exception("Error getting flights");
             }
         }
 

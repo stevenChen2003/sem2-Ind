@@ -47,7 +47,7 @@ namespace Booked.Logic.Services
             }
 			catch (Exception)
 			{
-				throw new Exception("Not connected to database");
+				throw new Exception("No hotels found");
 			}
 		}
 
