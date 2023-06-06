@@ -76,7 +76,7 @@
 			comboBoxFilter.Items.AddRange(new object[] { "All booking", "Flight booking", "Hotel" });
 			comboBoxFilter.Location = new Point(21, 34);
 			comboBoxFilter.Name = "comboBoxFilter";
-			comboBoxFilter.Size = new Size(184, 28);
+			comboBoxFilter.Size = new Size(230, 28);
 			comboBoxFilter.TabIndex = 11;
 			comboBoxFilter.SelectedIndexChanged += comboBoxFilter_SelectedIndexChanged;
 			// 

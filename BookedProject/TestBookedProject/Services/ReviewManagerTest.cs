@@ -19,9 +19,10 @@ namespace TestBookedProject.Services
             User user = new User("Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password");
             Review review = new Review(user, 1, "Good", 5);
 
-            //bool result = manager.AddReview(review);
+            manager.AddReview(review);
+            Review reviewFromList = manager.GetReviewById(review.Id);
 
-            //Assert.IsTrue(result);
+            Assert.AreEqual(review.Description, reviewFromList.Description);
         }
 
         [TestMethod]
@@ -46,7 +47,7 @@ namespace TestBookedProject.Services
             Review review1 = new Review(1, user1, 1, "Good", 5);
             Review review2 = new Review(1, user1, 1, "Nice", 5);
 
-            //manager.AddReview(review1);
+            manager.AddReview(review1);
             //bool result = manager.UpdateReview(review2); 
             //Assert.IsTrue(result);
         }
