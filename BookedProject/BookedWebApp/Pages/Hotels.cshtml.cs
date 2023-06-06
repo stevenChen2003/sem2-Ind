@@ -31,11 +31,6 @@ namespace BookedWebApp.Pages
         public bool ShowPrevious => CurrentPage > 1;
         public bool ShowNext => CurrentPage < TotalPages;
 
-        /*
-        [BindProperty]
-        public DateTime CheckInDate { get; set; }
-        [BindProperty]
-        public DateTime CheckOutDate { get; set; }*/
 
         public void OnGet(string query, string SortOrder, int currentPage)
         {

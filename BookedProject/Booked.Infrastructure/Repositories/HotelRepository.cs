@@ -162,7 +162,7 @@ namespace Booked.Infrastructure.Repositories
                     command.ExecuteNonQuery();
                 }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 throw new Exception("Cannot be updated", ex);
             }

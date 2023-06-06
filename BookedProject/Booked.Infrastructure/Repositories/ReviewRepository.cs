@@ -33,10 +33,10 @@ namespace Booked.Infrastructure.Repositories
 				}
 
 			}
-			catch (SqlException)
-			{
-				throw new Exception("Cannot add Review");
-			}
+			catch (SqlException ex) 
+            { 
+                throw new Exception("Cannot add Review", ex); 
+            }
 		}
 
         public Review GetReview(int reviewId)
@@ -73,9 +73,9 @@ namespace Booked.Infrastructure.Repositories
                 return review;
 
             }
-            catch (SqlException)
-            {
-                throw new Exception("Cannot find Reviews");
+            catch (SqlException ex) 
+            { 
+                throw new Exception("Cannot find Reviews", ex); 
             }
         }
 
@@ -114,10 +114,10 @@ namespace Booked.Infrastructure.Repositories
 				return ReviewList;
 
 			}
-			catch (SqlException)
-			{
-				throw new Exception("Cannot find Reviews");
-			}
+			catch (SqlException ex) 
+            { 
+                throw new Exception("Cannot find Reviews", ex); 
+            }
 		}
 
 		public List<Review> GetAllReviewBasedOnUserdId(int userId)
@@ -155,9 +155,9 @@ namespace Booked.Infrastructure.Repositories
                 return ReviewList;
 
             }
-            catch (SqlException)
-            {
-                throw new Exception("Cannot find Reviews");
+            catch (SqlException ex) 
+            { 
+                throw new Exception("Cannot find Reviews", ex); 
             }
         }
 
@@ -175,9 +175,9 @@ namespace Booked.Infrastructure.Repositories
                     cmd.ExecuteNonQuery();
                 }
             }
-            catch (SqlException)
-            {
-                throw new Exception("Cannot remove review");
+            catch (SqlException ex) 
+            { 
+                throw new Exception("Cannot remove review", ex); 
             }
         }
 
@@ -196,9 +196,9 @@ namespace Booked.Infrastructure.Repositories
                     command.ExecuteNonQuery();
                 }
             }
-            catch (Exception)
-            {
-                throw new Exception("Cannot be updated");
+            catch (SqlException ex) 
+            { 
+                throw new Exception("Cannot be updated", ex); 
             }
         }
 

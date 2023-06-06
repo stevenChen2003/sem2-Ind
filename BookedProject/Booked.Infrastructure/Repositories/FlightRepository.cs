@@ -44,9 +44,9 @@ namespace Booked.Infrastructure.Repositories
                 }
                 return null;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception("Flight not found");
+                throw new Exception("Flight not found", ex);
             }
         }
 
@@ -80,9 +80,9 @@ namespace Booked.Infrastructure.Repositories
                 }
                 return ListFlights;
             }
-            catch (Exception)
-            {
-                throw new Exception("No Flights found");
+            catch (Exception ex) 
+            { 
+                throw new Exception("No Flights found", ex); 
             }
         }
 
@@ -109,9 +109,9 @@ namespace Booked.Infrastructure.Repositories
 
                 }
             }
-            catch(Exception)
-            {
-                throw new Exception("Error adding flight pleas try again");
+            catch(Exception ex) 
+            { 
+                throw new Exception("Error adding flight pleas try again", ex); 
             }
         }
 
@@ -147,9 +147,9 @@ namespace Booked.Infrastructure.Repositories
                     command.ExecuteNonQuery();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception("Cannot be updated");
+                throw new Exception("Cannot be updated", ex);
             }
         }
 
@@ -166,9 +166,9 @@ namespace Booked.Infrastructure.Repositories
                     cmd.ExecuteNonQuery();
                 }
             }
-            catch(Exception)
-            {
-                throw new Exception("Cannot be removed");
+            catch(Exception ex) 
+            { 
+                throw new Exception("Cannot be removed", ex); 
             }
         }
 
@@ -196,9 +196,9 @@ namespace Booked.Infrastructure.Repositories
                 }
                 return listCountries;
             }
-            catch (SqlException)
-            {
-                throw new Exception("Not info found");
+            catch (SqlException ex) 
+            { 
+                throw new Exception("Not info found", ex); 
             }
 
         }
@@ -236,10 +236,10 @@ namespace Booked.Infrastructure.Repositories
 				}
 				return ListFlights;
 			}
-			catch (Exception)
-			{
-				throw new Exception("No Flights found");
-			}
+			catch (Exception ex) 
+            { 
+                throw new Exception("No Flights found", ex); 
+            }
 		}
 
 		public IEnumerable<Flight> GetFlightsPerPage(string depart, string arrive, int itemsPerPage, int offset)
@@ -276,10 +276,10 @@ namespace Booked.Infrastructure.Repositories
 				}
 				return ListFlights;
 			}
-			catch (Exception)
-			{
-				throw new Exception("No Flights found");
-			}
+			catch (Exception ex) 
+            { 
+                throw new Exception("No Flights found", ex); 
+            }
 		}
 
 		public IEnumerable<Flight> GetAllFlightsPerPage(int itemsPerPage, int offset)
@@ -314,10 +314,10 @@ namespace Booked.Infrastructure.Repositories
 				}
 				return ListFlights;
 			}
-			catch (SqlException)
-			{
-				throw new Exception("No Flights found");
-			}
+			catch (SqlException ex) 
+            { 
+                throw new Exception("No Flights found", ex); 
+            }
 		}
 
 

@@ -99,5 +99,34 @@ namespace TestBookedProject.Services
             Assert.ThrowsException<Exception>(() => manager.UpdateHotel(hotelUpdated), "Cannot update hotel");
         }
 
+        [TestMethod]
+        public void GetHotelTest()
+        {
+            HotelManager manager = new HotelManager(new FakeHotelRepo());
+            byte[] bytes = { 7 };
+            Hotel hotel1 = new Hotel(1, "Marriot", "Bob street", "Eindhoven", "Netherlands", 5, Convert.ToDecimal(555.55), Rooms.NORMAL, 5, bytes);
+
+            manager.AddHotel(hotel1);
+            Hotel hotelFound = manager.GetHotel(1);
+            
+            Assert.IsNotNull(hotelFound);
+        }
+
+
+        [TestMethod]
+        public void GetHotel_Id_Does_Not_Exist_Should_Return_Null()
+        {
+            HotelManager manager = new HotelManager(new FakeHotelRepo());
+            byte[] bytes = { 7 };
+            Hotel hotel1 = new Hotel(1, "Marriot", "Bob street", "Eindhoven", "Netherlands", 5, Convert.ToDecimal(555.55), Rooms.NORMAL, 5, bytes);
+
+            manager.AddHotel(hotel1);
+            Hotel hotelFound = manager.GetHotel(3);
+
+            Assert.IsNull(hotelFound);
+        }
+
+
+
     }
 }

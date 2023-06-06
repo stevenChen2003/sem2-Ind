@@ -50,7 +50,7 @@ namespace Booked.Infrastructure.Repositories
 			}
 			catch (SqlException ex)
 			{
-				throw new Exception(ex.Message);
+				throw new Exception("Error adding booking", ex);
 			}
 		}
 
@@ -91,7 +91,7 @@ namespace Booked.Infrastructure.Repositories
 			}
 			catch (SqlException ex)
 			{
-				throw new Exception(ex.Message);
+				throw new Exception("Error adding booking", ex);
 			}
 		}
 
@@ -150,9 +150,9 @@ namespace Booked.Infrastructure.Repositories
 
 				return allBookings;
 			}
-			catch (SqlException)
+			catch (SqlException ex)
 			{
-				throw new Exception("No bookings found");
+				throw new Exception("No bookings found", ex);
 			}
 		}
 
@@ -220,9 +220,9 @@ namespace Booked.Infrastructure.Repositories
 
 				return allBookings;
 			}
-			catch (SqlException)
-			{
-				throw new Exception("No bookings found");
+			catch (SqlException ex) 
+			{ 
+				throw new Exception("No bookings found", ex); 
 			}
 		}
 
@@ -280,12 +280,12 @@ namespace Booked.Infrastructure.Repositories
 
 				return booking;
 			}
-			catch(SqlException)
-			{
-				throw new Exception("No bookings found");
-			}
+            catch (SqlException ex)
+            {
+                throw new Exception("No bookings found", ex);
+            }
 
-		}
+        }
 
 		public void RemoveBooking(int id)
 		{
@@ -301,10 +301,7 @@ namespace Booked.Infrastructure.Repositories
 					cmd.ExecuteNonQuery();
 				}
 			}
-			catch (SqlException)
-			{
-				throw new Exception("Cannot remove hotel");
-			}
+			catch (SqlException ex) { throw new Exception("Cannot remove booking", ex); }
 		}
 
 		public void UpdateBooking(Booking booking)
@@ -320,10 +317,7 @@ namespace Booked.Infrastructure.Repositories
 					command.ExecuteNonQuery();
 				}
 			}
-			catch (SqlException)
-			{
-				throw new Exception("Update failed");
-			}
+			catch (SqlException ex) { throw new Exception("Error when updating booking", ex); }
 			
 		}
 	}

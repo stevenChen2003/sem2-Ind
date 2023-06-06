@@ -128,9 +128,9 @@ namespace Booked.Infrastructure.Repositories
                     command.ExecuteNonQuery();
                 }
             }
-            catch (Exception)
+            catch (SqlException ex)
             {
-                throw new Exception("Cannot be updated");
+                throw new Exception("Cannot be updated", ex);
             }
         }
 
@@ -147,9 +147,9 @@ namespace Booked.Infrastructure.Repositories
                     cmd.ExecuteNonQuery();
                 }
             }
-            catch (SqlException)
+            catch (SqlException ex)
             {
-                throw new Exception("Cannot remove User");
+                throw new Exception("Cannot remove User", ex);
             }
         }
 
