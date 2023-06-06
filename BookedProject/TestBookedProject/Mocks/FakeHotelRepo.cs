@@ -24,7 +24,7 @@ namespace TestBookedProject.Mocks
 
 		public int GetAllHotelCount()
 		{
-			throw new NotImplementedException();
+			return hotelsList.Count();
 		}
 
 		public IEnumerable<Hotel> GetAllHotelPerPage(string sort, int itemsPerPage, int offset)
