@@ -6,16 +6,59 @@
 @if (Model.FlightBooking != null)
 {
 	<div class="container mt-3">
-		<h2>Payment Details</h2>
-		<p>Airline: @Model.FlightBooking.Flight.AirlineName</p>
+		<h1>Payment Details</h1>
+		<hr>
+		<div class="mt-2 mb-2">
+			<h3>Flight information:</h3>
+			<p>Airline: @Model.FlightBooking.Flight.AirlineName</p>
+			<div class="row">
+				<div class="col-md-6">
+					<h5>Departure:</h5>
+					<p>Airport: @Model.FlightBooking.Flight.DepartureAirport</p>
+					<p>Country: @Model.FlightBooking.Flight.DepartureCountry</p>
+				</div>
+				<div class="col-md-6">
+					<h5>Arrival:</h5>
+					<p class="text-right">Aiport: @Model.FlightBooking.Flight.ArrivalAirport</p>
+					<p class="text-right">Country: @Model.FlightBooking.Flight.ArrivalCountry</p>
+				</div>
+			</div>
+			<div>
+				<p>Type Seat: @Model.FlightBooking.Flight.Seat.ToString()</p>
+			</div>
+		</div>
+
+		<hr>
+		<h5>Price: @Model.FlightBooking.GetPrice()</h5>
 	</div>
 
 }
 else if (Model.HotelBooking != null)
 {
 	<div class="container mt-3">
-		<h2>Payment Details:</h2>
-		<p>Hotel name: @Model.HotelBooking.Hotel.Name</p>
+		<h1>Payment Details</h1>
+		<hr>
+		<div class="mt-2 mb-2">
+			<h3>Hotel information:</h3>
+			<p>Hotek name: @Model.HotelBooking.Hotel.Name</p>
+			<div class="row">
+				<div class="col-md-6">
+					<h5>Location:</h5>
+					<p>Address: @Model.HotelBooking.Hotel.Address</p>
+					<p>City: @Model.HotelBooking.Hotel.City</p>
+					<p>Country: @Model.HotelBooking.Hotel.Country</p>
+				</div>
+				<div class="col-md-6">
+					<h5>Other information:</h5>
+					<p class="text-right">Room type: @Model.HotelBooking.Hotel.Room</p>
+					<p class="text-right">Amount of days: @Model.HotelBooking.AmountOfDays</p>
+					<p class="text-right">Price per night: @Model.HotelBooking.Hotel.PricePerNight</p>
+				</div>
+			</div>
+		</div>
+
+		<hr>
+		<h5>Price: @Model.HotelBooking.GetPrice()</h5>
 	</div>
 
 }

@@ -1,4 +1,5 @@
 ﻿@page
+@using Booked.Domain.Domain;
 @model BookedWebApp.Pages.Users.DetailsModel
 @{
 }
@@ -26,6 +27,7 @@
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>Booking Type</th>
                     <th>Booking Date</th>
                     <th>Price</th>
                     <th>Details</th>
@@ -36,6 +38,14 @@
                 {
                     <tr>
                         <td>@booking.BookingId</td>
+                        @if (@booking is HotelBooking)
+                        {
+                            <td>HotelBooking</td>
+                        }
+                        else if (@booking is FlightBooking)
+                        {
+                            <td>FlightBooking</td>
+                        }
                         <td>@booking.BookingDate.ToString("d/M/yyyy")</td>
                         <td>@booking.GetPrice()</td>
                         <td><a class="btn btn-primary" asp-page="/Users/PaymentDetails" asp-route-id="@booking.BookingId">Payment Details</a></td>
