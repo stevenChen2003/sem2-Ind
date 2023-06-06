@@ -115,7 +115,7 @@ namespace BookedFormsApp
                 dataTable.Columns.Add("Price per night", typeof(decimal));
                 dataTable.Columns.Add("RoomType", typeof(Rooms));
                 dataTable.Columns.Add("Maximumbooking", typeof(int));
-                foreach (Hotel hotel in hotelManager.GetHotelsByCountry(textBoxSearchHotel.Text, null, amount, 0))
+                foreach (Hotel hotel in hotelManager.GetHotelBySearch(textBoxSearchHotel.Text, null, amount, 0))
                 {
                     dataTable.Rows.Add(hotel.HotelId, hotel.Name, hotel.Address, hotel.City, hotel.Country, hotel.StarRating, hotel.PricePerNight, hotel.Room, hotel.MaximumBooking);
                 }

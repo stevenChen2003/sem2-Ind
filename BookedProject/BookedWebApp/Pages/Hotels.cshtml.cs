@@ -41,7 +41,7 @@ namespace BookedWebApp.Pages
 				this.SortOrder = SortOrder;
 			}
 
-			ListHotel = hotelManager.GetHotelsByCountry(query, SortOrder, ItemsPerPage, (CurrentPage - 1) * ItemsPerPage);
+			ListHotel = hotelManager.GetHotelBySearch(query, SortOrder, ItemsPerPage, (CurrentPage - 1) * ItemsPerPage);
             TotalItems = hotelManager.GetTotalHotelCount(query);
 		}
     }

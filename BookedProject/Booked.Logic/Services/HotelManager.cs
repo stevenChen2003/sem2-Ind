@@ -51,7 +51,7 @@ namespace Booked.Logic.Services
 			}
 		}
 
-		public IEnumerable<Hotel> GetHotelsByCountry(string search, string sort, int itemsPerPage, int offset)
+		public IEnumerable<Hotel> GetHotelBySearch(string search, string sort, int itemsPerPage, int offset)
 		{
             if (string.IsNullOrEmpty(search))
 			{
