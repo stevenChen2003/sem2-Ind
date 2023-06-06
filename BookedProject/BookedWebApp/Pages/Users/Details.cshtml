@@ -30,6 +30,7 @@
                     <th>Booking Type</th>
                     <th>Booking Date</th>
                     <th>Price</th>
+                    <th>Status</th>
                     <th>Details</th>
                 </tr>
             </thead>
@@ -48,6 +49,7 @@
                         }
                         <td>@booking.BookingDate.ToString("d/M/yyyy")</td>
                         <td>@booking.GetPrice()</td>
+                        <td>@booking.Status</td>
                         <td><a class="btn btn-primary" asp-page="/Users/PaymentDetails" asp-route-id="@booking.BookingId">Payment Details</a></td>
                     </tr>
                 }
