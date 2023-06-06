@@ -196,7 +196,7 @@ namespace Booked.Infrastructure.Repositories
                 }
                 return listCountries;
             }
-            catch (SqlException ex) 
+            catch (Exception ex) 
             { 
                 throw new Exception("Not info found", ex); 
             }
@@ -314,7 +314,7 @@ namespace Booked.Infrastructure.Repositories
 				}
 				return ListFlights;
 			}
-			catch (SqlException ex) 
+			catch (Exception ex) 
             { 
                 throw new Exception("No Flights found", ex); 
             }

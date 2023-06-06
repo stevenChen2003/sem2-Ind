@@ -301,7 +301,10 @@ namespace Booked.Infrastructure.Repositories
 					cmd.ExecuteNonQuery();
 				}
 			}
-			catch (SqlException ex) { throw new Exception("Cannot remove booking", ex); }
+			catch (SqlException ex) 
+			{ 
+				throw new Exception("Cannot remove booking", ex); 
+			}
 		}
 
 		public void UpdateBooking(Booking booking)
@@ -317,7 +320,10 @@ namespace Booked.Infrastructure.Repositories
 					command.ExecuteNonQuery();
 				}
 			}
-			catch (SqlException ex) { throw new Exception("Error when updating booking", ex); }
+			catch (SqlException ex) 
+			{ 
+				throw new Exception("Error when updating booking", ex); 
+			}
 			
 		}
 	}

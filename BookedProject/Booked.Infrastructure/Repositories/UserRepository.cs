@@ -45,7 +45,7 @@ namespace Booked.Infrastructure.Repositories
 				}
 				return DetailUser;
 			}
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 throw new Exception("Error finding user",ex);
             }
@@ -79,7 +79,7 @@ namespace Booked.Infrastructure.Repositories
 
                 return AllUsers;
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 throw new Exception("No users found", ex);
             }
@@ -105,7 +105,7 @@ namespace Booked.Infrastructure.Repositories
 					command.ExecuteNonQuery();
 				}
 			}
-            catch (Exception ex)
+            catch (SqlException ex)
             {
 				throw new Exception("Couldn't add user", ex);
 			}
