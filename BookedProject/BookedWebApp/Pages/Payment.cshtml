@@ -4,8 +4,29 @@
 }
 
 <div class="container">
-	<h1>Payment Details:</h1>
-	<p>Price: @Model.hotelBooking.GetPrice()</p>
+	<h1>Payment Details</h1>
+	<hr>
+	<div class="mt-2 mb-2">
+		<h3>Hotel information:</h3>
+		<p>Hotek name: @Model.hotelBooking.Hotel.Name</p>
+		<div class="row">
+			<div class="col-md-6">
+				<h5>Location:</h5>
+				<p>Address: @Model.hotelBooking.Hotel.Address</p>
+				<p>City: @Model.hotelBooking.Hotel.City</p>
+				<p>Country: @Model.hotelBooking.Hotel.Country</p>
+			</div>
+			<div class="col-md-6">
+				<h5>Other information:</h5>
+				<p class="text-right">Room type: @Model.hotelBooking.Hotel.Room</p>
+				<p class="text-right">Amount of days: @Model.hotelBooking.AmountOfDays</p>
+				<p class="text-right">Price per night: @Model.hotelBooking.Hotel.PricePerNight</p>
+			</div>
+		</div>
+	</div>
+
+	<hr>
+	<h5>Price: @Model.hotelBooking.GetPrice()</h5>
 </div>
 
 <form method="post">
