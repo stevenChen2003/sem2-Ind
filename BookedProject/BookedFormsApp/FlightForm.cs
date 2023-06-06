@@ -28,7 +28,7 @@ namespace BookedFormsApp
             }
             catch (Exception)
             {
-                MessageBox.Show("Database is not connected", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error loading flights", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

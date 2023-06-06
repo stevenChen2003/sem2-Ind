@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace BookedFormsApp
 {
-	public partial class UserDetail : Form
+	public partial class BookingDetail : Form
 	{
-		public UserDetail()
+		public BookingDetail()
 		{
 			InitializeComponent();
 		}

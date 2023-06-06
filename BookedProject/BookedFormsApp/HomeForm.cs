@@ -46,7 +46,11 @@ namespace BookedFormsApp
 
         private void btBooking_Click(object sender, EventArgs e)
         {
-
+            BookingForm b = new BookingForm();
+            b.TopLevel = false;
+            pnContent.Controls.Add(b);
+            b.BringToFront();
+            b.Show();
         }
     }
 }

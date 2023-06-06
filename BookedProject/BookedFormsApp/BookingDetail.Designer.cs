@@ -1,6 +1,6 @@
 ﻿namespace BookedFormsApp
 {
-	partial class UserDetail
+	partial class BookingDetail
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -28,16 +28,10 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			SuspendLayout();
-			// 
-			// UserDetail
-			// 
-			AutoScaleDimensions = new SizeF(8F, 20F);
-			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(990, 478);
-			Name = "UserDetail";
-			Text = "UserDetail";
-			ResumeLayout(false);
+			this.components = new System.ComponentModel.Container();
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Text = "BookingDetail";
 		}
 
 		#endregion

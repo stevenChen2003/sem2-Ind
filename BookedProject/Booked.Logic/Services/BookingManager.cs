@@ -36,7 +36,19 @@ namespace Booked.Logic.Services
 			}
 		}
 
-		//Get
+		//Get forms/admin
+		public IEnumerable<Booking> GetAllBooking()
+		{
+			try
+			{
+				return bookingRepo.GetAllBooking();
+			}
+			catch (Exception)
+			{
+				throw new InvalidOperationException("No booking found");
+			}
+		}
+
 		public IEnumerable<Booking> GetAllBookingByUserId(int usedId)
 		{
 			try
