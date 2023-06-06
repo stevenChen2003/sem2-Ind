@@ -100,7 +100,7 @@ namespace TestBookedProject.Services
         }
 
         [TestMethod]
-        public void GetHotelTest()
+        public void GetHotelByID_Test()
         {
             HotelManager manager = new HotelManager(new FakeHotelRepo());
             byte[] bytes = { 7 };
@@ -140,25 +140,42 @@ namespace TestBookedProject.Services
             manager.AddHotel(hotel3);
 
             int count = manager.GetAllHotel().Count();
-            Assert.Equals(count, 3);
+            Assert.AreEqual(3, count);
         }
 
 
         [TestMethod]
-        public void GetAllHotel_By_Search()
+        public void GetAllHotel_By_Search_NameOfHotel()
         {
             HotelManager manager = new HotelManager(new FakeHotelRepo());
             byte[] bytes = { 7 };
             Hotel hotel1 = new Hotel(1, "Marriot", "Bob street", "Eindhoven", "Netherlands", 5, Convert.ToDecimal(555.55), Rooms.NORMAL, 5, bytes);
             Hotel hotel2 = new Hotel(2, "Marriot", "Bob street", "Breda", "Netherlands", 5, Convert.ToDecimal(555.55), Rooms.SINGLE, 5, bytes);
-            Hotel hotel3 = new Hotel(3, "Marriot", "Bob street", "Tilburg", "Netherlands", 5, Convert.ToDecimal(555.55), Rooms.FAMILY, 5, bytes);
+            Hotel hotel3 = new Hotel(3, "Hilton", "Bob street", "Tilburg", "Netherlands", 5, Convert.ToDecimal(555.55), Rooms.FAMILY, 5, bytes);
 
             manager.AddHotel(hotel1);
             manager.AddHotel(hotel2);
             manager.AddHotel(hotel3);
 
-            int count = manager.GetHotelBySearch("Marriot", null, 1, 0).Count();
-            Assert.Equals(count, 3);
+            int count = manager.GetHotelBySearch("Marriot", null, 5, 0).Count();
+            Assert.AreEqual(2, count);
+        }
+
+        [TestMethod]
+        public void GetAllHotelBySearch_Name_Does_Not_Exist_Return_Zero()
+        {
+            HotelManager manager = new HotelManager(new FakeHotelRepo());
+            byte[] bytes = { 7 };
+            Hotel hotel1 = new Hotel(1, "Marriot", "Bob street", "Eindhoven", "Netherlands", 5, Convert.ToDecimal(555.55), Rooms.NORMAL, 5, bytes);
+            Hotel hotel2 = new Hotel(2, "Marriot", "Bob street", "Breda", "Netherlands", 5, Convert.ToDecimal(555.55), Rooms.SINGLE, 5, bytes);
+            Hotel hotel3 = new Hotel(3, "Hilton", "Bob street", "Tilburg", "Netherlands", 5, Convert.ToDecimal(555.55), Rooms.FAMILY, 5, bytes);
+
+            manager.AddHotel(hotel1);
+            manager.AddHotel(hotel2);
+            manager.AddHotel(hotel3);
+
+            int count = manager.GetHotelBySearch("Holiday inn", null, 5, 0).Count();
+            Assert.AreEqual(0, count);
         }
 
 

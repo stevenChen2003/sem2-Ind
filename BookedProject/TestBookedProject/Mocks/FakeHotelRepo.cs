@@ -29,7 +29,7 @@ namespace TestBookedProject.Mocks
 
 		public IEnumerable<Hotel> GetAllHotelPerPage(string sort, int itemsPerPage, int offset)
         {
-            throw new NotImplementedException();
+            return hotelsList;
         }
 
         public Hotel GetHotelByID(int id)
@@ -46,12 +46,40 @@ namespace TestBookedProject.Mocks
 
 		public int GetHotelBySearchCount(string search)
 		{
-			throw new NotImplementedException();
-		}
+            return hotelsList.Count(h => h.Name.Contains(search) || h.Address.Contains(search) || h.City.Contains(search) || h.Country.Contains(search));
+        }
 
 		public IEnumerable<Hotel> GetHotelPerPage(string search, string sort, int itemsPerPage, int offset)
         {
-            throw new NotImplementedException();
+
+            // Apply search filter
+            hotelsList = hotelsList.Where(h =>
+                h.Country.Contains(search, StringComparison.OrdinalIgnoreCase) ||
+                h.Name.Contains(search, StringComparison.OrdinalIgnoreCase) ||
+                h.City.Contains(search, StringComparison.OrdinalIgnoreCase)
+            ).ToList();
+
+            // Apply sorting
+            switch (sort)
+            {
+                case "name_desc":
+                    hotelsList = hotelsList.OrderByDescending(h => h.Name).ToList();
+                    break;
+                case "price_asc":
+                    hotelsList = hotelsList.OrderBy(h => h.PricePerNight).ToList();
+                    break;
+                case "price_desc":
+                    hotelsList = hotelsList.OrderByDescending(h => h.PricePerNight).ToList();
+                    break;
+                default:
+                    hotelsList = hotelsList.OrderBy(h => h.Name).ToList();
+                    break;
+            }
+
+            // Apply pagination
+            hotelsList = hotelsList.Skip(offset).Take(itemsPerPage).ToList();
+
+            return hotelsList;
         }
 
         public void RemoveHotelByID(int id)
