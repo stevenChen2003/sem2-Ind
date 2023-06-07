@@ -19,8 +19,8 @@ namespace BookedFormsApp
 
         private void btHotel_Click(object sender, EventArgs e)
         {
-            HotelForm h= new HotelForm();
-            h.TopLevel= false;
+            HotelForm h = new HotelForm();
+            h.TopLevel = false;
             pnContent.Controls.Add(h);
             h.BringToFront();
             h.Show();
@@ -29,7 +29,7 @@ namespace BookedFormsApp
         private void btFlight_Click(object sender, EventArgs e)
         {
             FlightForm f = new FlightForm();
-            f.TopLevel= false;
+            f.TopLevel = false;
             pnContent.Controls.Add(f);
             f.BringToFront();
             f.Show();
@@ -37,12 +37,12 @@ namespace BookedFormsApp
 
         private void btUser_Click(object sender, EventArgs e)
         {
-			UserForm u = new UserForm();
-			u.TopLevel = false;
-			pnContent.Controls.Add(u);
-			u.BringToFront();
-			u.Show();
-		}
+            UserForm u = new UserForm();
+            u.TopLevel = false;
+            pnContent.Controls.Add(u);
+            u.BringToFront();
+            u.Show();
+        }
 
         private void btBooking_Click(object sender, EventArgs e)
         {
