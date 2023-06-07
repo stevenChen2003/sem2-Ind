@@ -46,11 +46,13 @@ namespace TestBookedProject.Services
             ReviewManager manager = new ReviewManager(new FakeReviewRepo());
             User user1 = new User(1, "Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password", UserType.Client);
             Review review1 = new Review(1, user1, 1, "Good", 5);
-            Review review2 = new Review(1, user1, 1, "Nice", 5);
+            Review reviewUpdate = new Review(1, user1, 1, "Nice", 5);
 
             manager.AddReview(review1);
-            //bool result = manager.UpdateReview(review2); 
-            //Assert.IsTrue(result);
+            manager.UpdateReview(reviewUpdate); 
+            Review reviewFound = manager.GetReviewById(1);
+
+            Assert.AreEqual(reviewUpdate.Description, reviewFound.Description);
         }
 
         [TestMethod]
@@ -58,12 +60,16 @@ namespace TestBookedProject.Services
         {
             ReviewManager manager = new ReviewManager(new FakeReviewRepo());
             User user1 = new User(1, "Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password", UserType.Client);
+            User user2 = new User(2, "Steven", "Wu", "s.wu@company.nl", new DateTime(1980, 1, 1), "789987", "password", UserType.Client);
             Review review1 = new Review(1, user1, 1, "Good", 5);
-            Review review2 = new Review(1, user1, 1, "Good", 5);
+            Review review2 = new Review(2, user2, 1, "Good", 5);
 
-            //manager.AddReview(review1);
-            //bool result = manager.DeleteReview(review2.Id);
-            //Assert.IsTrue(result);
+            manager.AddReview(review1);
+            manager.AddReview(review2);
+            manager.DeleteReview(1);
+            int count = manager.GetReviewsBaseOnHotelId(1).Count();
+
+            Assert.AreEqual(1, count);
         }
 
         [TestMethod]
@@ -72,7 +78,7 @@ namespace TestBookedProject.Services
             // Arrange
             ReviewManager manager = new ReviewManager(new FakeReviewRepo());
             User user1 = new User(1, "Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password", UserType.Client);
-            User user2 = new User(2, "Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password", UserType.Client);
+            User user2 = new User(2, "Steven", "Wu", "s.wu@company.nl", new DateTime(1980, 1, 1), "789987", "password", UserType.Client);
             Review review1 = new Review(1, user1, 1, "Good", 5);
             Review review2 = new Review(2, user2, 1, "Nice", 5);
             var hotelId = 1;
@@ -85,6 +91,26 @@ namespace TestBookedProject.Services
             // Assert
             Assert.IsNotNull(result);
             Assert.AreEqual(2, result.Count);
+        }
+
+        [TestMethod]
+        public void GetReviewsBaseOnHotelId_ReturnListOfReviews_Should_Return_EmptyList()
+        {
+            // Arrange
+            ReviewManager manager = new ReviewManager(new FakeReviewRepo());
+            User user1 = new User(1, "Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password", UserType.Client);
+            User user2 = new User(2, "Steven", "Wu", "s.wu@company.nl", new DateTime(1980, 1, 1), "789987", "password", UserType.Client);
+            Review review1 = new Review(1, user1, 1, "Good", 5);
+            Review review2 = new Review(2, user2, 1, "Nice", 5);
+            var hotelId = 3;
+
+            // Act
+            manager.AddReview(review1);
+            manager.AddReview(review2);
+            var result = manager.GetReviewsBaseOnHotelId(hotelId);
+
+            // Assert
+            Assert.AreEqual(0, result.Count);
         }
 
 
