@@ -80,6 +80,7 @@
             buttonAddUser.TabIndex = 8;
             buttonAddUser.Text = "Add User";
             buttonAddUser.UseVisualStyleBackColor = true;
+            buttonAddUser.Click += buttonAddUser_Click;
             // 
             // UserForm
             // 

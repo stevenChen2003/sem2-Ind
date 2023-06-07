@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Booked.Domain.Domain;
+using Booked.Domain.Domain.Enum;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
@@ -27,6 +28,8 @@ namespace BookedWebApp.Pages
         [Required, DataType(DataType.Password)]
         public string Password { get; set; }
 
+        public User FoundUser { get; set; }
+
 		public async Task<IActionResult> OnGetAsync(string returnUrl = null)
 		{
 			if (User.Identity.IsAuthenticated)
@@ -42,10 +45,17 @@ namespace BookedWebApp.Pages
             {
                 if (userManager.CheckPassword(Password, Email))
                 {
+                    FoundUser = userManager.GetUser(Email);
+
                     List<Claim> claims = new List<Claim>
                     {
-                        new Claim(ClaimTypes.Name, Email)
+                        new Claim(ClaimTypes.Name, FoundUser.Email)
                     };
+
+                    if (FoundUser.UserType == UserType.Admin)
+                    {
+                        claims.Add(new Claim(ClaimTypes.Role, "Admin"));
+                    }
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     HttpContext.SignInAsync(new ClaimsPrincipal(claimsIdentity));
                     return RedirectToPage("/Index");

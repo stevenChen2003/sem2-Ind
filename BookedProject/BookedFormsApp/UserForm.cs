@@ -69,5 +69,10 @@ namespace BookedFormsApp
                 throw new Exception();
             }
         }
+
+        private void buttonAddUser_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
