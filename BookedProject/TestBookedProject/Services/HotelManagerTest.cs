@@ -14,6 +14,7 @@ namespace TestBookedProject.Services
     [TestClass]
     public class HotelManagerTest
 	{
+        //Adding hotel
         [TestMethod]
         public void AddHotelTest()
         {
@@ -40,6 +41,7 @@ namespace TestBookedProject.Services
 			Assert.ThrowsException<HotelExistException>(() => manager.AddHotel(hotel2), "Hotel already exist");
 		}
 
+        //Remove hotel
         [TestMethod]
         public void RemoveHotelTest()
         {
@@ -70,6 +72,7 @@ namespace TestBookedProject.Services
             Assert.ThrowsException<Exception>(() => manager.RemoveHotel(3), "Cannot remove hotel");
         }
 
+        //Update
         [TestMethod]
         public void UpdateHotelTest()
         {
@@ -99,6 +102,7 @@ namespace TestBookedProject.Services
             Assert.ThrowsException<Exception>(() => manager.UpdateHotel(hotelUpdated), "Cannot update hotel");
         }
 
+        //Get hotel
         [TestMethod]
         public void GetHotelByID_Test()
         {
@@ -111,7 +115,6 @@ namespace TestBookedProject.Services
             
             Assert.IsNotNull(hotelFound);
         }
-
 
         [TestMethod]
         public void GetHotel_Id_Does_Not_Exist_Should_Return_Null()
@@ -143,7 +146,7 @@ namespace TestBookedProject.Services
             Assert.AreEqual(3, count);
         }
 
-
+        //Searchbar
         [TestMethod]
         public void GetAllHotel_By_Search_NameOfHotel()
         {

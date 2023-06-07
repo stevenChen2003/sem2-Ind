@@ -8,5 +8,6 @@ namespace TestBookedProject.Services
 {
 	public class BookingManagerTest
 	{
+
 	}
 }

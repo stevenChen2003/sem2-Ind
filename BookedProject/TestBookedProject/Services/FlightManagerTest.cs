@@ -15,6 +15,7 @@ namespace TestBookedProject.Services
 	[TestClass]
 	public class FlightManagerTest
 	{
+        //Adding
 		[TestMethod]
         public void AddFlightTest()
         {
@@ -39,7 +40,7 @@ namespace TestBookedProject.Services
 			Assert.ThrowsException<FlightExistException>(() => manager.AddFlight(flight2), "Flight already exist");
 		}
 
-
+        //Remove
         [TestMethod]
         public void RemoveFlightTest()
         {
@@ -68,6 +69,7 @@ namespace TestBookedProject.Services
 			Assert.ThrowsException<InvalidOperationException>(() => manager.RemoveFlight(3), "Cannot remove flight");
 		}
 
+        //Update
 		[TestMethod]
         public void UpdateFlightTest()
         {
@@ -95,5 +97,98 @@ namespace TestBookedProject.Services
 			Assert.ThrowsException<Exception>(() => manager.UpdateFlight(flightUpdated), "Cannot update flight");
 		}
 
-	}
+        //Get one flight
+        [TestMethod]
+        public void GetFlightByID_Test()
+        {
+            FlightManager manager = new FlightManager(new FakeFlightRepo());
+            Flight flight1 = new Flight(1, "Air France", "Paris Charles de Gaulle Airport", "France", "London Heathrow Airport", "United Kingdom", (decimal)100.00, Seats.ECONOMY, 200, (decimal)25.00);
+
+            manager.AddFlight(flight1);
+            Flight flightfound = manager.GetFlight(1);
+
+            Assert.IsNotNull(flightfound);
+        }
+
+
+        [TestMethod]
+        public void GetFlight_Id_Does_Not_Exist_Should_Return_Null()
+        {
+            FlightManager manager = new FlightManager(new FakeFlightRepo());
+            Flight flight1 = new Flight(1, "Air France", "Paris Charles de Gaulle Airport", "France", "London Heathrow Airport", "United Kingdom", (decimal)100.00, Seats.ECONOMY, 200, (decimal)25.00);
+
+            manager.AddFlight(flight1);
+            Flight flightfound = manager.GetFlight(3);
+
+            Assert.IsNull(flightfound);
+        }
+
+        //Searchbar test
+        [TestMethod]
+        public void GetAllFlight_By_Search_Departure_And_Arrival_Location()
+        {
+            FlightManager manager = new FlightManager(new FakeFlightRepo());
+            Flight flight1 = new Flight(1, "Air France", "Paris Charles de Gaulle Airport", "France", "London Heathrow Airport", "United Kingdom", (decimal)100.00, Seats.ECONOMY, 200, (decimal)25.00);
+            Flight flight2 = new Flight(2, "Easy Jet", "Paris Charles de Gaulle Airport", "France", "London Heathrow Airport", "United Kingdom", (decimal)100.00, Seats.ECONOMY, 200, (decimal)25.00);
+            Flight flight3 = new Flight(3, "KLM", "Paris Charles de Gaulle Airport", "France", "London Heathrow Airport", "United Kingdom", (decimal)100.00, Seats.ECONOMY, 200, (decimal)25.00);
+
+            manager.AddFlight(flight1);
+            manager.AddFlight(flight2);
+            manager.AddFlight(flight3);
+
+            int count = manager.GetFlightsBySearch("France", "United Kingdom", 5, 0).Count();
+            Assert.AreEqual(3, count);
+        }
+
+        [TestMethod]
+        public void GetAllFlight_By_Search_Departure_And_Arrival_Location_That_Does_Not_Exist_Return_Zero()
+        {
+            FlightManager manager = new FlightManager(new FakeFlightRepo());
+            Flight flight1 = new Flight(1, "Air France", "Paris Charles de Gaulle Airport", "France", "London Heathrow Airport", "United Kingdom", (decimal)100.00, Seats.ECONOMY, 200, (decimal)25.00);
+            Flight flight2 = new Flight(2, "Easy Jet", "Paris Charles de Gaulle Airport", "France", "London Heathrow Airport", "United Kingdom", (decimal)100.00, Seats.ECONOMY, 200, (decimal)25.00);
+            Flight flight3 = new Flight(3, "KLM", "Paris Charles de Gaulle Airport", "France", "London Heathrow Airport", "United Kingdom", (decimal)100.00, Seats.ECONOMY, 200, (decimal)25.00);
+
+            manager.AddFlight(flight1);
+            manager.AddFlight(flight2);
+            manager.AddFlight(flight3);
+
+            int count = manager.GetFlightsBySearch("Spain", "United Kingdom", 5, 0).Count();
+            Assert.AreEqual(0, count);
+        }
+
+        [TestMethod]
+        public void GetAllFlight_By_Search_DepartureInput_Not_Filled_In_Should_Return_AllFlight()
+        {
+            FlightManager manager = new FlightManager(new FakeFlightRepo());
+            Flight flight1 = new Flight(1, "Air France", "Paris Charles de Gaulle Airport", "France", "London Heathrow Airport", "United Kingdom", (decimal)100.00, Seats.ECONOMY, 200, (decimal)25.00);
+            Flight flight2 = new Flight(2, "Easy Jet", "Paris Charles de Gaulle Airport", "France", "London Heathrow Airport", "United Kingdom", (decimal)100.00, Seats.ECONOMY, 200, (decimal)25.00);
+            Flight flight3 = new Flight(3, "KLM", "Paris Charles de Gaulle Airport", "France", "London Heathrow Airport", "United Kingdom", (decimal)100.00, Seats.ECONOMY, 200, (decimal)25.00);
+
+            manager.AddFlight(flight1);
+            manager.AddFlight(flight2);
+            manager.AddFlight(flight3);
+
+            int count = manager.GetFlightsBySearch("", "United Kingdom", 5, 0).Count();
+            Assert.AreEqual(3, count);
+        }
+
+        [TestMethod]
+        public void GetAllFlight_By_Search_ArrivalInput_Not_Filled_In_Should_Return_AllFlight()
+        {
+            FlightManager manager = new FlightManager(new FakeFlightRepo());
+            Flight flight1 = new Flight(1, "Air France", "Paris Charles de Gaulle Airport", "France", "London Heathrow Airport", "United Kingdom", (decimal)100.00, Seats.ECONOMY, 200, (decimal)25.00);
+            Flight flight2 = new Flight(2, "Easy Jet", "Paris Charles de Gaulle Airport", "France", "London Heathrow Airport", "United Kingdom", (decimal)100.00, Seats.ECONOMY, 200, (decimal)25.00);
+            Flight flight3 = new Flight(3, "KLM", "Paris Charles de Gaulle Airport", "France", "London Heathrow Airport", "United Kingdom", (decimal)100.00, Seats.ECONOMY, 200, (decimal)25.00);
+
+            manager.AddFlight(flight1);
+            manager.AddFlight(flight2);
+            manager.AddFlight(flight3);
+
+            int count = manager.GetFlightsBySearch("France", "", 5, 0).Count();
+            Assert.AreEqual(3, count);
+        }
+
+
+
+    }
 }

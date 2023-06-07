@@ -29,7 +29,7 @@ namespace TestBookedProject.Mocks
 
         public IEnumerable<Flight> GetAllFlightsPerPage(int itemsPerPage, int offset)
         {
-            throw new NotImplementedException();
+            return flightList.Skip(offset).Take(itemsPerPage);
         }
 
         public Flight GetFlightByID(int id)
@@ -44,7 +44,9 @@ namespace TestBookedProject.Mocks
 
         public IEnumerable<Flight> GetFlightsPerPage(string depart, string arrive, int itemsPerPage, int offset)
         {
-            throw new NotImplementedException();
+            return flightList.Where(f => f.DepartureCountry == depart && f.ArrivalCountry == arrive)
+            .Skip(offset)
+            .Take(itemsPerPage);
         }
 
         public void RemoveFlightByID(int id)
