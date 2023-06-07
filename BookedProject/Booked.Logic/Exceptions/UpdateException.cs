@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Booked.Logic.Exceptions
 {
-    public class AddingException : Exception
+    public class UpdateException : Exception
     {
-        public AddingException(string msg) : base(msg)
+        public UpdateException(string msg) : base(msg)
         {
 
         }
 
-        public AddingException(string message, Exception innerException) : base(message, innerException)
+        public UpdateException(string message, Exception innerException) : base(message, innerException)
         {
         }
     }
