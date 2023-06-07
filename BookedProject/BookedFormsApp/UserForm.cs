@@ -53,13 +53,14 @@ namespace BookedFormsApp
 
                 DataTable dataTable = new DataTable();
                 dataTable.Columns.Add("ID", typeof(int));
+                dataTable.Columns.Add("User Type", typeof(UserType));
                 dataTable.Columns.Add("Email", typeof(string));
                 dataTable.Columns.Add("Name", typeof(string));
                 dataTable.Columns.Add("Date of birth", typeof(DateTime));
                 dataTable.Columns.Add("Phone number", typeof(string));
                 foreach (User user in userManager.GetAllUsers())
                 {
-                    dataTable.Rows.Add(user.UserId, user.Email, $"{user.FirstName} {user.LastName}", user.DateOfBirth, user.PhoneNumber);
+                    dataTable.Rows.Add(user.UserId, user.UserType, user.Email, $"{user.FirstName} {user.LastName}", user.DateOfBirth, user.PhoneNumber);
                 }
                 dataGridUser.DataSource = dataTable;
             }

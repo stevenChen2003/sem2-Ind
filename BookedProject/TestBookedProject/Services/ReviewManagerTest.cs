@@ -1,4 +1,5 @@
 ﻿using Booked.Domain.Domain;
+using Booked.Domain.Domain.Enum;
 using Booked.Logic.Services;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace TestBookedProject.Services
         public void AddReviewTest()
         {
             ReviewManager manager = new ReviewManager(new FakeReviewRepo());
-            User user = new User("Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password");
+            User user = new User(1,"Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password", UserType.Client);
             Review review = new Review(user, 1, "Good", 5);
 
             manager.AddReview(review);
@@ -29,7 +30,7 @@ namespace TestBookedProject.Services
         public void CheckIfReviewExistTest()
         {
             ReviewManager manager = new ReviewManager(new FakeReviewRepo());
-            User user1 = new User(1,"Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password");
+            User user1 = new User(1,"Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password", UserType.Client);
             Review review1 = new Review(1,user1, 1, "Good", 5);
             Review review2 = new Review(1, user1, 1, "Good", 5);
 
@@ -43,7 +44,7 @@ namespace TestBookedProject.Services
         public void UpdateReviewTest()
         {
             ReviewManager manager = new ReviewManager(new FakeReviewRepo());
-            User user1 = new User(1, "Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password");
+            User user1 = new User(1, "Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password", UserType.Client);
             Review review1 = new Review(1, user1, 1, "Good", 5);
             Review review2 = new Review(1, user1, 1, "Nice", 5);
 
@@ -56,7 +57,7 @@ namespace TestBookedProject.Services
         public void RemoveReviewTest()
         {
             ReviewManager manager = new ReviewManager(new FakeReviewRepo());
-            User user1 = new User(1, "Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password");
+            User user1 = new User(1, "Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password", UserType.Client);
             Review review1 = new Review(1, user1, 1, "Good", 5);
             Review review2 = new Review(1, user1, 1, "Good", 5);
 
@@ -70,8 +71,8 @@ namespace TestBookedProject.Services
         {
             // Arrange
             ReviewManager manager = new ReviewManager(new FakeReviewRepo());
-            User user1 = new User(1, "Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password");
-            User user2 = new User(2, "Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password");
+            User user1 = new User(1, "Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password", UserType.Client);
+            User user2 = new User(2, "Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password", UserType.Client);
             Review review1 = new Review(1, user1, 1, "Good", 5);
             Review review2 = new Review(2, user2, 1, "Nice", 5);
             var hotelId = 1;

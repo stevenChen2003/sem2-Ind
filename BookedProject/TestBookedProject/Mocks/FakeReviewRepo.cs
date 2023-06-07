@@ -73,7 +73,11 @@ namespace TestBookedProject.Mocks
 
         public Review GetReview(int reviewId)
         {
-            throw new NotImplementedException();
+            foreach (Review review in reviewslist)
+            {
+                if (review.Id == reviewId) return review;
+            }
+            return null;
         }
     }
 }

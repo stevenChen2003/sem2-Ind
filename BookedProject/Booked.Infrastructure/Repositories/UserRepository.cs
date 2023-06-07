@@ -1,4 +1,5 @@
 ﻿using Booked.Domain.Domain;
+using Booked.Domain.Domain.Enum;
 using Booked.Logic.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -38,7 +39,8 @@ namespace Booked.Infrastructure.Repositories
 						DetailUser.DateOfBirth = Convert.ToDateTime(dr["Date_of_Birth"]);
 						DetailUser.PhoneNumber = dr["PhoneNumber"].ToString();
 						DetailUser.Password = dr["Password"].ToString();
-					}
+                        DetailUser.UserType = (UserType)Enum.Parse(typeof(UserType), dr["Type"].ToString());
+                    }
 
 					else { DetailUser = null; }
 					conn.Close();
@@ -72,7 +74,8 @@ namespace Booked.Infrastructure.Repositories
                                                     dr["Email"].ToString(),
                                                     Convert.ToDateTime(dr["Date_of_Birth"]),
                                                     dr["PhoneNumber"].ToString(),
-                                                    dr["Password"].ToString()));
+                                                    dr["Password"].ToString(),
+                                                    (UserType)Enum.Parse(typeof(UserType), dr["Type"].ToString())));
                     }
                     conn.Close();
                 }
@@ -91,8 +94,8 @@ namespace Booked.Infrastructure.Repositories
             {
 				using (SqlConnection connection = new SqlConnection(CONNECTION_STRING))
 				{
-					string query = "INSERT INTO Users (FirstName, LastName, Email, Date_of_Birth, PhoneNumber, Password) " +
-								   "VALUES (@FirstName, @LastName, @Email, @Date_of_Birth, @PhoneNumber, @Password)";
+					string query = "INSERT INTO Users (FirstName, LastName, Email, Date_of_Birth, PhoneNumber, Password, Type) " +
+                                   "VALUES (@FirstName, @LastName, @Email, @Date_of_Birth, @PhoneNumber, @Password, @Type)";
 
 					SqlCommand command = new SqlCommand(query, connection);
 					command.Parameters.AddWithValue("@FirstName", user.FirstName);
@@ -101,6 +104,7 @@ namespace Booked.Infrastructure.Repositories
 					command.Parameters.AddWithValue("@Date_of_Birth", user.DateOfBirth);
 					command.Parameters.AddWithValue("@PhoneNumber", user.PhoneNumber);
 					command.Parameters.AddWithValue("@Password", user.Password);
+                    command.Parameters.AddWithValue("@Type", user.UserType.ToString());
 					connection.Open();
 					command.ExecuteNonQuery();
 				}

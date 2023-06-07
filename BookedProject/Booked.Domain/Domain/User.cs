@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Booked.Domain.Domain.Enum;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -17,10 +18,11 @@ namespace Booked.Domain.Domain
         public string PhoneNumber { get; set; }
         public string Password { get; set; }
         public IEnumerable<Booking> Bookings { get; set; }
+        public UserType UserType { get; set; }
 
         public User() { }
 
-        public User(int userId,string firstName, string lastName, string email, DateTime dateOfBirth, string phoneNumber,string password)
+        public User(int userId,string firstName, string lastName, string email, DateTime dateOfBirth, string phoneNumber,string password, UserType userType)
         {
             UserId = userId;
             FirstName = firstName;
@@ -29,6 +31,7 @@ namespace Booked.Domain.Domain
             DateOfBirth = dateOfBirth;
             PhoneNumber = phoneNumber;
             Password = password;
+            UserType = userType;
         }
 
         public User(string firstName, string lastName, string email, DateTime dateOfBirth, string phoneNumber, string password)

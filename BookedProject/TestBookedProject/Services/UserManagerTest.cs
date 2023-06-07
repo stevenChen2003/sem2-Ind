@@ -84,7 +84,7 @@ namespace TestBookedProject.Services
 		public void RemoveUser_ID_Not_Exist_ShouldThrowException()
 		{
 			UserManager manager = new UserManager(new FakeUserRepo());
-			User user1 = new User(1,"Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password");
+			User user1 = new User(1,"Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password", UserType.Client);
 			User user3 = new User("Steve", "Wu", "s.wu@company.nl", new DateTime(1980, 1, 1), "789987", "password");
 
 
@@ -98,8 +98,8 @@ namespace TestBookedProject.Services
 		public void UpdateUserTest()
 		{
             UserManager manager = new UserManager(new FakeUserRepo());
-            User user1 = new User(1,"Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password"); 
-			User user2 = new User(1,"Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 3, 3), "33789987", "password");
+            User user1 = new User(1,"Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password", UserType.Client); 
+			User user2 = new User(1,"Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 3, 3), "33789987", "password", UserType.Client);
 
 			manager.AddUser(user1);
 			manager.UpdateUser(user2);

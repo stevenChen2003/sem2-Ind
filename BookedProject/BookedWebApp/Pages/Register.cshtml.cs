@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Booked.Domain.Domain;
+using Booked.Domain.Domain.Enum;
 using Booked.Logic.Services;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -40,6 +41,7 @@ namespace BookedWebApp.Pages
                 User user = Creadentials.GetUser();
                 try
                 {
+                    user.UserType = UserType.Client;
                     userManager.AddUser(user);
 					List<Claim> claims = new List<Claim>
 					{
