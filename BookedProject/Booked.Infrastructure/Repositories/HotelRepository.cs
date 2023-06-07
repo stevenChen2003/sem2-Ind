@@ -9,6 +9,8 @@ using Booked.Domain.Domain.Enum;
 using System.Drawing;
 using Booked.Logic.Interfaces;
 using System.Text.RegularExpressions;
+using Booked.Logic.Exceptions;
+using Booked.Logic.Exceptions.HotelException;
 
 namespace Booked.Infrastructure.Repositories
 {
@@ -55,7 +57,7 @@ namespace Booked.Infrastructure.Repositories
 			}
 			catch (SqlException ex)
 			{
-				throw new Exception("Couldn't find hotel", ex);
+				throw new GetHotelException("Couldn't find hotel", ex);
 			}
 		}
 		
@@ -96,7 +98,7 @@ namespace Booked.Infrastructure.Repositories
 			}
 			catch (SqlException ex)
             {
-				throw new Exception("Hotels not found", ex);
+				throw new GetHotelException("Hotels not found", ex);
 			}
 		}
 
@@ -126,7 +128,7 @@ namespace Booked.Infrastructure.Repositories
             catch (SqlException ex)
             {
 				//Custome exception
-                throw new Exception("Error adding hotel please try again", ex);
+                throw new AddHotelException("Error adding hotel please try again", ex);
             }
         }
 
@@ -164,7 +166,7 @@ namespace Booked.Infrastructure.Repositories
             }
             catch (SqlException ex)
             {
-                throw new Exception("Cannot be updated", ex);
+                throw new UpdateHotelException("Cannot be updated", ex);
             }
         }
 
@@ -184,7 +186,7 @@ namespace Booked.Infrastructure.Repositories
 			}
 			catch (SqlException ex)
 			{
-				throw new Exception("Cannot remove hotel", ex);
+				throw new DeleteHotelException("Cannot remove hotel", ex);
             }
         }
 
@@ -214,7 +216,7 @@ namespace Booked.Infrastructure.Repositories
             }
             catch (SqlException ex)
             {
-                throw new Exception("Hotels not found", ex);
+                throw new GetHotelException("Hotels not found", ex);
             }
         }
 
@@ -243,7 +245,7 @@ namespace Booked.Infrastructure.Repositories
             }
             catch (SqlException ex)
             {
-                throw new Exception("Hotels not found", ex);
+                throw new GetHotelException("Hotels not found", ex);
             }
         }
 
@@ -307,7 +309,7 @@ namespace Booked.Infrastructure.Repositories
 			}
 			catch (SqlException ex)
 			{
-				throw new Exception("Hotels not found", ex);
+				throw new GetHotelException("Hotels not found", ex);
 			}
 		}
 
@@ -373,7 +375,7 @@ namespace Booked.Infrastructure.Repositories
 			}
 			catch (SqlException ex)
 			{
-				throw new Exception("Hotels not found", ex);
+				throw new GetHotelException("Hotels not found", ex);
 			}
 
 		}

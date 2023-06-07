@@ -1,5 +1,6 @@
 ﻿using Booked.Domain.Domain;
 using Booked.Domain.Domain.Enum;
+using Booked.Logic.Exceptions;
 using Booked.Logic.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -111,7 +112,7 @@ namespace Booked.Infrastructure.Repositories
 			}
             catch (SqlException ex)
             {
-				throw new Exception("Couldn't add user", ex);
+				throw new AddingException("Couldn't add user", ex);
 			}
         }
 
@@ -134,7 +135,7 @@ namespace Booked.Infrastructure.Repositories
             }
             catch (SqlException ex)
             {
-                throw new Exception("Cannot be updated", ex);
+                throw new UpdateException("Cannot be updated", ex);
             }
         }
 
@@ -153,7 +154,7 @@ namespace Booked.Infrastructure.Repositories
             }
             catch (SqlException ex)
             {
-                throw new Exception("Cannot remove User", ex);
+                throw new DeleteException("Cannot remove User", ex);
             }
         }
 
