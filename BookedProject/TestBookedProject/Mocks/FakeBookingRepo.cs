@@ -37,19 +37,43 @@ namespace TestBookedProject.Mocks
 			return bookings.Where(b => b.User.UserId == userId);
 		}
 
-		public Booking GetBookingById(int id)
-		{
-			return bookings.FirstOrDefault(b => b.BookingId == id);
-		}
+        public Booking GetBookingById(int id)
+        {
+            return bookings.SingleOrDefault(b => b.BookingId == id);
+        }
 
-		public void RemoveBooking(int id)
+        public void RemoveBooking(int id)
 		{
-			bookings.RemoveAll(b => b.BookingId == id);
-		}
+            try
+            {
+                var existingBooking = bookings.Find(booking => booking.BookingId == id);
+                if (existingBooking == null)
+                {
+                    throw new Exception("Error");
+                }
+                else
+                {
+                    bookings.Remove(existingBooking);
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
 
 		public void UpdateBooking(Booking booking)
 		{
-			// No implementation needed for fake repository
-		}
+            try
+            {
+                var existingBooking = bookings.FirstOrDefault(b => b.BookingId == booking.BookingId);
+                if (existingBooking != null)
+                {
+                    existingBooking.Status = booking.Status;
+                }
+                else { throw new Exception(); }
+            }
+            catch (Exception) { throw new Exception("Error"); }
+        }
 	}
 }

@@ -316,10 +316,11 @@ namespace Booked.Infrastructure.Repositories
 			{
 				using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
 				{
-					string query = "UPDATE Bookings SET Status = Canceled WHERE BookingId = @BookingId; ";
+					string query = "UPDATE Bookings SET Status = @Status WHERE BookingId = @BookingId; ";
 					SqlCommand command = new SqlCommand(query, conn);
 					command.Parameters.AddWithValue("@BookingId", booking.BookingId);
-					conn.Open();
+                    command.Parameters.AddWithValue("@Status", booking.Status);
+                    conn.Open();
 					command.ExecuteNonQuery();
 				}
 			}
