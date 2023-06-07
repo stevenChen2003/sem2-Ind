@@ -36,16 +36,23 @@ namespace BookedFormsApp
 
         private void btRemoveHotel_Click(object sender, EventArgs e)
         {
-            var selectedRow = dataGridHotels.CurrentRow;
-            if (selectedRow != null)
+            try
             {
-                int id = (int)selectedRow.Cells["Hotel ID"].Value;
-                hotelManager.RemoveHotel(id);
-                LoadGrid();
+                var selectedRow = dataGridHotels.CurrentRow;
+                if (selectedRow != null)
+                {
+                    int id = (int)selectedRow.Cells["Hotel ID"].Value;
+                    hotelManager.RemoveHotel(id);
+                    LoadGrid();
+                }
+                else
+                {
+                    MessageBox.Show("Please select a hotel", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            else
+            catch (DeleteHotelException ex)
             {
-                MessageBox.Show("Please select a hotel", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -122,7 +129,7 @@ namespace BookedFormsApp
                 }
                 dataGridHotels.DataSource = dataTable;
             }
-            catch (Exception ex)
+            catch (GetHotelException ex)
             {
                 MessageBox.Show(ex.Message, "No content", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadGrid();

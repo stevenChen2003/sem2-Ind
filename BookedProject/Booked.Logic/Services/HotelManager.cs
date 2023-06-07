@@ -83,27 +83,13 @@ namespace Booked.Logic.Services
 
 		public void UpdateHotel(Hotel hotel)
 		{
-			try
-			{
-				hotelRepo.UpdateHotel(hotel);
-			}
-			catch(Exception ex)
-			{
-				throw new Exception("Cannot update hotel information", ex);
-			}
-		}
+            hotelRepo.UpdateHotel(hotel);
+        }
 
 
 		public void RemoveHotel(int id)
 		{
-			try
-			{
-				hotelRepo.RemoveHotelByID(id);
-			}
-			catch(Exception)
-			{
-				throw new Exception("Cannot remove hotel");
-			}
+			hotelRepo.RemoveHotelByID(id);
 		}
 
         public bool CheckIfHotelExist(Hotel hotel)
