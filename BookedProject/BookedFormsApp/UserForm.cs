@@ -34,7 +34,24 @@ namespace BookedFormsApp
 
         private void btRemoveUser_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                var selectedRow = dataGridUser.CurrentRow;
+                if (selectedRow != null)
+                {
+                    int id = (int)selectedRow.Cells["ID"].Value;
+                    userManager.DeleteUser(id);
+                    LoadGrid();
+                }
+                else
+                {
+                    MessageBox.Show("Please select a flight", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btUserDetail_Click(object sender, EventArgs e)
@@ -72,7 +89,9 @@ namespace BookedFormsApp
 
         private void buttonAddUser_Click(object sender, EventArgs e)
         {
-
+            AddUser addUser = new AddUser(userManager);
+            addUser.ShowDialog();
+            LoadGrid();
         }
     }
 }

@@ -77,10 +77,12 @@ namespace BookedFormsApp
             catch (HotelExistException i)
 			{
 				MessageBox.Show(i.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
+                ClearBoxes();
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ClearBoxes();
             }
         }
 
