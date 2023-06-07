@@ -98,7 +98,7 @@ namespace Booked.Infrastructure.Repositories
 			}
 			catch (SqlException ex)
             {
-				throw new GetHotelException("Hotels not found", ex);
+				throw new GetHotelException("Error loading hotels", ex);
 			}
 		}
 

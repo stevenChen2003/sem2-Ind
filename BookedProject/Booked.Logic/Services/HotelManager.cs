@@ -41,15 +41,8 @@ namespace Booked.Logic.Services
 
 		public IEnumerable<Hotel> GetAllHotel()
 		{
-			try
-			{
-                return hotelRepo.GetAllHotel();
-            }
-			catch (Exception)
-			{
-				throw new Exception("No hotels found");
-			}
-		}
+            return hotelRepo.GetAllHotel();
+        }
 
 		public IEnumerable<Hotel> GetHotelBySearch(string search, string sort, int itemsPerPage, int offset)
 		{
