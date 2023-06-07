@@ -75,11 +75,11 @@ namespace Booked.Logic.Services
 		}
 
 		//Delete
-		public void DeleteBooking(Booking booking)
+		public void DeleteBooking(int bookingID)
 		{
 			try
 			{
-				bookingRepo.RemoveBooking(booking.BookingId);
+				bookingRepo.RemoveBooking(bookingID);
 			}
 			catch (Exception)
 			{
