@@ -2,3 +2,41 @@
 @model BookedWebApp.Pages.Admin.AllUserModel
 @{
 }
+
+<div class="container mt-3">
+	<h3>All Users</h3>
+
+    @if (Model.UserList != null)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Email</th>
+                    <th>Phone number</th>
+                    <th>User type</th>
+                    <th>History</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model.UserList)
+                {
+                    <tr>
+                        <td>@user.UserId</td>
+                        <td>@user.FirstName</td>
+                        <td>@user.LastName</td>
+                        <td>@user.Email</td>
+                        <td>@user.PhoneNumber</td>
+                        <td>@user.UserType.ToString()</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No Users found</p>
+    }
+</div>

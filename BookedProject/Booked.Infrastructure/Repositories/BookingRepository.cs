@@ -116,8 +116,10 @@ namespace Booked.Infrastructure.Repositories
 					{
 						Flight flight = new Flight();
 						flight.FlightId = Convert.ToInt32(flightDr["FlightId"]);
+                        flight.Price = Convert.ToDecimal(flightDr["Price"]);
+                        flight.ExtraBaggagePrice = Convert.ToDecimal(flightDr["ExtraBaggagePrice"]);
 
-						User user = new User();
+                        User user = new User();
 						user.UserId = Convert.ToInt32(flightDr["UserId"]);
 
 						allBookings.Add(new FlightBooking(Convert.ToInt32(flightDr["BookingId"]), user, (DateTime)flightDr["StartDate"], (DateTime)flightDr["EndDate"], (DateTime)flightDr["BookingDate"], flight, (bool)flightDr["ExtraLuggage"], flightDr["Status"].ToString()));
@@ -138,8 +140,9 @@ namespace Booked.Infrastructure.Repositories
 					{
 						Hotel hotel = new Hotel();
 						hotel.HotelId = Convert.ToInt32(hotelDr["HotelId"]);
+                        hotel.PricePerNight = Convert.ToDecimal(hotelDr["PricePerNight"]);
 
-						User user = new User();
+                        User user = new User();
 						user.UserId = Convert.ToInt32(hotelDr["UserId"]);
 
 						allBookings.Add(new HotelBooking(Convert.ToInt32(hotelDr["BookingId"]), user, (DateTime)hotelDr["StartDate"], (DateTime)hotelDr["EndDate"], (DateTime)hotelDr["BookingDate"], hotel, hotelDr["Status"].ToString()));

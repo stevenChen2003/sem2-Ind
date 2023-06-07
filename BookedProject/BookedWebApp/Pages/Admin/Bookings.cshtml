@@ -1,4 +1,48 @@
 ﻿@page
+@using Booked.Domain.Domain;
 @model BookedWebApp.Pages.Admin.BookingsModel
 @{
 }
+
+<div class="container mt-3">
+    <h3>Booking history</h3>
+    @if (Model.BookingList != null)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Booking Type</th>
+                    <th>Booking Date</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var booking in Model.BookingList)
+                {
+                    <tr>
+                        <td>@booking.BookingId</td>
+                        @if (@booking is HotelBooking)
+                        {
+                            <td>HotelBooking</td>
+                        }
+                        else if (@booking is FlightBooking)
+                        {
+                            <td>FlightBooking</td>
+                        }
+                        <td>@booking.BookingDate.ToString("d/M/yyyy")</td>
+                        <td>@booking.GetPrice()</td>
+                        <td>@booking.Status</td>
+                        <td><a class="btn btn-primary" asp-page="/Users/PaymentDetails" asp-route-id="@booking.BookingId">Payment Details</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No booking</p>
+    }
+</div>
