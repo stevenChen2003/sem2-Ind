@@ -172,7 +172,7 @@ namespace Booked.Infrastructure.Repositories
             }
         }
 
-        //Use for search bar
+        //Use for search bar to display all possible countries
         public IEnumerable<string> GetFlightCountries()
         {
             List<string> listCountries = new List<string>();
