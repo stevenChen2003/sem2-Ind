@@ -40,9 +40,15 @@ namespace BookedWebApp.Pages
 				this.query = query;
 				this.SortOrder = SortOrder;
 			}
-
-			ListHotel = hotelManager.GetHotelBySearch(query, SortOrder, ItemsPerPage, (CurrentPage - 1) * ItemsPerPage);
-            TotalItems = hotelManager.GetTotalHotelCount(query);
+            try
+            {
+                ListHotel = hotelManager.GetHotelBySearch(query, SortOrder, ItemsPerPage, (CurrentPage - 1) * ItemsPerPage);
+                TotalItems = hotelManager.GetTotalHotelCount(query);
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = ex.Message;
+            }
 		}
     }
 }

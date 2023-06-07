@@ -24,7 +24,7 @@
 
 
 <div class="container mt-5 mb-5">
-    @if (Model.ListHotel.Count() != 0)
+    @if (Model.ListHotel != null)
     {
         <div class="row">
             @foreach (var hotel in Model.ListHotel)
@@ -42,9 +42,9 @@
             }
         </div>
     }
-    else
+    else if (TempData["Error"] != null)
     {
-        <p>No Hotels found</p>
+        <p>@TempData["Error"]</p>
     }
 </div>
 
