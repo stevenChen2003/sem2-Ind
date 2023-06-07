@@ -1,6 +1,7 @@
 using Booked.Domain.Domain;
 using Booked.Domain.Domain.Enum;
 using Booked.Infrastructure.Repositories;
+using Booked.Logic.Exceptions.HotelException;
 using Booked.Logic.Services;
 using System.Data;
 using System.Windows.Forms;
@@ -20,9 +21,9 @@ namespace BookedFormsApp
             {
                 LoadGrid();
             }
-            catch (Exception)
+            catch (GetHotelException ex)
             {
-                MessageBox.Show("Database is not connected", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -89,9 +90,9 @@ namespace BookedFormsApp
                 }
                 dataGridHotels.DataSource = dataTable;
             }
-            catch (Exception e)
+            catch (GetHotelException e)
             {
-                throw new Exception(e.Message);
+                throw new GetHotelException(e.Message);
             }
         }
 
