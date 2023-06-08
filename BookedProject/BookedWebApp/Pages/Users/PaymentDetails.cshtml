@@ -32,6 +32,18 @@
 		<h5>Price: @Model.FlightBooking.GetPrice()</h5>
 	</div>
 
+	<div class="container mt-3">
+		<form method="post">
+			<div class="row">
+				<div class="col-md-6">
+					<button type="submit" asp-page-handler="Update" class="btn btn-primary btn-sm" style="width: 100%;">Cancel booking</button>
+				</div>
+				<div class="col-md-6">
+					<button type="submit" asp-page-handler="Delete" class="btn btn-primary btn-sm" style="width: 100%;">Delete Booking</button>
+				</div>
+			</div>
+		</form>
+	</div>
 }
 else if (Model.HotelBooking != null)
 {
@@ -60,4 +72,18 @@ else if (Model.HotelBooking != null)
 		<hr>
 		<h5>Price: @Model.HotelBooking.GetPrice()</h5>
 	</div>
+
+	<div class="container mt-3">
+		<form method="post">
+			<div class="row">
+				<div class="col-md-6">
+					<button type="submit" asp-page-handler="Update" class="btn btn-primary btn-sm" style="width: 100%;">Cancel booking</button>
+				</div>
+				<div class="col-md-6">
+					<button type="submit" asp-page-handler="Delete" class="btn btn-primary btn-sm" style="width: 100%;">Delete Booking</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
 }
