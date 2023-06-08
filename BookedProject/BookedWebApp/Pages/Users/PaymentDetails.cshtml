@@ -39,12 +39,22 @@
 				<p class="text-danger">@TempData["Message"]</p>
 			</div>
 			<div class="row">
-				<div class="col-md-6">
-					<button type="submit" asp-page-handler="Update" class="btn btn-primary btn-sm" style="width: 100%;">Cancel booking</button>
-				</div>
-				<div class="col-md-6">
-					<button type="submit" asp-page-handler="Delete" class="btn btn-primary btn-sm" style="width: 100%;">Delete Booking</button>
-				</div>
+				@if (User.IsInRole("Admin"))
+				{
+					<div class="col-md-6">
+						<button type="submit" asp-page-handler="Update" class="btn btn-primary btn-sm" style="width: 100%;">Cancel booking</button>
+					</div>
+
+					<div class="col-md-6">
+						<button type="submit" asp-page-handler="Delete" class="btn btn-primary btn-sm" style="width: 100%;">Delete Booking</button>
+					</div>
+				}
+				else
+				{
+					<div class="col-md-6">
+						<button type="submit" asp-page-handler="Update" class="btn btn-primary btn-sm" style="width: 100%;">Cancel booking</button>
+					</div>
+				}
 			</div>
 		</form>
 	</div>
@@ -84,12 +94,22 @@ else if (Model.HotelBooking != null)
 				<p class="text-danger">@TempData["Message"]</p>
 			</div>
 			<div class="row">
-				<div class="col-md-6">
-					<button type="submit" asp-page-handler="Update" class="btn btn-primary btn-sm" style="width: 100%;">Cancel booking</button>
-				</div>
-				<div class="col-md-6">
-					<button type="submit" asp-page-handler="Delete" class="btn btn-primary btn-sm" style="width: 100%;">Delete Booking</button>
-				</div>
+				@if (User.IsInRole("Admin"))
+				{
+					<div class="col-md-6">
+						<button type="submit" asp-page-handler="Update" class="btn btn-primary btn-sm" style="width: 100%;">Cancel booking</button>
+					</div>
+
+					<div class="col-md-6">
+						<button type="submit" asp-page-handler="Delete" class="btn btn-primary btn-sm" style="width: 100%;">Delete Booking</button>
+					</div>
+				}
+				else
+				{
+					<div class="col-md-6">
+						<button type="submit" asp-page-handler="Update" class="btn btn-primary btn-sm" style="width: 100%;">Cancel booking</button>
+					</div>
+				}
 			</div>
 		</form>
 	</div>
