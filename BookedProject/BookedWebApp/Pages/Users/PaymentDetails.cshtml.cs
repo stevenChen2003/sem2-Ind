@@ -48,7 +48,7 @@ namespace BookedWebApp.Pages.Users
             {
 				HotelBooking = (HotelBooking)bookingManager.GetBookingByid(id);
                 HotelBooking.Hotel = hotelManager.GetHotel(HotelBooking.Hotel.HotelId);
-                if (user.UserType == UserType.Admin || FlightBooking.User.UserId == user.UserId)
+                if (user.UserType == UserType.Admin || HotelBooking.User.UserId == user.UserId)
                 {
                     return Page();
                 }
