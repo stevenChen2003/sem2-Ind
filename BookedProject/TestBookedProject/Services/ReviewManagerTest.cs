@@ -93,6 +93,7 @@ namespace TestBookedProject.Services
             Assert.AreEqual(2, result.Count);
         }
 
+
 		//Non trivial
 		[TestMethod]
         public void GetReviewsBaseOnHotelId_ReturnListOfReviews_Should_Return_EmptyList()
