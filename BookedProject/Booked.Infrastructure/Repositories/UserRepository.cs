@@ -189,7 +189,7 @@ namespace Booked.Infrastructure.Repositories
 			}
             catch (SqlException ex)
 			{
-                throw new GetException("Password not found", ex);
+                throw new GetException("Error logging in", ex);
             }
         }
 

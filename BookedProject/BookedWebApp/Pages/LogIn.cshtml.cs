@@ -8,6 +8,7 @@ using System.Security.Claims;
 using Booked.Logic.Services;
 using System.ComponentModel.DataAnnotations;
 using Booked.Infrastructure.Repositories;
+using Booked.Logic.Exceptions;
 
 namespace BookedWebApp.Pages
 {
@@ -43,28 +44,35 @@ namespace BookedWebApp.Pages
         {
             if (ModelState.IsValid)
             {
-                if (userManager.CheckPassword(Password, Email))
+                try
                 {
-                    FoundUser = userManager.GetUser(Email);
+					if (userManager.CheckPassword(Password, Email))
+					{
+						FoundUser = userManager.GetUser(Email);
 
-                    List<Claim> claims = new List<Claim>
-                    {
-                        new Claim(ClaimTypes.Name, FoundUser.Email)
-                    };
+						List<Claim> claims = new List<Claim>
+						{
+							new Claim(ClaimTypes.Name, FoundUser.Email)
+						};
 
-                    if (FoundUser.UserType == UserType.Admin)
-                    {
-                        claims.Add(new Claim(ClaimTypes.Role, "Admin"));
-                    }
-                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                    HttpContext.SignInAsync(new ClaimsPrincipal(claimsIdentity));
-                    return RedirectToPage("/Index");
-                }
-                else
+						if (FoundUser.UserType == UserType.Admin)
+						{
+							claims.Add(new Claim(ClaimTypes.Role, "Admin"));
+						}
+						var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+						HttpContext.SignInAsync(new ClaimsPrincipal(claimsIdentity));
+						return RedirectToPage("/Index");
+					}
+					else
+					{
+						TempData["Message"] = "Incorrect password or email.";
+						return Page();
+					}
+				}
+                catch (GetException ex)
                 {
-                    TempData["Message"] = "Incorrect password or email.";
-                    return Page();
-                }
+					TempData["Message"] = ex.Message;
+				}
             }
             return Page();
         }

@@ -63,16 +63,9 @@ namespace Booked.Logic.Services
 
         public bool CheckPassword(string password, string email)
         {
-            try
-            {
-                string hashedPassword = userRepo.GetHashedAndSaltPassword(email);
-                return BCrypt.Net.BCrypt.Verify(password, hashedPassword);
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
+			string hashedPassword = userRepo.GetHashedAndSaltPassword(email);
+			return BCrypt.Net.BCrypt.Verify(password, hashedPassword);
+		}
 
     }
 }

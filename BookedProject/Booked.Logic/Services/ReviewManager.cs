@@ -103,7 +103,7 @@ namespace Booked.Logic.Services
 			return avgRating;
 		}
 
-		//Statistics for each rating 
+		//Statistics for each rating "Non-trival"
 		public int[] GetSummaryRating(int hotelid)
 		{
 			List<Review> reviews = GetReviewsBaseOnHotelId(hotelid);
