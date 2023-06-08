@@ -111,6 +111,7 @@ namespace TestBookedProject.Services
             Assert.AreEqual(0, result.Count);
         }
 
+        //Non trivial
 		[TestMethod]
 		public void SummaryReview_Of_Rating_Test()
 		{

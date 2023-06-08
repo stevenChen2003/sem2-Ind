@@ -1,6 +1,8 @@
 using Booked.Domain.Domain;
 using Booked.Domain.Domain.Enum;
 using Booked.Logic.Services;
+using BookedWebApp.DTO;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -56,7 +58,45 @@ namespace BookedWebApp.Pages.Users
                 }
             }
             return Page();
-
         }
-    }
+
+		public IActionResult OnPostUpdate(int id)
+		{
+			try
+			{
+                Booking booking = bookingManager.GetBookingByid(id);
+                booking.Status = "Cancelled";
+                bookingManager.UpdateBooking(booking);
+				if (User.IsInRole("Admin"))
+				{
+					return Redirect("/Admin/Bookings");
+				}
+				return Redirect("/Users/Details");
+			}
+			catch (Exception e)
+			{
+				ViewData["Message"] = e.Message;
+				return Page();
+			}
+		}
+
+		public IActionResult OnPostDelete(int id)
+		{
+			try
+			{
+                bookingManager.DeleteBooking(id);
+                if (User.IsInRole("Admin"))
+                {
+					return Redirect("/Admin/Bookings");
+				}
+                return Redirect("/Users/Details");
+			}
+			catch (Exception e)
+			{
+				ViewData["Message"] = e.Message;
+				return Page();
+			}
+		}
+
+	}
 }
