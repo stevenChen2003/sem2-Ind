@@ -1,5 +1,7 @@
 using Booked.Domain.Domain;
 using Booked.Infrastructure.Repositories;
+using Booked.Logic.Exceptions;
+using Booked.Logic.Exceptions.HotelException;
 using Booked.Logic.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -45,7 +47,7 @@ namespace BookedWebApp.Pages
                 ListHotel = hotelManager.GetHotelBySearch(query, SortOrder, ItemsPerPage, (CurrentPage - 1) * ItemsPerPage);
                 TotalItems = hotelManager.GetTotalHotelCount(query);
             }
-            catch (Exception ex)
+            catch (GetHotelException ex)
             {
                 TempData["Error"] = ex.Message;
             }
