@@ -35,8 +35,8 @@ namespace BookedWebApp.Pages
 
         public void OnGet(int id)
         {
-			Hotel = hotelManager.GetHotelWithReviews(id);
-
+			Hotel = hotelManager.GetHotel(id);
+			Hotel.Reviews = reviewManager.GetReviewsBaseOnHotelId(id);
 			Hotel.StarRating = reviewManager.GetAvgRating(id);
 			SummaryReview = reviewManager.GetSummaryRating(id);
         }
