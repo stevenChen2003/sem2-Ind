@@ -75,8 +75,8 @@ namespace BookedWebApp.Pages.Users
 			}
 			catch (Exception e)
 			{
-				ViewData["Message"] = e.Message;
-				return Page();
+				TempData["Message"] = e.Message;
+				return RedirectToPage("/Users/PaymentDetails", new { id = id });
 			}
 		}
 
@@ -93,8 +93,8 @@ namespace BookedWebApp.Pages.Users
 			}
 			catch (Exception e)
 			{
-				ViewData["Message"] = e.Message;
-				return Page();
+				TempData["Message"] = e.Message;
+				return RedirectToPage("/Users/PaymentDetails", new { id = id });
 			}
 		}
 

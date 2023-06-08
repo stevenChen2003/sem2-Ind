@@ -77,6 +77,9 @@ else if (Model.HotelBooking != null)
 	<div class="container mt-3">
 		<form method="post">
 			<input type="hidden" name="id" value="@Model.HotelBooking.BookingId" />
+			<div>
+				<p class="text-danger">@ViewData["Message"]</p>
+			</div>
 			<div class="row">
 				<div class="col-md-6">
 					<button type="submit" asp-page-handler="Update" class="btn btn-primary btn-sm" style="width: 100%;">Cancel booking</button>
