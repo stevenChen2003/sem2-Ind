@@ -25,15 +25,8 @@ namespace Booked.Logic.Services
 
         public IEnumerable<Flight> GetAllFlight()
         {
-            try
-            {
-				return flightRepo.GetAllFlight();
-			}
-            catch (Exception)
-            {
-                throw new Exception("Error getting flights");
-            }
-        }
+			return flightRepo.GetAllFlight();
+		}
 
         public void AddFlight(Flight flight)
         {
@@ -61,27 +54,13 @@ namespace Booked.Logic.Services
 
         public void UpdateFlight(Flight flight)
         {
-            try
-            {
-                flightRepo.UpdateHotel(flight);
-            }
-            catch(Exception)
-            {
-                throw new Exception("Cannot update flight information");
-            }
+            flightRepo.UpdateHotel(flight);
         }
 
         public void RemoveFlight(int id)
         {
-            try
-            {
-                flightRepo.RemoveFlightByID(id);
-            }
-            catch (Exception)
-            {
-                throw new InvalidOperationException("Cannot remove flight");
-            }
-        }
+			flightRepo.RemoveFlightByID(id);
+		}
 
         public IEnumerable<string> GetCountries()
         {

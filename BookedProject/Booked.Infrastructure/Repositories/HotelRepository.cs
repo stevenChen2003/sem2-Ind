@@ -127,7 +127,6 @@ namespace Booked.Infrastructure.Repositories
             }
             catch (SqlException ex)
             {
-				//Custome exception
                 throw new AddHotelException("Error adding hotel please try again", ex);
             }
         }

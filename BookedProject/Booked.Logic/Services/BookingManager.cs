@@ -19,85 +19,43 @@ namespace Booked.Logic.Services
 
 		public void AddBooking(Booking booking)
 		{
-			try
+			if (booking is HotelBooking)
 			{
-				if (booking is HotelBooking)
-				{
-					bookingRepo.AddHotelBooking((HotelBooking)booking);
-				}
-				else if (booking is FlightBooking)
-				{
-					bookingRepo.AddFlightBooking((FlightBooking)booking);
-				}
+				bookingRepo.AddHotelBooking((HotelBooking)booking);
 			}
-			catch (Exception ex)
+			else if (booking is FlightBooking)
 			{
-				throw new InvalidOperationException("Error making booking", ex);
+				bookingRepo.AddFlightBooking((FlightBooking)booking);
 			}
 		}
 
 		//Get forms/admin
 		public IEnumerable<Booking> GetAllBooking()
 		{
-			try
-			{
-				return bookingRepo.GetAllBooking();
-			}
-			catch (Exception)
-			{
-				throw new InvalidOperationException("No booking found");
-			}
+			return bookingRepo.GetAllBooking();
 		}
 
 		public IEnumerable<Booking> GetAllBookingByUserId(int usedId)
 		{
-			try
-			{
-				return bookingRepo.GetBookingByUserId(usedId);
-            }
-			catch (Exception)
-			{
-				throw new InvalidOperationException("No booking found");
-			}
+			return bookingRepo.GetBookingByUserId(usedId);
 		}
 
 		//Update
 		public void UpdateBooking(Booking booking)
 		{
-			try
-			{
-				bookingRepo.UpdateBooking(booking);
-			}
-			catch (Exception)
-			{
-				throw new InvalidOperationException("Booking cannot be cancelled");
-			}
+			bookingRepo.UpdateBooking(booking);
 		}
 
 		//Delete
 		public void DeleteBooking(int bookingID)
 		{
-			try
-			{
-				bookingRepo.RemoveBooking(bookingID);
-			}
-			catch (Exception)
-			{
-				throw new InvalidOperationException("Booking cannot be deleted");
-			}
+			bookingRepo.RemoveBooking(bookingID);
 		}
 
 		//Get the Booking details
 		public Booking GetBookingByid(int id)
 		{
-			try
-			{
-				return bookingRepo.GetBookingById(id);
-			}
-			catch (Exception)
-			{
-				throw new InvalidOperationException("Booking not found");
-			}
+			return bookingRepo.GetBookingById(id);
 		}
 
 

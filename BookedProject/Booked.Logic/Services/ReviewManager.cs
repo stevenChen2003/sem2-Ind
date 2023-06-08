@@ -21,22 +21,15 @@ namespace Booked.Logic.Services
 		//Add
 		public void AddReview(Review review)
 		{
-            try
-            {
-                if (CheckIfReviewExist(review))
-                {
-					throw new AlreadyExistException("User already has review");
-                }
-				else
-				{
-					reviewRepo.AddReview(review);
-				}
-            }
-            catch (Exception)
-            {
-                throw new Exception("Adding not succesfull");
-            }
-        }
+			if (CheckIfReviewExist(review))
+			{
+				throw new AlreadyExistException("User already has review");
+			}
+			else
+			{
+				reviewRepo.AddReview(review);
+			}
+		}
 
 		//Check if user has review on the hotel
 		public bool CheckIfReviewExist(Review review)
@@ -58,7 +51,7 @@ namespace Booked.Logic.Services
 			{
 				 return reviewRepo.GetAllReviewBasedOnHotelId(hotelid);
 			}
-			catch (Exception)
+			catch (GetException)
 			{
                 return null;
             }
@@ -70,7 +63,7 @@ namespace Booked.Logic.Services
             {
                 return reviewRepo.GetReview(id);
             }
-            catch (Exception)
+            catch (GetException)
             {
                 return null;
             }
