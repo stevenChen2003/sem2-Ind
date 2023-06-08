@@ -1,4 +1,5 @@
 using Booked.Domain.Domain;
+using Booked.Logic.Exceptions;
 using Booked.Logic.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,7 +23,14 @@ namespace BookedWebApp.Pages.Admin
 
         public void OnGet()
         {
-            BookingList = bookingManager.GetAllBooking();
+            try
+            {
+                BookingList = bookingManager.GetAllBooking();
+            }
+            catch (GetException ex)
+            {
+                TempData["Message"] = ex.Message;
+            }
         }
     }
 }

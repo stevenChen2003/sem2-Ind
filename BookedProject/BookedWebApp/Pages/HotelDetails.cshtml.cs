@@ -35,24 +35,39 @@ namespace BookedWebApp.Pages
 
         public void OnGet(int id)
         {
-			Hotel = hotelManager.GetHotel(id);
-			Hotel.Reviews = reviewManager.GetReviewsBaseOnHotelId(id);
-			Hotel.StarRating = reviewManager.GetAvgRating(id);
-			SummaryReview = reviewManager.GetSummaryRating(id);
+			try
+			{
+				Hotel = hotelManager.GetHotel(id);
+				Hotel.Reviews = reviewManager.GetReviewsBaseOnHotelId(id);
+				Hotel.StarRating = reviewManager.GetAvgRating(id);
+				SummaryReview = reviewManager.GetSummaryRating(id);
+			}
+			catch (GetException ex)
+			{
+				TempData["Error"] = ex.Message;
+			}
         }
 
 		public IActionResult OnPost(int id)
 		{
-			Hotel = hotelManager.GetHotel(id);
+			try
+			{
+				Hotel = hotelManager.GetHotel(id);
 
-			if (ModelState.IsValid && DateStart >= DateTime.Today && DateEnd > DateStart)
-			{
-				return RedirectToPage("/Payment", new { start = DateStart.ToString("yyyy-MM-dd"), end = DateEnd.ToString("yyyy-MM-dd"), hotelId = id });
+				if (ModelState.IsValid && DateStart >= DateTime.Today && DateEnd > DateStart)
+				{
+					return RedirectToPage("/Payment", new { start = DateStart.ToString("yyyy-MM-dd"), end = DateEnd.ToString("yyyy-MM-dd"), hotelId = id });
+				}
+				else
+				{
+					TempData["Message"] = "Date's are incorrect";
+					return RedirectToPage("/HotelDetails", new { id = id });
+				}
 			}
-			else
+			catch (GetException ex)
 			{
-				TempData["Message"] = "Date's are incorrect";
-				return RedirectToPage("/HotelDetails", new {id = id});
+				TempData["Error"] = ex.Message;
+				return RedirectToPage("/HotelDetails", new { id = id });
 			}
 		}
 
