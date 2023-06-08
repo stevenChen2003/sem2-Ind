@@ -72,7 +72,7 @@ namespace BookedWebApp.Pages
                 {
                     TempData["InvalidReview"] = ex.Message;
                 }
-				catch (Exception ex)
+				catch (AddingException ex)
 				{
                     TempData["InvalidReview"] = ex.Message;
                 }
@@ -92,7 +92,7 @@ namespace BookedWebApp.Pages
                     reviewManager.UpdateReview(review);
                     return RedirectToPage("/HotelDetails", new { id = review.HotelId });
                 }
-				catch (Exception ex)
+				catch (UpdateException ex)
 				{
 					TempData["ReviewError"] = ex.Message;
 
@@ -112,7 +112,7 @@ namespace BookedWebApp.Pages
                     reviewManager.DeleteReview(review.Id);
                     return RedirectToPage("/HotelDetails", new { id = review.HotelId });
                 }
-				catch (Exception ex)
+				catch (DeleteException ex)
                 {
                     TempData["ReviewError"] = ex.Message;
                 }
