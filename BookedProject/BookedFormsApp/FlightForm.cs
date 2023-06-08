@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Booked.Logic.Exceptions;
 
 namespace BookedFormsApp
 {
@@ -26,7 +27,7 @@ namespace BookedFormsApp
             {
                 LoadGrid();
             }
-            catch (Exception)
+            catch (GetException)
             {
                 MessageBox.Show("Error loading flights", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -111,9 +112,9 @@ namespace BookedFormsApp
                 }
                 dataGridFlights.DataSource = dataTable;
             }
-            catch (Exception)
+            catch (GetException ex)
             {
-                throw new Exception();
+                throw new GetException(ex.Message);
             }
 
         }
@@ -151,7 +152,7 @@ namespace BookedFormsApp
                     }
                     dataGridFlights.DataSource = dataTable;
                 }
-                catch (Exception ex)
+                catch (GetException ex)
                 {
                     MessageBox.Show(ex.Message, "No content", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadGrid();

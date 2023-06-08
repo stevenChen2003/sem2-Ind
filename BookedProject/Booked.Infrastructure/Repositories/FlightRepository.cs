@@ -45,7 +45,7 @@ namespace Booked.Infrastructure.Repositories
                 }
                 return null;
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 throw new GetException("Flight not found", ex);
             }
@@ -81,7 +81,7 @@ namespace Booked.Infrastructure.Repositories
                 }
                 return ListFlights;
             }
-            catch (Exception ex) 
+            catch (SqlException ex) 
             { 
                 throw new GetException("No Flights found", ex); 
             }
@@ -110,7 +110,7 @@ namespace Booked.Infrastructure.Repositories
 
                 }
             }
-            catch(Exception ex) 
+            catch(SqlException ex) 
             { 
                 throw new AddingException("Error adding flight pleas try again", ex); 
             }
@@ -148,7 +148,7 @@ namespace Booked.Infrastructure.Repositories
                     command.ExecuteNonQuery();
                 }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 throw new UpdateException("Cannot be updated", ex);
             }
@@ -167,7 +167,7 @@ namespace Booked.Infrastructure.Repositories
                     cmd.ExecuteNonQuery();
                 }
             }
-            catch(Exception ex) 
+            catch(SqlException ex) 
             { 
                 throw new DeleteException("Cannot be removed", ex); 
             }
@@ -197,7 +197,7 @@ namespace Booked.Infrastructure.Repositories
                 }
                 return listCountries;
             }
-            catch (Exception ex) 
+            catch (SqlException ex) 
             { 
                 throw new GetException("Not info found", ex); 
             }
@@ -237,7 +237,7 @@ namespace Booked.Infrastructure.Repositories
 				}
 				return ListFlights;
 			}
-			catch (Exception ex) 
+			catch (SqlException ex) 
             { 
                 throw new GetException("No Flights found", ex); 
             }
@@ -277,7 +277,7 @@ namespace Booked.Infrastructure.Repositories
 				}
 				return ListFlights;
 			}
-			catch (Exception ex) 
+			catch (SqlException ex) 
             { 
                 throw new GetException("No Flights found", ex); 
             }
@@ -315,7 +315,7 @@ namespace Booked.Infrastructure.Repositories
 				}
 				return ListFlights;
 			}
-			catch (Exception ex) 
+			catch (SqlException ex) 
             { 
                 throw new GetException("No Flights found", ex); 
             }
