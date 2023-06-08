@@ -29,7 +29,6 @@
 		private void InitializeComponent()
 		{
 			dataGridBooking = new DataGridView();
-			btBookingDetail = new Button();
 			btRemoveBooking = new Button();
 			comboBoxFilter = new ComboBox();
 			((System.ComponentModel.ISupportInitialize)dataGridBooking).BeginInit();
@@ -48,16 +47,6 @@
 			dataGridBooking.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 			dataGridBooking.Size = new Size(1085, 499);
 			dataGridBooking.TabIndex = 8;
-			// 
-			// btBookingDetail
-			// 
-			btBookingDetail.Location = new Point(335, 624);
-			btBookingDetail.Margin = new Padding(3, 4, 3, 4);
-			btBookingDetail.Name = "btBookingDetail";
-			btBookingDetail.Size = new Size(234, 31);
-			btBookingDetail.TabIndex = 10;
-			btBookingDetail.Text = "Details";
-			btBookingDetail.UseVisualStyleBackColor = true;
 			// 
 			// btRemoveBooking
 			// 
@@ -88,7 +77,6 @@
 			ControlBox = false;
 			Controls.Add(comboBoxFilter);
 			Controls.Add(dataGridBooking);
-			Controls.Add(btBookingDetail);
 			Controls.Add(btRemoveBooking);
 			FormBorderStyle = FormBorderStyle.FixedSingle;
 			Margin = new Padding(3, 4, 3, 4);
@@ -101,7 +89,6 @@
 		#endregion
 
 		private DataGridView dataGridBooking;
-		private Button btBookingDetail;
 		private Button btRemoveBooking;
 		private ComboBox comboBoxFilter;
 	}

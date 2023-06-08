@@ -94,7 +94,7 @@ namespace TestBookedProject.Services
         }
 
 
-		//Non trivial
+		//Non trivial logic
 		[TestMethod]
         public void GetReviewsBaseOnHotelId_ReturnListOfReviews_Should_Return_EmptyList()
         {

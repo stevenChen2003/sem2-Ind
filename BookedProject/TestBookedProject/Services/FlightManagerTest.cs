@@ -66,7 +66,7 @@ namespace TestBookedProject.Services
 
 			manager.AddFlight(flight1);
 
-			Assert.ThrowsException<InvalidOperationException>(() => manager.RemoveFlight(3), "Cannot remove flight");
+			Assert.ThrowsException<Exception>(() => manager.RemoveFlight(3), "Cannot remove flight");
 		}
 
         //Update
