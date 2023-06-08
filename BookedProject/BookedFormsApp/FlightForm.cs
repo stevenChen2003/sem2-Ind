@@ -56,9 +56,9 @@ namespace BookedFormsApp
                     MessageBox.Show("Please select a flight", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch (InvalidOperationException i)
+            catch (DeleteException ex)
             {
-                MessageBox.Show(i.Message);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -80,9 +80,9 @@ namespace BookedFormsApp
                     MessageBox.Show("Please select a flight", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch (InvalidOperationException i)
+            catch (GetException ex)
             {
-                MessageBox.Show(i.Message);
+                MessageBox.Show(ex.Message);
             }
         }
 

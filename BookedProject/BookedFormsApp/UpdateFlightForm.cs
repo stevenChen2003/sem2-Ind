@@ -1,5 +1,6 @@
 ﻿using Booked.Domain.Domain;
 using Booked.Domain.Domain.Enum;
+using Booked.Logic.Exceptions;
 using Booked.Logic.Services;
 using System;
 using System.Collections.Generic;
@@ -50,9 +51,9 @@ namespace BookedFormsApp
                     DisableBoxes();
                 }
             }
-            catch (Exception)
+            catch (UpdateException ex)
             {
-                MessageBox.Show("Flight not Updated", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

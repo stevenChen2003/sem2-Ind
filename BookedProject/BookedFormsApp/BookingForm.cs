@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Booked.Logic.Exceptions;
 
 namespace BookedFormsApp
 {
@@ -80,9 +81,9 @@ namespace BookedFormsApp
 				}
 				dataGridBooking.DataSource = dataTable;
 			}
-			catch (Exception)
+			catch (GetException ex)
 			{
-				throw new Exception();
+				throw new GetException(ex.Message);
 			}
 		}
 
