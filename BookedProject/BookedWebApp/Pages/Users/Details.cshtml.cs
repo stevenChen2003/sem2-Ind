@@ -1,5 +1,6 @@
 using Booked.Domain.Domain;
 using Booked.Infrastructure.Repositories;
+using Booked.Logic.Exceptions;
 using Booked.Logic.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -24,9 +25,16 @@ namespace BookedWebApp.Pages.Users
 
         public void OnGet()
         {
-            string userEmail = User.Identity.Name;
-            user = userManager.GetUser(userEmail);
-            user.Bookings = bookingManager.GetAllBookingByUserId(user.UserId);
+            try
+            {
+                string userEmail = User.Identity.Name;
+                user = userManager.GetUser(userEmail);
+                user.Bookings = bookingManager.GetAllBookingByUserId(user.UserId);
+            }
+            catch (GetException ex)
+            {
+                TempData["Error"] = ex.Message;
+            }
         }
     }
 }
