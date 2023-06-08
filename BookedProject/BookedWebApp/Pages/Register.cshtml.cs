@@ -57,7 +57,7 @@ namespace BookedWebApp.Pages
 					ViewData["Message"] = "Email already exists.";
 					return Page();
 				}
-                catch (Exception ex)
+                catch (AddingException ex)
                 {
                     ViewData["Message"] = ex.Message;
                     return Page();
