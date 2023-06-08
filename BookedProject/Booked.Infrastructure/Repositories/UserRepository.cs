@@ -50,7 +50,7 @@ namespace Booked.Infrastructure.Repositories
 			}
             catch (SqlException ex)
             {
-                throw new Exception("Error finding user",ex);
+                throw new GetException("Error finding user",ex);
             }
         }
 
@@ -85,7 +85,7 @@ namespace Booked.Infrastructure.Repositories
             }
             catch (SqlException ex)
             {
-                throw new Exception("No users found", ex);
+                throw new GetException("No users found", ex);
             }
         }
 
@@ -189,7 +189,7 @@ namespace Booked.Infrastructure.Repositories
 			}
             catch (SqlException ex)
 			{
-                throw new Exception("Password not found", ex);
+                throw new GetException("Password not found", ex);
             }
         }
 

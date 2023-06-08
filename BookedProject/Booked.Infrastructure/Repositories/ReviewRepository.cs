@@ -1,4 +1,5 @@
 ﻿using Booked.Domain.Domain;
+using Booked.Logic.Exceptions;
 using Booked.Logic.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,7 @@ namespace Booked.Infrastructure.Repositories
 			}
 			catch (SqlException ex) 
             { 
-                throw new Exception("Cannot add Review", ex); 
+                throw new AddingException("Cannot add Review", ex); 
             }
 		}
 
@@ -75,7 +76,7 @@ namespace Booked.Infrastructure.Repositories
             }
             catch (SqlException ex) 
             { 
-                throw new Exception("Cannot find Reviews", ex); 
+                throw new GetException("Cannot find Reviews", ex); 
             }
         }
 
@@ -116,7 +117,7 @@ namespace Booked.Infrastructure.Repositories
 			}
 			catch (SqlException ex) 
             { 
-                throw new Exception("Cannot find Reviews", ex); 
+                throw new GetException("Cannot find Reviews", ex); 
             }
 		}
 
@@ -157,7 +158,7 @@ namespace Booked.Infrastructure.Repositories
             }
             catch (SqlException ex) 
             { 
-                throw new Exception("Cannot find Reviews", ex); 
+                throw new GetException("Cannot find Reviews", ex); 
             }
         }
 
@@ -177,7 +178,7 @@ namespace Booked.Infrastructure.Repositories
             }
             catch (SqlException ex) 
             { 
-                throw new Exception("Cannot remove review", ex); 
+                throw new DeleteException("Cannot remove review", ex); 
             }
         }
 
@@ -198,7 +199,7 @@ namespace Booked.Infrastructure.Repositories
             }
             catch (SqlException ex) 
             { 
-                throw new Exception("Cannot be updated", ex); 
+                throw new UpdateException("Cannot be updated", ex); 
             }
         }
 

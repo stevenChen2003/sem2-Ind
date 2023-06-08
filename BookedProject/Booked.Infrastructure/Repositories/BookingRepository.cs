@@ -1,4 +1,5 @@
 ﻿using Booked.Domain.Domain;
+using Booked.Logic.Exceptions;
 using Booked.Logic.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -50,7 +51,7 @@ namespace Booked.Infrastructure.Repositories
 			}
 			catch (SqlException ex)
 			{
-				throw new Exception("Error adding booking", ex);
+				throw new AddingException("Error adding booking", ex);
 			}
 		}
 
@@ -91,7 +92,7 @@ namespace Booked.Infrastructure.Repositories
 			}
 			catch (SqlException ex)
 			{
-				throw new Exception("Error adding booking", ex);
+				throw new AddingException("Error adding booking", ex);
 			}
 		}
 
@@ -155,7 +156,7 @@ namespace Booked.Infrastructure.Repositories
 			}
 			catch (SqlException ex)
 			{
-				throw new Exception("No bookings found", ex);
+				throw new GetException("No bookings found", ex);
 			}
 		}
 
@@ -225,7 +226,7 @@ namespace Booked.Infrastructure.Repositories
 			}
 			catch (SqlException ex) 
 			{ 
-				throw new Exception("No bookings found", ex); 
+				throw new GetException("No bookings found", ex); 
 			}
 		}
 
@@ -285,7 +286,7 @@ namespace Booked.Infrastructure.Repositories
 			}
             catch (SqlException ex)
             {
-                throw new Exception("No bookings found", ex);
+                throw new GetException("No bookings found", ex);
             }
 
         }
@@ -306,7 +307,7 @@ namespace Booked.Infrastructure.Repositories
 			}
 			catch (SqlException ex) 
 			{ 
-				throw new Exception("Cannot remove booking", ex); 
+				throw new DeleteException("Cannot remove booking", ex); 
 			}
 		}
 
@@ -326,7 +327,7 @@ namespace Booked.Infrastructure.Repositories
 			}
 			catch (SqlException ex) 
 			{ 
-				throw new Exception("Error when updating booking", ex); 
+				throw new UpdateException("Error when updating booking", ex); 
 			}
 			
 		}

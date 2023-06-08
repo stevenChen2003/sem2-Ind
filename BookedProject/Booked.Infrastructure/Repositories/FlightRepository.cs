@@ -1,5 +1,6 @@
 ﻿using Booked.Domain.Domain;
 using Booked.Domain.Domain.Enum;
+using Booked.Logic.Exceptions;
 using Booked.Logic.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -46,7 +47,7 @@ namespace Booked.Infrastructure.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception("Flight not found", ex);
+                throw new GetException("Flight not found", ex);
             }
         }
 
@@ -82,7 +83,7 @@ namespace Booked.Infrastructure.Repositories
             }
             catch (Exception ex) 
             { 
-                throw new Exception("No Flights found", ex); 
+                throw new GetException("No Flights found", ex); 
             }
         }
 
@@ -111,7 +112,7 @@ namespace Booked.Infrastructure.Repositories
             }
             catch(Exception ex) 
             { 
-                throw new Exception("Error adding flight pleas try again", ex); 
+                throw new AddingException("Error adding flight pleas try again", ex); 
             }
         }
 
@@ -149,7 +150,7 @@ namespace Booked.Infrastructure.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception("Cannot be updated", ex);
+                throw new UpdateException("Cannot be updated", ex);
             }
         }
 
@@ -168,7 +169,7 @@ namespace Booked.Infrastructure.Repositories
             }
             catch(Exception ex) 
             { 
-                throw new Exception("Cannot be removed", ex); 
+                throw new DeleteException("Cannot be removed", ex); 
             }
         }
 
@@ -198,7 +199,7 @@ namespace Booked.Infrastructure.Repositories
             }
             catch (Exception ex) 
             { 
-                throw new Exception("Not info found", ex); 
+                throw new GetException("Not info found", ex); 
             }
 
         }
@@ -238,7 +239,7 @@ namespace Booked.Infrastructure.Repositories
 			}
 			catch (Exception ex) 
             { 
-                throw new Exception("No Flights found", ex); 
+                throw new GetException("No Flights found", ex); 
             }
 		}
 
@@ -278,7 +279,7 @@ namespace Booked.Infrastructure.Repositories
 			}
 			catch (Exception ex) 
             { 
-                throw new Exception("No Flights found", ex); 
+                throw new GetException("No Flights found", ex); 
             }
 		}
 
@@ -316,7 +317,7 @@ namespace Booked.Infrastructure.Repositories
 			}
 			catch (Exception ex) 
             { 
-                throw new Exception("No Flights found", ex); 
+                throw new GetException("No Flights found", ex); 
             }
 		}
 
