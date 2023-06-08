@@ -78,7 +78,7 @@ else if (Model.HotelBooking != null)
 		<form method="post">
 			<input type="hidden" name="id" value="@Model.HotelBooking.BookingId" />
 			<div>
-				<p class="text-danger">@ViewData["Message"]</p>
+				<p class="text-danger">@TempData["Message"]</p>
 			</div>
 			<div class="row">
 				<div class="col-md-6">
