@@ -1,5 +1,6 @@
 using Booked.Domain.Domain;
 using Booked.Infrastructure.Repositories;
+using Booked.Logic.Exceptions;
 using Booked.Logic.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -35,30 +36,36 @@ namespace BookedWebApp.Pages
 
         public void OnGet(int hotelId, DateTime start, DateTime end)
         {
-			string userEmail = User.Identity.Name;
-			user = userManager.GetUser(userEmail);
-			hotel = hotelManager.GetHotel(hotelId);
-			hotelBooking = new HotelBooking(user, start, end, DateTime.Today, hotel);
+			try
+			{
+                string userEmail = User.Identity.Name;
+                user = userManager.GetUser(userEmail);
+                hotel = hotelManager.GetHotel(hotelId);
+                hotelBooking = new HotelBooking(user, start, end, DateTime.Today, hotel);
+            }
+			catch (GetException ex)
+			{
+                TempData["Message"] = ex.Message;
+            }
 		}
 
         public IActionResult OnPost()
         {
-			string userEmail = User.Identity.Name;
-			user = userManager.GetUser(userEmail);
-			hotel = hotelManager.GetHotel(hotelId);
-			hotelBooking = new HotelBooking(user, start, end, DateTime.Today, hotel);
 			if (ModelState.IsValid)
             {
 				try
 				{
-					_bookingManager.AddBooking(hotelBooking);
+                    string userEmail = User.Identity.Name;
+                    user = userManager.GetUser(userEmail);
+                    hotel = hotelManager.GetHotel(hotelId);
+                    hotelBooking = new HotelBooking(user, start, end, DateTime.Today, hotel);
+                    _bookingManager.AddBooking(hotelBooking);
 					TempData["BookingCompletedMessage"] = "Your booking has been successfully completed.";
 					return RedirectToPage("/Index");
 				}
-				catch (InvalidOperationException ex)
+				catch (GetException)
 				{
-					ViewData["Message"] = $"{ex.Message}";
-					return Page();
+					TempData["Message"] = "Error making booking,";
 				}
 			}
             return Page();

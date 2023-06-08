@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-06-08T10:51:31.132Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="8-PbEkT23qm7xqTE1yps" version="21.3.7" type="device" pages="4">
+<mxfile host="app.diagrams.net" modified="2023-06-08T21:47:47.149Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="IghMZaUGM8VN5XLsp3W-" version="21.3.7" type="device" pages="4">
   <diagram name="Version 1.4" id="GDOn9U3A9_myJ2rr4ry-">
-    <mxGraphModel dx="1050" dy="1681" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="3044" dy="2609" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="Pm0zzvNBCTfCiv9d_ps6-0" />
         <mxCell id="Pm0zzvNBCTfCiv9d_ps6-1" parent="Pm0zzvNBCTfCiv9d_ps6-0" />
@@ -122,6 +122,9 @@
               <mxPoint x="770" y="70" />
             </Array>
           </mxGeometry>
+        </mxCell>
+        <mxCell id="AmzF6DS4CgvI8Ko81u4t-0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="Pm0zzvNBCTfCiv9d_ps6-1" source="Pm0zzvNBCTfCiv9d_ps6-25" target="oZtBKEoyYbLaSHDcOGE1-7">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Pm0zzvNBCTfCiv9d_ps6-25" value="User" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="Pm0zzvNBCTfCiv9d_ps6-1" vertex="1">
           <mxGeometry x="930" y="348" width="380" height="378" as="geometry" />
@@ -592,8 +595,11 @@
             <mxPoint x="2294.5" y="1505" as="sourcePoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="oZtBKEoyYbLaSHDcOGE1-7" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;&lt;/i&gt;enumeration&lt;i&gt;&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;UserType&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;Client&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;Admin&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" vertex="1" parent="Pm0zzvNBCTfCiv9d_ps6-1">
-          <mxGeometry x="1420" y="360" width="170" height="110" as="geometry" />
+        <mxCell id="oZtBKEoyYbLaSHDcOGE1-7" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;&lt;/i&gt;enumeration&lt;i&gt;&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;UserType&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;Client&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;Admin&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;" parent="Pm0zzvNBCTfCiv9d_ps6-1" vertex="1">
+          <mxGeometry x="1440" y="482" width="170" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="AmzF6DS4CgvI8Ko81u4t-1" value="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=15;fontStyle=1" vertex="1" parent="Pm0zzvNBCTfCiv9d_ps6-1">
+          <mxGeometry x="1350" y="500" width="60" height="20" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

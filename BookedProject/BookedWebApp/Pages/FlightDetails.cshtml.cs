@@ -1,4 +1,5 @@
 using Booked.Domain.Domain;
+using Booked.Logic.Exceptions;
 using Booked.Logic.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -26,7 +27,14 @@ namespace BookedWebApp.Pages
 
 		public void OnGet(int id)
         {
-            Flight = flightManager.GetFlight(id);
+			try
+			{
+                Flight = flightManager.GetFlight(id);
+            }
+			catch(GetException ex)
+			{
+                TempData["Error"] = ex.Message;
+            }
         }
 
 		public IActionResult OnPost(int id)

@@ -1,4 +1,5 @@
 using Booked.Domain.Domain;
+using Booked.Logic.Exceptions;
 using Booked.Logic.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,7 +22,6 @@ namespace BookedWebApp.Pages
         }
 
         public FlightBooking flightBooking { get; set; }
-        //public FlightBooking flightBooking2 { get; set; }
         public User user { get; set; }
 
 
@@ -38,32 +38,38 @@ namespace BookedWebApp.Pages
 
 		public void OnGet(int flightId, DateTime start, DateTime end, bool Extra)
         {
-			string userEmail = User.Identity.Name;
-			user = userManager.GetUser(userEmail);
-            flight = flightManager.GetFlight(flightId);
-			flightBooking = new FlightBooking(user, start, end, DateTime.Today, flight, Extra);
+            try
+            {
+                string userEmail = User.Identity.Name;
+                user = userManager.GetUser(userEmail);
+                flight = flightManager.GetFlight(flightId);
+                flightBooking = new FlightBooking(user, start, end, DateTime.Today, flight, Extra);
+            }
+            catch (GetException ex)
+            {
+                TempData["Message"] = ex.Message;
+            }
 		}
 
 		public IActionResult OnPost()
 		{
-			string userEmail = User.Identity.Name;
-			user = userManager.GetUser(userEmail);
-			flight = flightManager.GetFlight(flightId);
-			flightBooking = new FlightBooking(user, start, end, DateTime.Today, flight, Extra);
 			if (ModelState.IsValid)
 			{
 				try
 				{
-					bookingManager.AddBooking(flightBooking);
+                    string userEmail = User.Identity.Name;
+                    user = userManager.GetUser(userEmail);
+                    flight = flightManager.GetFlight(flightId);
+                    flightBooking = new FlightBooking(user, start, end, DateTime.Today, flight, Extra);
+                    bookingManager.AddBooking(flightBooking);
 					TempData["BookingCompletedMessage"] = "Your booking has been successfully completed.";
 					return RedirectToPage("/Index");
 				}
-				catch (InvalidOperationException ex)
-				{
-					ViewData["Message"] = $"{ex.Message}";
-					return Page();
-				}
-			}
+                catch (GetException)
+                {
+                    TempData["Message"] = "Error making booking,";
+                }
+            }
 			return Page();
 		}
 
