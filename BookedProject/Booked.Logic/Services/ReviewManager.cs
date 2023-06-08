@@ -94,7 +94,7 @@ namespace Booked.Logic.Services
 		{
 			List<Review> reviews = GetReviewsBaseOnHotelId(id);
 
-			if (reviews.Count == 0)
+			if (reviews.Count == 0 || reviews == null)
 			{
 				return 0;
 			}
