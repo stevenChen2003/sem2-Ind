@@ -28,15 +28,8 @@ namespace Booked.Logic.Services
 
         public IEnumerable<User> GetAllUsers()
         {
-            try
-            {
-				return userRepo.GetAllUser();
-			}
-            catch(Exception ex)
-            {
-                throw new Exception(ex.Message, ex);
-            }
-        }
+            return userRepo.GetAllUser();
+		}
 
 
 		public void AddUser(User user)
@@ -54,26 +47,12 @@ namespace Booked.Logic.Services
 
         public void UpdateUser(User user)
         {
-            try
-            {
-                userRepo.UpdateUser(user);
-            }
-            catch (Exception)
-            {
-                throw new Exception ("Error in updating, please try again");
-            }
-        }
+			userRepo.UpdateUser(user);
+		}
 
         public void DeleteUser(int id)
         {
-            try
-            {
-                userRepo.RemoveUserByEmail(id);
-            }
-            catch (Exception)
-			{
-				throw new Exception("Error in deleting account, please try again");
-			}
+            userRepo.RemoveUserByEmail(id);
         }
 
         public string HashPassword(string password)

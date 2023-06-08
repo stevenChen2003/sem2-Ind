@@ -93,7 +93,8 @@ namespace TestBookedProject.Services
             Assert.AreEqual(2, result.Count);
         }
 
-        [TestMethod]
+		//Non trivial
+		[TestMethod]
         public void GetReviewsBaseOnHotelId_ReturnListOfReviews_Should_Return_EmptyList()
         {
             // Arrange
@@ -111,7 +112,6 @@ namespace TestBookedProject.Services
             Assert.AreEqual(0, result.Count);
         }
 
-        //Non trivial
 		[TestMethod]
 		public void SummaryReview_Of_Rating_Test()
 		{

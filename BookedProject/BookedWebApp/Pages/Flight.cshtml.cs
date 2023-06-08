@@ -1,4 +1,5 @@
 using Booked.Domain.Domain;
+using Booked.Logic.Exceptions;
 using Booked.Logic.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -35,16 +36,23 @@ namespace BookedWebApp.Pages
 
 		public void OnGet(string depart, string arrive, int currentPage)
         {
-            Countries = flightManager.GetCountries();
-            CurrentPage = currentPage > 0? currentPage : 1;
-
-            if (!string.IsNullOrEmpty(depart) && !string.IsNullOrEmpty(arrive))
+            try
             {
-                this.depart = depart;
-                this.arrive = arrive;
+				Countries = flightManager.GetCountries();
+				CurrentPage = currentPage > 0 ? currentPage : 1;
+
+				if (!string.IsNullOrEmpty(depart) && !string.IsNullOrEmpty(arrive))
+				{
+					this.depart = depart;
+					this.arrive = arrive;
+				}
+				FlightsList = flightManager.GetFlightsBySearch(depart, arrive, ItemsPerPage, (CurrentPage - 1) * ItemsPerPage);
+				TotalItems = flightManager.GetTotalFlightsCount(depart, arrive);
+			}
+            catch (GetException ex)
+            {
+                TempData["Error"] = ex.Message;
             }
-            FlightsList = flightManager.GetFlightsBySearch(depart, arrive, ItemsPerPage, (CurrentPage - 1) * ItemsPerPage);
-			TotalItems = flightManager.GetTotalFlightsCount(depart, arrive);
 		}
     }
 }
