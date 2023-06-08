@@ -5,9 +5,6 @@
 }
 
 <div class="bgHotel d-block d-md-flex d-xl-flex flex-column">
-	<!-- remove later
-	<h1>Pick a date</h1>
-	-->
 	<div class="container-fluid pb-3 pt-5">
 		<div class="row">
 			<div class="col-lg-3"></div>
@@ -16,15 +13,22 @@
 				<form class="d-flex flex-column" method="get" asp-page="/Flights">
 
 					<!--Search thing-->
-					<div class="d-flex align-items-center py-2 justify-content-center"> <!--Remove "justify-content later"-->
+					<div class="d-flex align-items-center py-2 justify-content-center">
 						<!--From location-->
 						<div>
 							<label for="exampleDataList" class="form-label mb-0 fw-bold text-white">From:</label>
 							<input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Country" asp-for="depart">
 							<datalist id="datalistOptions">
-								@foreach (var country in Model.Countries)
+								@if(Model.Countries != null)
 								{
-									<option value="@country"></option>
+									foreach (var country in Model.Countries)
+									{
+										<option value="@country"></option>
+									}
+								}
+								else
+								{
+									<option></option>
 								}
 							</datalist>
 						</div>
@@ -37,9 +41,16 @@
 							<label for="exampleDataList" class="form-label mb-0 fw-bold text-white">To:</label>
 							<input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Country" asp-for="arrive">
 							<datalist id="datalistOptions">
-								@foreach (var country in Model.Countries)
+								@if (Model.Countries != null)
 								{
-									<option value="@country"></option>
+									foreach (var country in Model.Countries)
+									{
+										<option value="@country"></option>
+									}
+								}
+								else
+								{
+									<option></option>
 								}
 							</datalist>
 						</div>
@@ -60,7 +71,7 @@
 </div>
 
 <div class="container mt-5 justify-content-center align-content-center">
-	@if (Model.FlightsList.Count() != 0)
+	@if (Model.FlightsList != null)
 	{
 		<div class="row">
 			@foreach (var flight in Model.FlightsList)
