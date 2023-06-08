@@ -50,7 +50,7 @@ namespace TestBookedProject.Mocks
             return null;
         }
 
-		public void RemoveUserByEmail(int id)
+		public void RemoveUserByID(int id)
 		{
             User userToRemove = FindUserByid(id);
             if (userToRemove != null)

@@ -139,13 +139,13 @@ namespace Booked.Infrastructure.Repositories
             }
         }
 
-        public void RemoveUserByEmail(int id)
+        public void RemoveUserByID(int id)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
                 {
-                    string query = "UPDATE Bookings SET UserId = NULL WHERE UserId = @UserId " + "DELETE FROM Users WHERE UserId= @UserId; ";
+                    string query = "DELETE FROM Users WHERE UserId= @UserId; ";
                     SqlCommand cmd = new SqlCommand(query, conn);
                     conn.Open();
                     cmd.Parameters.AddWithValue("@UserId", id);

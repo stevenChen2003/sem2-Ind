@@ -52,7 +52,7 @@ namespace Booked.Logic.Services
 
         public void DeleteUser(int id)
         {
-            userRepo.RemoveUserByEmail(id);
+            userRepo.RemoveUserByID(id);
         }
 
         public string HashPassword(string password)

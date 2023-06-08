@@ -13,7 +13,7 @@ namespace Booked.Logic.Interfaces
         IEnumerable<User> GetAllUser();
         void AddUser(User user);
         void UpdateUser(User user);
-        void RemoveUserByEmail(int id);
+        void RemoveUserByID(int id);
         string GetHashedAndSaltPassword(string email);
     }
 }
