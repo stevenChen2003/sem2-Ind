@@ -2,6 +2,7 @@
 using Booked.Domain.Domain.Enum;
 using Booked.Infrastructure.Repositories;
 using Booked.Logic.Exceptions;
+using Booked.Logic.Exceptions.HotelException;
 using Booked.Logic.Services;
 using System;
 using System.Collections.Generic;
@@ -79,7 +80,7 @@ namespace BookedFormsApp
 				MessageBox.Show(i.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 ClearBoxes();
             }
-            catch (Exception ex)
+            catch (AddHotelException ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 ClearBoxes();

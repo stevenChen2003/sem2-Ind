@@ -11,14 +11,11 @@ namespace Booked.Logic.Interfaces
     {
         Hotel GetHotelByID(int id);
         IEnumerable<Hotel> GetAllHotel();
-        //IEnumerable<Hotel> GetAllWebsiteHotel(string sort);
         void AddHotel(Hotel hotel);
         void UpdateHotel(Hotel hotel);
         void RemoveHotelByID(int id);
         int GetAllHotelCount();
         int GetHotelBySearchCount(string search);
-
-        //Need to clean up this interface
         IEnumerable<Hotel> GetAllHotelPerPage(string sort, int itemsPerPage, int offset);
 		IEnumerable<Hotel> GetHotelPerPage(string search, string sort, int itemsPerPage, int offset);
 	}
