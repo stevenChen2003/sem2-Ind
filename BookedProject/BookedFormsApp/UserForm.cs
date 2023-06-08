@@ -27,9 +27,9 @@ namespace BookedFormsApp
             {
                 LoadGrid();
             }
-            catch (Exception)
+            catch (GetException ex)
             {
-                MessageBox.Show("Database is not connected", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -93,9 +93,9 @@ namespace BookedFormsApp
                 }
                 dataGridUser.DataSource = dataTable;
             }
-            catch (Exception)
+            catch (GetException ex)
             {
-                throw new Exception();
+                throw new GetException(ex.Message);
             }
         }
 
