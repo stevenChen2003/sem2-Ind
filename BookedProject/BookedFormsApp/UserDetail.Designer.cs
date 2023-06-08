@@ -33,6 +33,8 @@
 			buttonEnable = new Button();
 			btEdit = new Button();
 			groupBox1 = new GroupBox();
+			userTypeTB = new TextBox();
+			labelUser = new Label();
 			dateOfBirthPicker = new DateTimePicker();
 			label16 = new Label();
 			label1 = new Label();
@@ -89,12 +91,14 @@
 			btEdit.Name = "btEdit";
 			btEdit.Size = new Size(133, 29);
 			btEdit.TabIndex = 39;
-			btEdit.Text = "Edit User";
+			btEdit.Text = "Update";
 			btEdit.UseVisualStyleBackColor = true;
 			btEdit.Click += btEdit_Click;
 			// 
 			// groupBox1
 			// 
+			groupBox1.Controls.Add(userTypeTB);
+			groupBox1.Controls.Add(labelUser);
 			groupBox1.Controls.Add(dateOfBirthPicker);
 			groupBox1.Controls.Add(label16);
 			groupBox1.Controls.Add(label1);
@@ -111,6 +115,23 @@
 			groupBox1.TabIndex = 33;
 			groupBox1.TabStop = false;
 			groupBox1.Text = "Employees's Basic Information";
+			// 
+			// userTypeTB
+			// 
+			userTypeTB.Enabled = false;
+			userTypeTB.Location = new Point(429, 88);
+			userTypeTB.Name = "userTypeTB";
+			userTypeTB.Size = new Size(155, 27);
+			userTypeTB.TabIndex = 37;
+			// 
+			// labelUser
+			// 
+			labelUser.AutoSize = true;
+			labelUser.Location = new Point(347, 91);
+			labelUser.Name = "labelUser";
+			labelUser.Size = new Size(76, 20);
+			labelUser.TabIndex = 36;
+			labelUser.Text = "User Type:";
 			// 
 			// dateOfBirthPicker
 			// 
@@ -226,5 +247,7 @@
 		private Label label9;
 		private TextBox phoneNumbertbx;
 		private Button buttonEnable;
+		private TextBox userTypeTB;
+		private Label labelUser;
 	}
 }

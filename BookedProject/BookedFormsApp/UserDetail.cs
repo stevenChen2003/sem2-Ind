@@ -1,5 +1,7 @@
 ﻿using Booked.Domain.Domain;
+using Booked.Domain.Domain.Enum;
 using Booked.Logic.Exceptions;
+using Booked.Logic.Exceptions.HotelException;
 using Booked.Logic.Services;
 using System;
 using System.Collections.Generic;
@@ -29,6 +31,7 @@ namespace BookedFormsApp
 			{
 				user = userManager.GetUser(email);
 				LoadInfo();
+				DisableBox();
 			}
 			catch (GetException ex)
 			{
@@ -44,7 +47,32 @@ namespace BookedFormsApp
 
 		private void btEdit_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				if (CheckBasicInfo())
+				{
+					User userUpdate = new User();
+					userUpdate.UserId = user.UserId;
+					userUpdate.Email = user.Email;
+					userUpdate.FirstName = firstNametbx.Text;
+					userUpdate.LastName = lastNametbx.Text;
+					userUpdate.DateOfBirth = dateOfBirthPicker.Value;
+					userUpdate.PhoneNumber = phoneNumbertbx.Text;
+					userUpdate.UserType = user.UserType;
 
+					userManager.UpdateUser(userUpdate);
+					MessageBox.Show("Hotel is Updated", "Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					DisableBox();
+				}
+				else
+				{
+					MessageBox.Show("Field is empty or incorrect", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			}
+			catch (UpdateException ex)
+			{
+				MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 		}
 
 
@@ -56,6 +84,7 @@ namespace BookedFormsApp
 			phoneNumbertbx.Text = user.PhoneNumber;
 			dateOfBirthPicker.Value = user.DateOfBirth;
 			emailtbx.Text = user.Email;
+			userTypeTB.Text = user.UserType.ToString();
 		}
 
 		//Disable and enable boxes method
@@ -75,6 +104,21 @@ namespace BookedFormsApp
 			phoneNumbertbx.Enabled = true;
 			dateOfBirthPicker.Enabled = true;
 			btEdit.Enabled = true;
+		}
+
+		//Check the textboxes
+		private bool CheckBasicInfo()
+		{
+			bool allControlsNonEmpty = true;
+
+			foreach (var textBox in tabControl1.Controls.OfType<TextBox>())
+			{
+				if (string.IsNullOrWhiteSpace(textBox.Text))
+				{
+					allControlsNonEmpty = false;
+				}
+			}
+			return allControlsNonEmpty;
 		}
 
 
