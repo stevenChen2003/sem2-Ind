@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Booked.Logic.Exceptions;
 
 namespace BookedFormsApp
 {
@@ -45,10 +46,10 @@ namespace BookedFormsApp
                 }
                 else
                 {
-                    MessageBox.Show("Please select a flight", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Please select a User", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch (Exception ex)
+            catch (DeleteException ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -56,8 +57,19 @@ namespace BookedFormsApp
 
         private void btUserDetail_Click(object sender, EventArgs e)
         {
-
-        }
+			var selectedRow = dataGridUser.CurrentRow;
+			if (selectedRow != null)
+			{
+				string email = (string)selectedRow.Cells["Email"].Value;
+				UserDetail userDetail = new UserDetail(userManager, email);
+				userDetail.ShowDialog();
+                LoadGrid();
+			}
+			else
+			{
+				MessageBox.Show("Please select a user", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
 
         public void LoadGrid()
         {

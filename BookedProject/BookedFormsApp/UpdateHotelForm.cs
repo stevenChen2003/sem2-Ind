@@ -1,5 +1,6 @@
 ﻿using Booked.Domain.Domain;
 using Booked.Domain.Domain.Enum;
+using Booked.Logic.Exceptions.HotelException;
 using Booked.Logic.Services;
 using System;
 using System.Collections;
@@ -82,9 +83,9 @@ namespace BookedFormsApp
                 }
 
             }
-            catch (Exception)
+            catch (UpdateHotelException ex)
             {
-                MessageBox.Show("Hotel is not updated", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
