@@ -147,7 +147,7 @@ namespace TestBookedProject.Services
 			User user1 = new User(1, "Steven", "Chen", "s.chen@company.nl", new DateTime(1980, 1, 1), "789987", "password", UserType.Client);
 			User user2 = new User(2, "Steven", "Wu", "s.wu@company.nl", new DateTime(1980, 1, 1), "789987", "password", UserType.Client);
 			User user3 = new User(3, "George", "Wu", "g.wu@company.nl", new DateTime(1980, 1, 1), "789987", "password", UserType.Client);
-			User user4 = new User(4, "Ben", "Wu", "g.wu@company.nl", new DateTime(1980, 1, 1), "789987", "password", UserType.Client);
+			User user4 = new User(4, "Ben", "Wu", "b.wu@company.nl", new DateTime(1980, 1, 1), "789987", "password", UserType.Client);
 			Review review1 = new Review(1, user1, 1, "Good", 5);
 			Review review2 = new Review(2, user2, 1, "Nice", 3);
 			Review review3 = new Review(3, user3, 1, "Nice", 1);
