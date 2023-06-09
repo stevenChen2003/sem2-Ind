@@ -6,43 +6,49 @@
 <div class="container">
 	<h1>Payment Details</h1>
 	<hr>
-	<div class="mt-2 mb-2">
-		<h3>Hotel information:</h3>
-		<p>Hotek name: @Model.hotelBooking.Hotel.Name</p>
-		<div class="row">
-			<div class="col-md-6">
-				<h5>Location:</h5>
-				<p>Address: @Model.hotelBooking.Hotel.Address</p>
-				<p>City: @Model.hotelBooking.Hotel.City</p>
-				<p>Country: @Model.hotelBooking.Hotel.Country</p>
-			</div>
-			<div class="col-md-6">
-				<h5>Other information:</h5>
-				<p class="text-right">Room type: @Model.hotelBooking.Hotel.Room</p>
-				<p class="text-right">Amount of days: @Model.hotelBooking.AmountOfDays</p>
-				<p class="text-right">Price per night: @Model.hotelBooking.Hotel.PricePerNight</p>
+	@if (Model.hotelBooking != null)
+	{
+		<div class="mt-2 mb-2">
+			<h3>Hotel information:</h3>
+			<p>Hotek name: @Model.hotelBooking.Hotel.Name</p>
+			<div class="row">
+				<div class="col-md-6">
+					<h5>Location:</h5>
+					<p>Address: @Model.hotelBooking.Hotel.Address</p>
+					<p>City: @Model.hotelBooking.Hotel.City</p>
+					<p>Country: @Model.hotelBooking.Hotel.Country</p>
+				</div>
+				<div class="col-md-6">
+					<h5>Other information:</h5>
+					<p class="text-right">Room type: @Model.hotelBooking.Hotel.Room</p>
+					<p class="text-right">Amount of days: @Model.hotelBooking.AmountOfDays</p>
+					<p class="text-right">Price per night: @Model.hotelBooking.Hotel.PricePerNight</p>
+				</div>
 			</div>
 		</div>
-	</div>
 
-	<hr>
-	<h5>Price: @Model.hotelBooking.GetPrice()</h5>
-</div>
+		<hr>
+		<h5>Price: @Model.hotelBooking.GetPrice()</h5>
 
-<form method="post">
-	<input type="hidden" asp-for="start" value="@Model.hotelBooking.StartDate" />
-	<input type="hidden" asp-for="end" value="@Model.hotelBooking.EndDate" />
-	<input type="hidden" asp-for="hotelId" value="@Model.hotelBooking.Hotel.HotelId" />
+		<form method="post">
+			<input type="hidden" asp-for="start" value="@Model.hotelBooking.StartDate" />
+			<input type="hidden" asp-for="end" value="@Model.hotelBooking.EndDate" />
+			<input type="hidden" asp-for="hotelId" value="@Model.hotelBooking.Hotel.HotelId" />
 
-	<div class="d-flex align-items-center justify-content-center pt-2">
-		<button type="submit" class="btn-primary btn mx-1">
-			Pay Now
-		</button>
+			<div class="d-flex align-items-center justify-content-center pt-2">
+				<button type="submit" class="btn-primary btn mx-1">
+					Pay Now
+				</button>
 
-		<a href="@Request.Headers["Referer"].ToString()" class="btn btn-primary">Cancel</a>
-	</div>
-</form>
+				<a href="@Request.Headers["Referer"].ToString()" class="btn btn-primary">Cancel</a>
+			</div>
+		</form>
+	}
+	else
+	{
+		<div>
+			<p class="text-danger">@TempData["Message"]</p>
+		</div>
+	}
 
-<div>
-	<p class="text-danger">@TempData["Message"]</p>
 </div>

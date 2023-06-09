@@ -65,7 +65,7 @@ namespace BookedWebApp.Pages
 				}
 				catch (GetException)
 				{
-					TempData["Message"] = "Error making booking,";
+					TempData["Message"] = "Error occured when making booking";
 				}
 			}
             return Page();
