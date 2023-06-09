@@ -61,7 +61,7 @@ namespace BookedFormsApp
 					userUpdate.UserType = user.UserType;
 
 					userManager.UpdateUser(userUpdate);
-					MessageBox.Show("Hotel is Updated", "Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					MessageBox.Show("User is Updated", "Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
 					DisableBox();
 				}
 				else
