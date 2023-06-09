@@ -15,6 +15,7 @@ namespace BookedWebApp.DTO
 		[Required(ErrorMessage = "Date of birth is required.")]
 		public DateTime DateOfBirth { get; set; }
         [Required]
+        [RegularExpression(@"^\+[0-9]+$", ErrorMessage = "Invalid phone number format. Please enter a valid phone number starting with a plus sign.")]
         public string PhoneNumber { get; set; }
         [Required]
         [MinLength(7, ErrorMessage = "Password must be at least 7 characters long.")]

@@ -15,6 +15,7 @@ namespace BookedWebApp.DTO
         [Required]
         public DateTime DateOfBirth { get; set; }
         [Required]
+        [RegularExpression(@"^\+[0-9]+$", ErrorMessage = "Invalid phone number format. Please enter a valid phone number starting with a plus sign.")]
         public string PhoneNumber { get; set; }
 
         public UpdateUser() { }

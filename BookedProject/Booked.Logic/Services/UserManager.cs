@@ -64,6 +64,10 @@ namespace Booked.Logic.Services
         public bool CheckPassword(string password, string email)
         {
 			string hashedPassword = userRepo.GetHashedAndSaltPassword(email);
+            if (hashedPassword == null)
+            {
+                throw new GetException("User does not exist");
+            }
 			return BCrypt.Net.BCrypt.Verify(password, hashedPassword);
 		}
 
