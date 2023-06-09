@@ -4,66 +4,75 @@
 }
 
 <div class="container justify-content-center align-content-center mt-3">
-	<h1>@Model.Flight.AirlineName</h1>
-	<div class="row">
-		<div class="col-md-6">
-			<h3>Departure:</h3>
-			<p>Airport: @Model.Flight.DepartureAirport</p>
-			<p>Country: @Model.Flight.DepartureCountry</p>
+	@if(Model.Flight != null)
+	{
+		<h1>@Model.Flight.AirlineName</h1>
+		<div class="row">
+			<div class="col-md-6">
+				<h3>Departure:</h3>
+				<p>Airport: @Model.Flight.DepartureAirport</p>
+				<p>Country: @Model.Flight.DepartureCountry</p>
+			</div>
+			<div class="col-md-6">
+				<h3>Arrival:</h3>
+				<p class="text-right">Aiport: @Model.Flight.ArrivalAirport</p>
+				<p class="text-right">Country: @Model.Flight.ArrivalCountry</p>
+			</div>
 		</div>
-		<div class="col-md-6">
-			<h3>Arrival:</h3>
-			<p class="text-right">Aiport: @Model.Flight.ArrivalAirport</p>
-			<p class="text-right">Country: @Model.Flight.ArrivalCountry</p>
+		<div>
+			<p>Type Seat: @Model.Flight.Seat.ToString()</p>
 		</div>
-	</div>
-	<div>
-		<p>Type Seat: @Model.Flight.Seat.ToString()</p>
-	</div>
 
-	<hr>
+		<hr>
 
-	<form class="d-flex flex-column mt-5" method="post">
-		<input type="hidden" name="id" value="@Model.Flight.FlightId" />
-		<h3>Extra luggage</h3>
-		<div class="d-flex align-items-center py-2">
-			<div class="d-flex align-items-center fw-bold">
-				<div class="form-check">
-					<input class="form-check-input" type="radio" asp-for="extra" value="false">
-					<label class="form-check-label">
-						No Extra Baggage
-					</label>
+		<form class="d-flex flex-column mt-5" method="post">
+			<input type="hidden" name="id" value="@Model.Flight.FlightId" />
+			<h3>Extra luggage</h3>
+			<div class="d-flex align-items-center py-2">
+				<div class="d-flex align-items-center fw-bold">
+					<div class="form-check">
+						<input class="form-check-input" type="radio" asp-for="extra" value="false">
+						<label class="form-check-label">
+							No Extra Baggage
+						</label>
+					</div>
+
+					<div class="form-check mx-4">
+						<input class="form-check-input" type="radio" asp-for="extra" value="true">
+						<label class="form-check-label">
+							+@Model.Flight.ExtraBaggagePrice
+						</label>
+					</div>
 				</div>
 
-				<div class="form-check mx-4">
-					<input class="form-check-input" type="radio" asp-for="extra" value="true">
-					<label class="form-check-label" >
-						+@Model.Flight.ExtraBaggagePrice
-					</label>
+				<!--Date section-->
+				<div>
+					<label class="form-label mb-0 text-white fw-bold">Start</label>
+					<input asp-for=DateStart type="date" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" min="@DateTime.Now.ToString("yyyy-MM-dd")">
 				</div>
+
+				<div>
+					<label class="form-label mb-0 text-white fw-bold">End</label>
+					<input asp-for=DateEnd type="date" class="form-control" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" min="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")">
+				</div>
+
+
 			</div>
-
-			<!--Date section-->
-			<div>
-				<label class="form-label mb-0 text-white fw-bold">Start</label>
-				<input asp-for=DateStart type="date" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" min="@DateTime.Now.ToString("yyyy-MM-dd")">
+			<!--Submit button-->
+			<div class="d-flex align-items-center justify-content-center mt-3">
+				<button type="submit" class="btn-primary btn">
+					Book now
+				</button>
 			</div>
-
-			<div>
-				<label class="form-label mb-0 text-white fw-bold">End</label>
-				<input asp-for=DateEnd type="date" class="form-control" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" min="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")">
-			</div>
-
-
+		</form>
+		<div>
+			<p class="text-danger">@TempData["Message"]</p>
 		</div>
-		<!--Submit button-->
-		<div class="d-flex align-items-center justify-content-center mt-3">
-			<button type="submit" class="btn-primary btn">
-				Book now
-			</button>
+	}
+	else
+	{
+		<div>
+			<p class="text-danger">@TempData["Error"]</p>
 		</div>
-	</form>
-	<div>
-		<p class="text-danger">@TempData["Message"]</p>
-	</div>
+	}
 </div>
