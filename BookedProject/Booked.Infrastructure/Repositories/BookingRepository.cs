@@ -184,7 +184,7 @@ namespace Booked.Infrastructure.Repositories
 					{
 						Flight flight = new Flight();
 						flight.FlightId = Convert.ToInt32(flightDr["FlightId"]);
-						flight.Price = Convert.ToDecimal(flightDr["Price"]);
+						flight.Price = Convert.ToDecimal(flightDr[14]);
 						flight.ExtraBaggagePrice = Convert.ToDecimal(flightDr["ExtraBaggagePrice"]);
 
 						User user = new User();

@@ -29,7 +29,10 @@ namespace Booked.Domain.Domain
             {
                 return Price = Flight.Price + Flight.ExtraBaggagePrice;
             }
-            return Price = Flight.Price;
+            else
+            {
+				return Price = Flight.Price;
+			}
         }
 
     }
