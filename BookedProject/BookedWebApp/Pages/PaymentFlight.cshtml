@@ -6,45 +6,54 @@
 <div class="container">
 	<h1>Payment Details</h1>
 	<hr>
-	<div class="mt-2 mb-2">
-		<h3>Flight information:</h3>
-		<p>Airline: @Model.flightBooking.Flight.AirlineName</p>
-		<div class="row">
-			<div class="col-md-6">
-				<h5>Departure:</h5>
-				<p>Airport: @Model.flightBooking.Flight.DepartureAirport</p>
-				<p>Country: @Model.flightBooking.Flight.DepartureCountry</p>
+	@if(Model.flightBooking != null)
+	{
+		<div class="mt-2 mb-2">
+			<h3>Flight information:</h3>
+			<p>Airline: @Model.flightBooking.Flight.AirlineName</p>
+			<div class="row">
+				<div class="col-md-6">
+					<h5>Departure:</h5>
+					<p>Airport: @Model.flightBooking.Flight.DepartureAirport</p>
+					<p>Country: @Model.flightBooking.Flight.DepartureCountry</p>
+				</div>
+				<div class="col-md-6">
+					<h5>Arrival:</h5>
+					<p class="text-right">Aiport: @Model.flightBooking.Flight.ArrivalAirport</p>
+					<p class="text-right">Country: @Model.flightBooking.Flight.ArrivalCountry</p>
+				</div>
 			</div>
-			<div class="col-md-6">
-				<h5>Arrival:</h5>
-				<p class="text-right">Aiport: @Model.flightBooking.Flight.ArrivalAirport</p>
-				<p class="text-right">Country: @Model.flightBooking.Flight.ArrivalCountry</p>
+			<div>
+				<p>Type Seat: @Model.flightBooking.Flight.Seat.ToString()</p>
 			</div>
 		</div>
+
+		<hr>
+		<h5>Price: @Model.flightBooking.GetPrice()</h5>
+
+		<form method="post">
+			<input type="hidden" asp-for="start" value="@Model.flightBooking.StartDate" />
+			<input type="hidden" asp-for="end" value="@Model.flightBooking.EndDate" />
+			<input type="hidden" asp-for="Extra" value="@Model.flightBooking.ExtraLuggage" />
+			<input type="hidden" asp-for="flightId" value="@Model.flightBooking.Flight.FlightId" />
+
+			<div class="d-flex align-items-center justify-content-center pt-2">
+				<button type="submit" class="btn btn-primary mx-1">
+					Pay Now
+				</button>
+
+				<a href="@Request.Headers["Referer"].ToString()" class="btn btn-primary">Cancel</a>
+			</div>
+		</form>
+
 		<div>
-			<p>Type Seat: @Model.flightBooking.Flight.Seat.ToString()</p>
+			<p class="text-danger">@TempData["Message"]</p>
 		</div>
-	</div>
-
-	<hr>
-	<h5>Price: @Model.flightBooking.GetPrice()</h5>
-</div>
-
-<form method="post">
-	<input type="hidden" asp-for="start" value="@Model.flightBooking.StartDate" />
-	<input type="hidden" asp-for="end" value="@Model.flightBooking.EndDate" />
-	<input type="hidden" asp-for="Extra" value="@Model.flightBooking.ExtraLuggage" />
-	<input type="hidden" asp-for="flightId" value="@Model.flightBooking.Flight.FlightId" />
-
-	<div class="d-flex align-items-center justify-content-center pt-2">
-		<button type="submit" class="btn btn-primary mx-1">
-			Pay Now
-		</button>
-
-		<a href="@Request.Headers["Referer"].ToString()" class="btn btn-primary">Cancel</a>
-	</div>
-</form>
-
-<div>
-	<p class="text-danger">@TempData["Message"]</p>
+	}
+	else
+	{
+		<div>
+			<p class="text-danger">@TempData["Message"]</p>
+		</div>
+	}
 </div>
