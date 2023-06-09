@@ -41,9 +41,12 @@
 			<div class="row">
 				@if (User.IsInRole("Admin"))
 				{
-					<div class="col-md-6">
-						<button type="submit" asp-page-handler="Update" class="btn btn-primary btn-sm" style="width: 100%;">Cancel booking</button>
-					</div>
+					if (Model.FlightBooking.Status == "Paid")
+					{
+						<div class="col-md-6">
+							<button type="submit" asp-page-handler="Update" class="btn btn-primary btn-sm" style="width: 100%;">Cancel booking</button>
+						</div>
+					}
 
 					<div class="col-md-6">
 						<button type="submit" asp-page-handler="Delete" class="btn btn-primary btn-sm" style="width: 100%;">Delete Booking</button>
@@ -51,9 +54,12 @@
 				}
 				else
 				{
-					<div class="col-md-6">
-						<button type="submit" asp-page-handler="Update" class="btn btn-primary btn-sm" style="width: 100%;">Cancel booking</button>
-					</div>
+					if(Model.FlightBooking.Status == "Paid")
+					{
+						<div class="col-md-6">
+							<button type="submit" asp-page-handler="Update" class="btn btn-primary btn-sm" style="width: 100%;">Cancel booking</button>
+						</div>
+					}
 				}
 			</div>
 		</form>
@@ -96,19 +102,24 @@ else if (Model.HotelBooking != null)
 			<div class="row">
 				@if (User.IsInRole("Admin"))
 				{
-					<div class="col-md-6">
-						<button type="submit" asp-page-handler="Update" class="btn btn-primary btn-sm" style="width: 100%;">Cancel booking</button>
-					</div>
-
+					if (Model.HotelBooking.Status == "Paid")
+					{
+						<div class="col-md-6">
+							<button type="submit" asp-page-handler="Update" class="btn btn-primary btn-sm" style="width: 100%;">Cancel booking</button>
+						</div>
+					}
 					<div class="col-md-6">
 						<button type="submit" asp-page-handler="Delete" class="btn btn-primary btn-sm" style="width: 100%;">Delete Booking</button>
 					</div>
 				}
 				else
 				{
-					<div class="col-md-6">
-						<button type="submit" asp-page-handler="Update" class="btn btn-primary btn-sm" style="width: 100%;">Cancel booking</button>
-					</div>
+					if (Model.HotelBooking.Status == "Paid")
+					{
+						<div class="col-md-6">
+							<button type="submit" asp-page-handler="Update" class="btn btn-primary btn-sm" style="width: 100%;">Cancel booking</button>
+						</div>
+					}
 				}
 			</div>
 		</form>

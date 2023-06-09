@@ -25,7 +25,7 @@
         <div class="mb-3">
             <label asp-for="UpdateUser.DateOfBirth" class="form-label">Date of Birth: </label>
             <span class="text-danger" asp-validation-for="UpdateUser.DateOfBirth"></span>
-            <input type="date" asp-for="UpdateUser.DateOfBirth" class="form-control" value="@Model.UpdateUser.DateOfBirth.ToString("yyyy-MM-dd")">
+            <input type="date" asp-for="UpdateUser.DateOfBirth" class="form-control" value="@Model.UpdateUser.DateOfBirth.ToString("yyyy-MM-dd")" max="@(DateTime.Today.AddYears(-18).ToString("yyyy-MM-dd"))">
         </div>
 
         <div class="mb-3">
