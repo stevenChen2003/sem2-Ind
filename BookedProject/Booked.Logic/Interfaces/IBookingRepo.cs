@@ -13,7 +13,7 @@ namespace Booked.Logic.Interfaces
 		IEnumerable<Booking> GetBookingByUserId(int userId);
 		Booking GetBookingById(int id);
 		void AddHotelBooking(HotelBooking hotelBooking);
-		void AddFlightBooking(FlightBooking booking);
+		void AddFlightBooking(FlightBooking flightbooking);
 		void UpdateBooking(Booking booking);
 		void RemoveBooking(int id);
 	}

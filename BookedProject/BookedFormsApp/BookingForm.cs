@@ -15,82 +15,78 @@ using Booked.Logic.Exceptions;
 
 namespace BookedFormsApp
 {
-	public partial class BookingForm : Form
-	{
-		private BookingManager bookingManager;
+    public partial class BookingForm : Form
+    {
+        private BookingManager bookingManager;
 
-		public BookingForm()
-		{
-			InitializeComponent();
-			bookingManager = new BookingManager(new BookingRepository());
-			comboBoxFilter.SelectedIndex = 0;
-			try
-			{
-				LoadGrid();
-			}
-			catch (Exception)
-			{
-				MessageBox.Show("Error loading bookings", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
+        public BookingForm()
+        {
+            InitializeComponent();
+            bookingManager = new BookingManager(new BookingRepository());
+            comboBoxFilter.SelectedIndex = 0;
+            try
+            {
+                LoadGrid();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error loading bookings", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
 
-		public void LoadGrid()
-		{
-			try
-			{
-				dataGridBooking.DataSource = null;
-				dataGridBooking.Rows.Clear();
-				dataGridBooking.Refresh();
-				dataGridBooking.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        public void LoadGrid()
+        {
+            try
+            {
+                dataGridBooking.DataSource = null;
+                dataGridBooking.Rows.Clear();
+                dataGridBooking.Refresh();
+                dataGridBooking.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-				DataTable dataTable = new DataTable();
-				dataTable.Columns.Add("ID", typeof(int));
-				dataTable.Columns.Add("Booking Type", typeof(string));
-				dataTable.Columns.Add("Booking Date", typeof(DateTime));
-				dataTable.Columns.Add("Price", typeof(string));
+                DataTable dataTable = new DataTable();
+                dataTable.Columns.Add("ID", typeof(int));
+                dataTable.Columns.Add("Booking Type", typeof(string));
+                dataTable.Columns.Add("Booking Date", typeof(DateTime));
+                dataTable.Columns.Add("Price", typeof(string));
 
-				string bookingType = "";
+                string bookingType = "";
 
-				List<Booking> bookingsList = bookingManager.GetAllBooking().ToList();
+                IEnumerable<Booking> bookingsList = bookingManager.GetAllBooking();
 
-				if (comboBoxFilter.SelectedIndex == 2)
-				{
-					bookingsList = bookingsList.Where(b => b is HotelBooking).ToList();
-				}
-				else if (comboBoxFilter.SelectedIndex == 1)
-				{
-					bookingsList = bookingsList.Where(b => b is FlightBooking).ToList();
-				}
-				else
-				{
-					bookingsList = bookingManager.GetAllBooking().ToList();
-				}
+                if (comboBoxFilter.SelectedIndex == 0)
+                {
+                    bookingsList = bookingsList.Where(b => b is FlightBooking); 
+                }
+                else if (comboBoxFilter.SelectedIndex == 1)
+                {
+                    bookingsList = bookingsList.Where(b => b is HotelBooking);
+                }
 
-				foreach (Booking booking in bookingsList)
-				{
-					if (booking is HotelBooking)
-					{
-						bookingType = "Hotel booking";
-					}
-					else if (booking is FlightBooking)
-					{
-						bookingType = "Flight booking";
-					}
-					dataTable.Rows.Add(booking.BookingId, bookingType, booking.BookingDate, booking.GetPrice());
-				}
-				dataGridBooking.DataSource = dataTable;
-			}
-			catch (GetException ex)
-			{
-				throw new GetException(ex.Message);
-			}
-		}
+                foreach (Booking booking in bookingsList)
+                {
+                    if (booking is HotelBooking)
+                    {
+                        bookingType = "Hotel booking";
+                    }
+                    else if (booking is FlightBooking)
+                    {
+                        bookingType = "Flight booking";
+                    }
+                    dataTable.Rows.Add(booking.BookingId, bookingType, booking.BookingDate, booking.GetPrice());
+                }
+                dataGridBooking.DataSource = dataTable;
+            }
+            catch (GetException ex)
+            {
+                throw new GetException(ex.Message);
+            }
+        }
 
-		private void comboBoxFilter_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			LoadGrid();
-		}
+        private void comboBoxFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadGrid();
+        }
 
-	}
+    }
 }
